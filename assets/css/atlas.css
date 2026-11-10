@@ -66,7 +66,7 @@
   min-height: clamp(10rem, 37svh, 22rem);
   padding: clamp(.75rem, 2vw, 2rem);
   overflow: hidden;
-  background: linear-gradient(to top right, transparent 49.85%, #143fca18 50%, transparent 50.15%);
+  background: linear-gradient(to top right, transparent 49.85%, #143fca18 50%, transparent 50.15%) #f2eadb;
 }
 
 .atlas-section-number {
@@ -149,13 +149,14 @@
 .atlas-open:is(:hover, :focus-visible) { background: #0f2e9a; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .atlas-section-visual img {
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path 400ms cubic-bezier(.22, .65, .25, 1), opacity 250ms ease;
-  }
   .atlas-section-caption, .atlas-arrow { transition: background-color 180ms ease, color 180ms ease, transform 210ms ease; }
-  .atlas-section.is-active .atlas-section-visual img { clip-path: inset(0); }
+  .atlas-section.is-active .atlas-section-visual img { animation: atlas-image-in 180ms ease-out; }
   .atlas-section.is-active .atlas-arrow { transform: translate(2px, -2px); }
+
+  @keyframes atlas-image-in {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0); }
+  }
 }
 
 @media (max-width: 760px) {

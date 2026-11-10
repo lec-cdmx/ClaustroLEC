@@ -1,3 +1,15 @@
+.directory-update {
+  max-width: 64rem;
+  margin-bottom: .75rem;
+  padding: .9rem 1rem;
+  border-inline-start: 4px solid var(--accent);
+  background: var(--tint);
+}
+
+.directory-update h2 { margin-bottom: .2rem; font: 750 1.15rem/1.2 var(--display); }
+.directory-update p { font-size: .9rem; }
+.directory-update a { color: var(--accent); font-weight: 700; }
+
 .forms-note {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -15,8 +27,6 @@
 .forms-note svg { margin-top: .2rem; color: #a64f1c; }
 .forms-note h2 { margin-bottom: .2rem; font-size: .94rem; color: #743710; }
 .forms-note p { font-size: .87rem; }
-.forms-note p + p { margin-top: .5rem; }
-.forms-note a { color: var(--accent); font-weight: 700; }
 
 .directory-filters {
   padding: clamp(1rem, 2.5vw, 1.5rem);
