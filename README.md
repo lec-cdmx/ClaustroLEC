@@ -4,15 +4,21 @@ Portal de la Licenciatura en Economía del Tecnológico de Monterrey. Reúne el 
 
 ## Revisión local
 
-Abre `index.html` en tu navegador y elige una sección del índice. La portada y las cuatro subpáginas comparten `styles.css` y se pueden revisar sin instalar dependencias.
+Abre `index.html` en tu navegador y elige una sección del mapa. Puedes revisar el portal sin instalar dependencias.
 
 ## Publicación en GitHub Pages
 
 El [portal](https://lec-cdmx.github.io/ClaustroLEC/) se publica desde la raíz (`/`) de la rama `main`. Los cambios enviados a `main` activan la actualización en GitHub Pages.
 
+## Organización de archivos
+
+- **Raíz.** Portada y cuatro páginas del portal.
+- **`assets/`.** Estilos en `css/`, scripts en `js/`, el icono del portal en `icons/` y los retratos publicados en `img/directorio/`.
+- **`fuentes-locales/directorio/`.** El Excel de referencia y las fotos originales. Esta carpeta está excluida de Git y se conserva en la copia local.
+
 ## Actualizar el contenido
 
-- **Directorio.** Edita o duplica una fila de la tabla en `directorio.html`. Actualiza el nombre, la especialidad, el campus y el correo institucional.
+- **Directorio.** Edita o duplica un perfil en `directorio.html`. Actualiza el nombre, puesto, campus, correo institucional, semblanza, palabras clave y unidades de formación impartidas. Guarda el retrato para publicar en `assets/img/directorio/` y añade enlaces académicos cuando hayas verificado a quién pertenecen. El buscador obtiene sus opciones de las fichas.
 - **Oportunidades.** Edita o duplica una ficha en `oportunidades.html`. Incluye la fecha límite y el enlace oficial cuando correspondan. Si hay fecha, actualiza tanto el texto visible como el atributo `datetime` en formato `AAAA-MM-DD`.
 - **Buenas prácticas y capacitación.** Edita o duplica una ficha en `buenas-practicas.html` o `capacitacion.html` y agrega un enlace al material cuando esté disponible.
 

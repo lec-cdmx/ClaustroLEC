@@ -1,0 +1,135 @@
+.directory-heading { padding-block: clamp(2rem, 6vw, 4.7rem) 1.65rem; }
+.directory-heading h1 { font-size: clamp(2.65rem, 6.3vw, 5.1rem); }
+
+.forms-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .85rem;
+  max-width: 64rem;
+  margin-bottom: 2rem;
+  padding: .9rem 1rem;
+  border: 1px solid #efc197;
+  border-left: 4px solid #d76a24;
+  border-radius: .45rem;
+  background: #fff4e8;
+  color: #653918;
+}
+
+.forms-note svg { margin-top: .2rem; color: #a64f1c; }
+.forms-note h2 { margin-bottom: .2rem; font-size: .94rem; color: #743710; }
+.forms-note p { font-size: .87rem; }
+
+.directory-filters {
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--rule);
+  border-radius: .8rem;
+  background: #f5f8fe;
+}
+
+.directory-filters label {
+  display: block;
+  margin-bottom: .35rem;
+  color: var(--navy);
+  font-size: .83rem;
+  font-weight: 690;
+}
+
+.directory-filters input, .directory-filters select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.85rem;
+  padding: .58rem .68rem;
+  border: 1px solid #acbdd8;
+  border-radius: .42rem;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-size: .88rem;
+}
+
+.directory-filters :is(input, select, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.directory-filters input { padding-left: 2.55rem; }
+.directory-search { position: relative; }
+.directory-search svg { position: absolute; top: 50%; left: .82rem; transform: translateY(-50%); color: var(--accent); pointer-events: none; }
+.directory-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr) minmax(0, 1fr); gap: .8rem; margin-top: .85rem; }
+.directory-fields select { text-overflow: ellipsis; }
+
+.directory-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  min-height: 3.3rem;
+  margin-top: .5rem;
+  color: var(--muted);
+  font-size: .84rem;
+}
+
+.directory-toolbar button {
+  padding: .45rem .1rem;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 690;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.directory-toolbar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.directory-toolbar button:disabled { color: var(--muted); opacity: .68; text-decoration: none; cursor: default; }
+.directory-empty { padding: 1.65rem 1rem; border-block: 1px solid var(--rule); color: var(--muted); }
+
+.faculty-profile {
+  display: grid;
+  grid-template-columns: clamp(7rem, 11vw, 9.5rem) minmax(0, 1.8fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "photo identity teaching" "photo biography teaching";
+  align-items: start;
+  gap: .65rem clamp(1.2rem, 3vw, 2.5rem);
+  padding-block: 1.55rem;
+  border-top: 1px solid var(--rule);
+}
+
+.faculty-profile[hidden] { display: none; }
+.faculty-portrait { grid-area: photo; aspect-ratio: 1; overflow: hidden; border: 1px solid #d6e1f2; border-radius: .7rem; background: #eaf0f9; }
+.faculty-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--portrait-position, center); }
+.faculty-portrait--marco img { transform: scale(1.43); transform-origin: 50% 69%; }
+
+.faculty-identity { grid-area: identity; }
+.faculty-identity h2 { color: var(--navy); font-size: clamp(1.26rem, 2.25vw, 1.9rem); line-height: 1.08; letter-spacing: -.035em; }
+.faculty-role { margin-top: .27rem; color: var(--muted); font-size: .9rem; }
+.faculty-contact { display: flex; flex-wrap: wrap; align-items: baseline; gap: .18rem .75rem; margin-top: .4rem; font-size: .8rem; }
+.faculty-campus { color: var(--navy); font-weight: 690; }
+.faculty-contact a { color: var(--accent); overflow-wrap: anywhere; }
+
+.faculty-biography { grid-area: biography; color: var(--ink); font-size: .93rem; }
+.faculty-keywords { display: flex; flex-wrap: wrap; gap: .35rem; margin: .7rem 0 0; padding: 0; list-style: none; }
+.faculty-keywords li { padding: .18rem .48rem; border-radius: .27rem; background: #edf3ff; color: #234c9c; font-size: .76rem; }
+.faculty-links { display: flex; flex-wrap: wrap; gap: .35rem .9rem; margin-top: .6rem; color: var(--accent); font-size: .81rem; font-weight: 690; }
+
+.faculty-teaching { grid-area: teaching; padding-left: 1.05rem; border-left: 1px solid var(--rule); }
+.faculty-teaching h3 { margin: 0; color: var(--navy); font-size: .82rem; font-weight: 700; }
+.faculty-courses { display: grid; gap: .35rem; margin: .43rem 0 0; padding-left: 1rem; color: var(--muted); font-size: .85rem; }
+.faculty-courses li::marker { color: var(--accent); }
+
+@media (max-width: 850px) {
+  .faculty-profile {
+    grid-template-columns: 7rem minmax(0, 1fr);
+    grid-template-areas: "photo identity" "photo biography" "photo teaching";
+    grid-template-rows: auto auto 1fr;
+  }
+  .faculty-teaching { padding: .75rem 0 0; border-left: 0; border-top: 1px solid var(--rule); }
+}
+
+@media (max-width: 550px) {
+  .directory-fields { grid-template-columns: 1fr; }
+  .faculty-profile {
+    grid-template-columns: 4.9rem minmax(0, 1fr);
+    grid-template-areas: "photo identity" "biography biography" "teaching teaching";
+    gap: .75rem;
+  }
+  .faculty-role { font-size: .83rem; }
+}

@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Consulta las áreas de especialidad, campus y medios de contacto del claustro.">
+  <meta name="description" content="Encuentra perfiles, trayectorias, materias impartidas y contactos del claustro de Economía del Tec de Monterrey.">
   <title>Directorio | Claustro LEC</title>
-  <link rel="icon" type="image/svg+xml" href="claustro.svg?v=2">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/directorio.css">
+  <script src="assets/js/directorio.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
   <header class="site-header" id="inicio">
     <div class="shell header-inner">
       <a class="brand" href="index.html">
-        <img class="brand-mark" src="claustro.svg?v=2" width="38" height="38" alt="">
+        <img class="brand-mark" src="assets/icons/claustro.svg" width="38" height="38" alt="">
         <span>Tecnológico de Monterrey<small>Licenciatura en Economía</small></span>
       </a>
       <span class="edition">Edición preliminar</span>
@@ -41,42 +43,327 @@
   </div>
 
   <main class="shell" id="contenido" tabindex="-1">
-    <div class="page-heading">
-      <p class="eyebrow">01 · Comunidad</p>
-      <h1>Directorio</h1>
-      <p>Consulta las áreas de especialidad, campus y medios de contacto del claustro.</p>
+    <div class="page-heading directory-heading">
+      <p class="eyebrow">01 · Comunidad académica</p>
+      <h1>Directorio del claustro</h1>
+      <p>Conoce la trayectoria del profesorado de Economía y encuentra a tus colegas por campus, materia o tema de interés.</p>
     </div>
-    <table role="table" aria-label="Directorio del claustro">
-      <thead role="rowgroup">
-        <tr role="row">
-          <th scope="col">Docente</th>
-          <th scope="col">Especialidad</th>
-          <th scope="col">Campus</th>
-          <th scope="col">Contacto institucional</th>
-        </tr>
-      </thead>
-      <tbody role="rowgroup">
-        <tr role="row">
-          <th scope="row" role="rowheader">Andrea Salgado <span class="sample">Ejemplo</span></th>
-          <td role="cell">Economía laboral</td>
-          <td role="cell">Ciudad de México</td>
-          <td role="cell">andrea.salgado@tec.example</td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader">Emilio Herrera <span class="sample">Ejemplo</span></th>
-          <td role="cell">Econometría aplicada</td>
-          <td role="cell">Monterrey</td>
-          <td role="cell">emilio.herrera@tec.example</td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader">Lucía Méndez <span class="sample">Ejemplo</span></th>
-          <td role="cell">Economía pública</td>
-          <td role="cell">Guadalajara</td>
-          <td role="cell">lucia.mendez@tec.example</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="sample-note"><strong>Nota de edición.</strong> Los nombres y correos del directorio son ficticios.</p>
+
+    <aside class="forms-note" aria-labelledby="forms-title">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M8 3h8v4H8zM8 5H5v16h14V5h-3M8 11h8m-8 4h8m-8 3h5"/>
+      </svg>
+      <div>
+        <h2 id="forms-title">Propuesta para mantener el directorio al día</h2>
+        <p>El directorio podría alimentarse con un Forms de respuesta obligatoria para todo el claustro, tanto de tiempo completo como de cátedra. La primera pregunta sería si autorizan compartir su información en el directorio. Solo a quienes respondan que sí se les pediría semblanza, foto, correo institucional, campus, unidades de formación (UF) impartidas y enlaces a páginas personales o académicas.</p>
+      </div>
+    </aside>
+
+    <form class="directory-filters" id="directory-filters" role="search" aria-label="Buscar docentes" hidden>
+      <label for="directory-search">Buscar en el directorio</label>
+      <div class="directory-search">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="6.2"/><path d="m15 15 5 5"/>
+        </svg>
+        <input id="directory-search" type="search" placeholder="Nombre, materia o tema de investigación" autocomplete="off">
+      </div>
+      <div class="directory-fields">
+        <div>
+          <label for="directory-campus">Campus</label>
+          <select id="directory-campus"><option value="">Todos los campus</option></select>
+        </div>
+        <div>
+          <label for="directory-course">Materia o UF impartida</label>
+          <select id="directory-course"><option value="">Todas las materias</option></select>
+        </div>
+        <div>
+          <label for="directory-keyword">Palabra clave</label>
+          <select id="directory-keyword"><option value="">Todas las palabras clave</option></select>
+        </div>
+      </div>
+    </form>
+
+    <div class="directory-toolbar">
+      <p id="directory-count" role="status">Perfiles docentes</p>
+      <button id="directory-clear" type="button" hidden>Limpiar filtros</button>
+    </div>
+    <p class="directory-empty" id="directory-empty" hidden>No encontramos docentes con esa combinación. Prueba otra búsqueda o limpia los filtros.</p>
+
+    <div class="faculty-directory">
+      <!-- Fuentes de la semblanza de Dr. Arturo Pérez Mendoza: https://research.tec.mx/vivo-tec/display/PID_18916 | https://newsroom.itesm.mx/Lists/Profesores/DispForm.aspx?ID=264 -->
+      <article class="faculty-profile" aria-labelledby="arturo-perez-mendoza">
+        <div class="faculty-portrait">
+          <img src="assets/img/directorio/arturo-perez-mendoza.webp" width="240" height="240" alt="" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="arturo-perez-mendoza">Dr. Arturo Pérez Mendoza</h2>
+          <p class="faculty-role">Director Regional del Departamento de Economía</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:arturo.perez@tec.mx">arturo.perez@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Doctor en Economía por la Universidad de Minnesota, con maestría en El Colegio de México y licenciatura en la UAM. Ha enseñado en la Universidad de Minnesota y en el posgrado de El Colegio de México. Ha publicado sobre comercio internacional y mercado laboral e imparte macroeconomía en el Tec.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Comercio internacional</li>
+            <li>Mercado laboral</li>
+            <li>Macroeconomía</li>
+          </ul>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Dinámica del Crecimiento Nacional y Regional</li>
+            <li>Origen y Futuro del Panorama Macroeconómico</li>
+            <li>Macroeconomía y Desarrollo Económico</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Fuentes de la semblanza de Dra. Grisel Ayllón Aragón: https://research.tec.mx/vivo-tec/display/PID_140616 | https://sites.google.com/view/code-uab/people/phd-students | https://revistavivienda.infonavit.org.mx/wp-content/uploads/2023/05/Revista-Vivienda-Infonavit_-El-suelo-como-precondicion-de-la-vivienda.-Ano-5-No.-1.Flip_.pdf -->
+      <article class="faculty-profile" aria-labelledby="grisel-ayllon-aragon">
+        <div class="faculty-portrait">
+          <img src="assets/img/directorio/grisel-ayllon-aragon.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="grisel-ayllon-aragon">Dra. Grisel Ayllón Aragón</h2>
+          <p class="faculty-role">Vicerrectora de Facultad</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:grisel.ayllon@tec.mx">grisel.ayllon@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Doctora en Economía por la Universitat Autònoma de Barcelona. Estudia cómo las reglas de votación y los mecanismos de asignación influyen en las decisiones colectivas. Su trabajo aplica la microeconomía al diseño de mecanismos y políticas públicas. Fue directora nacional del programa de Economía del Tec.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Elección social</li>
+            <li>Diseño de mecanismos</li>
+            <li>Microeconomía</li>
+          </ul>
+          <p class="faculty-links">
+            <a href="https://scholar.google.com/citations?user=S263xjgAAAAJ" aria-label="Google Scholar de Dra. Grisel Ayllón Aragón">Google Scholar <span aria-hidden="true">↗</span></a>
+            <a href="https://orcid.org/0000-0003-1313-2590" aria-label="ORCID de Dra. Grisel Ayllón Aragón">ORCID <span aria-hidden="true">↗</span></a>
+          </p>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Incentivos del consumidor y del productor</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Fuentes de la semblanza de Dr. Hugo Javier Fuentes Castro: https://research.tec.mx/vivo-tec/display/PID_19147 | https://www.economia.gob.mx/files/conoce_la_se/diagnosticos/ficha_tecnica_procesos_p002_2015.pdf -->
+      <article class="faculty-profile" aria-labelledby="hugo-javier-fuentes-castro">
+        <div class="faculty-portrait">
+          <img src="assets/img/directorio/hugo-javier-fuentes-castro.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="hugo-javier-fuentes-castro">Dr. Hugo Javier Fuentes Castro</h2>
+          <p class="faculty-role">Director Nacional del Programa de Economía</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:hfuentes@tec.mx">hfuentes@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Doctor en Economía Aplicada por la Universitat Autònoma de Barcelona. Se incorporó al Tec en 1999 y dirigió su Departamento de Economía durante trece años. Su trayectoria combina docencia en microeconomía, investigación sobre productividad y consultoría en evaluación de políticas públicas.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Productividad</li>
+            <li>Microeconomía</li>
+            <li>Evaluación de políticas</li>
+          </ul>
+          <p class="faculty-links">
+            <a href="https://orcid.org/0000-0001-7221-6490" aria-label="ORCID de Dr. Hugo Javier Fuentes Castro">ORCID <span aria-hidden="true">↗</span></a>
+          </p>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Microeconomía</li>
+            <li>Decisiones Estratégicas en Mercados e Instituciones</li>
+            <li>Investigación y consultoría económica</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Fuentes de la semblanza de Dr. José Jorge Mora Rivera: https://research.tec.mx/vivo-tec/display/PID_40392 -->
+      <article class="faculty-profile" aria-labelledby="jose-jorge-mora-rivera">
+        <div class="faculty-portrait">
+          <img src="assets/img/directorio/jose-jorge-mora-rivera.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="jose-jorge-mora-rivera">Dr. José Jorge Mora Rivera</h2>
+          <p class="faculty-role">Profesor Investigador</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:jjmora@tec.mx">jjmora@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Doctor y maestro en Economía por El Colegio de México. Como profesor investigador del Tec, estudia la migración y las remesas, así como la pobreza y la desigualdad en zonas rurales de México. Sus publicaciones también analizan la relación entre la conectividad digital y el bienestar de los hogares.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Migración</li>
+            <li>Remesas</li>
+            <li>Pobreza</li>
+            <li>Desarrollo rural</li>
+          </ul>
+          <p class="faculty-links">
+            <a href="https://scholar.google.com/citations?user=DOm8wRsAAAAJ" aria-label="Google Scholar de Dr. José Jorge Mora Rivera">Google Scholar <span aria-hidden="true">↗</span></a>
+            <a href="https://orcid.org/0000-0003-0838-9551" aria-label="ORCID de Dr. José Jorge Mora Rivera">ORCID <span aria-hidden="true">↗</span></a>
+          </p>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Dinámica del Crecimiento Nacional y Regional</li>
+            <li>Solución y evaluación de problemas económicos</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Fuentes de la semblanza de Mtro. Marco Méndez Atienza: https://research.tec.mx/vivo-tec/display/PID_376973 | https://mmendezatienza.github.io/ -->
+      <article class="faculty-profile" aria-labelledby="marco-mendez-atienza">
+        <div class="faculty-portrait faculty-portrait--marco">
+          <img src="assets/img/directorio/marco-mendez-atienza.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="marco-mendez-atienza">Mtro. Marco Méndez Atienza</h2>
+          <p class="faculty-role">Director de Programa de Economía</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:marco.mendez@tec.mx">marco.mendez@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Maestro en Economía por El Colegio de México y doctorando en Política Pública en el Tec. Dirige la licenciatura en el Campus Ciudad de México y coordina la concentración de Economía Aplicada y Ciencia de Datos. Usa econometría e inferencia causal para estudiar seguridad pública, movilidad y desarrollo regional.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Econometría</li>
+            <li>Evaluación de políticas</li>
+            <li>Seguridad pública</li>
+            <li>Movilidad urbana</li>
+          </ul>
+          <p class="faculty-links">
+            <a href="https://scholar.google.com/citations?user=HlDYImEAAAAJ" aria-label="Google Scholar de Mtro. Marco Méndez Atienza">Google Scholar <span aria-hidden="true">↗</span></a>
+            <a href="https://orcid.org/0009-0003-3967-4782" aria-label="ORCID de Mtro. Marco Méndez Atienza">ORCID <span aria-hidden="true">↗</span></a>
+          </p>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Pensamiento Matemático</li>
+            <li>Fundamentos de Econometría</li>
+            <li>Econometría I</li>
+            <li>Econometría II</li>
+            <li>Multivariante</li>
+            <li>Economía Aplicada y Ciencia de Datos para el Bien Público</li>
+            <li>Incentivos del Consumidor y del Productor</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Fuentes de la semblanza de Dra. Margaret Miller: https://blogs.worldbank.org/es/team/m/margaret-miller | https://ifdm.stanford.edu/people/margaret-miller -->
+      <article class="faculty-profile" aria-labelledby="margaret-miller">
+        <div class="faculty-portrait">
+          <img src="assets/img/directorio/margaret-miller.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="margaret-miller">Dra. Margaret Miller</h2>
+          <p class="faculty-role">Profesora Investigadora</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:mjmiller@tec.mx">mjmiller@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Doctora en Economía por la Universidad de California en Berkeley. En el Banco Mundial lideró trabajos sobre inclusión financiera responsable, información crediticia y educación financiera. También ha trabajado en protección al consumidor y en el uso de contenidos de entretenimiento para fortalecer capacidades financieras.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Inclusión financiera</li>
+            <li>Educación financiera</li>
+            <li>Protección al consumidor</li>
+          </ul>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Macroeconomía y Desarrollo Económico</li>
+            <li>Economía y finanzas personales: herramientas para decisiones inteligentes</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Fuentes de la semblanza de Dra. Nayeli Salgado Granados: https://research.tec.mx/vivo-tec/display/PID_495462 | https://research.wu.ac.at/en/projects/the-impact-of-the-mexican-road-network-on-local-economic-developm-4/ -->
+      <article class="faculty-profile" aria-labelledby="nayeli-salgado-granados">
+        <div class="faculty-portrait">
+          <img src="assets/img/directorio/nayeli-salgado-granados.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="nayeli-salgado-granados">Dra. Nayeli Salgado Granados</h2>
+          <p class="faculty-role">Profesora de Tiempo Completo</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:nayeli.salgado@tec.mx">nayeli.salgado@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Doctora por la Universidad de Economía y Negocios de Viena (WU). Investiga cómo la infraestructura y las políticas públicas influyen en el desarrollo económico de largo plazo. Coordinó la política nacional de vivienda en la Sedatu y colaboró en el Coneval en el desarrollo de la metodología de medición de la pobreza multidimensional.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Historia económica</li>
+            <li>Desarrollo económico</li>
+            <li>Pobreza</li>
+            <li>Política de vivienda</li>
+          </ul>
+          <p class="faculty-links">
+            <a href="https://orcid.org/0000-0002-4563-7190" aria-label="ORCID de Dra. Nayeli Salgado Granados">ORCID <span aria-hidden="true">↗</span></a>
+          </p>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Macroeconomía y Desarrollo Económico</li>
+            <li>Economía y finanzas personales: herramientas para decisiones inteligentes</li>
+            <li>Investigación y consultoría económica</li>
+            <li>Futuros urbanos: datos, diseño y política pública</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Fuentes de la semblanza de Dr. Pedro Liedo Orozco: https://pliedo.github.io/ | https://climate.uchicago.edu/people/pedro-liedo/ | https://are.ucdavis.edu/phd/past-placements/ | https://pub.orcid.org/v3.0/0009-0008-0371-8911/record -->
+      <article class="faculty-profile" aria-labelledby="pedro-liedo-orozco">
+        <div class="faculty-portrait">
+          <img src="assets/img/directorio/pedro-liedo-orozco.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="faculty-identity">
+          <h2 id="pedro-liedo-orozco">Dr. Pedro Liedo Orozco</h2>
+          <p class="faculty-role">Profesor de Tiempo Completo</p>
+          <p class="faculty-contact">
+            <span class="faculty-campus">Ciudad de México (CCM)</span>
+            <a href="mailto:pliedo@tec.mx">pliedo@tec.mx</a>
+          </p>
+        </div>
+        <div class="faculty-biography">
+          <p>Doctor en Economía Agrícola y de los Recursos por la Universidad de California en Davis y maestro en Políticas Públicas por la Universidad de Chicago. Su investigación combina microeconomía aplicada y economía ambiental para estudiar el transporte, la transición de combustibles y los cambios en el uso del suelo.</p>
+          <ul class="faculty-keywords" aria-label="Temas de investigación">
+            <li>Economía ambiental</li>
+            <li>Energía</li>
+            <li>Transporte</li>
+            <li>Uso del suelo</li>
+          </ul>
+          <p class="faculty-links">
+            <a href="https://orcid.org/0009-0008-0371-8911" aria-label="ORCID de Dr. Pedro Liedo Orozco">ORCID <span aria-hidden="true">↗</span></a>
+          </p>
+        </div>
+        <div class="faculty-teaching">
+          <h3>Unidades de formación impartidas</h3>
+          <ul class="faculty-courses">
+            <li>Competencia Económica</li>
+            <li>Incentivos del Consumidor y del Productor</li>
+            <li>Microeconomía</li>
+          </ul>
+        </div>
+      </article>
+    </div>
   </main>
 
   <footer class="site-footer">
