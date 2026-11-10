@@ -6,9 +6,9 @@
   <meta name="description" content="Encuentra perfiles, trayectorias, UF impartidas y contactos del claustro de Economía del Tec de Monterrey.">
   <title>Directorio | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/directorio.css?v=2">
-  <script src="assets/js/directorio.js?v=2" defer></script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=2">
+  <link rel="stylesheet" href="assets/css/directorio.css?v=3">
+  <script type="module" src="assets/js/directorio.js?v=3"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -18,7 +18,7 @@
         <img class="brand-mark" src="assets/icons/claustro.svg" width="38" height="38" alt="">
         <span>Tecnológico de Monterrey<small>Licenciatura en Economía</small></span>
       </a>
-      <span class="edition">Edición preliminar</span>
+      <span class="edition">Portal académico <span aria-hidden="true">/</span> LEC</span>
     </div>
   </header>
   <div class="shell">
@@ -43,11 +43,16 @@
   </div>
 
   <main class="shell" id="contenido" tabindex="-1">
-    <div class="page-heading directory-heading">
-      <p class="eyebrow">01 · Comunidad académica</p>
-      <h1>Directorio del claustro</h1>
-      <p>Conoce la trayectoria del profesorado de Economía y encuentra a tus colegas por campus, UF impartida o tema de interés.</p>
-    </div>
+    <header class="page-heading">
+      <div class="page-intro">
+        <p class="eyebrow">01 · Comunidad académica</p>
+        <h1>Directorio del claustro</h1>
+        <p>Conoce la trayectoria del profesorado de Economía y encuentra a tus colegas por campus, UF impartida o tema de interés.</p>
+      </div>
+      <div class="chapter-mark" aria-hidden="true">
+        <span>01</span>
+      </div>
+    </header>
 
     <aside class="forms-note" aria-labelledby="forms-title">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
@@ -72,15 +77,15 @@
           <label for="directory-campus">Campus</label>
           <select id="directory-campus"><option value="">Todos los campus</option></select>
         </div>
-        <div class="directory-picker">
+        <div class="search-picker">
           <label for="directory-course">UF impartida</label>
           <input id="directory-course" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="directory-course-options" autocomplete="off" placeholder="Escribe para buscar una UF">
-          <ul id="directory-course-options" class="directory-options" role="listbox" aria-label="Opciones de UF impartida" hidden></ul>
+          <ul id="directory-course-options" class="search-options" role="listbox" aria-label="Opciones de UF impartida" hidden></ul>
         </div>
-        <div class="directory-picker">
+        <div class="search-picker">
           <label for="directory-keyword">Palabra clave</label>
           <input id="directory-keyword" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="directory-keyword-options" autocomplete="off" placeholder="Escribe para buscar un tema">
-          <ul id="directory-keyword-options" class="directory-options" role="listbox" aria-label="Opciones de palabras clave" hidden></ul>
+          <ul id="directory-keyword-options" class="search-options" role="listbox" aria-label="Opciones de palabras clave" hidden></ul>
         </div>
       </div>
     </form>

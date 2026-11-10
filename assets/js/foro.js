@@ -1,12 +1,13 @@
 import { examples } from './forum-examples.js?v=2';
 import { parseTags, tagError, tagKey } from './forum-tags.js';
+import { searchableFilter } from './searchable-filter.js';
 
 const forum = document.querySelector('[data-forum-api]');
 const local = ['localhost', '127.0.0.1'].includes(location.hostname);
 const api = local ? 'http://127.0.0.1:8787' : forum.dataset.forumApi;
 const threads = document.querySelector('#forum-threads');
 const forumStatus = document.querySelector('#forum-status');
-const tagFilter = document.querySelector('#forum-tag-filter');
+const tagInput = document.querySelector('#forum-tag-filter');
 const filterCount = document.querySelector('#forum-filter-count');
 const newPost = document.querySelector('#forum-new');
 const dialog = document.querySelector('#forum-dialog');
@@ -120,6 +121,27 @@ function collapseReplies(post, list, article) {
   article.append(toggle);
 }
 
+function rootPosts() {
+  return [...publicPosts.filter(post => !post.parent_id).reverse(), ...examples.filter(post => !post.parent_id)];
+}
+
+function tagOptions() {
+  const tags = new Map();
+  for (const post of rootPosts()) {
+    for (const tag of post.tags || []) {
+      const key = tagKey(tag);
+      if (!tags.has(key)) tags.set(key, tag);
+    }
+  }
+  return [...tags].sort(([, a], [, b]) => a.localeCompare(b, 'es'));
+}
+
+const tagFilter = searchableFilter(tagInput, tagOptions, {
+  allLabel: 'Todas las etiquetas',
+  queryWords: value => tagKey(value).trim().split(/\s+/u).filter(Boolean),
+  onChange: renderThreads,
+});
+
 function renderThreads() {
   const children = new Map();
   for (const post of [...examples, ...publicPosts]) {
@@ -155,21 +177,9 @@ function renderThreads() {
     return article;
   }
 
-  const roots = [...publicPosts.filter(post => !post.parent_id).reverse(), ...examples.filter(post => !post.parent_id)];
+  const roots = rootPosts();
   const selected = tagFilter.value;
-  const tags = new Map();
-  for (const post of roots) {
-    for (const tag of post.tags || []) {
-      const key = tagKey(tag);
-      if (!tags.has(key)) tags.set(key, tag);
-    }
-  }
-  const options = [...tags].sort((a, b) => a[1].localeCompare(b[1], 'es'));
-  tagFilter.replaceChildren(new Option('Todas las etiquetas', ''), ...options.map(([key, tag]) => new Option(tag, key)));
-  tagFilter.value = tags.has(selected) ? selected : '';
-  const visible = tagFilter.value
-    ? roots.filter(post => post.tags?.some(tag => tagKey(tag) === selected))
-    : roots;
+  const visible = selected ? roots.filter(post => post.tags?.some(tag => tagKey(tag) === selected)) : roots;
   filterCount.textContent = `${visible.length} ${visible.length === 1 ? 'hilo' : 'hilos'}`;
   threads.replaceChildren(...visible.map(render));
 }
@@ -246,7 +256,7 @@ async function loadQueue(password = moderatorPassword) {
 }
 
 newPost.addEventListener('click', () => openContribution(null));
-tagFilter.addEventListener('change', renderThreads);
+tagInput.addEventListener('input', renderThreads);
 form.elements.tags.addEventListener('input', () => {
   form.elements.tags.removeAttribute('aria-invalid');
   formStatus.textContent = '';
