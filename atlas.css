@@ -1,30 +1,23 @@
 .atlas-page {
-  --atlas-ink: #f2f6ff;
-  --atlas-muted: #bdcbed;
-  --atlas-blue: #a2c3ff;
+  --atlas-ink: #152845;
+  --atlas-muted: #4b6080;
+  --atlas-blue: #2853b8;
   --atlas-mono: ui-monospace, Consolas, monospace;
-  background: #0a1328;
+  background: white;
   color: var(--atlas-ink);
 }
 
-.atlas-page .site-header, .atlas-page .site-footer {
-  border-color: #263755;
-  background: transparent;
-  color: var(--atlas-ink);
-}
-
-.atlas-page .brand small, .atlas-page .edition, .atlas-page .footer-inner p { color: var(--atlas-muted); }
-.atlas-page .site-footer { margin-top: 2rem; }
+.atlas-page .site-footer { margin-top: 2rem; background: white; }
 .atlas-page a:focus-visible, .atlas-page main:focus-visible { outline-color: var(--atlas-blue); }
 
 .atlas {
   width: min(1320px, calc(100% - 4rem));
   margin: clamp(1rem, 3vw, 2.7rem) auto 0;
-  border: 1px solid #344972;
+  border: 1px solid #d8e2f3;
   border-radius: 1.25rem;
   background:
-    radial-gradient(ellipse at 84% 25%, #243e77 0%, transparent 55%),
-    linear-gradient(155deg, #18284b, #101c38 64%);
+    radial-gradient(ellipse at 87% 25%, #e9f1ff 0%, transparent 56%),
+    linear-gradient(155deg, #fff, #f7faff 80%);
 }
 
 .atlas-intro {
@@ -74,22 +67,21 @@
   height: clamp(15.8rem, 23vw, 20rem);
   margin-top: .65rem;
   isolation: isolate;
-  background-image: radial-gradient(circle at 1px 1px, #7394d338 1px, transparent 1.25px);
+  background-image: radial-gradient(circle at 1px 1px, #6584b82e 1px, transparent 1.25px);
   background-size: 21px 21px;
 }
 
 .atlas-plot svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .atlas-portrait { display: none; }
 .atlas-plot path, .atlas-plot use { fill: none; vector-effect: non-scaling-stroke; }
-.atlas-guides { stroke: #98b8f42e; stroke-width: 1; stroke-dasharray: 2 7; }
-.atlas-echo { stroke: #7ba2f340; stroke-width: 1; }
-.atlas-track { stroke: #466bb1; stroke-width: 5; opacity: .55; }
+.atlas-guides { stroke: #668bc442; stroke-width: 1; stroke-dasharray: 2 7; }
+.atlas-echo { stroke: #7292ca46; stroke-width: 1; }
+.atlas-track { stroke: #b2c7ed; stroke-width: 6; }
 .atlas-plot .atlas-trace {
   vector-effect: none;
-  stroke: #a5c4ff;
+  stroke: #3869c3;
   stroke-width: 2;
   stroke-linecap: round;
-  filter: drop-shadow(0 0 6px #7faaffb3);
 }
 
 .atlas-node {
@@ -107,10 +99,10 @@
   width: clamp(3.2rem, 5vw, 4.2rem);
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid #a5c4ff;
+  border: 1px solid #7c9ad5;
   border-radius: 50%;
-  background: #152a52;
-  box-shadow: 0 0 0 6px #a5c4ff24;
+  background: white;
+  box-shadow: 0 0 0 6px #a8bee74a;
   font: 700 clamp(.83rem, 1.35vw, 1.05rem)/1 var(--atlas-mono);
 }
 
@@ -121,7 +113,7 @@
   transform: translateX(-50%);
   padding: .35rem .6rem;
   border-radius: .45rem;
-  background: #111f3b;
+  background: #ffffffeb;
   font-size: clamp(.82rem, 1.5vw, 1.14rem);
   font-weight: 690;
   white-space: nowrap;
@@ -130,12 +122,12 @@
 .atlas-node:nth-of-type(even) .atlas-label { top: auto; bottom: calc(100% + .72rem); }
 
 .atlas-node:is(.is-active, :hover, :focus-visible) .atlas-pin {
-  background: #c4d9ff;
-  color: #102244;
-  box-shadow: 0 0 0 7px #a5c4ff39, 0 0 28px #709ffb87;
+  background: var(--atlas-blue);
+  color: white;
+  box-shadow: 0 0 0 7px #bdd1f6b3, 0 0 24px #7ca0e35c;
 }
 
-.atlas-node:is(.is-active, :hover, :focus-visible) .atlas-label { background: #263f70; }
+.atlas-node:is(.is-active, :hover, :focus-visible) .atlas-label { background: #e5eeff; color: var(--atlas-blue); }
 
 .atlas-preview {
   display: flex;
@@ -144,9 +136,9 @@
   gap: .9rem 2rem;
   min-height: 8.6rem;
   padding: 1.25rem clamp(1.25rem, 4.5vw, 4rem);
-  border-top: 1px solid #405784;
+  border-top: 1px solid #d8e2f3;
   border-radius: 0 0 1.25rem 1.25rem;
-  background: #111e38e8;
+  background: #f4f7fe;
 }
 
 .atlas-preview h2 { margin-block: .2rem; font-size: clamp(1.35rem, 2.2vw, 1.85rem); line-height: 1.2; }
@@ -159,9 +151,10 @@
   gap: 1.6rem;
   min-height: 3rem;
   padding: .55rem .85rem;
-  border: 1px solid #7899d4;
+  border: 1px solid #8ba5d5;
   border-radius: .55rem;
-  color: var(--atlas-ink);
+  background: white;
+  color: var(--atlas-blue);
   font-size: .88rem;
   font-weight: 690;
   text-decoration: none;
@@ -169,7 +162,7 @@
 }
 
 .atlas-open span { color: var(--atlas-blue); font-size: 1.15rem; }
-.atlas-open:is(:hover, :focus-visible) { background: #263f70; }
+.atlas-open:is(:hover, :focus-visible) { background: #e5eeff; }
 
 @media (prefers-reduced-motion: no-preference) {
   .atlas-trace { animation: draw-route 1200ms ease-out; }

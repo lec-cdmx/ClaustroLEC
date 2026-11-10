@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  --paper: #f5f7fb;
+  --paper: #fff;
   --ink: #222a36;
   --navy: #203652;
   --muted: #535d6a;
@@ -185,7 +185,7 @@ tbody .sample { display: block; margin-top: .15rem; }
 .site-footer {
   margin-top: clamp(2.4rem, 6vw, 5rem);
   border-top: 1px solid var(--rule);
-  background: #e9ecf2;
+  background: #f4f7fe;
   color: var(--navy);
 }
 .footer-inner { flex-wrap: wrap; padding-block: 1.6rem; }
