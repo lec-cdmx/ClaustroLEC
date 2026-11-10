@@ -92,6 +92,9 @@
 .training-links a:hover { color: #0f2e9a; }
 .training-access { padding: .05rem .35rem; border: 1px solid #c5d5fa; background: var(--tint); color: #234583; font-size: .68rem; font-weight: 700; }
 .training-note { grid-column: 2; padding: .85rem 1rem; border-inline-start: 3px solid var(--accent); background: var(--tint); }
+.training-note--preliminary { margin-top: .8rem; border-inline-start-color: #d76a24; background: #fff4e8; }
+.training-note--preliminary h2 { margin-bottom: .25rem; color: #743710; font: 750 1.1rem/1.2 var(--display); }
+.training-note--preliminary p { color: #653918; }
 
 @media (max-width: 760px) {
   .training-section { grid-template-columns: minmax(0, 1fr); }
