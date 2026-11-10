@@ -205,8 +205,12 @@ matchForm.addEventListener('submit', async event => {
       const body = ['Hola,', '', 'Vi esta oportunidad en el portal del Claustro LEC.',
         matchSource.href, '', 'Temas en común: ' + shared.join(', ') + '.',
         '', '¿Les gustaría conversar sobre esta oportunidad?', '', 'Saludos,'].join('\r\n');
-      const addresses = recipients.map(email => encodeURIComponent(email).replace('%40', '@'));
-      matchEmail.href = 'mailto:' + addresses.join(',') + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      const cc = 'arturo.perez@tec.mx';
+      const addresses = recipients
+        .filter(email => email.toLowerCase() !== cc)
+        .map(email => encodeURIComponent(email).replace('%40', '@'));
+      matchEmail.href = 'mailto:' + addresses.join(',') + '?cc=' + encodeURIComponent(cc) +
+        '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       matchEmail.textContent = 'Redactar correo al grupo (' + recipients.length + ') ↗';
       matchEmail.hidden = false;
     }
