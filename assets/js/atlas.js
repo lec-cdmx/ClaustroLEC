@@ -1,4 +1,5 @@
 const sections = document.querySelectorAll('.atlas-section');
+const sectionGrid = document.querySelector('.atlas-sections');
 const preview = document.querySelector('.atlas-preview');
 const previewNumber = document.querySelector('#atlas-preview-number');
 const previewTitle = document.querySelector('#atlas-preview-title');
@@ -7,6 +8,8 @@ const openSection = document.querySelector('.atlas-open');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let activeSection;
 let previewTransition;
+let touchStart;
+let swiped = false;
 
 function showPreview(section) {
   if (activeSection === section) return;
@@ -32,6 +35,22 @@ function showPreview(section) {
   }
 }
 
+sectionGrid.addEventListener('touchstart', event => {
+  touchStart = event.touches.length === 1 ? event.touches[0] : undefined;
+  swiped = false;
+}, { passive: true });
+
+sectionGrid.addEventListener('touchmove', event => {
+  if (!touchStart || event.touches.length !== 1) return;
+
+  const { clientX, clientY } = event.touches[0];
+  if (!swiped && Math.hypot(clientX - touchStart.clientX, clientY - touchStart.clientY) < 8) return;
+
+  swiped = true;
+  const section = document.elementFromPoint(clientX, clientY)?.closest('.atlas-section');
+  if (section) showPreview(section);
+}, { passive: true });
+
 for (const section of sections) {
   section.addEventListener('focus', () => {
     if (section.matches(':focus-visible')) showPreview(section);
@@ -40,6 +59,11 @@ for (const section of sections) {
     if (event.pointerType === 'mouse') showPreview(section);
   });
   section.addEventListener('click', event => {
+    if (event.pointerType === 'touch' && swiped) {
+      event.preventDefault();
+      return;
+    }
+
     if (!['touch', 'pen'].includes(event.pointerType) || activeSection === section) return;
 
     event.preventDefault();

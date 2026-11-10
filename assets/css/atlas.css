@@ -45,6 +45,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--accent);
   border-left: 1px solid var(--rule);
+  touch-action: pan-y pinch-zoom;
 }
 
 .atlas-section {
