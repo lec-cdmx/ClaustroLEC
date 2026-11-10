@@ -4,7 +4,7 @@ Portal de la Licenciatura en Economía del Tecnológico de Monterrey. Reúne el 
 
 ## Revisión local
 
-Abre `index.html` en tu navegador. La página carga `styles.css` desde la misma carpeta y se puede revisar sin instalar dependencias.
+Abre `index.html` en tu navegador y elige una sección del índice. La portada y las cuatro subpáginas comparten `styles.css` y se pueden revisar sin instalar dependencias.
 
 ## Publicación en GitHub Pages
 
@@ -12,8 +12,8 @@ El [portal](https://lec-cdmx.github.io/ClaustroLEC/) se publica desde la raíz (
 
 ## Actualizar el contenido
 
-- **Directorio.** Edita o duplica una fila de la tabla en `index.html`. Actualiza el nombre, la especialidad, el campus y el correo institucional.
-- **Oportunidades.** Edita o duplica una tarjeta. Incluye la fecha límite y el enlace oficial cuando correspondan. Si hay fecha, actualiza tanto el texto visible como el atributo `datetime` en formato `AAAA-MM-DD`.
-- **Buenas prácticas y capacitación.** Edita o duplica una tarjeta y agrega un enlace al material cuando esté disponible.
+- **Directorio.** Edita o duplica una fila de la tabla en `directorio.html`. Actualiza el nombre, la especialidad, el campus y el correo institucional.
+- **Oportunidades.** Edita o duplica una ficha en `oportunidades.html`. Incluye la fecha límite y el enlace oficial cuando correspondan. Si hay fecha, actualiza tanto el texto visible como el atributo `datetime` en formato `AAAA-MM-DD`.
+- **Buenas prácticas y capacitación.** Edita o duplica una ficha en `buenas-practicas.html` o `capacitacion.html` y agrega un enlace al material cuando esté disponible.
 
-Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido validado. Cuando reemplaces todos los datos ficticios, actualiza también el aviso de revisión.
+Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido validado. Cuando reemplaces todos los datos ficticios de una sección, actualiza también su nota de edición.
