@@ -7,8 +7,8 @@
   <title>Portal del Claustro LEC | Tecnológico de Monterrey</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=2">
-  <link rel="stylesheet" href="assets/css/atlas.css?v=5">
-  <script src="assets/js/atlas.js?v=4" defer></script>
+  <link rel="stylesheet" href="assets/css/atlas.css?v=6">
+  <script src="assets/js/atlas.js?v=5" defer></script>
 </head>
 <body class="atlas-page">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -29,57 +29,48 @@
           <p class="atlas-kicker"><span aria-hidden="true"></span> Comunidad académica</p>
           <h1>Claustro <span>LEC<span aria-hidden="true">.</span></span></h1>
         </div>
-        <p class="atlas-lede">Recorre el mapa para encontrar a tus colegas, descubrir convocatorias y compartir ideas para el aula.</p>
+        <p class="atlas-lede">Encuentra a tus colegas, descubre convocatorias y comparte ideas para el aula.</p>
       </div>
 
       <div class="atlas-scene">
-        <div class="atlas-map">
-          <img class="atlas-photo" src="assets/img/portada/tec-ccm-1920.webp?v=2"
-            srcset="assets/img/portada/tec-ccm-960.webp?v=2 1024w, assets/img/portada/tec-ccm-1920.webp?v=2 1920w"
-            sizes="(max-width: 680px) 100vw, (max-width: 1630px) 96vw, 1560px"
-            width="1920" height="1082" fetchpriority="high"
-            alt="Fachada acristalada de un edificio del Tec de Monterrey, Campus Ciudad de México">
-          <div class="atlas-map-heading" aria-hidden="true"><span>✳</span> Mapa del portal</div>
-          <nav class="atlas-plot" aria-label="Mapa de secciones" data-active="01">
-            <svg class="atlas-landscape" viewBox="0 0 1200 480" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-              <path class="atlas-track" d="M-20 352 144 288 432 173 756 278 1044 149 1220 68"/>
-              <path class="atlas-route" d="M-20 352 144 288 432 173 756 278 1044 149 1220 68"/>
-              <path class="atlas-segment" data-segment="01" pathLength="1" d="M-20 352 144 288"/>
-              <path class="atlas-segment" data-segment="02" pathLength="1" d="M144 288 432 173"/>
-              <path class="atlas-segment" data-segment="03" pathLength="1" d="M432 173 756 278"/>
-              <path class="atlas-segment" data-segment="04" pathLength="1" d="M756 278 1044 149"/>
-            </svg>
-            <svg class="atlas-portrait" viewBox="0 0 320 480" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-              <path class="atlas-track" d="M-20 106 58 113 248 200 58 287 248 374 340 409"/>
-              <path class="atlas-route" d="M-20 106 58 113 248 200 58 287 248 374 340 409"/>
-              <path class="atlas-segment" data-segment="01" pathLength="1" d="M-20 106 58 113"/>
-              <path class="atlas-segment" data-segment="02" pathLength="1" d="M58 113 248 200"/>
-              <path class="atlas-segment" data-segment="03" pathLength="1" d="M248 200 58 287"/>
-              <path class="atlas-segment" data-segment="04" pathLength="1" d="M58 287 248 374"/>
-            </svg>
-
-            <a class="atlas-node is-active" href="directorio.html" style="--x:12%; --y:60%; --mx:18.125%; --my:23.54%" data-summary="Encuentra a tus colegas por especialidad, campus y UF impartida. Consulta sus semblanzas y datos de contacto.">
-              <span class="atlas-pin" aria-hidden="true">01</span><span class="atlas-label">Directorio</span>
-            </a>
-            <a class="atlas-node" href="oportunidades.html" style="--x:36%; --y:36.04%; --mx:77.5%; --my:41.67%" data-summary="Consulta el seminario regional y encuentra premios, congresos, convocatorias de artículos y oportunidades de consultoría.">
-              <span class="atlas-pin" aria-hidden="true">02</span><span class="atlas-label">Oportunidades</span>
-            </a>
-            <a class="atlas-node" href="buenas-practicas.html" style="--x:63%; --y:57.92%; --mx:18.125%; --my:59.79%" data-summary="Comparte una práctica que hayas probado en clase y conversa con el claustro sobre cómo adaptarla.">
-              <span class="atlas-pin" aria-hidden="true">03</span><span class="atlas-label">Buenas prácticas</span>
-            </a>
-            <a class="atlas-node" href="capacitacion.html" style="--x:87%; --y:31.04%; --mx:77.5%; --my:77.92%" data-summary="Explora cursos, talleres, guías y materiales para diseñar actividades y fortalecer tu práctica docente.">
-              <span class="atlas-pin" aria-hidden="true">04</span><span class="atlas-label">Capacitación</span>
-            </a>
-          </nav>
-          <p class="atlas-legend"><span aria-hidden="true">⌖</span> Tec de Monterrey · Campus Ciudad de México</p>
-        </div>
+        <nav class="atlas-sections" aria-label="Secciones del portal">
+          <a class="atlas-section" href="directorio.html" data-summary="Encuentra a tus colegas por especialidad, campus y UF impartida. Consulta sus semblanzas y datos de contacto.">
+            <span class="atlas-section-visual" aria-hidden="true">
+              <span class="atlas-section-number">01</span>
+              <img src="assets/img/portada/directorio.webp" alt="" decoding="async">
+              <small class="atlas-image-note">Retratos ficticios</small>
+            </span>
+            <span class="atlas-section-caption"><span class="atlas-label">Directorio</span><span class="atlas-arrow" aria-hidden="true">↗</span></span>
+          </a>
+          <a class="atlas-section" href="oportunidades.html" data-summary="Consulta el seminario regional y encuentra premios, congresos, convocatorias de artículos y oportunidades de consultoría.">
+            <span class="atlas-section-visual" aria-hidden="true">
+              <span class="atlas-section-number">02</span>
+              <img src="assets/img/portada/oportunidades.webp" alt="" decoding="async">
+            </span>
+            <span class="atlas-section-caption"><span class="atlas-label">Oportunidades</span><span class="atlas-arrow" aria-hidden="true">↗</span></span>
+          </a>
+          <a class="atlas-section" href="buenas-practicas.html" data-summary="Comparte una práctica que hayas probado en clase y conversa con el claustro sobre cómo adaptarla.">
+            <span class="atlas-section-visual" aria-hidden="true">
+              <span class="atlas-section-number">03</span>
+              <img src="assets/img/portada/buenas-practicas.webp" alt="" decoding="async">
+            </span>
+            <span class="atlas-section-caption"><span class="atlas-label">Buenas prácticas</span><span class="atlas-arrow" aria-hidden="true">↗</span></span>
+          </a>
+          <a class="atlas-section" href="capacitacion.html" data-summary="Explora cursos, talleres, guías y materiales para diseñar actividades y fortalecer tu práctica docente.">
+            <span class="atlas-section-visual" aria-hidden="true">
+              <span class="atlas-section-number">04</span>
+              <img src="assets/img/portada/capacitacion.webp" alt="" decoding="async">
+            </span>
+            <span class="atlas-section-caption"><span class="atlas-label">Capacitación</span><span class="atlas-arrow" aria-hidden="true">↗</span></span>
+          </a>
+        </nav>
         <div class="atlas-preview">
-          <p class="atlas-preview-index" aria-hidden="true"><span id="atlas-preview-number">01</span><span>/ 04</span></p>
+          <p class="atlas-preview-index" aria-hidden="true"><span id="atlas-preview-number">—</span><span>/ 04</span></p>
           <div class="atlas-preview-copy" aria-live="polite" aria-atomic="true">
-            <h2 id="atlas-preview-title">Directorio</h2>
-            <p id="atlas-preview-summary">Encuentra a tus colegas por especialidad, campus y UF impartida. Consulta sus semblanzas y datos de contacto.</p>
+            <h2 id="atlas-preview-title">Explora el portal</h2>
+            <p id="atlas-preview-summary">Elige una sección para conocer lo que encontrarás en ella.</p>
           </div>
-          <a class="atlas-open" href="directorio.html" aria-label="Abrir Directorio">Abrir sección <span aria-hidden="true">↗</span></a>
+          <a class="atlas-open" hidden>Abrir sección <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>

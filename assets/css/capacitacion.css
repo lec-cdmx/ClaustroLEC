@@ -1,3 +1,10 @@
+.training-plans {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-bottom: .85rem;
+}
+
 .training-overview {
   display: flex;
   flex-wrap: wrap;
@@ -12,7 +19,7 @@
 
 .training-overview-copy { max-width: 69ch; }
 .training-overview-copy p + p { margin-top: .3rem; color: var(--muted); font-size: .92rem; }
-.training-overview > a {
+.training-button {
   display: inline-flex;
   align-items: center;
   gap: .7rem;
@@ -24,7 +31,7 @@
   font-weight: 700;
   text-decoration: none;
 }
-.training-overview > a:hover { background: #0f2e9a; }
+.training-button:is(:hover, :focus-visible) { background: #0f2e9a; }
 
 .training-routes {
   display: grid;

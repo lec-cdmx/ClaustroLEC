@@ -1,32 +1,30 @@
-const nodes = document.querySelectorAll('.atlas-node');
-const plot = document.querySelector('.atlas-plot');
+const sections = document.querySelectorAll('.atlas-section');
 const preview = document.querySelector('.atlas-preview');
 const previewNumber = document.querySelector('#atlas-preview-number');
 const previewTitle = document.querySelector('#atlas-preview-title');
 const previewSummary = document.querySelector('#atlas-preview-summary');
 const openSection = document.querySelector('.atlas-open');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-let activeNode = document.querySelector('.atlas-node.is-active');
+let activeSection;
 let previewTransition;
 
-function showPreview(node) {
-  if (activeNode === node) return;
+function showPreview(section) {
+  if (activeSection === section) return;
 
-  activeNode.classList.remove('is-active');
-  node.classList.add('is-active');
-  activeNode = node;
+  activeSection?.classList.remove('is-active');
+  section.classList.add('is-active');
+  activeSection = section;
 
-  const title = node.querySelector('.atlas-label').textContent;
-  const number = node.querySelector('.atlas-pin').textContent;
-  plot.dataset.active = number;
-  previewNumber.textContent = number;
+  const title = section.querySelector('.atlas-label').textContent;
+  previewNumber.textContent = section.querySelector('.atlas-section-number').textContent;
   previewTitle.textContent = title;
-  previewSummary.textContent = node.dataset.summary;
-  openSection.setAttribute('href', node.getAttribute('href'));
+  previewSummary.textContent = section.dataset.summary;
+  openSection.setAttribute('href', section.getAttribute('href'));
   openSection.setAttribute('aria-label', 'Abrir ' + title);
+  openSection.hidden = false;
 
+  previewTransition?.cancel();
   if (!reduceMotion.matches) {
-    previewTransition?.cancel();
     previewTransition = previewTitle.parentElement.animate(
       [{ opacity: 0.35, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
       { duration: 260, easing: 'ease-out' }
@@ -34,16 +32,18 @@ function showPreview(node) {
   }
 }
 
-for (const node of nodes) {
-  node.addEventListener('focus', () => showPreview(node));
-  node.addEventListener('pointerenter', event => {
-    if (event.pointerType === 'mouse') showPreview(node);
+for (const section of sections) {
+  section.addEventListener('focus', () => {
+    if (section.matches(':focus-visible')) showPreview(section);
   });
-  node.addEventListener('click', event => {
-    if (event.pointerType !== 'touch') return;
+  section.addEventListener('pointerenter', event => {
+    if (event.pointerType === 'mouse') showPreview(section);
+  });
+  section.addEventListener('click', event => {
+    if (!['touch', 'pen'].includes(event.pointerType) || activeSection === section) return;
 
     event.preventDefault();
-    showPreview(node);
+    showPreview(section);
     preview.scrollIntoView({ block: 'nearest', behavior: reduceMotion.matches ? 'instant' : 'smooth' });
   });
 }

@@ -4,7 +4,7 @@ Portal de la Licenciatura en Economía del Tecnológico de Monterrey. Reúne el 
 
 ## Revisión local
 
-Abre `index.html` en tu navegador y elige una sección del mapa. Puedes revisar el portal sin instalar dependencias.
+Abre `index.html` en tu navegador y elige una de las cuatro secciones de la portada. Puedes revisar el portal sin instalar dependencias.
 
 ## Publicación en GitHub Pages
 
