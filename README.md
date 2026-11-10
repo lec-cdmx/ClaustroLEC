@@ -13,8 +13,8 @@ El [portal](https://lec-cdmx.github.io/ClaustroLEC/) se publica desde la raíz (
 ## Organización de archivos
 
 - **Raíz.** Portada y cuatro páginas del portal.
-- **`assets/`.** Estilos en `css/`, scripts en `js/`, el icono del portal en `icons/` y los retratos publicados en `img/directorio/`.
-- **`fuentes-locales/directorio/`.** El Excel de referencia y las fotos originales. Esta carpeta está excluida de Git y se conserva en la copia local.
+- **`assets/`.** Estilos en `css/`, scripts en `js/`, el icono en `icons/` y las imágenes publicadas en `img/`.
+- **`fuentes-locales/`.** El Excel y las fotos originales del directorio y la portada. Esta carpeta está excluida de Git y se conserva en la copia local.
 
 ## Actualizar el contenido
 

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Encuentra perfiles, trayectorias, materias impartidas y contactos del claustro de Economía del Tec de Monterrey.">
+  <meta name="description" content="Encuentra perfiles, trayectorias, UF impartidas y contactos del claustro de Economía del Tec de Monterrey.">
   <title>Directorio | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/directorio.css">
-  <script src="assets/js/directorio.js" defer></script>
+  <link rel="stylesheet" href="assets/css/directorio.css?v=2">
+  <script src="assets/js/directorio.js?v=2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -46,7 +46,7 @@
     <div class="page-heading directory-heading">
       <p class="eyebrow">01 · Comunidad académica</p>
       <h1>Directorio del claustro</h1>
-      <p>Conoce la trayectoria del profesorado de Economía y encuentra a tus colegas por campus, materia o tema de interés.</p>
+      <p>Conoce la trayectoria del profesorado de Economía y encuentra a tus colegas por campus, UF impartida o tema de interés.</p>
     </div>
 
     <aside class="forms-note" aria-labelledby="forms-title">
@@ -65,20 +65,22 @@
         <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <circle cx="10.5" cy="10.5" r="6.2"/><path d="m15 15 5 5"/>
         </svg>
-        <input id="directory-search" type="search" placeholder="Nombre, materia o tema de investigación" autocomplete="off">
+        <input id="directory-search" type="search" placeholder="Nombre, UF o tema de investigación" autocomplete="off">
       </div>
       <div class="directory-fields">
         <div>
           <label for="directory-campus">Campus</label>
           <select id="directory-campus"><option value="">Todos los campus</option></select>
         </div>
-        <div>
-          <label for="directory-course">Materia o UF impartida</label>
-          <select id="directory-course"><option value="">Todas las materias</option></select>
+        <div class="directory-picker">
+          <label for="directory-course">UF impartida</label>
+          <input id="directory-course" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="directory-course-options" autocomplete="off" placeholder="Escribe para buscar una UF">
+          <ul id="directory-course-options" class="directory-options" role="listbox" aria-label="Opciones de UF impartida" hidden></ul>
         </div>
-        <div>
+        <div class="directory-picker">
           <label for="directory-keyword">Palabra clave</label>
-          <select id="directory-keyword"><option value="">Todas las palabras clave</option></select>
+          <input id="directory-keyword" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="directory-keyword-options" autocomplete="off" placeholder="Escribe para buscar un tema">
+          <ul id="directory-keyword-options" class="directory-options" role="listbox" aria-label="Opciones de palabras clave" hidden></ul>
         </div>
       </div>
     </form>
@@ -90,7 +92,7 @@
     <p class="directory-empty" id="directory-empty" hidden>No encontramos docentes con esa combinación. Prueba otra búsqueda o limpia los filtros.</p>
 
     <div class="faculty-directory">
-      <!-- Fuentes de la semblanza de Dr. Arturo Pérez Mendoza: https://research.tec.mx/vivo-tec/display/PID_18916 | https://newsroom.itesm.mx/Lists/Profesores/DispForm.aspx?ID=264 -->
+      <!-- Fuentes de la semblanza de Dr. Arturo Pérez Mendoza: https://research.tec.mx/vivo-tec/display/PID_18916 | https://newsroom.itesm.mx/Lists/Profesores/DispForm.aspx?ID=264 | https://users.econ.umn.edu/~tkehoe/workshop.html | https://conecta.tec.mx/es/noticias/ciudad-de-mexico/educacion/con-ensayo-de-politica-monetaria-terminan-en-top-tres-en-reto -->
       <article class="faculty-profile" aria-labelledby="arturo-perez-mendoza">
         <div class="faculty-portrait">
           <img src="assets/img/directorio/arturo-perez-mendoza.webp" width="240" height="240" alt="" decoding="async">
@@ -104,7 +106,7 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Doctor en Economía por la Universidad de Minnesota, con maestría en El Colegio de México y licenciatura en la UAM. Ha enseñado en la Universidad de Minnesota y en el posgrado de El Colegio de México. Ha publicado sobre comercio internacional y mercado laboral e imparte macroeconomía en el Tec.</p>
+          <p>Ha investigado cómo la apertura comercial en México afectó la creación y la pérdida de empleos. En el Tec ha impartido macroeconomía y asesorado a estudiantes del Reto Banxico en trabajos sobre política monetaria. También ha enseñado en la Universidad de Minnesota y en el posgrado de El Colegio de México. Es doctor en Economía por la Universidad de Minnesota.</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Comercio internacional</li>
             <li>Mercado laboral</li>
@@ -121,7 +123,7 @@
         </div>
       </article>
 
-      <!-- Fuentes de la semblanza de Dra. Grisel Ayllón Aragón: https://research.tec.mx/vivo-tec/display/PID_140616 | https://sites.google.com/view/code-uab/people/phd-students | https://revistavivienda.infonavit.org.mx/wp-content/uploads/2023/05/Revista-Vivienda-Infonavit_-El-suelo-como-precondicion-de-la-vivienda.-Ano-5-No.-1.Flip_.pdf -->
+      <!-- Fuentes de la semblanza de Dra. Grisel Ayllón Aragón: https://research.tec.mx/vivo-tec/display/PID_140616 | https://sites.google.com/view/code-uab/people/phd-students | https://revistapanoramaeconomico.mx/index.php/PE/es/article/view/400 | https://revistavivienda.infonavit.org.mx/wp-content/uploads/2023/05/Revista-Vivienda-Infonavit_-El-suelo-como-precondicion-de-la-vivienda.-Ano-5-No.-1.Flip_.pdf -->
       <article class="faculty-profile" aria-labelledby="grisel-ayllon-aragon">
         <div class="faculty-portrait">
           <img src="assets/img/directorio/grisel-ayllon-aragon.webp" width="240" height="240" alt="" loading="lazy" decoding="async">
@@ -135,7 +137,7 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Doctora en Economía por la Universitat Autònoma de Barcelona. Estudia cómo las reglas de votación y los mecanismos de asignación influyen en las decisiones colectivas. Su trabajo aplica la microeconomía al diseño de mecanismos y políticas públicas. Fue directora nacional del programa de Economía del Tec.</p>
+          <p>Investiga cómo las reglas de votación y los mecanismos de asignación influyen en las decisiones colectivas. Ha publicado sobre el diseño de reglas que reducen los incentivos a manipular una decisión y ha aplicado el análisis económico al estudio de la factura electrónica en México. Fue directora nacional del programa de Economía del Tec. Es doctora en Economía por la Universitat Autònoma de Barcelona.</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Elección social</li>
             <li>Diseño de mecanismos</li>
@@ -168,13 +170,14 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Doctor en Economía Aplicada por la Universitat Autònoma de Barcelona. Se incorporó al Tec en 1999 y dirigió su Departamento de Economía durante trece años. Su trayectoria combina docencia en microeconomía, investigación sobre productividad y consultoría en evaluación de políticas públicas.</p>
+          <p>Ha coordinado evaluaciones del Fondo PYME para la Secretaría de Economía y estudios sobre evasión fiscal para el SAT. En el Tec dirigió el Departamento de Economía durante trece años e impartió microeconomía, evaluación de proyectos y política de competencia. Su investigación incluye productividad e innovación. Es doctor en Economía Aplicada por la Universitat Autònoma de Barcelona.</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Productividad</li>
             <li>Microeconomía</li>
             <li>Evaluación de políticas</li>
           </ul>
           <p class="faculty-links">
+            <a href="https://scholar.google.com/citations?user=QiidntoAAAAJ&amp;hl=es" aria-label="Google Scholar de Dr. Hugo Javier Fuentes Castro">Google Scholar <span aria-hidden="true">↗</span></a>
             <a href="https://orcid.org/0000-0001-7221-6490" aria-label="ORCID de Dr. Hugo Javier Fuentes Castro">ORCID <span aria-hidden="true">↗</span></a>
           </p>
         </div>
@@ -202,7 +205,7 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Doctor y maestro en Economía por El Colegio de México. Como profesor investigador del Tec, estudia la migración y las remesas, así como la pobreza y la desigualdad en zonas rurales de México. Sus publicaciones también analizan la relación entre la conectividad digital y el bienestar de los hogares.</p>
+          <p>Como profesor investigador del Tec, estudia cómo las remesas se relacionan con el gasto en salud y la seguridad alimentaria de los hogares mexicanos. También ha publicado sobre la reintegración de migrantes de retorno y sobre los efectos del acceso a internet y al crédito en la pobreza rural. Es doctor en Economía por El Colegio de México.</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Migración</li>
             <li>Remesas</li>
@@ -237,7 +240,7 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Maestro en Economía por El Colegio de México y doctorando en Política Pública en el Tec. Dirige la licenciatura en el Campus Ciudad de México y coordina la concentración de Economía Aplicada y Ciencia de Datos. Usa econometría e inferencia causal para estudiar seguridad pública, movilidad y desarrollo regional.</p>
+          <p>Aplica la econometría y la inferencia causal a la evaluación de políticas urbanas. Ha estudiado el programa de desarme voluntario de la Ciudad de México y la seguridad en torno a las Utopías. Ha trabajado en consultoría de transporte y desarrollo regional y fue asesor en la CONAGO. Es maestro en Economía por El Colegio de México y cursa el doctorado en Política Pública en el Tec.</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Econometría</li>
             <li>Evaluación de políticas</li>
@@ -277,12 +280,15 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Doctora en Economía por la Universidad de California en Berkeley. En el Banco Mundial lideró trabajos sobre inclusión financiera responsable, información crediticia y educación financiera. También ha trabajado en protección al consumidor y en el uso de contenidos de entretenimiento para fortalecer capacidades financieras.</p>
+          <p>Durante más de 25 años en el Banco Mundial, lideró trabajos sobre inclusión financiera responsable, información crediticia y educación financiera. Su experiencia incluye protección al consumidor y proyectos que usaron el entretenimiento para fortalecer capacidades financieras en México, India y Sudáfrica. Es doctora en Economía por la Universidad de California en Berkeley.</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Inclusión financiera</li>
             <li>Educación financiera</li>
             <li>Protección al consumidor</li>
           </ul>
+          <p class="faculty-links">
+            <a href="https://scholar.google.com/citations?user=OpoQWTYAAAAJ&amp;hl=en" aria-label="Google Scholar de Dra. Margaret Miller">Google Scholar <span aria-hidden="true">↗</span></a>
+          </p>
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
@@ -307,7 +313,7 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Doctora por la Universidad de Economía y Negocios de Viena (WU). Investiga cómo la infraestructura y las políticas públicas influyen en el desarrollo económico de largo plazo. Coordinó la política nacional de vivienda en la Sedatu y colaboró en el Coneval en el desarrollo de la metodología de medición de la pobreza multidimensional.</p>
+          <p>Coordinó la política nacional de vivienda en la Sedatu y formó parte del equipo del Coneval que desarrolló la metodología de medición de la pobreza multidimensional. En su investigación utiliza microdatos históricos para estudiar cómo la infraestructura y las políticas agrarias influyen en el desarrollo de largo plazo. Es doctora por la Universidad de Economía y Negocios de Viena (WU).</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Historia económica</li>
             <li>Desarrollo económico</li>
@@ -315,6 +321,7 @@
             <li>Política de vivienda</li>
           </ul>
           <p class="faculty-links">
+            <a href="https://scholar.google.com/citations?user=heLLorMAAAAJ&amp;hl=es" aria-label="Google Scholar de Dra. Nayeli Salgado Granados">Google Scholar <span aria-hidden="true">↗</span></a>
             <a href="https://orcid.org/0000-0002-4563-7190" aria-label="ORCID de Dra. Nayeli Salgado Granados">ORCID <span aria-hidden="true">↗</span></a>
           </p>
         </div>
@@ -343,7 +350,7 @@
           </p>
         </div>
         <div class="faculty-biography">
-          <p>Doctor en Economía Agrícola y de los Recursos por la Universidad de California en Davis y maestro en Políticas Públicas por la Universidad de Chicago. Su investigación combina microeconomía aplicada y economía ambiental para estudiar el transporte, la transición de combustibles y los cambios en el uso del suelo.</p>
+          <p>Investiga los efectos de las políticas de transporte y combustibles sobre las emisiones y el uso del suelo. Ha estudiado los incentivos a los biocombustibles en California y cómo responden los automovilistas a los impuestos vehiculares en México. Trabajó en política tributaria en la Secretaría de Hacienda. Es doctor en Economía Agrícola y de los Recursos por la Universidad de California en Davis.</p>
           <ul class="faculty-keywords" aria-label="Temas de investigación">
             <li>Economía ambiental</li>
             <li>Energía</li>

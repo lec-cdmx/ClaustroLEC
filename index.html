@@ -7,7 +7,7 @@
   <title>Portal del Claustro LEC | Tecnológico de Monterrey</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/atlas.css">
+  <link rel="stylesheet" href="assets/css/atlas.css?v=2">
   <script src="assets/js/atlas.js" defer></script>
 </head>
 <body class="atlas-page">
@@ -24,48 +24,55 @@
 
   <main id="contenido" tabindex="-1">
     <div class="atlas">
-      <div class="atlas-intro">
-        <p class="atlas-kicker"><span aria-hidden="true"></span> Comunidad académica</p>
-        <span class="atlas-legend" aria-hidden="true">Mapa del claustro <span>01—04</span></span>
-        <h1>Portal del Claustro <span>LEC</span></h1>
-        <p>Explora el mapa para encontrar a tus colegas, descubrir convocatorias y llevar nuevas ideas al aula.</p>
+      <div class="atlas-scene">
+        <img class="atlas-photo" src="assets/img/portada/tec-ccm-1920.webp"
+          srcset="assets/img/portada/tec-ccm-960.webp 960w, assets/img/portada/tec-ccm-1920.webp 1920w"
+          sizes="(max-width: 720px) 640px, (max-width: 1384px) calc(100vw - 4rem), 1320px"
+          width="1920" height="1155" fetchpriority="high"
+          alt="Explanada entre los edificios del Tec de Monterrey, Campus Ciudad de México">
+        <div class="atlas-intro">
+          <p class="atlas-kicker"><span aria-hidden="true"></span> Comunidad académica</p>
+          <span class="atlas-legend">Campus Ciudad de México</span>
+          <h1>Portal del<br>Claustro <span>LEC</span></h1>
+          <p>Explora el mapa para encontrar a tus colegas, descubrir convocatorias y llevar nuevas ideas al aula.</p>
+        </div>
+
+        <nav class="atlas-plot" aria-label="Mapa de secciones">
+          <svg class="atlas-landscape" viewBox="0 0 1200 340" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <defs>
+              <path id="ruta" pathLength="1" d="M-30 282C36 287 76 275 140 230S301 126 390 126 580 211 702 211 893 113 1008 113 1140 71 1230 37"/>
+            </defs>
+            <path d="M140 0V340M390 0V340M702 0V340M1008 0V340M0 126H1200M0 230H1200" class="atlas-guides"/>
+            <use href="#ruta" class="atlas-echo" transform="translate(0 -37)"/>
+            <use href="#ruta" class="atlas-echo" transform="translate(0 37)"/>
+            <use href="#ruta" class="atlas-echo" transform="translate(0 75)"/>
+            <use href="#ruta" class="atlas-track"/>
+            <path class="atlas-trace" pathLength="1" d="M-30 282C36 287 76 275 140 230S301 126 390 126 580 211 702 211 893 113 1008 113 1140 71 1230 37"/>
+          </svg>
+          <svg class="atlas-portrait" viewBox="0 0 320 320" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <defs>
+              <path id="ruta-movil" pathLength="1" d="M0 25Q36 44 68 44C150 44 160 117 246 117S234 199 68 199 160 276 246 276Q288 276 320 300"/>
+            </defs>
+            <path d="M68 0V320M246 0V320M0 44H320M0 117H320M0 199H320M0 276H320" class="atlas-guides"/>
+            <use href="#ruta-movil" class="atlas-echo" transform="translate(0 19)"/>
+            <use href="#ruta-movil" class="atlas-track"/>
+            <path class="atlas-trace" pathLength="1" d="M0 25Q36 44 68 44C150 44 160 117 246 117S234 199 68 199 160 276 246 276Q288 276 320 300"/>
+          </svg>
+
+          <a class="atlas-node is-active" href="directorio.html" style="--x: 11.667%; --y: 67.647%; --mx: 21.25%; --my: 13.75%;" data-summary="Encuentra a tus colegas por especialidad y campus, y consulta su contacto institucional.">
+            <span class="atlas-pin" aria-hidden="true">01</span><span class="atlas-label">Directorio</span>
+          </a>
+          <a class="atlas-node" href="oportunidades.html" style="--x: 32.5%; --y: 37.059%; --mx: 76.875%; --my: 36.563%;" data-summary="Consulta concursos, convocatorias de artículos y becas, junto con sus fechas límite.">
+            <span class="atlas-pin" aria-hidden="true">02</span><span class="atlas-label">Oportunidades</span>
+          </a>
+          <a class="atlas-node" href="buenas-practicas.html" style="--x: 58.5%; --y: 62.059%; --mx: 21.25%; --my: 62.188%;" data-summary="Descubre ideas para usar datos locales, debatir políticas públicas y dar retroalimentación entre pares.">
+            <span class="atlas-pin" aria-hidden="true">03</span><span class="atlas-label">Buenas prácticas</span>
+          </a>
+          <a class="atlas-node" href="capacitacion.html" style="--x: 84%; --y: 33.235%; --mx: 76.875%; --my: 86.25%;" data-summary="Explora cursos, talleres, guías y materiales para diseñar actividades y fortalecer tu práctica docente.">
+            <span class="atlas-pin" aria-hidden="true">04</span><span class="atlas-label">Capacitación</span>
+          </a>
+        </nav>
       </div>
-
-      <nav class="atlas-plot" aria-label="Mapa de secciones">
-        <svg class="atlas-landscape" viewBox="0 0 1200 340" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <defs>
-            <path id="ruta" pathLength="1" d="M-30 282C36 287 76 275 140 230S301 126 390 126 580 211 702 211 893 113 1008 113 1140 71 1230 37"/>
-          </defs>
-          <path d="M140 0V340M390 0V340M702 0V340M1008 0V340M0 126H1200M0 230H1200" class="atlas-guides"/>
-          <use href="#ruta" class="atlas-echo" transform="translate(0 -37)"/>
-          <use href="#ruta" class="atlas-echo" transform="translate(0 37)"/>
-          <use href="#ruta" class="atlas-echo" transform="translate(0 75)"/>
-          <use href="#ruta" class="atlas-track"/>
-          <path class="atlas-trace" pathLength="1" d="M-30 282C36 287 76 275 140 230S301 126 390 126 580 211 702 211 893 113 1008 113 1140 71 1230 37"/>
-        </svg>
-        <svg class="atlas-portrait" viewBox="0 0 320 320" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <defs>
-            <path id="ruta-movil" pathLength="1" d="M0 25Q36 44 68 44C150 44 160 117 246 117S234 199 68 199 160 276 246 276Q288 276 320 300"/>
-          </defs>
-          <path d="M68 0V320M246 0V320M0 44H320M0 117H320M0 199H320M0 276H320" class="atlas-guides"/>
-          <use href="#ruta-movil" class="atlas-echo" transform="translate(0 19)"/>
-          <use href="#ruta-movil" class="atlas-track"/>
-          <path class="atlas-trace" pathLength="1" d="M0 25Q36 44 68 44C150 44 160 117 246 117S234 199 68 199 160 276 246 276Q288 276 320 300"/>
-        </svg>
-
-        <a class="atlas-node is-active" href="directorio.html" style="--x: 11.667%; --y: 67.647%; --mx: 21.25%; --my: 13.75%;" data-summary="Encuentra a tus colegas por especialidad y campus, y consulta su contacto institucional.">
-          <span class="atlas-pin" aria-hidden="true">01</span><span class="atlas-label">Directorio</span>
-        </a>
-        <a class="atlas-node" href="oportunidades.html" style="--x: 32.5%; --y: 37.059%; --mx: 76.875%; --my: 36.563%;" data-summary="Consulta concursos, convocatorias de artículos y becas, junto con sus fechas límite.">
-          <span class="atlas-pin" aria-hidden="true">02</span><span class="atlas-label">Oportunidades</span>
-        </a>
-        <a class="atlas-node" href="buenas-practicas.html" style="--x: 58.5%; --y: 62.059%; --mx: 21.25%; --my: 62.188%;" data-summary="Descubre ideas para usar datos locales, debatir políticas públicas y dar retroalimentación entre pares.">
-          <span class="atlas-pin" aria-hidden="true">03</span><span class="atlas-label">Buenas prácticas</span>
-        </a>
-        <a class="atlas-node" href="capacitacion.html" style="--x: 84%; --y: 33.235%; --mx: 76.875%; --my: 86.25%;" data-summary="Explora cursos, talleres, guías y materiales para diseñar actividades y fortalecer tu práctica docente.">
-          <span class="atlas-pin" aria-hidden="true">04</span><span class="atlas-label">Capacitación</span>
-        </a>
-      </nav>
 
       <div class="atlas-preview">
         <div class="atlas-preview-copy" aria-live="polite" aria-atomic="true">
