@@ -43,7 +43,7 @@
 .directory-search input { padding-left: 2.55rem; }
 .directory-search { position: relative; }
 .directory-search svg { position: absolute; top: 50%; left: .82rem; transform: translateY(-50%); color: var(--accent); pointer-events: none; }
-.directory-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr) minmax(0, 1fr); gap: .8rem; margin-top: .85rem; }
+.directory-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: .8rem; margin-top: .85rem; }
 .directory-fields select { text-overflow: ellipsis; }
 
 .directory-toolbar {
@@ -106,10 +106,37 @@
 
 .faculty-teaching { grid-area: teaching; padding-left: 1.05rem; border-left: 1px solid var(--rule); }
 .faculty-teaching h3 { margin: 0; color: var(--navy); font-size: .82rem; font-weight: 700; }
-.faculty-courses { display: grid; gap: .35rem; margin: .43rem 0 0; padding-left: 1rem; color: var(--muted); font-size: .85rem; }
-.faculty-courses li::marker { color: var(--accent); }
+.faculty-plan { margin-top: .4rem; border: 1px solid var(--rule); }
+.faculty-plan summary {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: .5rem;
+  min-height: 2.35rem;
+  padding: .35rem .6rem;
+  background: #f7f9fe;
+  color: var(--navy);
+  cursor: pointer;
+  list-style: none;
+  font-size: .84rem;
+  font-weight: 700;
+}
+.faculty-plan summary::-webkit-details-marker { display: none; }
+.faculty-plan summary::after { color: var(--accent); content: "+"; }
+.faculty-plan[open] summary::after { content: "\2212"; }
+.faculty-plan summary small { color: var(--muted); font-size: .73rem; font-weight: 600; }
+.faculty-plan summary:is(:hover, :focus-visible), .faculty-plan[data-plan="2026"] summary { background: var(--tint); color: var(--accent); }
+.faculty-plan summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.faculty-plan[data-plan="2026"] { border-inline-start: 3px solid var(--accent); }
+.faculty-plan-content { display: grid; gap: .3rem; padding: .6rem; }
+.faculty-plan-content h4 { margin: 0; color: var(--accent); font: 700 .72rem/1.3 var(--mono); text-transform: uppercase; }
+.faculty-courses + h4 { margin-top: .4rem; }
+.faculty-courses { display: grid; gap: .3rem; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: .82rem; }
+.faculty-courses li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .12rem .4rem; }
+.faculty-courses code { color: var(--accent); font: 650 .72rem/1.4 var(--mono); }
 
 @media (max-width: 850px) {
+  .directory-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .faculty-profile {
     grid-template-columns: 7rem minmax(0, 1fr);
     grid-template-areas: "photo identity" "photo biography" "photo teaching";

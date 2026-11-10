@@ -77,7 +77,7 @@
 .seminar-note strong, .seminar-signature { color: var(--navy); }
 .seminar-signature { font-weight: 650; }
 
-.opportunity-controls :is(input, select, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+:is(.opportunity-controls, .opportunity-match) :is(input, select, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .external-opportunities { margin-top: clamp(3rem, 7vw, 6rem); }
 .external-heading { margin-bottom: 1.25rem; }
@@ -86,15 +86,97 @@
 .external-heading > p:last-child { max-width: 72ch; color: var(--muted); }
 
 
-.opportunity-controls { padding: 1rem; border: 1px solid var(--rule); border-top: 3px solid var(--accent); background: var(--paper); }
-.opportunity-fields { display: grid; grid-template-columns: minmax(0, 32rem) minmax(0, 15rem); gap: .65rem 1rem; }
-.opportunity-controls label { display: block; margin-bottom: .3rem; color: var(--navy); font-size: .84rem; font-weight: 690; }
-.opportunity-controls :is(input, select) { width: 100%; min-height: 2.7rem; padding: .52rem .7rem; border: 1px solid #a9bddb; border-radius: .42rem; background: white; color: var(--ink); font: inherit; font-size: .88rem; }
-.opportunity-types { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .8rem; }
+.opportunity-controls {
+  display: grid;
+  grid-template: "fields launch" "types launch" / minmax(0, 1fr) minmax(12rem, 23%);
+  gap: .8rem 1rem;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  background: var(--paper);
+}
+.opportunity-controls[hidden] { display: none; }
+.opportunity-fields { grid-area: fields; display: grid; grid-template-columns: minmax(0, 32rem) minmax(0, 15rem); gap: .65rem 1rem; }
+:is(.opportunity-controls, .opportunity-match) label { display: block; margin-bottom: .3rem; color: var(--navy); font-size: .84rem; font-weight: 690; }
+:is(.opportunity-controls, .opportunity-match) :is(input, select) { width: 100%; min-height: 2.7rem; padding: .52rem .7rem; border: 1px solid #a9bddb; border-radius: .42rem; background: white; color: var(--ink); font: inherit; font-size: .88rem; }
+.opportunity-types { grid-area: types; display: flex; flex-wrap: wrap; gap: .45rem; }
 .opportunity-types button { min-height: 2.5rem; padding: .32rem .65rem; border: 1px solid #adc0e2; border-radius: .42rem; background: white; color: var(--navy); cursor: pointer; font: inherit; font-size: .83rem; font-weight: 650; }
 .opportunity-types button:hover { background: #e7efff; }
 .opportunity-types button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: white; }
 .opportunity-badge { display: inline-block; margin-left: .38rem; font-size: .72rem; font-variant-numeric: tabular-nums; }
+
+.opportunity-match-launch, .opportunity-match-primary {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font: inherit;
+}
+.opportunity-match-launch:hover, .opportunity-match-primary:hover { background: #102e95; }
+.opportunity-match-launch {
+  grid-area: launch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  padding: .85rem 1rem;
+  text-align: start;
+}
+.opportunity-match-launch strong { display: block; font: 750 clamp(1rem, 1.7vw, 1.27rem)/1.13 var(--display); }
+.opportunity-match-launch small { display: block; margin-top: .3rem; font-size: .78rem; }
+.opportunity-match-launch > span:last-child { font-size: 1.25rem; }
+
+.opportunity-match {
+  width: min(42rem, calc(100% - 1.25rem));
+  max-height: calc(100% - 1.25rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--accent);
+  background: var(--paper);
+  color: var(--ink);
+}
+.opportunity-match::backdrop { background: #121e3388; }
+.opportunity-match [hidden] { display: none; }
+.opportunity-match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: .75rem;
+  padding: clamp(.85rem, 3vw, 1.3rem);
+  background: var(--tint);
+}
+.opportunity-match-header h2 { margin-block: .3rem; font: 780 clamp(1.4rem, 4vw, 2rem)/1.1 var(--display); }
+.opportunity-match-header p:last-child, .opportunity-match-summary, .opportunity-match-actions { color: var(--muted); font-size: .86rem; }
+.opportunity-match-close {
+  min-height: 2.55rem;
+  padding: .3rem .55rem;
+  border: 1px solid #adc0e2;
+  background: var(--paper);
+  color: var(--accent);
+  cursor: pointer;
+  font: 650 .8rem system-ui, sans-serif;
+  white-space: nowrap;
+}
+.opportunity-match-close:hover { background: var(--tint); }
+.opportunity-match-content { display: grid; gap: .9rem; padding: clamp(.85rem, 3vw, 1.3rem); }
+.opportunity-match-form { display: grid; grid-template: "label label" "select button" / minmax(0, 1fr) auto; gap: .25rem .65rem; }
+.opportunity-match-form label { grid-area: label; margin: 0; }
+.opportunity-match-form select { grid-area: select; }
+.opportunity-match-form button { grid-area: button; }
+.opportunity-match-primary { display: inline-flex; align-items: center; min-height: 2.7rem; padding: .45rem .75rem; font-size: .83rem; font-weight: 700; text-decoration: none; }
+.opportunity-match-primary:disabled { opacity: .65; cursor: wait; }
+.opportunity-match-summary { display: grid; gap: .35rem; padding: .65rem .8rem; border-inline-start: 2px solid var(--accent); background: #f7f9fe; }
+.opportunity-match-summary h3 { margin: 0; color: var(--navy); font: 750 1rem/1.2 var(--display); }
+#opportunity-match-mode { color: var(--navy); font-weight: 700; }
+.opportunity-match-summary a, .opportunity-match-directory { color: var(--accent); font-size: .82rem; font-weight: 650; justify-self: start; }
+.opportunity-match-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .45rem; }
+.opportunity-match-results:empty { display: none; }
+.opportunity-match-results { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+.opportunity-match-results > li { padding: .6rem .75rem; border: 1px solid var(--rule); }
+.opportunity-match-results > li > a { color: var(--accent); font: 750 1.03rem/1.2 var(--display); }
+.opportunity-match-results > li > p { margin: .14rem 0 .35rem; color: var(--muted); font-size: .8rem; }
+.opportunity-match-results .opportunity-topics li, .opportunity-topics li.is-shared { background: var(--tint); color: var(--accent); }
 
 .opportunity-count { margin: .8rem 0 .55rem; color: var(--muted); font-size: .84rem; }
 .opportunity-empty { padding: 1.1rem; border-top: 1px solid var(--rule); color: var(--muted); }
@@ -114,12 +196,17 @@
 .external-entry h3 { margin: 0; color: var(--navy); font-size: clamp(1.03rem, 2vw, 1.33rem); line-height: 1.22; }
 .external-source { margin-top: .15rem; color: #435d85; font-size: .8rem; font-weight: 660; }
 .external-description { margin-top: .35rem; color: var(--muted); font-size: .89rem; }
+.external-meta { display: flex; align-items: baseline; flex-wrap: wrap; gap: .3rem .65rem; margin-top: .55rem; }
+.external-mode { color: var(--navy); font-size: .75rem; font-weight: 700; }
+.opportunity-topics { display: flex; flex-wrap: wrap; gap: .25rem .35rem; margin: 0; padding: 0; list-style: none; }
+.opportunity-topics li { padding: .06rem .4rem; border: 1px solid #dae1ee; color: var(--muted); font-size: .73rem; }
 .external-action { color: var(--muted); font-size: .81rem; }
 .external-status { display: inline-block; padding: .15rem .4rem; border-radius: .25rem; background: #eaf1ff; color: #254c94; font-size: .72rem; font-weight: 700; }
 .external-action p { margin-top: .32rem; }
 .external-link { margin-top: .1rem; padding: .15rem .28rem; color: var(--accent); font-size: .82rem; }
 
 @media (max-width: 760px) {
+  .opportunity-controls { grid-template: "fields" "types" "launch" / minmax(0, 1fr); }
   .seminar-header, .seminar-tracks { grid-template-columns: 1fr; }
   .seminar-campus ul { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .seminar-track + .seminar-track { border-top: 1px solid #dce6f8; border-left: 0; }
@@ -129,6 +216,8 @@
 
 @media (max-width: 500px) {
   .opportunity-fields, .opportunity-jumps { grid-template-columns: 1fr; }
+  .opportunity-match-form { grid-template: "label" "select" "button" / minmax(0, 1fr); }
+  .opportunity-match-form button { justify-content: center; }
   .opportunity-jumps a + a { border-inline-start: 0; border-top: 1px solid var(--rule); }
   .seminar-campus ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .external-entry { grid-template-columns: 1fr; }

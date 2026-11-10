@@ -155,7 +155,13 @@ function renderThreads() {
     article.id = post.id;
     const card = element('div', '', 'forum-post');
     if (post.title) card.append(element('h3', post.title));
-    card.append(postDetails(post), element('p', post.body, 'forum-text'), ...postTags(post));
+    const byline = postDetails(post);
+    if (post.contact_email) {
+      const contact = element('a', post.contact_email);
+      contact.href = 'mailto:' + encodeURIComponent(post.contact_email).replace('%40', '@');
+      byline.append(' · ', contact);
+    }
+    card.append(byline, element('p', post.body, 'forum-text'), ...postTags(post));
     const reply = button('Responder', () => openContribution(post), 'forum-button forum-reply-button');
     reply.setAttribute('aria-label', 'Responder a ' + post.name);
     reply.disabled = !connected;
@@ -250,7 +256,8 @@ async function loadQueue(password = moderatorPassword) {
       button('Aprobar', () => decide(post, 'approved'), 'forum-button forum-primary'),
       button('Rechazar', () => decide(post, 'rejected'), 'forum-button forum-reject'),
     );
-    card.append(element('h3', subject), postDetails(post), element('p', 'Correo · ' + post.email), element('p', post.body, 'forum-text'), ...postTags(post), actions);
+    const emailLabel = post.email_public === 1 ? 'Correo visible al aprobar' : 'Correo para moderación';
+    card.append(element('h3', subject), postDetails(post), element('p', emailLabel + ' · ' + post.email), element('p', post.body, 'forum-text'), ...postTags(post), actions);
     return card;
   }));
 }
@@ -265,7 +272,7 @@ cancel.addEventListener('click', () => dialog.close());
 dialog.addEventListener('cancel', event => { if (send.disabled) event.preventDefault(); });
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  const body = { ...Object.fromEntries(new FormData(form)), parentId };
+  const body = { ...Object.fromEntries(new FormData(form)), parentId, publishEmail: form.elements.publishEmail.checked };
   if (!parentId && !parseTags(body.tags)) {
     formStatus.textContent = tagError;
     form.elements.tags.setAttribute('aria-invalid', 'true');

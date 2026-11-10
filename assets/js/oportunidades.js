@@ -10,11 +10,17 @@ function fold(text) {
   return text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLocaleLowerCase('es');
 }
 
+function labels(container, selector) {
+  return [...container.querySelectorAll(selector)].map(node => node.textContent.trim());
+}
+
 const entries = Array.from(document.querySelectorAll('.external-entry'), element => ({
   element,
+  id: element.querySelector('h3').id,
   type: element.dataset.type,
   name: element.querySelector('h3').textContent,
   date: element.querySelector('time')?.dateTime || '',
+  topics: labels(element, '.opportunity-topics li'),
   text: fold([element.dataset.type, element.dataset.keywords, element.textContent].join(' ')),
 }));
 
@@ -74,5 +80,145 @@ sort.addEventListener('change', () => {
   const ordered = compare ? [...entries].sort(compare) : entries;
   list.append(...ordered.map(entry => entry.element));
 });
+
+const dialog = document.querySelector('#opportunity-match');
+const openMatch = document.querySelector('#opportunity-match-open');
+const matchForm = document.querySelector('#opportunity-match-form');
+const opportunity = document.querySelector('#opportunity-match-select');
+const submitMatch = matchForm.querySelector('button');
+const matchSummary = document.querySelector('#opportunity-match-summary');
+const matchName = document.querySelector('#opportunity-match-name');
+const matchMode = document.querySelector('#opportunity-match-mode');
+const matchTopics = document.querySelector('#opportunity-match-topics');
+const matchNote = document.querySelector('#opportunity-match-note');
+const matchSource = document.querySelector('#opportunity-match-source');
+const matchStatus = document.querySelector('#opportunity-match-status');
+const matchResults = document.querySelector('#opportunity-match-results');
+const matchEmail = document.querySelector('#opportunity-match-email');
+const opportunitiesById = new Map(entries.map(entry => [entry.id, entry]));
+let directoryRequest;
+
+function readDirectory() {
+  directoryRequest ??= fetch('directorio.html')
+    .then(response => {
+      if (!response.ok) throw new Error('Directorio no disponible');
+      return response.text();
+    })
+    .then(html => {
+      const directory = new DOMParser().parseFromString(html, 'text/html');
+      return [...directory.querySelectorAll('.faculty-profile')].map(profile => {
+        const heading = profile.querySelector('h2');
+        const emailLink = profile.querySelector('.faculty-contact a[href^="mailto:"]');
+        return {
+          id: heading.id,
+          name: heading.textContent.trim(),
+          campus: profile.querySelector('.faculty-campus').textContent.trim(),
+          email: emailLink?.getAttribute('href').slice(7).split('?')[0] || '',
+          topics: new Set(labels(profile, '.faculty-keywords li').map(fold)),
+        };
+      });
+    })
+    .catch(error => {
+      directoryRequest = undefined;
+      throw error;
+    });
+  return directoryRequest;
+}
+
+function topicChip(topic) {
+  const item = document.createElement('li');
+  item.textContent = topic;
+  return item;
+}
+
+function renderProfile(profile) {
+  const item = document.createElement('li');
+  const link = document.createElement('a');
+  link.href = 'directorio.html#' + encodeURIComponent(profile.id);
+  link.textContent = profile.name;
+  const campus = document.createElement('p');
+  campus.textContent = profile.campus;
+  const topics = document.createElement('ul');
+  topics.className = 'opportunity-topics';
+  topics.setAttribute('role', 'list');
+  topics.setAttribute('aria-label', 'Temas en común');
+  topics.append(...profile.shared.map(topicChip));
+  item.append(link, campus, topics);
+  return item;
+}
+
+function clearMatches() {
+  matchResults.replaceChildren();
+  matchStatus.textContent = '';
+  for (const chip of matchTopics.children) chip.classList.remove('is-shared');
+  matchEmail.hidden = true;
+  matchEmail.removeAttribute('href');
+}
+
+function showSelection() {
+  clearMatches();
+  const entry = opportunitiesById.get(opportunity.value);
+  matchSummary.hidden = !entry;
+  if (!entry) return;
+
+  const mode = entry.element.querySelector('.external-mode');
+  const status = entry.element.querySelector('.external-status');
+  matchName.textContent = entry.name;
+  matchMode.textContent = mode.textContent + ' · ' + status.textContent;
+  matchTopics.replaceChildren(...entry.topics.map(topicChip));
+  matchNote.textContent = mode.dataset.note;
+  matchSource.href = entry.element.querySelector('.external-link').href;
+}
+
+for (const entry of [...entries].sort(byName)) {
+  opportunity.add(new Option(entry.name, entry.id));
+}
+
+openMatch.addEventListener('click', () => dialog.showModal());
+document.querySelector('#opportunity-match-close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('close', () => openMatch.focus({ preventScroll: true }));
+opportunity.addEventListener('change', showSelection);
+matchForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const entry = opportunitiesById.get(opportunity.value);
+  if (!entry) return;
+
+  clearMatches();
+  matchStatus.textContent = 'Buscando en el directorio…';
+  opportunity.disabled = submitMatch.disabled = true;
+  try {
+    const profiles = await readDirectory();
+    const matches = profiles
+      .map(profile => ({ ...profile, shared: entry.topics.filter(topic => profile.topics.has(fold(topic))) }))
+      .filter(profile => profile.shared.length)
+      .sort((a, b) => b.shared.length - a.shared.length || byName(a, b));
+
+    matchResults.replaceChildren(...matches.map(renderProfile));
+    matchStatus.textContent = matches.length === 0 ? 'No hay perfiles con estos temas en el directorio.'
+      : matches.length === 1 ? '1 colega con temas en común' : matches.length + ' colegas con temas en común';
+
+    const shared = entry.topics.filter(topic => matches.some(profile => profile.shared.includes(topic)));
+    for (const chip of matchTopics.children) chip.classList.toggle('is-shared', shared.includes(chip.textContent));
+    const recipients = [...new Set(matches.map(profile => profile.email).filter(Boolean))];
+    if (recipients.length) {
+      const subject = 'Claustro LEC · ' + entry.name;
+      const body = ['Hola,', '', 'Vi esta oportunidad en el portal del Claustro LEC.',
+        matchSource.href, '', 'Temas en común: ' + shared.join(', ') + '.',
+        '', '¿Les gustaría conversar sobre esta oportunidad?', '', 'Saludos,'].join('\r\n');
+      const addresses = recipients.map(email => encodeURIComponent(email).replace('%40', '@'));
+      matchEmail.href = 'mailto:' + addresses.join(',') + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      matchEmail.textContent = 'Redactar correo al grupo (' + recipients.length + ') ↗';
+      matchEmail.hidden = false;
+    }
+  } catch {
+    matchStatus.textContent = location.protocol === 'file:'
+      ? 'Para cruzar los temas en local, abre el portal desde un servidor web.'
+      : 'El directorio no está disponible. Intenta de nuevo.';
+  } finally {
+    opportunity.disabled = submitMatch.disabled = false;
+  }
+});
+
+showSelection();
 controls.hidden = false;
 updateResults();

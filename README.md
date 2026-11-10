@@ -4,7 +4,7 @@ Portal de la Licenciatura en Economía del Tecnológico de Monterrey. Reúne el 
 
 ## Revisión local
 
-Abre `index.html` en tu navegador y elige una de las cuatro secciones de la portada. Puedes revisar el portal sin instalar dependencias.
+Para revisar el portal con los filtros y el cruce de temas, ejecuta `python -m http.server 4173 --bind 127.0.0.1` desde la raíz y abre `http://127.0.0.1:4173`.
 
 ## Publicación en GitHub Pages
 
@@ -18,15 +18,15 @@ El [portal](https://lec-cdmx.github.io/ClaustroLEC/) se publica desde la raíz (
 
 ## Actualizar el contenido
 
-- **Directorio.** Edita o duplica un perfil en `directorio.html`. Actualiza el nombre, puesto, campus, correo institucional, semblanza, palabras clave y unidades de formación impartidas. Guarda el retrato para publicar en `assets/img/directorio/` y añade enlaces académicos cuando hayas verificado a quién pertenecen. El buscador obtiene sus opciones de las fichas.
-- **Oportunidades.** Actualiza el seminario regional en la sección de iniciativas internas. Para el radar externo, edita o duplica una ficha en `oportunidades.html`. Usa `data-type` para clasificarla y distingue el cierre de envíos de la fecha del evento. Si hay fecha, actualiza el texto visible y el atributo `datetime` en formato `AAAA-MM-DD`. Los filtros se generan a partir de las fichas.
+- **Directorio.** Edita o duplica un perfil en `directorio.html`. Actualiza la semblanza y los temas académicos en `faculty-keywords`. Agrupa las UF por plan y por tipo, registra sus claves verificadas y actualiza el conteo de cada plan. Las claves con sufijo B corresponden a bloques, las que terminan en C a concentraciones y las que terminan en número a materias. Guarda los retratos en `assets/img/directorio/`.
+- **Oportunidades.** Actualiza el seminario regional en la sección de iniciativas internas. Para el radar externo, edita o duplica una ficha en `oportunidades.html`. Usa `data-type` para clasificarla y registra la modalidad según la fuente oficial. Agrega hasta tres temas en `opportunity-topics`, con los mismos nombres del directorio cuando haya afinidad. Si hay fecha, actualiza el texto visible y `datetime` en formato `AAAA-MM-DD`. Distingue la fecha límite de postulación de las fechas del encuentro.
 - **Capacitación.** Edita o duplica una ficha en `capacitacion.html` y agrega un enlace al material cuando esté disponible.
 
 Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido validado. Cuando reemplaces todos los datos ficticios de una sección, actualiza también su nota de edición.
 
 ## Foro de Buenas prácticas
 
-La interfaz está en GitHub Pages y las contribuciones se guardan en Cloudflare D1 a través de un Worker. Los envíos y respuestas entran a la cola de **Moderación**. La consulta pública devuelve solo publicaciones aprobadas y excluye el correo. Los ejemplos ficticios están en `assets/js/forum-examples.js`.
+La interfaz está en GitHub Pages y las contribuciones se guardan en Cloudflare D1 a través de un Worker. Los envíos y respuestas entran a la cola de **Moderación**. El correo sirve para que moderación contacte a la persona sobre su envío. La consulta pública solo devuelve contribuciones aprobadas y muestra el correo si la persona eligió compartirlo en ese envío. Los ejemplos ficticios están en `assets/js/forum-examples.js`.
 
 Para configurar el servicio, crea la base `claustrolec-foro`, indica su identificador en `server/forum/wrangler.jsonc` y ejecuta desde `server/forum` los siguientes comandos:
 

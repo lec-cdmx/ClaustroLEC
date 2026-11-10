@@ -56,6 +56,7 @@ async function submit(request, env) {
   const campus = field(data, 'campus', 90, 2);
   const role = field(data, 'role', 40);
   const email = field(data, 'email', 254);
+  const emailPublic = data.publishEmail === true ? 1 : 0;
   const body = field(data, 'body', 2500, 5);
   const title = parent ? '' : field(data, 'title', 120, 4);
   const tags = parent ? [] : parseTags(data.tags);
@@ -67,10 +68,10 @@ async function submit(request, env) {
   const id = crypto.randomUUID();
   const acceptedParent = parent === null || exampleIds.has(parent);
   const result = await env.DB.prepare(`
-    INSERT INTO posts (id, parent_id, name, role, campus, email, title, body, created_at, tags)
-    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+    INSERT INTO posts (id, parent_id, name, role, campus, email, title, body, created_at, tags, email_public)
+    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
     WHERE ? OR EXISTS (SELECT 1 FROM posts WHERE id = ? AND status = 'approved')
-  `).bind(id, parent, name, role, campus, email, title, body, new Date().toISOString(), JSON.stringify(tags), Number(acceptedParent), parent).run();
+  `).bind(id, parent, name, role, campus, email, title, body, new Date().toISOString(), JSON.stringify(tags), emailPublic, Number(acceptedParent), parent).run();
   if (result.meta.changes !== 1) throw new ForumError(409, 'La contribución a la que quieres responder no está publicada.');
   return { id, status: 'pending' };
 }
@@ -117,7 +118,10 @@ export default {
     const ready = typeof env.MODERATOR_PASSWORD === 'string' && env.MODERATOR_PASSWORD.length >= 20;
     try {
       if (path === '/api/posts' && request.method === 'GET') {
-        const { results } = await env.DB.prepare(`SELECT ${publicFields} FROM posts WHERE status = 'approved' ORDER BY created_at, id`).all();
+        const { results } = await env.DB.prepare(`
+          SELECT ${publicFields}, CASE WHEN email_public = 1 THEN email END AS contact_email
+          FROM posts WHERE status = 'approved' ORDER BY created_at, id
+        `).all();
         return json({ posts: results.map(decodeTags), submissionsOpen: ready });
       }
       if (!ready) throw new ForumError(503, 'El foro aún no está recibiendo contribuciones.');
@@ -128,7 +132,7 @@ export default {
       if (path === '/api/moderation' && request.method === 'GET') {
         await authorize(request, env);
         const { results } = await env.DB.prepare(`
-          SELECT ${publicFields}, email FROM posts WHERE status = 'pending' ORDER BY created_at, id LIMIT 100
+          SELECT ${publicFields}, email, email_public FROM posts WHERE status = 'pending' ORDER BY created_at, id LIMIT 100
         `).all();
         return json({ posts: results.map(decodeTags) });
       }

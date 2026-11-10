@@ -7,8 +7,8 @@
   <title>Directorio | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=3">
-  <link rel="stylesheet" href="assets/css/directorio.css?v=6">
-  <script type="module" src="assets/js/directorio.js?v=3"></script>
+  <link rel="stylesheet" href="assets/css/directorio.css?v=7">
+  <script type="module" src="assets/js/directorio.js?v=4"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -82,6 +82,23 @@
           <input id="directory-keyword" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="directory-keyword-options" autocomplete="off" placeholder="Escribe para buscar un tema">
           <ul id="directory-keyword-options" class="search-options" role="listbox" aria-label="Opciones de palabras clave" hidden></ul>
         </div>
+        <div>
+          <label for="directory-plan">Plan de estudios</label>
+          <select id="directory-plan">
+            <option value="">Todos los planes</option>
+            <option value="2019">Plan 2019</option>
+            <option value="2026">Plan 2026</option>
+          </select>
+        </div>
+        <div>
+          <label for="directory-kind">Tipo de UF</label>
+          <select id="directory-kind">
+            <option value="">Todos los tipos</option>
+            <option value="materia">Materia</option>
+            <option value="bloque">Bloque</option>
+            <option value="concentracion">Concentración</option>
+          </select>
+        </div>
       </div>
     </form>
 
@@ -107,19 +124,27 @@
         </div>
         <div class="faculty-biography">
           <p>Ha investigado cómo la apertura comercial en México afectó la creación y la pérdida de empleos. En el Tec ha impartido macroeconomía y asesorado a estudiantes del Reto Banxico en trabajos sobre política monetaria. También ha enseñado en la Universidad de Minnesota y en el posgrado de El Colegio de México. Es doctor en Economía por la Universidad de Minnesota.</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Comercio internacional</li>
             <li>Mercado laboral</li>
             <li>Macroeconomía</li>
+            <li>Economía mexicana</li>
+            <li>Política monetaria</li>
           </ul>
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Dinámica del Crecimiento Nacional y Regional</li>
-            <li>Origen y Futuro del Panorama Macroeconómico</li>
-            <li>Macroeconomía y Desarrollo Económico</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>3 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Dinámica del Crecimiento Nacional y Regional</span><code>EC2007B</code></li>
+                <li><span class="faculty-course-name">Origen y Futuro del Panorama Macroeconómico</span><code>EC2004B</code></li>
+                <li><span class="faculty-course-name">Macroeconomía y Desarrollo Económico</span><code>EC1003B</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -138,10 +163,11 @@
         </div>
         <div class="faculty-biography">
           <p>Investiga cómo las reglas de votación y los mecanismos de asignación influyen en las decisiones colectivas. Ha publicado sobre el diseño de reglas que reducen los incentivos a manipular una decisión y ha aplicado el análisis económico al estudio de la factura electrónica en México. Fue directora nacional del programa de Economía del Tec. Es doctora en Economía por la Universitat Autònoma de Barcelona.</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Elección social</li>
             <li>Diseño de mecanismos</li>
             <li>Microeconomía</li>
+            <li>Economía mexicana</li>
           </ul>
           <p class="faculty-links">
             <a href="https://scholar.google.com/citations?user=S263xjgAAAAJ" aria-label="Google Scholar de Dra. Grisel Ayllón Aragón" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
@@ -150,9 +176,15 @@
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Incentivos del consumidor y del productor</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>1 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Incentivos del consumidor y del productor</span><code>EC2003B</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -171,10 +203,13 @@
         </div>
         <div class="faculty-biography">
           <p>Ha coordinado evaluaciones del Fondo PYME para la Secretaría de Economía y estudios sobre evasión fiscal para el SAT. En el Tec dirigió el Departamento de Economía durante trece años e impartió microeconomía, evaluación de proyectos y política de competencia. Su investigación incluye productividad e innovación. Es doctor en Economía Aplicada por la Universitat Autònoma de Barcelona.</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Productividad</li>
             <li>Microeconomía</li>
             <li>Evaluación de políticas</li>
+            <li>Política pública</li>
+            <li>Economía aplicada</li>
+            <li>Economía mexicana</li>
           </ul>
           <p class="faculty-links">
             <a href="https://scholar.google.com/citations?user=QiidntoAAAAJ&amp;hl=es" aria-label="Google Scholar de Dr. Hugo Javier Fuentes Castro" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
@@ -183,11 +218,20 @@
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Microeconomía</li>
-            <li>Decisiones Estratégicas en Mercados e Instituciones</li>
-            <li>Investigación y consultoría económica</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>3 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Materias</h4>
+              <ul class="faculty-courses" data-kind="materia" role="list">
+                <li><span class="faculty-course-name">Microeconomía</span><code>EC1014</code></li>
+              </ul>
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Decisiones Estratégicas en Mercados e Instituciones</span><code>EC2006B</code></li>
+                <li><span class="faculty-course-name">Investigación y consultoría económica</span><code>EC3003B</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -206,11 +250,13 @@
         </div>
         <div class="faculty-biography">
           <p>Como profesor investigador del Tec, estudia cómo las remesas se relacionan con el gasto en salud y la seguridad alimentaria de los hogares mexicanos. También ha publicado sobre la reintegración de migrantes de retorno y sobre los efectos del acceso a internet y al crédito en la pobreza rural. Es doctor en Economía por El Colegio de México.</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Migración</li>
             <li>Remesas</li>
             <li>Pobreza</li>
             <li>Desarrollo rural</li>
+            <li>Economía mexicana</li>
+            <li>Desarrollo económico</li>
           </ul>
           <p class="faculty-links">
             <a href="https://scholar.google.com/citations?user=DOm8wRsAAAAJ" aria-label="Google Scholar de Dr. José Jorge Mora Rivera" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
@@ -219,10 +265,16 @@
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Dinámica del Crecimiento Nacional y Regional</li>
-            <li>Solución y evaluación de problemas económicos</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>2 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Dinámica del Crecimiento Nacional y Regional</span><code>EC2007B</code></li>
+                <li><span class="faculty-course-name">Solución y evaluación de problemas económicos</span><code>EC3002B</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -241,11 +293,15 @@
         </div>
         <div class="faculty-biography">
           <p>Aplica la econometría y la inferencia causal a la evaluación de políticas urbanas. Ha estudiado el programa de desarme voluntario de la Ciudad de México y la seguridad en torno a las Utopías. Ha trabajado en consultoría de transporte y desarrollo regional y fue asesor en la CONAGO. Es maestro en Economía por El Colegio de México y cursa el doctorado en Política Pública en el Tec.</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Econometría</li>
             <li>Evaluación de políticas</li>
             <li>Seguridad pública</li>
             <li>Movilidad urbana</li>
+            <li>Evaluación de impacto</li>
+            <li>Política pública</li>
+            <li>Economía mexicana</li>
+            <li>Transporte</li>
           </ul>
           <p class="faculty-links">
             <a href="https://scholar.google.com/citations?user=HlDYImEAAAAJ" aria-label="Google Scholar de Mtro. Marco Méndez Atienza" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
@@ -254,15 +310,35 @@
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Pensamiento Matemático</li>
-            <li>Fundamentos de Econometría</li>
-            <li>Econometría I</li>
-            <li>Econometría II</li>
-            <li>Multivariante</li>
-            <li>Economía Aplicada y Ciencia de Datos para el Bien Público</li>
-            <li>Incentivos del Consumidor y del Productor</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>6 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Materias</h4>
+              <ul class="faculty-courses" data-kind="materia" role="list">
+                <li><span class="faculty-course-name">Fundamentos de Econometría</span><code>EC2029</code></li>
+                <li><span class="faculty-course-name">Econometría I</span><code>EC2030</code></li>
+                <li><span class="faculty-course-name">Econometría II</span><code>EC2031</code></li>
+                <li><span class="faculty-course-name">Multivariante</span><code>EC2032</code></li>
+              </ul>
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Incentivos del Consumidor y del Productor</span><code>EC2003B</code></li>
+              </ul>
+              <h4>Concentraciones</h4>
+              <ul class="faculty-courses" data-kind="concentracion" role="list">
+                <li><span class="faculty-course-name">Economía Aplicada y Ciencia de Datos para el Bien Público</span><code>EC3002C</code></li>
+              </ul>
+            </div>
+          </details>
+          <details class="faculty-plan" data-plan="2026">
+            <summary><span>Plan 2026</span><small>1 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Materias</h4>
+              <ul class="faculty-courses" data-kind="materia" role="list">
+                <li><span class="faculty-course-name">Pensamiento Matemático</span><code>MA1060</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -281,10 +357,12 @@
         </div>
         <div class="faculty-biography">
           <p>Durante más de 25 años en el Banco Mundial, lideró trabajos sobre inclusión financiera responsable, información crediticia y educación financiera. Su experiencia incluye protección al consumidor y proyectos que usaron el entretenimiento para fortalecer capacidades financieras en México, India y Sudáfrica. Es doctora en Economía por la Universidad de California en Berkeley.</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Inclusión financiera</li>
             <li>Educación financiera</li>
             <li>Protección al consumidor</li>
+            <li>Infraestructura financiera</li>
+            <li>Finanzas</li>
           </ul>
           <p class="faculty-links">
             <a href="https://scholar.google.com/citations?user=OpoQWTYAAAAJ&amp;hl=en" aria-label="Google Scholar de Dra. Margaret Miller" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
@@ -292,10 +370,19 @@
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Macroeconomía y Desarrollo Económico</li>
-            <li>Economía y finanzas personales: herramientas para decisiones inteligentes</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>2 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Materias</h4>
+              <ul class="faculty-courses" data-kind="materia" role="list">
+                <li><span class="faculty-course-name">Economía y finanzas personales: herramientas para decisiones inteligentes</span><code>EC1021</code></li>
+              </ul>
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Macroeconomía y Desarrollo Económico</span><code>EC1003B</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -314,11 +401,14 @@
         </div>
         <div class="faculty-biography">
           <p>Coordinó la política nacional de vivienda en la Sedatu y formó parte del equipo del Coneval que desarrolló la metodología de medición de la pobreza multidimensional. En su investigación utiliza microdatos históricos para estudiar cómo la infraestructura y las políticas agrarias influyen en el desarrollo de largo plazo. Es doctora por la Universidad de Economía y Negocios de Viena (WU).</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Historia económica</li>
             <li>Desarrollo económico</li>
             <li>Pobreza</li>
             <li>Política de vivienda</li>
+            <li>Economía mexicana</li>
+            <li>Política pública</li>
+            <li>Transporte</li>
           </ul>
           <p class="faculty-links">
             <a href="https://scholar.google.com/citations?user=heLLorMAAAAJ&amp;hl=es" aria-label="Google Scholar de Dra. Nayeli Salgado Granados" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
@@ -327,12 +417,29 @@
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Macroeconomía y Desarrollo Económico</li>
-            <li>Economía y finanzas personales: herramientas para decisiones inteligentes</li>
-            <li>Investigación y consultoría económica</li>
-            <li>Futuros urbanos: datos, diseño y política pública</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>3 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Materias</h4>
+              <ul class="faculty-courses" data-kind="materia" role="list">
+                <li><span class="faculty-course-name">Economía y finanzas personales: herramientas para decisiones inteligentes</span><code>EC1021</code></li>
+              </ul>
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Macroeconomía y Desarrollo Económico</span><code>EC1003B</code></li>
+                <li><span class="faculty-course-name">Investigación y consultoría económica</span><code>EC3003B</code></li>
+              </ul>
+            </div>
+          </details>
+          <details class="faculty-plan" data-plan="2026">
+            <summary><span>Plan 2026</span><small>1 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Materias</h4>
+              <ul class="faculty-courses" data-kind="materia" role="list">
+                <li><span class="faculty-course-name">Futuros urbanos: datos, diseño y política pública</span><code>EC1024</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -351,11 +458,14 @@
         </div>
         <div class="faculty-biography">
           <p>Investiga los efectos de las políticas de transporte y combustibles sobre las emisiones y el uso del suelo. Ha estudiado los incentivos a los biocombustibles en California y cómo responden los automovilistas a los impuestos vehiculares en México. Trabajó en política tributaria en la Secretaría de Hacienda. Es doctor en Economía Agrícola y de los Recursos por la Universidad de California en Davis.</p>
-          <ul class="faculty-keywords" aria-label="Temas de investigación">
+          <ul class="faculty-keywords" aria-label="Temas académicos">
             <li>Economía ambiental</li>
             <li>Energía</li>
             <li>Transporte</li>
             <li>Uso del suelo</li>
+            <li>Microeconomía</li>
+            <li>Política pública</li>
+            <li>Evaluación de impacto</li>
           </ul>
           <p class="faculty-links">
             <a href="https://orcid.org/0009-0008-0371-8911" aria-label="ORCID de Dr. Pedro Liedo Orozco" target="_blank" rel="noopener">ORCID <span aria-hidden="true">↗</span></a>
@@ -363,11 +473,20 @@
         </div>
         <div class="faculty-teaching">
           <h3>Unidades de formación impartidas</h3>
-          <ul class="faculty-courses">
-            <li>Competencia Económica</li>
-            <li>Incentivos del Consumidor y del Productor</li>
-            <li>Microeconomía</li>
-          </ul>
+          <details class="faculty-plan" data-plan="2019">
+            <summary><span>Plan 2019</span><small>3 UF</small></summary>
+            <div class="faculty-plan-content">
+              <h4>Materias</h4>
+              <ul class="faculty-courses" data-kind="materia" role="list">
+                <li><span class="faculty-course-name">Microeconomía</span><code>EC1014</code></li>
+              </ul>
+              <h4>Bloques</h4>
+              <ul class="faculty-courses" data-kind="bloque" role="list">
+                <li><span class="faculty-course-name">Competencia Económica</span><code>EC2005B</code></li>
+                <li><span class="faculty-course-name">Incentivos del Consumidor y del Productor</span><code>EC2003B</code></li>
+              </ul>
+            </div>
+          </details>
         </div>
       </article>
     </div>

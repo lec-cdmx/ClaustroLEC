@@ -7,8 +7,8 @@
   <title>Buenas prácticas | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=2">
-  <link rel="stylesheet" href="assets/css/foro.css?v=3">
-  <script type="module" src="assets/js/foro.js?v=3"></script>
+  <link rel="stylesheet" href="assets/css/foro.css?v=4">
+  <script type="module" src="assets/js/foro.js?v=4"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -103,15 +103,19 @@
           </select></label>
           <label>Campus <input name="campus" list="forum-campuses" minlength="2" maxlength="90" required></label>
           <datalist id="forum-campuses"><option value="Ciudad de México"><option value="Santa Fe"><option value="Estado de México"></datalist>
-          <label>Correo <input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+          <label>Correo <input name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="forum-privacy" required></label>
         </div>
+        <label class="forum-email-choice">
+          <input name="publishEmail" type="checkbox">
+          <span>Mostrar mi correo públicamente si se aprueba mi contribución</span>
+        </label>
         <label id="forum-title-field">Título <input name="title" minlength="4" maxlength="120" required></label>
         <label id="forum-tags-field" for="forum-tags">Etiquetas
           <input id="forum-tags" name="tags" maxlength="280" placeholder="IA, evaluación, proyectos" aria-describedby="forum-tags-help" required>
           <small id="forum-tags-help">Escribe de 2 a 4 palabras distintas, separadas por comas. Cada palabra puede tener hasta 32 caracteres.</small>
         </label>
         <label>Contribución <textarea name="body" rows="5" minlength="5" maxlength="2500" required></textarea></label>
-        <p class="forum-privacy">Al aprobarse, se verán tu nombre, puesto, campus y contribución. El correo solo es visible para quienes moderan.</p>
+        <p class="forum-privacy" id="forum-privacy">Moderación puede usar tu correo para contactarte sobre tu envío. Al aprobarse, se publican tu nombre, puesto, campus y contribución. Tu correo también se muestra si marcas la casilla.</p>
         <p class="forum-status" id="forum-submit-status" role="status"></p>
         <button class="forum-button forum-primary" type="submit">Enviar a moderación</button>
       </form>

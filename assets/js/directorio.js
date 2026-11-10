@@ -5,6 +5,8 @@ const search = document.querySelector('#directory-search');
 const campus = document.querySelector('#directory-campus');
 const courseInput = document.querySelector('#directory-course');
 const keywordInput = document.querySelector('#directory-keyword');
+const plan = document.querySelector('#directory-plan');
+const kind = document.querySelector('#directory-kind');
 const count = document.querySelector('#directory-count');
 const clear = document.querySelector('#directory-clear');
 const empty = document.querySelector('#directory-empty');
@@ -25,14 +27,23 @@ const profiles = Array.from(document.querySelectorAll('.faculty-profile'), eleme
   element,
   searchText: fold(element.textContent),
   campus: collectLabels(element, '.faculty-campus'),
-  course: collectLabels(element, '.faculty-courses li'),
+  courses: [...element.querySelectorAll('.faculty-courses li')].map(item => {
+    const group = item.closest('.faculty-plan');
+    return {
+      name: item.querySelector('.faculty-course-name').textContent.trim(),
+      kind: item.parentElement.dataset.kind,
+      group,
+      text: fold(item.textContent),
+    };
+  }),
   keyword: collectLabels(element, '.faculty-keywords li'),
 }));
 
 function filterOptions(field) {
   const labels = new Map();
   for (const profile of profiles) {
-    for (const label of profile[field]) labels.set(fold(label), label);
+    const values = field === 'course' ? profile.courses.map(uf => uf.name) : profile[field];
+    for (const label of values) labels.set(fold(label), label);
   }
   return [...labels.entries()].sort(([, a], [, b]) => a.localeCompare(b, 'es'));
 }
@@ -87,8 +98,9 @@ function applyFilters() {
   const words = queryWords(search.value);
   const query = words.join(' ');
   const queryChanged = query !== lastQuery;
-  const filters = Object.entries({ campus: campus.value, course: course.value, keyword: keyword.value })
+  const filters = Object.entries({ campus: campus.value, keyword: keyword.value })
     .filter(([, value]) => value);
+  const filterCourses = Boolean(course.value || plan.value || kind.value);
   let pattern;
   let matches = 0;
 
@@ -100,16 +112,27 @@ function applyFilters() {
 
   for (const profile of profiles) {
     const matchesSearch = words.every(word => profile.searchText.includes(word));
+    const matchingCourses = filterCourses ? profile.courses.filter(uf =>
+      (!course.value || fold(uf.name) === course.value) &&
+      (!plan.value || uf.group.dataset.plan === plan.value) &&
+      (!kind.value || uf.kind === kind.value)
+    ) : profile.courses;
     const visible = matchesSearch &&
-      filters.every(([field, value]) => profile[field].some(label => fold(label) === value));
+      filters.every(([field, value]) => profile[field].some(label => fold(label) === value)) &&
+      (!filterCourses || matchingCourses.length > 0);
     profile.element.hidden = !visible;
     if (queryChanged) setHighlights(profile.element, matchesSearch ? pattern : null);
+    if (visible && (filterCourses || (queryChanged && words.length))) {
+      for (const uf of matchingCourses) {
+        if (filterCourses || words.every(word => uf.text.includes(word))) uf.group.open = true;
+      }
+    }
     matches += Number(visible);
   }
 
   lastQuery = query;
   count.textContent = matches === 1 ? '1 docente' : matches + ' docentes';
-  clear.disabled = !query && filters.length === 0;
+  clear.disabled = !query && filters.length === 0 && !filterCourses;
   empty.hidden = matches > 0;
 }
 
