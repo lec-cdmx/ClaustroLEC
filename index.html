@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Directorio, oportunidades, buenas prácticas y recursos de capacitación para el claustro de la Licenciatura en Economía del Tecnológico de Monterrey.">
   <title>Portal del Claustro LEC | Tecnológico de Monterrey</title>
-  <link rel="icon" type="image/svg+xml" href="claustro.svg">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="icon" type="image/svg+xml" href="claustro.svg?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
   <header class="site-header" id="inicio">
     <div class="shell header-inner">
       <a class="brand" href="index.html">
-        <img class="brand-mark" src="claustro.svg" width="38" height="38" alt="">
+        <img class="brand-mark" src="claustro.svg?v=2" width="38" height="38" alt="">
         <span>Tecnológico de Monterrey<small>Licenciatura en Economía</small></span>
       </a>
       <span class="edition">Edición preliminar</span>
@@ -21,51 +21,54 @@
   </header>
 
   <main id="contenido" tabindex="-1">
-    <div class="shell">
-      <div class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Comunidad académica</p>
-          <h1>Portal del<br>Claustro <em>LEC</em></h1>
-          <p>Un punto de encuentro para quienes enseñan economía en el Tec.</p>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <svg viewBox="0 0 396 266" fill="none" focusable="false">
-            <path d="M42 22V224H373M42 56H373M42 112H373M42 168H373M97 22V224M152 22V224M207 22V224M262 22V224M317 22V224" stroke="#456457" stroke-opacity=".23"/>
-            <g stroke="#456457" stroke-opacity=".68" stroke-width="1.2">
-              <path d="M43 222C104 220 126 187 153 138S215 55 367 30"/>
-              <path d="M43 222C110 221 137 192 167 147S233 75 367 50"/>
-              <path d="M43 222C114 222 148 198 181 157S249 95 367 70"/>
-              <path d="M43 222C117 222 158 204 194 166S263 114 367 90"/>
-              <path d="M43 222C124 222 170 209 208 176S281 134 367 110"/>
-              <path d="M43 222C130 222 183 214 222 186S296 155 367 130"/>
-            </g>
-            <path d="M43 222C114 222 148 198 181 157S249 95 367 70" stroke="#244a3d" stroke-width="2"/>
-            <path d="M235 112V224M42 112H235" stroke="#9a572f" stroke-dasharray="3 5"/>
-            <circle cx="235" cy="112" r="5" fill="#a4552f" stroke="#eaede2" stroke-width="2"/>
-            <path d="M42 224V231M152 224V231M262 224V231M373 224V231" stroke="#456457" stroke-opacity=".55"/>
-          </svg>
-        </div>
+    <div class="shell home-layout">
+      <div class="hero-copy">
+        <p class="eyebrow">Comunidad académica</p>
+        <h1>Portal del<br>Claustro <span>LEC</span></h1>
+        <p>Un punto de encuentro para quienes enseñan economía en el Tec.</p>
       </div>
 
-      <nav class="section-index" aria-label="Secciones del portal">
-        <a href="directorio.html">
-          <span class="index-number" aria-hidden="true">01</span>
+      <nav class="portal-nav" aria-labelledby="titulo-navegacion">
+        <h2 id="titulo-navegacion">Explora el portal</h2>
+        <a class="portal-link" href="directorio.html">
+          <span class="route-number" aria-hidden="true">01</span>
           <span>Directorio<small>Especialidades, campus y contactos.</small></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
         </a>
-        <a href="oportunidades.html">
-          <span class="index-number" aria-hidden="true">02</span>
+        <a class="portal-link" href="oportunidades.html">
+          <span class="route-number" aria-hidden="true">02</span>
           <span>Oportunidades<small>Convocatorias, concursos y becas.</small></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
         </a>
-        <a href="buenas-practicas.html">
-          <span class="index-number" aria-hidden="true">03</span>
+        <a class="portal-link" href="buenas-practicas.html">
+          <span class="route-number" aria-hidden="true">03</span>
           <span>Buenas prácticas<small>Ideas docentes para llevar al aula.</small></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
         </a>
-        <a href="capacitacion.html">
-          <span class="index-number" aria-hidden="true">04</span>
+        <a class="portal-link" href="capacitacion.html">
+          <span class="route-number" aria-hidden="true">04</span>
           <span>Capacitación<small>Cursos, talleres y materiales docentes.</small></span>
+          <span class="route-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
 
+      <div class="hero-art" aria-hidden="true">
+        <span class="art-caption">Mapa del claustro</span>
+        <svg viewBox="0 0 560 172" fill="none" focusable="false">
+          <defs>
+            <pattern id="reticula" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="1" fill="#7891bd" fill-opacity=".4"/>
+            </pattern>
+          </defs>
+          <rect width="560" height="172" fill="url(#reticula)"/>
+          <path d="M0 132C28 132 38 112 68 112S137 52 207 52 297 119 350 119 442 65 492 65 532 40 560 40" stroke="#3c537a" stroke-width="4"/>
+          <path class="map-trace" d="M0 132C28 132 38 112 68 112S137 52 207 52 297 119 350 119 442 65 492 65 532 40 560 40" pathLength="1" stroke="#9fbafb" stroke-width="2"/>
+          <g class="map-node" transform="translate(68 112)"><circle r="17"/><text>01</text></g>
+          <g class="map-node" transform="translate(207 52)"><circle r="17"/><text>02</text></g>
+          <g class="map-node" transform="translate(350 119)"><circle r="17"/><text>03</text></g>
+          <g class="map-node" transform="translate(492 65)"><circle r="17"/><text>04</text></g>
+        </svg>
+      </div>
     </div>
   </main>
 
