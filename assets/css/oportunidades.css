@@ -60,7 +60,7 @@
 }
 .seminar-track + .seminar-track { border-left: 1px solid #dce6f8; }
 .seminar-track h3 { margin: 0; color: var(--navy); font-size: clamp(1.15rem, 2.2vw, 1.65rem); line-height: 1.2; }
-.seminar-track p a, .seminar-english a { color: var(--accent); }
+.seminar-track p a { color: var(--accent); }
 
 .seminar-dates { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: .5rem 0; padding: 0; border-block: 1px solid #dce6f8; list-style: none; }
 .seminar-dates li { position: relative; padding: .65rem .2rem .55rem; text-align: center; }
@@ -77,13 +77,7 @@
 .seminar-note strong, .seminar-signature { color: var(--navy); }
 .seminar-signature { font-weight: 650; }
 
-.seminar-english { margin-top: .85rem; border: 1px solid var(--rule); border-radius: .65rem; color: var(--navy); }
-.seminar-english summary { padding: .75rem 1rem; cursor: pointer; }
-.seminar-english summary span { padding-left: .32rem; }
-.seminar-english summary:is(:hover, :focus-visible) { background: var(--tint); }
-.seminar-english summary:focus-visible, .opportunity-controls :is(input, select, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.seminar-english > div { display: grid; gap: .65rem; max-width: 85ch; padding: .3rem 1rem 1.15rem; color: var(--muted); font-size: .92rem; }
-.seminar-english h3, .seminar-english h4 { margin: .35rem 0 0; color: var(--navy); }
+.opportunity-controls :is(input, select, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .external-opportunities { margin-top: clamp(3rem, 7vw, 6rem); }
 .external-heading { margin-bottom: 1.25rem; }
