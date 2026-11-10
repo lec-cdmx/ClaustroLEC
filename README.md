@@ -19,7 +19,7 @@ El [portal](https://lec-cdmx.github.io/ClaustroLEC/) se publica desde la raíz (
 ## Actualizar el contenido
 
 - **Directorio.** Edita o duplica un perfil en `directorio.html`. Actualiza el nombre, puesto, campus, correo institucional, semblanza, palabras clave y unidades de formación impartidas. Guarda el retrato para publicar en `assets/img/directorio/` y añade enlaces académicos cuando hayas verificado a quién pertenecen. El buscador obtiene sus opciones de las fichas.
-- **Oportunidades.** Edita o duplica una ficha en `oportunidades.html`. Incluye la fecha límite y el enlace oficial cuando correspondan. Si hay fecha, actualiza tanto el texto visible como el atributo `datetime` en formato `AAAA-MM-DD`.
+- **Oportunidades.** Actualiza el seminario regional en la sección de iniciativas internas. Para el radar externo, edita o duplica una ficha en `oportunidades.html`. Usa `data-type` para clasificarla y distingue el cierre de envíos de la fecha del evento. Si hay fecha, actualiza el texto visible y el atributo `datetime` en formato `AAAA-MM-DD`. Los filtros se generan a partir de las fichas.
 - **Buenas prácticas y capacitación.** Edita o duplica una ficha en `buenas-practicas.html` o `capacitacion.html` y agrega un enlace al material cuando esté disponible.
 
 Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido validado. Cuando reemplaces todos los datos ficticios de una sección, actualiza también su nota de edición.

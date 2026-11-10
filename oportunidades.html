@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Encuentra espacios para presentar trabajos, colaborar y obtener apoyos.">
+  <meta name="description" content="Seminarios internos, convocatorias, revistas, premios, financiamiento y consultorías para el claustro de Economía.">
   <title>Oportunidades | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/oportunidades.css">
+  <script src="assets/js/oportunidades.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
   <header class="site-header" id="inicio">
     <div class="shell header-inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" target="_blank" rel="noopener">
         <img class="brand-mark" src="assets/icons/claustro.svg" width="38" height="38" alt="">
         <span>Tecnológico de Monterrey<small>Licenciatura en Economía</small></span>
       </a>
@@ -21,19 +23,19 @@
   </header>
   <div class="shell">
     <nav class="section-index" aria-label="Secciones del portal">
-      <a href="directorio.html">
+      <a href="directorio.html" target="_blank" rel="noopener">
         <span class="index-number" aria-hidden="true">01</span>
         <span>Directorio</span>
       </a>
-      <a href="oportunidades.html" aria-current="page">
+      <a href="oportunidades.html" aria-current="page" target="_blank" rel="noopener">
         <span class="index-number" aria-hidden="true">02</span>
         <span>Oportunidades</span>
       </a>
-      <a href="buenas-practicas.html">
+      <a href="buenas-practicas.html" target="_blank" rel="noopener">
         <span class="index-number" aria-hidden="true">03</span>
         <span>Buenas prácticas</span>
       </a>
-      <a href="capacitacion.html">
+      <a href="capacitacion.html" target="_blank" rel="noopener">
         <span class="index-number" aria-hidden="true">04</span>
         <span>Capacitación</span>
       </a>
@@ -41,44 +43,296 @@
   </div>
 
   <main class="shell" id="contenido" tabindex="-1">
-    <div class="page-heading">
-      <p class="eyebrow">02 · Participación académica</p>
-      <h1>Oportunidades</h1>
-      <p>Encuentra espacios para presentar trabajos, colaborar y obtener apoyos.</p>
-    </div>
-    <div class="grid grid-two">
-      <article class="card">
-        <div class="card-meta"><span class="tag">Concurso</span><span class="sample">Ejemplo</span></div>
-        <h2>Reto de análisis económico</h2>
-        <p>Equipos estudiantiles analizan un problema local y presentan una propuesta sustentada con datos.</p>
-        <p class="deadline">Fecha límite · <time datetime="2027-03-12">12 de marzo de 2027</time></p>
-      </article>
-      <article class="card">
-        <div class="card-meta"><span class="tag">Convocatoria de artículos</span><span class="sample">Ejemplo</span></div>
-        <h2>Dossier sobre empleo y productividad</h2>
-        <p>Recepción de manuscritos sobre mercados laborales y productividad en América Latina.</p>
-        <p class="deadline">Fecha límite · <time datetime="2027-04-30">30 de abril de 2027</time></p>
-      </article>
-      <article class="card">
-        <div class="card-meta"><span class="tag">Beca</span><span class="sample">Ejemplo</span></div>
-        <h2>Apoyo para formación metodológica</h2>
-        <p>Apoyo para cursar una formación breve en evaluación de impacto o análisis de datos.</p>
-        <p class="deadline">Fecha límite · <time datetime="2027-05-14">14 de mayo de 2027</time></p>
-      </article>
-      <article class="card">
-        <div class="card-meta"><span class="tag">Colaboración</span><span class="sample">Ejemplo</span></div>
-        <h2>Intercambio de casos entre campus</h2>
-        <p>Invitación a desarrollar en conjunto casos de enseñanza con datos regionales.</p>
-        <p class="deadline">Participación abierta</p>
-      </article>
-    </div>
-    <p class="sample-note"><strong>Nota de edición.</strong> Las oportunidades y sus fechas son ficticias.</p>
+    <header class="page-heading opportunities-heading">
+      <div>
+        <p class="eyebrow">02 · Participación académica</p>
+        <h1>Oportunidades</h1>
+        <p>Encuentra dónde discutir tu investigación, enviar un artículo o colaborar en un proyecto.</p>
+      </div>
+      <nav class="opportunity-jumps" aria-label="Tipos de iniciativas">
+        <a href="#internas"><span aria-hidden="true">01</span> Iniciativas internas <span aria-hidden="true">↓</span></a>
+        <a href="#externas"><span aria-hidden="true">02</span> Oportunidades externas <span aria-hidden="true">↓</span></a>
+      </nav>
+    </header>
+
+    <section class="opportunity-section" id="internas" aria-labelledby="seminar-title">
+      <div class="seminar-board">
+        <header class="seminar-header">
+          <div>
+            <p class="eyebrow">01 · Iniciativa interna</p>
+            <h2 id="seminar-title">Seminario de Investigación de la Región Ciudad de México</h2>
+            <p>Un espacio para compartir investigaciones con colegas de otros campus y recibir retroalimentación. El seminario está pensado para trabajos con avances suficientes para discutir y que aún puedan beneficiarse de comentarios antes de presentarse en conferencias o seminarios externos.</p>
+          </div>
+          <div class="seminar-campus">
+            <p class="eyebrow">Campus participantes</p>
+            <ul>
+              <li>Ciudad de México</li>
+              <li>Santa Fe</li>
+              <li>Estado de México</li>
+              <li>Toluca</li>
+            </ul>
+          </div>
+        </header>
+
+        <div class="seminar-schedule">
+          <div><p class="eyebrow">Febrero a junio de 2027</p><p>Calendario propuesto</p></div>
+          <p>Miércoles · <strong>13:00 a 15:00</strong></p>
+        </div>
+
+        <div class="seminar-tracks">
+          <article class="seminar-track" aria-labelledby="senior-title">
+            <p class="eyebrow">Para el profesorado</p>
+            <h3 id="senior-title" lang="en">Senior Research Seminar</h3>
+            <ol class="seminar-dates" aria-label="Fechas propuestas para Senior">
+              <li><time datetime="2027-02-10"><strong>10</strong> febrero</time></li>
+              <li><time datetime="2027-03-03"><strong>03</strong> marzo</time></li>
+              <li><time datetime="2027-04-07"><strong>07</strong> abril</time></li>
+              <li><time datetime="2027-05-19"><strong>19</strong> mayo</time></li>
+            </ol>
+            <p>Envía un <em lang="en">extended abstract</em> de hasta <strong>1,000 palabras</strong> a <a href="mailto:pliedo@tec.mx">pliedo@tec.mx</a>.</p>
+            <a class="seminar-cta" href="mailto:pliedo@tec.mx?subject=Senior%20Research%20Seminar%20%E2%80%93%20Propuesta">Enviar propuesta Senior <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="seminar-track" aria-labelledby="junior-title">
+            <p class="eyebrow">Para estudiantes</p>
+            <h3 id="junior-title" lang="en">Junior Research Seminar</h3>
+            <ol class="seminar-dates" aria-label="Fechas propuestas para Junior">
+              <li><time datetime="2027-02-17"><strong>17</strong> febrero</time></li>
+              <li><time datetime="2027-03-10"><strong>10</strong> marzo</time></li>
+              <li><time datetime="2027-04-21"><strong>21</strong> abril</time></li>
+              <li><time datetime="2027-05-26"><strong>26</strong> mayo</time></li>
+            </ol>
+            <p>Invita a estudiantes a enviar un <em lang="en">abstract</em> a <a href="mailto:pliedo@tec.mx">pliedo@tec.mx</a>. Para esta primera edición se buscan trabajos <strong>concluidos antes de diciembre de 2026</strong>, con resultados listos para discutir.</p>
+            <a class="seminar-cta" href="mailto:pliedo@tec.mx?subject=Junior%20Research%20Seminar%20%E2%80%93%20Propuesta">Enviar propuesta Junior <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <div class="seminar-note">
+          <p><strong>Para ambas modalidades.</strong> Indica el campus de preferencia y las fechas en que no puedes participar. Si cualquiera de las cuatro fechas te funciona, indícalo. El comité confirmará el calendario y las sedes después de revisar el interés y la disponibilidad.</p>
+          <p><strong>Asunto del correo.</strong> «Senior Research Seminar – Propuesta» o «Junior Research Seminar – Propuesta», según corresponda.</p>
+          <p class="seminar-signature">Comité organizador del Seminario de Investigación</p>
+        </div>
+      </div>
+
+      <details class="seminar-english" lang="en">
+        <summary><span><strong>English version</strong> · Call for proposals</span></summary>
+        <div>
+          <h3>Mexico City Region Research Seminar</h3>
+          <p>Dear colleagues, we are working on launching a research seminar with the Ciudad de México, Santa Fe, Estado de México, and Toluca campuses. We want to share ongoing research and receive feedback from colleagues across campuses. We encourage submissions that have made meaningful progress and can still benefit from discussion, including work you plan to present at external conferences or seminars.</p>
+          <h4>Senior Research Seminar</h4>
+          <p>The proposed dates for February–June 2027 are February 10, March 3, April 7, and May 19, all on Wednesdays from 1:00 to 3:00 p.m. Faculty interested in presenting should send an extended abstract of up to 1,000 words to <a href="mailto:pliedo@tec.mx?subject=Senior%20Research%20Seminar%20%E2%80%93%20Proposal">pliedo@tec.mx</a> with the subject “Senior Research Seminar – Proposal.”</p>
+          <h4>Junior Research Seminar</h4>
+          <p>For this first edition, we are seeking student research completed before December 2026 so that students have results to present and discuss. The proposed dates are February 17, March 10, April 21, and May 26, 2027, all on Wednesdays from 1:00 to 3:00 p.m. Please encourage interested students to send an abstract to <a href="mailto:pliedo@tec.mx?subject=Junior%20Research%20Seminar%20%E2%80%93%20Proposal">pliedo@tec.mx</a> with the subject “Junior Research Seminar – Proposal.”</p>
+          <p>For either seminar, please indicate your preferred campus and specify any dates when you cannot attend. If any of the four dates would work, please say so. We will finalize the schedule and host campuses once we know the level of interest and availability.</p>
+          <p>Best regards,<br><strong>Research Seminar Organizing Committee</strong></p>
+        </div>
+      </details>
+    </section>
+
+    <section class="opportunity-section external-opportunities" id="externas" aria-labelledby="external-title">
+      <header class="external-heading">
+        <p class="eyebrow">02 · Fuera del Tec</p>
+        <h2 id="external-title">Radar de oportunidades externas</h2>
+        <p>Convocatorias para presentar o publicar investigación, buscar financiamiento y ofrecer consultoría. Las ediciones cerradas quedan como referencia para preparar futuras postulaciones.</p>
+      </header>
+      <div id="opportunity-controls" class="opportunity-controls" hidden>
+        <div>
+          <label for="opportunity-search">Buscar en el radar</label>
+          <input id="opportunity-search" type="search" placeholder="Institución, tema o convocatoria" autocomplete="off">
+        </div>
+        <div id="opportunity-types" class="opportunity-types" role="group" aria-label="Filtrar por tipo de oportunidad"></div>
+      </div>
+      <p id="opportunity-count" class="opportunity-count" role="status">Oportunidades seleccionadas</p>
+      <p id="opportunity-empty" class="opportunity-empty" hidden>No hay coincidencias. Prueba otro término o selecciona «Todas».</p>
+      <div class="external-list">
+        <article class="external-entry" data-type="Premios" data-keywords="Colmex CEE" aria-labelledby="opp-urquidi">
+          <p class="external-type">Premio</p>
+          <div>
+            <h3 id="opp-urquidi">Premio en Economía Víctor L. Urquidi</h3>
+            <p class="external-source">Centro de Estudios Económicos · El Colegio de México</p>
+            <p class="external-description">Para trabajos inéditos sobre economía de interés para México. Al menos una persona autora debe estar vinculada a una institución mexicana.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Convocatoria 2026</span>
+            <p>Cierre · <time datetime="2026-11-19">19 nov. 2026</time></p>
+            <a class="external-link" href="https://cee.colmex.mx/evento/premio-en-economia-victor-l-urquidi/convocatoria-2026" aria-label="Ver bases · Premio en Economía Víctor L. Urquidi" target="_blank" rel="noopener">Ver bases <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Consultoría" aria-labelledby="opp-bid-evaluacion">
+          <p class="external-type">Consultoría</p>
+          <div>
+            <h3 id="opp-bid-evaluacion">Consultoría en evaluación de impacto</h3>
+            <p class="external-source">Banco Interamericano de Desarrollo · Washington, D. C.</p>
+            <p class="external-description">Consultoría internacional de tiempo completo para diseñar y analizar evaluaciones de impacto de operaciones del BID y apoyar la medición de resultados.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Vacante con fecha</span>
+            <p>Cierre · <time datetime="2026-11-13">13 nov. 2026</time></p>
+            <a class="external-link" href="https://jobs.iadb.org/job/Development-Effectiveness-and-Impact-Evaluation-Consultant/3721-en_US" aria-label="Ver vacante · Consultoría en evaluación de impacto" target="_blank" rel="noopener">Ver vacante <span aria-hidden="true">↗</span></a>
+            <a class="external-link" href="https://jobs.iadb.org/go/Consultant-Jobs/9638500/" aria-label="Más consultorías del BID · Consultoría en evaluación de impacto" target="_blank" rel="noopener">Más consultorías del BID <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Congresos" data-keywords="CLADHE call for papers" aria-labelledby="opp-cladhe">
+          <p class="external-type">Congreso</p>
+          <div>
+            <h3 id="opp-cladhe">IX Congreso Latinoamericano de Historia Económica</h3>
+            <p class="external-source">Facultad de Economía de la UNAM · AMHE</p>
+            <p class="external-description">Recibe propuestas de simposios y ponencias individuales en historia económica. El encuentro se celebrará en Ciudad de México del 28 de junio al 1 de julio de 2027.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Congreso 2027</span>
+            <p>Simposios · <time datetime="2026-12-15">15 dic. 2026</time><br>Ponencias · <time datetime="2027-01-15">15 ene.</time> a <time datetime="2027-02-15">15 feb. 2027</time></p>
+            <a class="external-link" href="https://h-mexico.unam.mx/index.php/node/71" aria-label="Ver convocatoria · IX Congreso Latinoamericano de Historia Económica" target="_blank" rel="noopener">Ver convocatoria <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Premios" data-keywords="Citibanamex" aria-labelledby="opp-banamex">
+          <p class="external-type">Premio</p>
+          <div>
+            <h3 id="opp-banamex">Premio Banamex de Economía</h3>
+            <p class="external-source">Banamex</p>
+            <p class="external-description">Reconoce investigación y tesis de licenciatura sobre problemas económicos de México. Para el claustro, la categoría de investigación es la vía para postular trabajos propios.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Edición 2025 · cerrada</span>
+            <p>Cierre anterior · <time datetime="2026-03-27">27 mar. 2026</time></p>
+            <a class="external-link" href="https://www.banamex.com/premio-economia" aria-label="Ver bases de referencia · Premio Banamex de Economía" target="_blank" rel="noopener">Ver bases de referencia <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Congresos" data-keywords="Sobre México Universidad Iberoamericana" aria-labelledby="opp-sobremexico">
+          <p class="external-type">Congreso</p>
+          <div>
+            <h3 id="opp-sobremexico">Congreso SobreMéxico de Economía y Políticas Públicas</h3>
+            <p class="external-source">Departamento de Economía · IBERO Ciudad de México</p>
+            <p class="external-description">El call for papers incluye ponencias, pósteres, trabajos en curso y una modalidad de concurso de artículos vinculada a la revista Sobre México.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Edición 2026 · celebrada</span>
+            <p>Encuentro · <time datetime="2026-10-22">22</time> y <time datetime="2026-10-23">23 oct. 2026</time></p>
+            <a class="external-link" href="https://sobremexico.ibero.mx/uploads/congreso/call-for-papers/20260302143645_sobremexico-call-for-papers-v3-b.pdf" aria-label="Ver call for papers · Congreso SobreMéxico de Economía y Políticas Públicas" target="_blank" rel="noopener">Ver call for papers <span aria-hidden="true">↗</span></a>
+            <a class="external-link" href="https://economia.ibero.mx/event/12-congreso-anual-de-economia-y-de-politicas-publicas-sobremexico/" aria-label="Ver ficha de la IBERO · Congreso SobreMéxico de Economía y Políticas Públicas" target="_blank" rel="noopener">Ver ficha de la IBERO <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Premios" aria-labelledby="opp-cemla">
+          <p class="external-type">Premio</p>
+          <div>
+            <h3 id="opp-cemla">Premio de Banca Central CEMLA</h3>
+            <p class="external-source">Centro de Estudios Monetarios Latinoamericanos</p>
+            <p class="external-description">Antes llamado Premio Rodrigo Gómez. Reconoce artículos originales sobre política monetaria, estabilidad financiera, pagos y otros temas de banca central.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Edición 2026 · cerrada</span>
+            <p>Cierre anterior · <time datetime="2026-04-24">24 abr. 2026</time></p>
+            <a class="external-link" href="https://www.cemla.org/premiodebancacentral.html" aria-label="Ver bases de referencia · Premio de Banca Central CEMLA" target="_blank" rel="noopener">Ver bases de referencia <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Congresos" aria-labelledby="opp-lacea-lames">
+          <p class="external-type">Congreso</p>
+          <div>
+            <h3 id="opp-lacea-lames">Reunión anual LACEA–LAMES</h3>
+            <p class="external-source">LACEA · Econometric Society</p>
+            <p class="external-description">Convocatoria de ponencias de economía y econometría. La edición de Lima requirió membresía en la asociación correspondiente a la modalidad de envío.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Edición 2026 · envíos cerrados</span>
+            <p>Cierre anterior · <time datetime="2026-05-31">31 may. 2026</time></p>
+            <a class="external-link" href="https://lacealames2026.org/call-for-papers" aria-label="Ver call for papers · Reunión anual LACEA–LAMES" target="_blank" rel="noopener">Ver call for papers <span aria-hidden="true">↗</span></a>
+            <a class="external-link" href="https://lacea.org/annual-meetings/" aria-label="Consultar ediciones · Reunión anual LACEA–LAMES" target="_blank" rel="noopener">Consultar ediciones <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Congresos" data-keywords="call for papers" aria-labelledby="opp-ridge">
+          <p class="external-type">Congreso</p>
+          <div>
+            <h3 id="opp-ridge">RIDGE December Forum</h3>
+            <p class="external-source">Research Institute for Development, Growth and Economics</p>
+            <p class="external-description">Talleres de investigación en crecimiento, macroeconomía internacional, comercio y estabilidad financiera. Cada taller publica sus propias bases de envío.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Convocatorias por taller</span>
+            <p>Foro · <time datetime="2026-12-10">10</time>–<time datetime="2026-12-16">16 dic. 2026</time></p>
+            <a class="external-link" href="https://ridge.org.uy/date_forum/2026-december-forum/" aria-label="Ver talleres y bases · RIDGE December Forum" target="_blank" rel="noopener">Ver talleres y bases <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Revistas" aria-labelledby="opp-economia-journal">
+          <p class="external-type">Revista</p>
+          <div>
+            <h3 id="opp-economia-journal">Economía LACEA Journal</h3>
+            <p class="external-source">LACEA · LSE Press</p>
+            <p class="external-description">Revista arbitrada para trabajos sobre economía latinoamericana. La página editorial enlaza al sistema de envío de artículos.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Recepción de manuscritos</span>
+            <a class="external-link" href="https://lacea.org/economia-journal/" aria-label="Consultar envíos · Economía LACEA Journal" target="_blank" rel="noopener">Consultar envíos <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Revistas" aria-labelledby="opp-trimestre">
+          <p class="external-type">Revista</p>
+          <div>
+            <h3 id="opp-trimestre">El Trimestre Económico</h3>
+            <p class="external-source">Fondo de Cultura Económica</p>
+            <p class="external-description">Publica trabajos teóricos y empíricos sobre economía y política económica. Sus directrices explican cómo anonimizar el manuscrito y enviarlo en línea.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Recepción de manuscritos</span>
+            <a class="external-link" href="https://www.eltrimestreeconomico.com.mx/index.php/te/about/submissions" aria-label="Ver directrices de envío · El Trimestre Económico" target="_blank" rel="noopener">Ver directrices de envío <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Financiamiento" aria-labelledby="opp-caf">
+          <p class="external-type">Financiamiento</p>
+          <div>
+            <h3 id="opp-caf">Concurso de proyectos de investigación de CAF</h3>
+            <p class="external-source">CAF · Banco de Desarrollo de América Latina y el Caribe</p>
+            <p class="external-description">Apoya proyectos sobre desarrollo en América Latina. El programa prioriza la originalidad, la calidad académica y la relevancia para políticas públicas.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Programa y ediciones previas</span>
+            <a class="external-link" href="https://www.caf.com/es/areas-de-accion/investigacion-para-el-desarrollo/concurso-de-investigacion/" aria-label="Consultar el programa · Concurso de proyectos de investigación de CAF" target="_blank" rel="noopener">Consultar el programa <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Financiamiento" aria-labelledby="opp-jpal">
+          <p class="external-type">Financiamiento</p>
+          <div>
+            <h3 id="opp-jpal">Growing Futures · J-PAL LAC</h3>
+            <p class="external-source">Abdul Latif Jameel Poverty Action Lab</p>
+            <p class="external-description">Financiamiento para evaluaciones de impacto en Guatemala sobre educación, salud y nutrición, protección social o medios de vida. La convocatoria tiene reglas de elegibilidad y etapas de invitación.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Ronda 2026 · cerrada</span>
+            <p>Propuesta por invitación · <time datetime="2026-10-15">15 oct. 2026</time></p>
+            <a class="external-link" href="https://www.povertyactionlab.org/j-pal-lac-growing-futures-request-proposals-rfp?lang=en" aria-label="Ver convocatoria de referencia · Growing Futures · J-PAL LAC" target="_blank" rel="noopener">Ver convocatoria de referencia <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="external-entry" data-type="Consultoría" data-keywords="World Bank" aria-labelledby="opp-banco-mundial">
+          <p class="external-type">Consultoría</p>
+          <div>
+            <h3 id="opp-banco-mundial">Consultorías en proyectos financiados por el Banco Mundial</h3>
+            <p class="external-source">Banco Mundial · Projects &amp; Operations</p>
+            <p class="external-description">Portal de avisos de contratación y expresiones de interés. Permite buscar servicios de consultoría por país, proyecto y modalidad.</p>
+          </div>
+          <div class="external-action">
+            <span class="external-status">Avisos por proyecto</span>
+            <a class="external-link" href="https://projects.worldbank.org/en/projects-operations/opportunities" aria-label="Buscar avisos · Consultorías en proyectos financiados por el Banco Mundial" target="_blank" rel="noopener">Buscar avisos <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="shell footer-inner">
       <div><strong>Claustro LEC</strong><p>Licenciatura en Economía · Tecnológico de Monterrey</p></div>
-      <a href="index.html"><span aria-hidden="true">←</span> Portada</a>
+      <a href="index.html" target="_blank" rel="noopener"><span aria-hidden="true">←</span> Portada</a>
     </div>
   </footer>
 </body>
