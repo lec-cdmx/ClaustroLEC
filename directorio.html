@@ -7,8 +7,9 @@
   <title>Directorio | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=3">
-  <link rel="stylesheet" href="assets/css/directorio.css?v=9">
+  <link rel="stylesheet" href="assets/css/directorio.css?v=10">
   <script type="module" src="assets/js/directorio.js?v=4"></script>
+  <script type="module" src="assets/js/perfiles-extendidos.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -490,6 +491,28 @@
         </div>
       </article>
     </div>
+
+    <dialog class="research-dialog" id="research-profile" aria-labelledby="research-name">
+      <div class="research-panel">
+        <header class="research-header">
+          <div>
+            <p class="eyebrow">Investigación · Perfil extendido</p>
+            <h2 id="research-name"></h2>
+          </div>
+          <form method="dialog">
+            <button class="research-close" type="submit" aria-label="Cerrar perfil extendido" autofocus>×</button>
+          </form>
+        </header>
+        <div class="research-body">
+          <div class="research-years" role="group" aria-label="Filtrar trabajos por año" hidden></div>
+          <div class="research-content">
+            <p class="research-status" role="status"></p>
+            <div class="research-works"></div>
+          </div>
+        </div>
+        <footer class="research-sources" hidden></footer>
+      </div>
+    </dialog>
   </main>
 
   <footer class="site-footer">

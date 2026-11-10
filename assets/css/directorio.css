@@ -135,6 +135,94 @@
 .faculty-courses li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .12rem .4rem; }
 .faculty-courses code { display: none; }
 
+.research-open, .research-year, .research-close {
+  border: 1px solid var(--rule);
+  border-radius: .38rem;
+  background: var(--paper);
+  color: var(--accent);
+  cursor: pointer;
+  font: 700 .83rem/1.2 system-ui, sans-serif;
+}
+
+.research-open {
+  margin-top: .6rem;
+  min-height: 2.3rem;
+  padding: .35rem .62rem;
+  border-color: #aebfe6;
+}
+.research-open::after { margin-inline-start: .4rem; content: "↗" / ""; }
+.research-open:hover, .research-year:hover, .research-close:hover { background: var(--tint); }
+:is(.research-open, .research-year, .research-close):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.research-dialog {
+  width: min(52rem, calc(100% - 1.5rem));
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #aebfe6;
+  border-top: 4px solid var(--accent);
+  border-radius: .6rem;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 1.25rem 4rem #10234732;
+}
+.research-dialog::backdrop { background: #121e3399; }
+body:has(.research-dialog[open]) { overflow: hidden; }
+
+.research-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: min(46rem, calc(100dvh - 1.5rem));
+}
+.research-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: clamp(.85rem, 2.5vw, 1.5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.research-header h2 { margin-top: .25rem; font: 750 clamp(1.3rem, 3vw, 2.15rem)/1.12 var(--display); }
+.research-close { width: 2.5rem; height: 2.5rem; font-size: 1.35rem; }
+
+.research-body { display: flex; min-height: 0; }
+.research-years {
+  display: flex;
+  flex: 0 0 7.4rem;
+  flex-direction: column;
+  gap: .35rem;
+  overflow: auto;
+  padding: .85rem .65rem;
+  border-inline-end: 1px solid var(--rule);
+  background: #f7f9fe;
+}
+.research-year { flex: 0 0 auto; min-height: 2.5rem; padding: .35rem .6rem; white-space: nowrap; }
+.research-year[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: white; }
+.research-content { flex: 1; min-width: 0; overflow: auto; padding: clamp(.85rem, 2.5vw, 1.5rem); }
+.research-status { color: var(--muted); font-size: .82rem; font-weight: 650; }
+.research-works { display: grid; gap: .65rem; margin-top: .6rem; }
+.research-works:empty { margin-top: 0; }
+.research-work { padding: clamp(.75rem, 2vw, 1rem); border: 1px solid var(--rule); border-inline-start: 3px solid #aebfe6; overflow-wrap: anywhere; }
+.research-meta { color: var(--accent); font: 700 .72rem/1.4 var(--mono); }
+.research-title { margin: .35rem 0 .5rem; font: 750 1.15rem/1.25 var(--display); }
+.research-abstract { font-size: .88rem; }
+.research-links, .research-sources { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .9rem; font-size: .82rem; }
+.research-links { margin-top: .65rem; }
+.research-link { color: var(--accent); font-weight: 690; overflow-wrap: anywhere; }
+.research-link::after { margin-inline-start: .2rem; content: "↗" / ""; }
+.research-sources { padding: .6rem clamp(.85rem, 2.5vw, 1.5rem); border-top: 1px solid var(--rule); color: var(--muted); }
+.research-dialog [hidden] { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .research-dialog[open] { animation: research-enter .2s ease-out; }
+  @keyframes research-enter {
+    from { opacity: 0; transform: translateY(.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
 @media (max-width: 850px) {
   .directory-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .faculty-profile {
@@ -153,4 +241,15 @@
     gap: .75rem;
   }
   .faculty-role { font-size: .83rem; }
+  .research-open { min-height: 2.75rem; }
+  .research-body { flex-direction: column; }
+  .research-years {
+    flex: 0 0 auto;
+    flex-direction: row;
+    padding: .55rem .85rem;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .research-year { min-height: 2.75rem; }
+  .research-close { width: 2.75rem; height: 2.75rem; }
 }

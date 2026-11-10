@@ -1,0 +1,994 @@
+{
+  "arturo-perez-mendoza": {
+    "sources": [
+      {
+        "label": "Tecnológico de Monterrey",
+        "url": "https://research.tec.mx/vivo-tec/display/PID_18916"
+      },
+      {
+        "label": "University of Minnesota",
+        "url": "https://users.econ.umn.edu/~tkehoe/workshop.html"
+      }
+    ],
+    "works": [
+      {
+        "title": "Introducción al uso de modelos aplicados de equilibrio general",
+        "year": 2008,
+        "kind": "Artículo publicado",
+        "venue": "Economía: Teoría y Práctica",
+        "lang": "es",
+        "abstract": "Con un ejemplo sencillo, el artículo explica cómo especificar y calibrar un modelo de equilibrio general aplicado y cómo usarlo para simular los efectos de una política económica. La exposición vincula la construcción del modelo con la interpretación de cambios en el bienestar.",
+        "url": "https://www.scielo.org.mx/scielo.php?pid=S0188-33802008000200005&script=sci_abstract",
+        "fullText": "https://www.scielo.org.mx/pdf/etp/n29/n29a5.pdf"
+      },
+      {
+        "title": "Liberalización comercial y la creación y destrucción de empleo",
+        "year": 2005,
+        "kind": "Artículo publicado",
+        "venue": "Estudios Económicos",
+        "lang": "es",
+        "abstract": "Un modelo de búsqueda laboral calibrado para México simula los efectos del TLCAN. En la simulación, el ajuste se concentra en los dos primeros años. La producción y el empleo bajan ligeramente, el bienestar aumenta y la creación y destrucción de puestos acelera la movilidad entre sectores.",
+        "url": "https://estudioseconomicos.colmex.mx/index.php/economicos/article/view/167",
+        "fullText": "https://www.redalyc.org/pdf/597/59720104.pdf"
+      },
+      {
+        "title": "Los efectos del TLC sobre el empleo en México: una revisión de los modelos utilizados para medir el posible impacto",
+        "year": 2004,
+        "kind": "Artículo publicado",
+        "venue": "Economía: Teoría y Práctica",
+        "lang": "es",
+        "abstract": "El artículo compara estimaciones del efecto del TLC sobre el PIB, el empleo y los salarios en México. Los modelos revisados coinciden en la dirección de los efectos agregados, pero difieren en su magnitud según sus supuestos. El autor examina las limitaciones de esos modelos y describe herramientas de economía laboral para estudiar el ajuste del empleo.",
+        "url": "https://www.oocities.org/etpmx/num20/a4r.html",
+        "linkLabel": "Resumen de la revista"
+      }
+    ]
+  },
+  "grisel-ayllon-aragon": {
+    "sources": [
+      {
+        "label": "Tecnológico de Monterrey",
+        "url": "https://research.tec.mx/vivo-tec/display/PID_140616"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0003-1313-2590"
+      }
+    ],
+    "works": [
+      {
+        "title": "Mercados vs mecanismos y sus impactos sobre los servicios de salud",
+        "year": 2024,
+        "kind": "Artículo publicado",
+        "venue": "Revista Galega de Economía",
+        "lang": "es",
+        "abstract": "El artículo aplica la teoría del emparejamiento a la asignación de médicos internos a hospitales. Revisa cómo los mecanismos centralizados pueden producir asignaciones estables y compara sus ventajas y límites frente a la contratación descentralizada, con atención al emparejamiento entre participantes de características similares.",
+        "url": "https://doi.org/10.15304/rge.33.3.9472",
+        "fullText": "https://www.redalyc.org/journal/391/39180902008/39180902008.pdf"
+      },
+      {
+        "title": "Factura electrónica: innovación asincrónica",
+        "year": 2017,
+        "kind": "Artículo publicado",
+        "venue": "Panorama Económico",
+        "lang": "es",
+        "abstract": "El artículo estudia la factura electrónica como instrumento para combatir la evasión fiscal en México. Con un modelo de principal y agente, explica cómo la brecha digital puede dificultar su adopción por empresas pequeñas y medianas y limitar el efecto de la medida sobre la formalización.",
+        "url": "https://revistapanoramaeconomico.mx/index.php/PE/es/article/view/400"
+      },
+      {
+        "title": "Single-dipped preferences with satiation: strong group strategy-proofness and unanimity",
+        "year": 2016,
+        "kind": "Artículo publicado",
+        "venue": "Social Choice and Welfare",
+        "lang": "en",
+        "abstract": "The authors study where to place a facility that imposes costs on nearby residents. Once it is sufficiently distant, a resident may be indifferent among farther locations. The paper characterizes unanimous rules that groups cannot manipulate and shows that those rules can select interior locations.",
+        "url": "https://doi.org/10.1007/s00355-016-0957-0"
+      },
+      {
+        "title": "The Good Candidate",
+        "year": 2016,
+        "kind": "Artículo publicado",
+        "venue": "Economics Bulletin",
+        "lang": "en",
+        "abstract": "The paper relates alternatives ranked first by at least half of voters to winners of all pairwise majority contests. It gives conditions under which the two concepts coincide for sets of three and uses triples to construct a way to identify a majority winner.",
+        "url": "https://accessecon.com/Pubs/EB/2016/Volume36/EB-16-V36-I4-P208.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "A Review in Campaigns: Going Positive and Negative",
+        "year": 2016,
+        "kind": "Capítulo académico",
+        "venue": "Trends in Mathematical Economics",
+        "lang": "en",
+        "abstract": "The chapter reviews how economists model candidates’ choice of positive or negative campaigning. It discusses spatial and probabilistic voting models and examines the limitations of frameworks that allow only one campaign style at a time.",
+        "url": "https://doi.org/10.1007/978-3-319-32543-9_2"
+      },
+      {
+        "title": "On Weak Condorcet Winners: Existence and Uniqueness",
+        "year": 2013,
+        "kind": "Artículo publicado",
+        "venue": "PERSPECTIVAS: Revista de análisis de Economía, Comercio y Negocios Internacionales",
+        "lang": "en",
+        "abstract": "Allowing voters to be indifferent between alternatives, the paper studies when an option can at least tie every rival in pairwise majority comparisons. It identifies conditions on preference profiles for such an option to exist and to be unique.",
+        "url": "https://mpra.ub.uni-muenchen.de/53272/",
+        "fullText": "https://mpra.ub.uni-muenchen.de/53272/1/MPRA_paper_53272.pdf"
+      },
+      {
+        "title": "Three Essays on Weak Condorcet Winners, Public Bads, and Contrast Campaigns",
+        "year": 2012,
+        "kind": "Tesis",
+        "venue": "Universitat Autònoma de Barcelona",
+        "lang": "en",
+        "abstract": "The dissertation studies majority choice with ties, location rules for facilities that create local costs and the credibility of candidates’ campaign claims. Its final essay shows how the prospect of losing credibility in future elections can give candidates a reason to reveal their policy positions.",
+        "url": "https://portalrecerca.uab.cat/en/studentTheses/three-essays-on-weak-condorcet-winners-public-bads-and-contrast-c/",
+        "fullText": "https://www.tdx.cat/bitstream/handle/10803/96178/gaa1de1.pdf"
+      }
+    ]
+  },
+  "hugo-javier-fuentes-castro": {
+    "sources": [
+      {
+        "label": "Tecnológico de Monterrey",
+        "url": "https://research.tec.mx/vivo-tec/display/PID_19147"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0001-7221-6490"
+      }
+    ],
+    "works": [
+      {
+        "title": "A political economy of youth policy in Mexico",
+        "year": 2025,
+        "kind": "Artículo publicado",
+        "venue": "Journal of Youth Studies",
+        "lang": "en",
+        "abstract": "Interviews and policy documents trace Mexico’s adoption of Jóvenes Construyendo el Futuro, a programme that pays young adults to train at work. The article uses cultural political economy to explain how the governing coalition’s development agenda, framing of social inclusion and institutional choices shaped the programme.",
+        "url": "https://doi.org/10.1080/13676261.2023.2271405"
+      },
+      {
+        "title": "Reasons to join the dual apprenticeship programme in Mexico: The case of apprentices in Coahuila and the state of Mexico",
+        "year": 2025,
+        "kind": "Capítulo académico",
+        "venue": "International Transfer of Dual Modes of Vocational Education and Training",
+        "lang": "en",
+        "abstract": "The chapter examines why students in Coahuila and the State of Mexico enter dual apprenticeships, which combine school-based instruction with training at a workplace. It focuses on apprentices’ reasons for taking up this pathway in the Mexican programme.",
+        "url": "https://perfiles.ibero.mx/en/publications/reasons-to-join-the-dual-apprenticeship-programme-in-mexico-the-c-2/"
+      },
+      {
+        "title": "Third time is the charm? Adoption and recontextualisation of the German dual model in Mexico",
+        "year": 2024,
+        "kind": "Artículo publicado",
+        "venue": "Cogent Education",
+        "lang": "en",
+        "abstract": "The authors trace attempts to adapt German-style apprenticeships to Mexico. Using policy documents and interviews, they examine how employers, government actors and training institutions selected and reshaped features of the German system under local labour-market and institutional conditions.",
+        "url": "https://www.tandfonline.com/doi/full/10.1080/2331186X.2024.2432104",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Response of Mexican life and non-life insurers to the low interest rate environment",
+        "year": 2022,
+        "kind": "Artículo publicado",
+        "venue": "The Geneva Papers on Risk and Insurance",
+        "lang": "en",
+        "abstract": "Using 22 years of Mexican insurer data, the study estimates efficiency with a two-stage data envelopment analysis. Efficiency rose as interest rates fell, with stronger performance among non-life insurers and firms with substantial market power or bank distribution.",
+        "url": "https://doi.org/10.1057/s41288-021-00208-8",
+        "fullText": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7919248/"
+      },
+      {
+        "title": "A data envelopment analysis of the global microfinance industry",
+        "year": 2022,
+        "kind": "Artículo publicado",
+        "venue": "Contaduría y Administración",
+        "lang": "en",
+        "abstract": "The study compares the technical efficiency of listed and privately held microfinance institutions with that of similar commercial banks. Listed microfinance institutions use assets and expenses more efficiently than privately held institutions operating below optimal scale. Commercial banks are the least efficient group in the sample.",
+        "url": "https://www.cya.unam.mx/index.php/cya/article/view/2928",
+        "fullText": "https://www.scielo.org.mx/pdf/cya/v67n1/0186-1042-cya-67-01-234.pdf"
+      },
+      {
+        "title": "Public-private partnerships in Mexico: Challenges and opportunities at local level",
+        "year": 2021,
+        "kind": "Artículo publicado",
+        "venue": "Competition and Regulation in Network Industries",
+        "lang": "en",
+        "abstract": "The authors apply an OECD framework to assess why Mexican subnational governments make limited use of public-private partnerships for infrastructure. They identify gaps in the skills and institutions needed to carry out projects and consider how local political arrangements may help explain those gaps.",
+        "url": "https://doi.org/10.1177/1783591720987698"
+      },
+      {
+        "title": "A cost efficiency analysis of the insurance industry in Mexico",
+        "year": 2018,
+        "kind": "Artículo publicado",
+        "venue": "Journal of Productivity Analysis",
+        "lang": "en",
+        "abstract": "The paper separates changes in insurers’ costs into economic sources such as technological progress and efficiency. Some Mexican firms reduced their costs after deregulation, but the analysis finds little evidence of industry-wide productivity gains.",
+        "url": "https://doi.org/10.1007/s11123-017-0521-7"
+      },
+      {
+        "title": "Factura electrónica: innovación asincrónica",
+        "year": 2017,
+        "kind": "Artículo publicado",
+        "venue": "Panorama Económico",
+        "lang": "es",
+        "abstract": "El artículo estudia la factura electrónica como instrumento para combatir la evasión fiscal en México. Con un modelo de principal y agente, explica cómo la brecha digital puede dificultar su adopción por empresas pequeñas y medianas y limitar el efecto de la medida sobre la formalización.",
+        "url": "https://revistapanoramaeconomico.mx/index.php/PE/es/article/view/400"
+      },
+      {
+        "title": "Innovación para el desarrollo: 13 casos del Fondo de Innovación Tecnológica",
+        "year": 2015,
+        "kind": "Libro de investigación",
+        "venue": "Cengage Learning",
+        "lang": "es",
+        "abstract": "El libro examina 13 proyectos apoyados por el Fondo de Innovación Tecnológica. Los casos muestran cómo las empresas llevaron sus proyectos de desarrollo tecnológico a la práctica y permiten comparar los retos que enfrentaron durante su implementación.",
+        "url": "https://research.tec.mx/vivo-tec/display/Book_123034"
+      },
+      {
+        "title": "Estimación y análisis de la elasticidad precio de la demanda para diferentes tipos de bebidas en México",
+        "year": 2014,
+        "kind": "Artículo publicado",
+        "venue": "Estudios Económicos",
+        "lang": "es",
+        "abstract": "Con la ENIGH de 2008, 2010 y 2012, el artículo calcula la sensibilidad al precio de la demanda de agua, jugos y refrescos. Muestra que para el refresco la conclusión puede cambiar de demanda elástica a inelástica según cómo se tenga en cuenta el tamaño del envase.",
+        "url": "https://www.redalyc.org/pdf/597/59740006005.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Comparando con las grandes. Retos para las aseguradoras en reducción de costos",
+        "year": 2014,
+        "kind": "Artículo publicado",
+        "venue": "Panorama Económico",
+        "lang": "es",
+        "abstract": "El estudio separa los cambios en los costos de las aseguradoras mexicanas en sus distintos componentes. Usa esa descomposición para identificar las características de las compañías más eficientes y examinar qué explica sus diferencias de desempeño.",
+        "url": "https://revistapanoramaeconomico.mx/index.php/PE/es/article/view/345"
+      },
+      {
+        "title": "Volatilidad e interdependencia en los precios agrícolas a partir de un modelo GARCH multivariado",
+        "year": 2014,
+        "kind": "Artículo publicado",
+        "venue": "Análisis Económico",
+        "lang": "es",
+        "abstract": "Con índices mensuales de cereales y aceites, el artículo estima cómo se transmiten las variaciones de precios entre mercados agrícolas internacionales. El modelo GARCH multivariado encuentra una correlación creciente y una transmisión más rápida de la volatilidad entre ambos grupos.",
+        "url": "https://www.redalyc.org/pdf/413/41337767003.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Determinantes de las ganancias de los vendedores ambulantes en México",
+        "year": 2012,
+        "kind": "Artículo publicado",
+        "venue": "El Trimestre Económico",
+        "lang": "es",
+        "abstract": "El artículo analiza las ganancias de vendedores ambulantes por cuenta propia. Encuentra diferencias según el motivo de entrada a la actividad y asociaciones positivas con la escolaridad y las horas trabajadas. También documenta brechas por género y entre la Ciudad de México y otras localidades.",
+        "url": "https://www.scielo.org.mx/scielo.php?pid=S2448-718X2012000300693&script=sci_abstract",
+        "fullText": "https://www.scielo.org.mx/pdf/ete/v79n315/2448-718X-ete-79-315-00693.pdf"
+      },
+      {
+        "title": "IVA: ¿Qué sucede si los bienes y servicios a tasa 0% se cambian a exentos?",
+        "year": 2011,
+        "kind": "Artículo publicado",
+        "venue": "Análisis Económico",
+        "lang": "es",
+        "abstract": "El trabajo simula el efecto recaudatorio de reclasificar alimentos y medicinas de tasa cero a exentos de IVA. Al comparar el gasto fiscal de ambos tratamientos para 2000–2008, estima que el cambio habría elevado la recaudación potencial entre 1.3 y 1.4%.",
+        "url": "https://www.redalyc.org/pdf/413/41318401012.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Las políticas públicas y la productividad: del diagnóstico a la solución efectiva. El caso de San Mateo Atenco",
+        "year": 2006,
+        "kind": "Artículo publicado",
+        "venue": "Análisis Económico",
+        "lang": "es",
+        "abstract": "El artículo separa los cambios de productividad de empresas de San Mateo Atenco en componentes tecnológicos, de eficiencia y de escala. Contrasta el aumento modesto que observa en los años noventa con la escasa importancia que los empresarios atribuían a la productividad para seguir operando.",
+        "url": "https://www.redalyc.org/pdf/413/41304713.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "La evaluación de la actividad docente: un análisis a partir de la técnica DEA",
+        "year": 2003,
+        "kind": "Artículo publicado",
+        "venue": "Economía Mexicana. Nueva Época",
+        "lang": "es",
+        "abstract": "El artículo aplica análisis envolvente de datos a las evaluaciones estudiantiles en una universidad mexicana. El método aprovecha las respuestas para comparar distintas dimensiones de la docencia e identificar información que pueda orientar las decisiones académicas.",
+        "url": "https://www.redalyc.org/pdf/323/32312105.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "A Parametric Distance Function Approach for Malmquist Productivity Index Estimation",
+        "year": 2001,
+        "kind": "Artículo publicado",
+        "venue": "Journal of Productivity Analysis",
+        "lang": "en",
+        "abstract": "The paper shows how to estimate and decompose a Malmquist productivity index using a parametric distance function for multiple inputs and outputs. In an application to Spanish insurers, productivity and technical change remained modest despite deregulation and industry expansion.",
+        "url": "https://link.springer.com/article/10.1023/A:1007852020847"
+      }
+    ]
+  },
+  "jose-jorge-mora-rivera": {
+    "sources": [
+      {
+        "label": "Tecnológico de Monterrey",
+        "url": "https://research.tec.mx/vivo-tec/display/PID_40392"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0003-0838-9551"
+      }
+    ],
+    "works": [
+      {
+        "title": "Multidimensional energy poverty and policy targeting in Mexico: Evidence from alternative weighting schemes",
+        "year": 2026,
+        "kind": "Artículo publicado",
+        "venue": "Energy for Sustainable Development",
+        "lang": "en",
+        "abstract": "Using Mexico’s 2022 household survey, the study compares four ways to weight deprivations in energy services. The schemes produce broadly similar profiles of deprivation but identify different shares of households as energy poor. The authors show how these choices affect which households a policy would reach.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0973082626001985"
+      },
+      {
+        "title": "Determinantes sobre la reintegración económica y social en los migrantes de retorno: Mariscala de Juárez, Oaxaca, México",
+        "year": 2025,
+        "kind": "Artículo publicado",
+        "venue": "Papeles de Población",
+        "lang": "es",
+        "abstract": "Con una encuesta a migrantes de retorno en Mariscala de Juárez, el estudio distingue los factores asociados con la reintegración laboral y económica de aquellos relacionados con la vida social en el lugar de origen. El análisis toma en cuenta las características personales y la experiencia migratoria.",
+        "url": "https://rppoblacion.uaemex.mx/article/view/22250",
+        "fullText": "https://rppoblacion.uaemex.mx/article/view/22250/19433"
+      },
+      {
+        "title": "Does mobile Internet reduce social inequality? Evidence from Mexican villages",
+        "year": 2025,
+        "kind": "Artículo publicado",
+        "venue": "Information Technology for Development",
+        "lang": "en",
+        "abstract": "The study combines maps of 3G and 4G coverage with census and social indicators for Mexican villages. Its estimates suggest that mobile coverage reduces local disparities, with larger gains for more advanced technology.",
+        "url": "https://doi.org/10.1080/02681102.2025.2488325"
+      },
+      {
+        "title": "When “more is less”: Connecting for a better life in rural Mexico",
+        "year": 2025,
+        "kind": "Artículo publicado",
+        "venue": "Telecommunications Policy",
+        "lang": "en",
+        "abstract": "The article uses coverage maps and census data to estimate how mobile networks affect social deprivation in rural Mexico. The estimated reduction is slightly larger in villages where both 3G and 4G are available than where only one of the technologies is available.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S030859612500151X"
+      },
+      {
+        "title": "Exploring the Determinants of Satisfaction with the Tec 21 Educational Model Among Tecnologico de Monterrey Graduates",
+        "year": 2025,
+        "kind": "Ponencia publicada",
+        "venue": "Institute for the Future of Education Conference",
+        "lang": "en",
+        "abstract": "The study surveys 578 final-semester students from the first two cohorts under the Tec 21 model in the Mexico City region. It relates satisfaction to course design, learning style, work with training partners and students’ own motivation.",
+        "url": "https://research.tec.mx/vivo-tec/display/AcademicArticleSCO_105011973248"
+      },
+      {
+        "title": "A regional analysis of the impact of remittances on health expenditures: evidence from Mexico",
+        "year": 2024,
+        "kind": "Artículo publicado",
+        "venue": "Review of Economics of the Household",
+        "lang": "en",
+        "abstract": "Using the 2020 Mexican household survey, the authors compare the effects of domestic and international remittances on health spending. International transfers have a larger estimated effect per recipient household and matter more in western Mexico, while domestic transfers reach more households and are more important in the south-southeast.",
+        "url": "https://link.springer.com/article/10.1007/s11150-024-09752-3",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Determinants of poverty among Indigenous people in Mexico's Guerrero Mountain Region",
+        "year": 2024,
+        "kind": "Artículo publicado",
+        "venue": "Development Policy Review",
+        "lang": "en",
+        "abstract": "The study uses Bayesian regression to identify factors associated with income and multidimensional poverty in Guerrero’s Mountain Region. Larger households and those with high dependency ratios or members with disabilities face higher poverty risks. Schooling expenditure and connectivity are associated with lower risks.",
+        "url": "https://doi.org/10.1111/dpr.12733"
+      },
+      {
+        "title": "Does use of formal and informal credit reduce poverty in rural Mexico?",
+        "year": 2024,
+        "kind": "Artículo publicado",
+        "venue": "Development Policy Review",
+        "lang": "en",
+        "abstract": "Using two rural household surveys, the study compares users of formal credit, informal loans and no credit. Its estimates point to lower poverty among users of both types of credit, with clearer effects for moderate poverty than for extreme poverty.",
+        "url": "https://doi.org/10.1111/dpr.12798"
+      },
+      {
+        "title": "Joining a migrant caravan: herd behaviour and structural factors",
+        "year": 2023,
+        "kind": "Artículo publicado",
+        "venue": "Third World Quarterly",
+        "lang": "en",
+        "abstract": "Interviews with people who joined the 2018 Central American caravan document motivations such as finding work, earning more and escaping threats. The authors also examine how seeing others join changed individual decisions about whether to travel.",
+        "url": "https://doi.org/10.1080/01436597.2023.2176299"
+      },
+      {
+        "title": "Exploring the impacts of Internet access on poverty: A regional analysis of rural Mexico",
+        "year": 2023,
+        "kind": "Artículo publicado",
+        "venue": "New Media & Society",
+        "lang": "en",
+        "abstract": "The study estimates how internet access affects poverty across contrasting rural regions in Mexico. The estimated reduction is greatest in less developed areas, suggesting that the benefits of expanding access vary across regions.",
+        "url": "https://doi.org/10.1177/14614448211000650"
+      },
+      {
+        "title": "El impacto de las remesas internacionales en los gastos en salud de los hogares mexicanos",
+        "year": 2023,
+        "kind": "Artículo publicado",
+        "venue": "Desarrollo y Sociedad",
+        "lang": "es",
+        "abstract": "Al comparar hogares mexicanos similares, el estudio encuentra que las remesas internacionales se asocian con mayor gasto en salud y menor carencia de acceso a servicios. Los efectos se concentran en la atención ambulatoria y presentan diferencias entre el ámbito rural y el urbano.",
+        "url": "https://doi.org/10.13043/dys.93.2"
+      },
+      {
+        "title": "Internet Access and Educational Backwardness in the Times of the COVID-19 Pandemic: Evidence from Mexico’s Rural Households",
+        "year": 2023,
+        "kind": "Capítulo académico",
+        "venue": "Smart Innovation, Systems and Technologies",
+        "lang": "en",
+        "abstract": "Using the 2020 Mexican household survey, the chapter estimates that internet access reduced the probability of educational lag in rural areas by up to 3.28 percentage points. The estimated effect was larger for women than for men.",
+        "url": "https://doi.org/10.1007/978-981-19-6585-2_32"
+      },
+      {
+        "title": "Drivers of Livelihood Strategies: Evidence from Mexico’s Indigenous Rural Households",
+        "year": 2022,
+        "kind": "Artículo publicado",
+        "venue": "Sustainability",
+        "lang": "en",
+        "abstract": "The authors group Indigenous rural households by livelihood strategy and examine how assets, services and exposure to extreme weather shape those choices. Many households rely on activities linked to natural resources. Only a smaller share has accumulated enough assets to enter better-paying nonfarm activities.",
+        "url": "https://www.mdpi.com/2071-1050/14/13/7994",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Análisis de los indicadores de pobreza en México. El papel de las transferencias públicas y privadas, 2010-2016",
+        "year": 2022,
+        "kind": "Artículo publicado",
+        "venue": "Panorama Económico",
+        "lang": "es",
+        "abstract": "El artículo compara los indicadores de pobreza que se obtienen con y sin transferencias públicas o privadas en México entre 2010 y 2016. Examina cuánto cambia la medición según el origen de las transferencias y la distribución de esos recursos entre hogares.",
+        "url": "https://revistapanoramaeconomico.mx/index.php/PE/es/article/view/114"
+      },
+      {
+        "title": "The impact of remittances on food insecurity: Evidence from Mexico",
+        "year": 2021,
+        "kind": "Artículo publicado",
+        "venue": "World Development",
+        "lang": "en",
+        "abstract": "Using rural household surveys from 2013 and 2015, the study estimates how domestic and international remittances affect food insecurity. Both types help, with a larger estimated effect for transfers from abroad. Receiving remittances often still leaves households facing some food insecurity.",
+        "url": "https://doi.org/10.1016/j.worlddev.2020.105349",
+        "workingPaper": "https://cee.colmex.mx/es/dts/2020/DT-2020-1.pdf"
+      },
+      {
+        "title": "Internet access and poverty reduction: Evidence from rural and urban Mexico",
+        "year": 2021,
+        "kind": "Artículo publicado",
+        "venue": "Telecommunications Policy",
+        "lang": "en",
+        "abstract": "Using matched observations from Mexico’s 2016 household survey, the paper estimates reductions in income and multidimensional poverty among people with internet access. Estimated reductions in extreme poverty are stronger in rural areas than in urban ones.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S030859612030166X"
+      },
+      {
+        "title": "International Remittances as a Driver of Domestic Tourism Expenditure: Evidence from Mexico",
+        "year": 2021,
+        "kind": "Artículo publicado",
+        "venue": "Journal of Travel Research",
+        "lang": "en",
+        "abstract": "Using Mexico’s 2016 household survey and instrumental variables, the authors estimate that receiving international remittances raises both the chance of spending on domestic tourism and the amount spent. The results suggest that transfers ease budget constraints on travel.",
+        "url": "https://doi.org/10.1177/0047287520962222"
+      },
+      {
+        "title": "Remesas internacionales y altruismo en el contexto de la pandemia de COVID-19",
+        "year": 2021,
+        "kind": "Artículo publicado",
+        "venue": "Economía: Teoría y Práctica",
+        "lang": "es",
+        "abstract": "El estudio explora por qué las remesas a México resistieron durante la pandemia. Con encuestas de 2016 y 2018, estima cómo responde el envío de dinero ante problemas de salud en los hogares de origen y encuentra un patrón compatible con una motivación altruista.",
+        "url": "https://www.scielo.org.mx/pdf/etp/n54/2448-7481-etp-54-161.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Determinants of Indigenous Migration: the Case of Guerrero’s Mountain Region in Mexico",
+        "year": 2020,
+        "kind": "Artículo publicado",
+        "venue": "Journal of International Migration and Integration",
+        "lang": "en",
+        "abstract": "The study analyses internal and international migration from Guerrero’s Mountain Region using Mexico’s 2015 Intercensal Survey. Its results suggest that limited schooling, information and financial resources make the costs of migration difficult to bear for many Indigenous households.",
+        "url": "https://doi.org/10.1007/s12134-019-00692-x"
+      },
+      {
+        "title": "Internet adoption and usage patterns in rural Mexico",
+        "year": 2020,
+        "kind": "Artículo publicado",
+        "venue": "Technology in Society",
+        "lang": "en",
+        "abstract": "Using a national survey of technology use, the article distinguishes between getting online and what people do once connected. Digital skills are associated with greater use. Younger people use the internet more for entertainment, while working-age users are more likely to go online for information, communication and commerce.",
+        "url": "https://doi.org/10.1016/j.techsoc.2019.101226"
+      },
+      {
+        "title": "Pobreza y uso de crédito en los hogares rurales de México",
+        "year": 2020,
+        "kind": "Artículo publicado",
+        "venue": "Cuadernos de Economía",
+        "lang": "es",
+        "abstract": "Con la encuesta de Coneval de 2013, el artículo estima la relación entre el uso de crédito y la pobreza multidimensional rural. El uso de crédito se asocia con una menor probabilidad de pobreza. El análisis encuentra poca evidencia de que el efecto cambie según el tipo de crédito.",
+        "url": "https://doi.org/10.32826/cude.v43i121.130",
+        "fullText": "https://reveyf.es/index.php/REyF/article/download/130/84/1345"
+      },
+      {
+        "title": "Vulnerability, family assets, and income-generating strategies of households in rural Mexico",
+        "year": 2020,
+        "kind": "Artículo publicado",
+        "venue": "Community Development",
+        "lang": "en",
+        "abstract": "The study relates household assets, market access and exposure to shocks to livelihood choices in rural Mexico. Its results link investment in education and skills to greater participation in higher-return activities.",
+        "url": "https://doi.org/10.1080/15575330.2020.1825976"
+      },
+      {
+        "title": "Impacto del cambio climático sobre la producción de café",
+        "year": 2020,
+        "kind": "Artículo publicado",
+        "venue": "Tropical and Subtropical Agroecosystems",
+        "lang": "es",
+        "abstract": "La revisión reúne estudios sobre los efectos del clima en las zonas aptas para el café, las plagas, las enfermedades y los ingresos de los productores. Examina las medidas de adaptación propuestas y señala dónde hace falta investigación aplicada.",
+        "url": "https://www.revista.ccba.uady.mx/ojs/index.php/TSA/article/viewFile/3288/1462",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Diversificación no agropecuaria, pobreza y género en el México rural",
+        "year": 2019,
+        "kind": "Artículo publicado",
+        "venue": "Agrociencia",
+        "lang": "es",
+        "abstract": "El artículo usa encuestas rurales de 2007 y 2010 para estudiar qué facilita la participación de las mujeres en actividades no agropecuarias. La edad y la escolaridad influyen en esa decisión. La educación, los activos productivos y el empleo fuera del sector agropecuario se asocian con menor pobreza.",
+        "url": "https://agrociencia-colpos.org/index.php/agrociencia/article/view/1854"
+      },
+      {
+        "title": "The impact of remittances on domestic tourism in Mexico",
+        "year": 2019,
+        "kind": "Artículo publicado",
+        "venue": "Annals of Tourism Research",
+        "lang": "en",
+        "abstract": "The authors use four rounds of Mexico’s household expenditure survey to compare domestic tourism spending by recipients of internal and international remittances. Both types support spending, with a larger estimated increase in participation among households receiving money from abroad.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0160738319300295",
+        "fullText": "https://www.anahuac.mx/investigacion/sites/default/files/inline-files/The-impact-of-remittances-on-domestic-tourism-in-Mexico.pdf"
+      },
+      {
+        "title": "The Effects of Climate Change on Poverty and Income Distribution: A Case Study for Rural Mexico",
+        "year": 2018,
+        "kind": "Capítulo académico",
+        "venue": "Economic Tools and Methods for the Analysis of Global Change Impacts on Agriculture and Food Security",
+        "lang": "en",
+        "abstract": "The chapter models how changes in temperature and rainfall could affect agricultural income, then simulates the consequences for rural poverty and inequality. Its projections suggest substantial losses, with outcomes varying according to climate exposure and the local importance of agriculture.",
+        "url": "https://link.springer.com/chapter/10.1007/978-3-319-99462-8_3"
+      },
+      {
+        "title": "Pobreza y hogares receptores de remesas a veinte años del TLCAN: México 2010, 2012 y 2014",
+        "year": 2018,
+        "kind": "Artículo publicado",
+        "venue": "Economía: Teoría y Práctica",
+        "lang": "es",
+        "abstract": "El artículo compara la evolución de la pobreza entre hogares que reciben remesas internacionales, remesas nacionales o ninguna de las dos. En las tres rondas de datos estudiadas, la pobreza disminuye en el grupo receptor de remesas internacionales. El análisis es descriptivo.",
+        "url": "https://www.scielo.org.mx/scielo.php?pid=S0188-33802018000300215&script=sci_arttext",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Cambios en el empleo e ingreso de los hogares rurales de México, 2002-2007",
+        "year": 2018,
+        "kind": "Artículo publicado",
+        "venue": "Región y Sociedad",
+        "lang": "es",
+        "abstract": "El estudio sigue a hogares rurales mexicanos entre 2002 y 2007 para identificar sus fuentes de empleo e ingreso. La industria, el comercio y los servicios aportan la mayor parte del ingreso, lo que documenta el peso que adquirieron las actividades no agropecuarias.",
+        "url": "https://www.scielo.org.mx/scielo.php?pid=S1870-39252018000100003&script=sci_arttext",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Microfinanzas y pobreza rural en México: un análisis con técnicas de propensity score matching",
+        "year": 2018,
+        "kind": "Artículo publicado",
+        "venue": "Cuadernos de Desarrollo Rural",
+        "lang": "es",
+        "abstract": "Al emparejar hogares rurales con características similares, el artículo estima cómo se relaciona el uso de microcréditos con la pobreza por ingresos. Los hogares que usan esos créditos presentan menores niveles de pobreza en la muestra.",
+        "url": "https://doi.org/10.11144/javeriana.cdr15-82.mprm"
+      },
+      {
+        "title": "Remesas y pobreza: una revisión teórica y empírica",
+        "year": 2018,
+        "kind": "Artículo publicado",
+        "venue": "Economía: Teoría y Práctica",
+        "lang": "es",
+        "abstract": "La revisión reúne explicaciones teóricas y evidencia empírica de distintos países sobre la relación entre remesas y pobreza. Los estudios suelen encontrar reducciones de pobreza, aunque su alcance depende de las instituciones y las condiciones económicas de los lugares de origen.",
+        "url": "https://www.scielo.org.mx/pdf/etp/n48/2448-7481-etp-48-197.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Participación en el sector no agropecuario en el México rural: una perspectiva de género",
+        "year": 2017,
+        "kind": "Artículo publicado",
+        "venue": "Revista Brasileira de Estudos de População",
+        "lang": "es",
+        "abstract": "El artículo usa datos de panel para comparar el acceso de mujeres y hombres al trabajo no agropecuario. La condición indígena limita la participación asalariada de ambos grupos. Los activos y el acceso a servicios financieros, transporte y comunicación son importantes para trabajar por cuenta propia.",
+        "url": "https://doi.org/10.20947/s0102-3098a0020"
+      },
+      {
+        "title": "Las remesas como determinantes del gasto en las zonas rurales de México",
+        "year": 2016,
+        "kind": "Artículo publicado",
+        "venue": "Estudios Fronterizos",
+        "lang": "es",
+        "abstract": "Con encuestas de hogares entre 1988 y 2012, el estudio estima cómo cambia la composición del gasto rural según el origen de las remesas. Las nacionales se asocian más con salud y educación, y las internacionales con inversión en capital físico.",
+        "url": "https://www.scielo.org.mx/scielo.php?pid=S0187-69612016000100009&script=sci_arttext",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Diversificación de ingresos en el sector rural y su impacto en la eficiencia: evidencia para México",
+        "year": 2015,
+        "kind": "Artículo publicado",
+        "venue": "Cuadernos de Desarrollo Rural",
+        "lang": "es",
+        "abstract": "El artículo examina cómo se relaciona la diversificación de ingresos con la eficiencia de los hogares rurales mexicanos. La estimación permite comparar el desempeño de hogares con distintas combinaciones de actividades agropecuarias y no agropecuarias.",
+        "url": "https://www.scielo.org.co/pdf/cudr/v12n76/v12n76a03.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Volatilidad e interdependencia en los precios agrícolas a partir de un modelo GARCH multivariado",
+        "year": 2014,
+        "kind": "Artículo publicado",
+        "venue": "Análisis Económico",
+        "lang": "es",
+        "abstract": "Con índices mensuales de cereales y aceites, el artículo estima cómo se transmiten las variaciones de precios entre mercados agrícolas internacionales. El modelo GARCH multivariado encuentra una correlación creciente y una transmisión más rápida de la volatilidad entre ambos grupos.",
+        "url": "https://www.redalyc.org/pdf/413/41337767003.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "The impact of migration and remittances on distribution and sources of income: the mexican rural case",
+        "titleLang": "en",
+        "year": 2013,
+        "kind": "Artículo publicado",
+        "venue": "Panorama Económico",
+        "lang": "es",
+        "abstract": "Con una encuesta de hogares rurales, el artículo estima cómo la migración y las remesas cambian las fuentes de ingreso. Las remesas nacionales se asocian con mayores ingresos ganaderos. Para las internacionales, el estudio encuentra una relación negativa que vincula con la salida de mano de obra del hogar.",
+        "url": "https://revistapanoramaeconomico.mx/index.php/PE/es/article/view/291",
+        "fullText": "https://revistapanoramaeconomico.mx/index.php/PE/article/download/291/356"
+      },
+      {
+        "title": "Migration and remittances effects on consumption of the poorest: The mexican case",
+        "year": 2012,
+        "kind": "Artículo publicado",
+        "venue": "Panorama Económico",
+        "lang": "en",
+        "abstract": "The study uses Progresa–Oportunidades data from 1997 to 2000 to examine spending by poor rural households in Mexico. Accounting for selection into migration, it finds that households more likely to receive domestic or international remittances tend to spend more on physical and human capital.",
+        "url": "https://revistapanoramaeconomico.mx/index.php/PE/es/article/view/332",
+        "fullText": "https://revistapanoramaeconomico.mx/index.php/PE/article/download/332/632"
+      },
+      {
+        "title": "Does natural resource extraction mitigate poverty and inequality? Evidence from rural Mexico and a Lacandona Rainforest Community",
+        "year": 2007,
+        "kind": "Artículo publicado",
+        "venue": "Environment and Development Economics",
+        "lang": "en",
+        "abstract": "The study estimates how income from natural resource extraction affects rural poverty and inequality in Mexico. A simulation for a Lacandona Rainforest community suggests that a higher price for a non-timber forest product could lower poverty in the short run.",
+        "url": "https://doi.org/10.1017/S1355770X06003494",
+        "workingPaper": "https://ageconsearch.umn.edu/record/25765/files/cp060070.pdf"
+      },
+      {
+        "title": "Determinants of Migration, Destination, and Sector Choice: Disentangling Individual, Household, and Community Effects",
+        "year": 2006,
+        "kind": "Capítulo académico",
+        "venue": "International Migration, Remittances, and the Brain Drain · World Bank",
+        "lang": "en",
+        "abstract": "The chapter compares who migrates within Mexico or to the United States and who enters farm or nonfarm jobs. Using rural household data, it shows that schooling and family migration networks matter differently across destinations and employment sectors.",
+        "url": "https://documents1.worldbank.org/curated/en/426881468127174713/pdf/339880rev.pdf#page=37",
+        "linkLabel": "Texto completo"
+      }
+    ]
+  },
+  "marco-mendez-atienza": {
+    "sources": [
+      {
+        "label": "Página académica",
+        "url": "https://mmendezatienza.github.io/#research"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0009-0003-3967-4782"
+      }
+    ],
+    "works": [
+      {
+        "title": "Yes to disarmament, yes to peace: Measuring the impact of Mexico city’s gun buyback initiative",
+        "year": 2026,
+        "kind": "Artículo publicado",
+        "venue": "World Development",
+        "lang": "en",
+        "abstract": "Using monthly data from 2017 to 2023 and synthetic comparisons, the authors estimate that Mexico City’s gun buyback reduced a combined measure of firearm-related crime and unclassified deaths by roughly 17%. The clearest change was a drop in intentional firearm injuries. The study finds no detectable change in firearm homicides.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0305750X26002354",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Urban dystopias: crime around the Utopías in Mexico City",
+        "year": 2026,
+        "kind": "Artículo publicado",
+        "venue": "Global Crime",
+        "lang": "en",
+        "abstract": "The paper compares crime trends near Mexico City’s Utopías community centres with trends in areas where one had yet to open. Some offences, such as intentional injuries, declined nearby, while shoplifting and some other offences increased. The author discusses how greater use of public space can improve informal oversight while creating more opportunities for theft.",
+        "url": "https://www.tandfonline.com/doi/full/10.1080/17440572.2026.2698532"
+      },
+      {
+        "title": "Beyond Counts: Exposure-Adjusted Measures of Public Disorder Around the Mexico City Metro",
+        "year": null,
+        "kind": "Documento de trabajo",
+        "lang": "en",
+        "abstract": "Using 2019 emergency calls, the study compares reports of public disorder around Metro stations using several measures of exposure. Raw counts cluster in the commercial centre, while calls per rider are highest along a northeastern corridor. The analysis describes patterns in reported incidents and their association with neighbourhood conditions.",
+        "url": "https://mmendezatienza.github.io/#research",
+        "linkLabel": "Ficha del autor"
+      },
+      {
+        "title": "The Geography of Jurisdiction: Administrative Borders and Urban Crime",
+        "year": null,
+        "kind": "Documento de trabajo",
+        "lang": "en",
+        "abstract": "The study examines whether crime changes abruptly at the boundary between Mexico City and the State of Mexico. Its design compares nearby locations across the border and explores whether policing, institutional capacity or urban conditions could explain differences in the mix of offences.",
+        "url": "https://mmendezatienza.github.io/#research",
+        "linkLabel": "Ficha del autor"
+      },
+      {
+        "title": "Fields of Crime: Satellite Evidence on Cultivation and Criminal Activity",
+        "year": null,
+        "kind": "Documento de trabajo",
+        "lang": "en",
+        "abstract": "The authors combine satellite maps of cultivated land with geocoded records of crime and violence. They investigate how crime varies with the location and expansion of cultivation and whether competition for land or territorial control might explain those patterns.",
+        "url": "https://mmendezatienza.github.io/#research",
+        "linkLabel": "Ficha del autor"
+      },
+      {
+        "title": "When the World Cup Comes to Town: Emergency Calls and the 2026 FIFA World Cup in Mexico",
+        "year": null,
+        "kind": "Documento de trabajo",
+        "lang": "en",
+        "abstract": "The study uses 911 records to examine whether hosting 2026 World Cup matches changed emergency calls. It compares host and comparison locations before, during and after the tournament, separating changes in overall call volume from categories such as domestic violence, fights and property crime.",
+        "url": "https://mmendezatienza.github.io/#research",
+        "linkLabel": "Ficha del autor"
+      },
+      {
+        "title": "Does Economic Complexity Make Development Lending More Effective? Evidence from World Bank Projects",
+        "year": null,
+        "kind": "Documento de trabajo",
+        "lang": "en",
+        "abstract": "The authors use historical trade links as an instrument to estimate how the complexity of a country’s exports affects World Bank project ratings. Their estimates point to better outcomes in more complex economies, with the strongest relationship in loans that support policy and institutional reforms.",
+        "url": "https://mmendezatienza.github.io/#research",
+        "linkLabel": "Ficha del autor"
+      },
+      {
+        "title": "Complex Economies, Unequal Pay? Economic Complexity and the Gender Wage Gap in Mexico",
+        "year": null,
+        "kind": "Documento de trabajo",
+        "lang": "en",
+        "abstract": "Using Mexican labour survey microdata and state-level measures of economic complexity, the paper estimates raw and adjusted gender pay gaps since 2015. It tests whether shifts in economic complexity coincide with changes in those gaps and examines the roles of industry mix, formality, occupations and skills.",
+        "url": "https://mmendezatienza.github.io/#research",
+        "linkLabel": "Ficha del autor"
+      }
+    ]
+  },
+  "margaret-miller": {
+    "sources": [
+      {
+        "label": "Banco Mundial",
+        "url": "https://blogs.worldbank.org/es/team/m/margaret-miller"
+      },
+      {
+        "label": "Stanford IFDM",
+        "url": "https://ifdm.stanford.edu/people/margaret-miller"
+      }
+    ],
+    "works": [
+      {
+        "title": "Using Digital Solutions to Address Barriers to Female Entrepreneurship: A Toolkit",
+        "year": 2021,
+        "kind": "Informe técnico",
+        "venue": "World Bank",
+        "lang": "en",
+        "abstract": "The toolkit shows how development teams can use digital services in projects supporting women entrepreneurs. It covers interventions such as digital identification, online government services, e-commerce and remote training, with attention to barriers faced by women running businesses.",
+        "url": "https://documents.worldbank.org/curated/en/189461626078675526/pdf/Using-Digital-Solutions-to-Address-Barriers-to-Female-Entrepreneurship-A-Toolkit.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Reverse Mortgages, Financial Inclusion, and Economic Development: Potential Benefit and Risks",
+        "year": 2020,
+        "kind": "Documento de trabajo",
+        "venue": "World Bank Policy Research Working Paper 9134",
+        "lang": "en",
+        "abstract": "The paper compares reverse mortgage markets and asks when the product could help older homeowners with limited pension income. It documents barriers including high costs, weak consumer protection and risks for providers, then reviews regulatory conditions that could make the product more viable.",
+        "url": "https://documents.worldbank.org/curated/en/158231580411007157/pdf/Reverse-Mortgages-Financial-Inclusion-and-Economic-Development-Potential-Benefit-and-Risks.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Leveraging Digital Financial Solutions to Promote Formal Business Participation",
+        "year": 2019,
+        "kind": "Documento de trabajo",
+        "venue": "World Bank",
+        "lang": "en",
+        "abstract": "The authors examine how mobile and online finance can lower the cost of registering and running a formal business. They discuss how digital payroll and payments can complement other reforms and why policies need to account for differences between informal enterprises.",
+        "url": "https://documents1.worldbank.org/curated/en/486541556177550649/pdf/Leveraging-Digital-Financial-Solutions-to-Promote-Formal-Business-Participation.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Can You Help Someone Become Financially Capable? A Meta-Analysis of the Literature",
+        "year": 2015,
+        "kind": "Artículo publicado",
+        "venue": "The World Bank Research Observer",
+        "lang": "en",
+        "abstract": "The review maps 188 studies of financial education and pools comparable results for selected behaviours. It finds improvements in some outcomes, including savings and record keeping, with weaker evidence of improvements in loan repayment.",
+        "url": "https://doi.org/10.1093/wbro/lkv009",
+        "fullText": "https://documents1.worldbank.org/curated/en/671911507542286492/pdf/120319-JRN-WBRO-30-2-PUBLIC-Can-You-Help-Someone-Become.pdf",
+        "workingPaper": "https://documents1.worldbank.org/curated/en/297931468327387954/pdf/WPS6745.pdf"
+      },
+      {
+        "title": "Credit Reporting at the Base of the Pyramid: Key Issues and Success Factors",
+        "year": 2011,
+        "kind": "Informe técnico",
+        "venue": "CGAP and IFC",
+        "lang": "en",
+        "abstract": "Drawing on CGAP and IFC market research, the report examines how credit reporting can help microfinance lenders assess borrower risk during rapid sector growth. It discusses coverage of low-income borrowers and the practical obstacles to effective information sharing.",
+        "url": "https://www.cgap.org/sites/default/files/CGAP-Forum-Credit-Reporting-at-the-Base-of-the-Pyramid-Oct-2011.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Improving Credit Information, Bank Regulation, and Supervision: On the Role and Design of Public Credit Registries",
+        "year": 2004,
+        "kind": "Documento de trabajo",
+        "venue": "World Bank Policy Research Working Paper 3443",
+        "lang": "en",
+        "abstract": "Tests with central bank data in Argentina, Brazil and Mexico show how public credit registries can improve credit risk assessment. The authors consider how registry design should balance different uses, including credit analysis, bank supervision and estimates of capital and provisions.",
+        "url": "https://documents1.worldbank.org/curated/en/958501468779185412/pdf/WPS3443.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Bank Capital and Loan Loss Reserves Under Basel II: Implications for Emerging Countries",
+        "year": 2004,
+        "kind": "Documento de trabajo",
+        "venue": "World Bank Policy Research Working Paper 3437",
+        "lang": "en",
+        "abstract": "The paper estimates credit loss distributions in emerging economies and considers how to calibrate minimum capital and loan loss reserves together. It proposes a simplified risk-based approach for supervisors with limited monitoring capacity.",
+        "url": "https://documents1.worldbank.org/curated/en/426261468765318403/pdf/WPS3437.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Goals for Development: History, Prospects, and Costs",
+        "year": 2002,
+        "kind": "Documento de trabajo",
+        "venue": "World Bank Policy Research Working Paper 2819",
+        "lang": "en",
+        "abstract": "The authors estimate the additional resources required for developing countries to reach the Millennium Development Goals. Approaches based on growth and on the costs of sector-specific improvements both point to roughly $40–70 billion in additional annual assistance, conditional on policy and data assumptions.",
+        "url": "https://documents1.worldbank.org/curated/en/530191468765909647/pdf/multi0page.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Can Credit Registries Reduce Credit Constraints? Empirical Evidence on the Role of Credit Registries in Firm Investment Decisions",
+        "year": 2001,
+        "kind": "Ponencia publicada",
+        "venue": "Inter-American Development Bank",
+        "lang": "en",
+        "abstract": "The authors test whether information sharing through credit registries improves firms’ ability to borrow. Both cross-country indicators and firm-level investment data associate higher-quality credit registries with fewer financing constraints.",
+        "url": "https://pages.ucsd.edu/~aronatas/project/academic/Credit%20Registries.pdf",
+        "linkLabel": "Texto completo"
+      },
+      {
+        "title": "Credit Reporting Systems Around the Globe",
+        "year": 2001,
+        "kind": "Ponencia publicada",
+        "venue": "Making Small Business Lending Profitable · IFC",
+        "lang": "en",
+        "abstract": "This cross-country study compares public and private credit registries. Survey evidence shows how systems differ in the information they collect and the rules governing access, and helps explain the distinct roles that public registries and private bureaus play.",
+        "url": "https://documents1.worldbank.org/curated/en/742231468331862305/pdf/522170WP0FI1CB10Box345555B01PUBLIC1.pdf#page=47",
+        "linkLabel": "Texto completo"
+      }
+    ]
+  },
+  "nayeli-salgado-granados": {
+    "sources": [
+      {
+        "label": "Tecnológico de Monterrey",
+        "url": "https://research.tec.mx/vivo-tec/display/PID_495462"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0002-4563-7190"
+      }
+    ],
+    "works": [
+      {
+        "title": "Public good or public bad? Nation-building and Indigenous institutions",
+        "year": 2026,
+        "kind": "Artículo publicado",
+        "venue": "Journal of Development Economics",
+        "lang": "en",
+        "abstract": "The authors examine road building in post-revolutionary Mexico as a policy of national integration. Their estimates show less expansion in municipalities with greater historical capacity for Indigenous mobilization. The study links this pattern to collective action and the preservation of Indigenous identity.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0304387825002032",
+        "workingPaper": "https://hdl.handle.net/10419/268422"
+      },
+      {
+        "title": "New trends in South-South migration: The economic impact of COVID-19 and immigration enforcement",
+        "year": 2023,
+        "kind": "Artículo publicado",
+        "venue": "Applied Geography",
+        "lang": "en",
+        "abstract": "Using data on Guatemalan crossings from 2017 to 2020, the study examines migration responses to COVID-19 and US and Mexican border enforcement. Crossings declined overall, while those by adult men travelling with children rose. The authors relate this shift to fewer child deportations and the economic shock in Guatemala.",
+        "url": "https://doi.org/10.1016/j.apgeog.2023.102939",
+        "workingPaper": "https://arxiv.org/abs/2212.12797"
+      },
+      {
+        "title": "Does Transportation Infrastructure Reduce Poverty? Evidence from the Free Federal Trunk Highway System in Mexico",
+        "year": 2015,
+        "kind": "Tesis",
+        "venue": "Lund University",
+        "lang": "en",
+        "abstract": "This master’s thesis studies the relationship between federal highway density and municipal poverty in Mexico from 1990 to 2010. It estimates lower poverty where highway density increased, with a stronger relationship during downturns, and explores how the choice of highway locations may affect the estimates.",
+        "url": "https://lup.lub.lu.se/student-papers/search/publication/5474207",
+        "fullText": "https://lup.lub.lu.se/student-papers/record/5474207/file/7442746.pdf"
+      },
+      {
+        "title": "Die Entwicklung der sozioökonomischen Bedingungen für die mexikanische Bevölkerung: jüngste Perspektiven",
+        "year": 2015,
+        "kind": "Capítulo académico",
+        "venue": "Das politische System Mexikos",
+        "lang": "de",
+        "abstract": "Das Kapitel zeichnet die Entwicklung der sozioökonomischen Lebensbedingungen in Mexiko nach. Es nimmt die Mexikanische Revolution als Ausgangspunkt und untersucht, wie die in dieser Zeit entstandenen politischen und rechtlichen Institutionen den späteren sozialen und wirtschaftlichen Wandel prägten.",
+        "url": "https://doi.org/10.1007/978-3-531-19689-3_6"
+      },
+      {
+        "title": "Pobreza en la población y los municipios indígenas de México, 2010. Una breve revisión según familia lingüística",
+        "year": 2014,
+        "kind": "Capítulo académico",
+        "venue": "Hitos Demográficos del Siglo XXI: Población Indígena",
+        "lang": "es",
+        "abstract": "Con datos censales y de encuestas de hogares, el capítulo compara la pobreza multidimensional de la población indígena y no indígena. Distingue brechas entre familias lingüísticas y examina la concentración de la pobreza en municipios con alta presencia indígena.",
+        "url": "https://www.uaeh.edu.mx/investigacion/productos/7209/2014_panorama_socioeconomico_myriam_y_aurelio.pdf#page=36",
+        "linkLabel": "Texto completo"
+      }
+    ]
+  },
+  "pedro-liedo-orozco": {
+    "sources": [
+      {
+        "label": "Página académica",
+        "url": "https://pliedo.github.io/#research"
+      },
+      {
+        "label": "UC Davis",
+        "url": "https://lowcarbonfuel.ucdavis.edu/people/pedro-orozco"
+      }
+    ],
+    "works": [
+      {
+        "title": "Modeling U.S. Sustainable Aviation Fuel (SAF) deployment trajectories in a transportation fuel market model (BioTrans)",
+        "year": 2026,
+        "kind": "Informe técnico",
+        "venue": "Oak Ridge National Laboratory",
+        "lang": "en",
+        "abstract": "The report introduces BioTrans, a model that links biofuel supply chains to fuel demand in road transport, aviation and shipping. Its scenarios illustrate how oil prices, conversion technologies and policy incentives could change the rollout of sustainable aviation fuel in the United States.",
+        "url": "https://impact.ornl.gov/en/publications/modeling-us-sustainable-aviation-fuel-saf-deployment-trajectories-2/",
+        "fullText": "https://www.osti.gov/servlets/purl/3030104"
+      },
+      {
+        "title": "Vehicle tax avoidance and environmental outcomes: Evidence from Mexico",
+        "year": 2024,
+        "kind": "Documento de trabajo",
+        "lang": "en",
+        "abstract": "The study uses the decentralization of Mexican vehicle registration fees to estimate how drivers respond to taxes. It compares changes in registrations across vehicle price brackets using a synthetic comparison. Avoidance weakened the shift away from higher-tax vehicles and reduced fee revenue, with consequences for the emissions of the fleet.",
+        "url": "https://pliedo.github.io/research/job_market_paper/",
+        "fullText": "https://pliedo.github.io/liedo_2024_tax_avoidance_vehicles.pdf"
+      },
+      {
+        "title": "Flexibility and Timing of Incentives: Navigating the Fuel Transition in Refinery Production",
+        "year": 2024,
+        "kind": "Trabajo en curso",
+        "lang": "en",
+        "abstract": "The research compares plants that specialize in renewable diesel with plants that can also make sustainable aviation fuel. Production data and scenarios show how the option to switch fuels becomes more or less valuable as road-fuel demand and the timing of aviation fuel incentives change.",
+        "url": "https://pliedo.github.io/research/fuel_transition/",
+        "linkLabel": "Ficha del autor"
+      },
+      {
+        "title": "Supply elasticity of biofuels in the Low Carbon Fuel Standard",
+        "year": 2024,
+        "kind": "Trabajo en curso",
+        "lang": "en",
+        "abstract": "The study uses California’s approval of individual biofuel production pathways as a source of variation in financial incentives. It examines whether the credits received by producers change the planting of crops used to make biofuels.",
+        "url": "https://pliedo.github.io/research/land_use/",
+        "linkLabel": "Ficha del autor"
+      }
+    ]
+  }
+}
