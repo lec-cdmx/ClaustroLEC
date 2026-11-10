@@ -133,8 +133,7 @@
 .faculty-courses + h4 { margin-top: .4rem; }
 .faculty-courses { display: grid; gap: .3rem; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: .82rem; }
 .faculty-courses li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .12rem .4rem; }
-.faculty-courses code { color: var(--accent); font: 650 .72rem/1.4 var(--mono); }
-.faculty-courses[data-kind="materia"] code { display: none; }
+.faculty-courses code { display: none; }
 
 @media (max-width: 850px) {
   .directory-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
