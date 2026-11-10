@@ -7,8 +7,8 @@
   <title>Oportunidades | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=2">
-  <link rel="stylesheet" href="assets/css/oportunidades.css?v=6">
-  <script src="assets/js/oportunidades.js?v=4" defer></script>
+  <link rel="stylesheet" href="assets/css/oportunidades.css?v=7">
+  <script src="assets/js/oportunidades.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -460,8 +460,12 @@
           <p id="opportunity-match-note"></p>
           <a id="opportunity-match-source" target="_blank" rel="noopener">Consultar fuente <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="opportunity-match-actions">
-          <p id="opportunity-match-status" role="status"></p>
+        <p id="opportunity-match-status" role="status"></p>
+        <div id="opportunity-match-actions" class="opportunity-match-actions" hidden>
+          <div class="opportunity-match-selection" role="group" aria-label="Seleccionar destinatarios">
+            <button type="button" id="opportunity-match-select-all">Seleccionar todos</button>
+            <button type="button" id="opportunity-match-clear-all">Deseleccionar todos</button>
+          </div>
           <a id="opportunity-match-email" class="opportunity-match-primary" hidden></a>
         </div>
         <ul id="opportunity-match-results" class="opportunity-match-results" role="list" aria-label="Perfiles con temas en común"></ul>

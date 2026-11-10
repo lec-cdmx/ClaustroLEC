@@ -705,60 +705,6 @@
         "lang": "en",
         "abstract": "The paper compares crime trends near Mexico City’s Utopías community centres with trends in areas where one had yet to open. Some offences, such as intentional injuries, declined nearby, while shoplifting and some other offences increased. The author discusses how greater use of public space can improve informal oversight while creating more opportunities for theft.",
         "url": "https://www.tandfonline.com/doi/full/10.1080/17440572.2026.2698532"
-      },
-      {
-        "title": "Beyond Counts: Exposure-Adjusted Measures of Public Disorder Around the Mexico City Metro",
-        "year": null,
-        "kind": "Documento de trabajo",
-        "lang": "en",
-        "abstract": "Using 2019 emergency calls, the study compares reports of public disorder around Metro stations using several measures of exposure. Raw counts cluster in the commercial centre, while calls per rider are highest along a northeastern corridor. The analysis describes patterns in reported incidents and their association with neighbourhood conditions.",
-        "url": "https://mmendezatienza.github.io/#research",
-        "linkLabel": "Ficha del autor"
-      },
-      {
-        "title": "The Geography of Jurisdiction: Administrative Borders and Urban Crime",
-        "year": null,
-        "kind": "Documento de trabajo",
-        "lang": "en",
-        "abstract": "The study examines whether crime changes abruptly at the boundary between Mexico City and the State of Mexico. Its design compares nearby locations across the border and explores whether policing, institutional capacity or urban conditions could explain differences in the mix of offences.",
-        "url": "https://mmendezatienza.github.io/#research",
-        "linkLabel": "Ficha del autor"
-      },
-      {
-        "title": "Fields of Crime: Satellite Evidence on Cultivation and Criminal Activity",
-        "year": null,
-        "kind": "Documento de trabajo",
-        "lang": "en",
-        "abstract": "The authors combine satellite maps of cultivated land with geocoded records of crime and violence. They investigate how crime varies with the location and expansion of cultivation and whether competition for land or territorial control might explain those patterns.",
-        "url": "https://mmendezatienza.github.io/#research",
-        "linkLabel": "Ficha del autor"
-      },
-      {
-        "title": "When the World Cup Comes to Town: Emergency Calls and the 2026 FIFA World Cup in Mexico",
-        "year": null,
-        "kind": "Documento de trabajo",
-        "lang": "en",
-        "abstract": "The study uses 911 records to examine whether hosting 2026 World Cup matches changed emergency calls. It compares host and comparison locations before, during and after the tournament, separating changes in overall call volume from categories such as domestic violence, fights and property crime.",
-        "url": "https://mmendezatienza.github.io/#research",
-        "linkLabel": "Ficha del autor"
-      },
-      {
-        "title": "Does Economic Complexity Make Development Lending More Effective? Evidence from World Bank Projects",
-        "year": null,
-        "kind": "Documento de trabajo",
-        "lang": "en",
-        "abstract": "The authors use historical trade links as an instrument to estimate how the complexity of a country’s exports affects World Bank project ratings. Their estimates point to better outcomes in more complex economies, with the strongest relationship in loans that support policy and institutional reforms.",
-        "url": "https://mmendezatienza.github.io/#research",
-        "linkLabel": "Ficha del autor"
-      },
-      {
-        "title": "Complex Economies, Unequal Pay? Economic Complexity and the Gender Wage Gap in Mexico",
-        "year": null,
-        "kind": "Documento de trabajo",
-        "lang": "en",
-        "abstract": "Using Mexican labour survey microdata and state-level measures of economic complexity, the paper estimates raw and adjusted gender pay gaps since 2015. It tests whether shifts in economic complexity coincide with changes in those gaps and examines the roles of industry mix, formality, occupations and skills.",
-        "url": "https://mmendezatienza.github.io/#research",
-        "linkLabel": "Ficha del autor"
       }
     ]
   },

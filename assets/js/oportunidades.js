@@ -94,6 +94,7 @@ const matchNote = document.querySelector('#opportunity-match-note');
 const matchSource = document.querySelector('#opportunity-match-source');
 const matchStatus = document.querySelector('#opportunity-match-status');
 const matchResults = document.querySelector('#opportunity-match-results');
+const matchActions = document.querySelector('#opportunity-match-actions');
 const matchEmail = document.querySelector('#opportunity-match-email');
 const opportunitiesById = new Map(entries.map(entry => [entry.id, entry]));
 let directoryRequest;
@@ -133,9 +134,20 @@ function topicChip(topic) {
 
 function renderProfile(profile) {
   const item = document.createElement('li');
+  const recipient = document.createElement('div');
+  recipient.className = 'opportunity-match-recipient';
+  if (profile.email) {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = profile.email;
+    checkbox.checked = true;
+    checkbox.setAttribute('aria-label', 'Incluir a ' + profile.name + ' en el correo');
+    recipient.append(checkbox);
+  }
   const link = document.createElement('a');
   link.href = 'directorio.html#' + encodeURIComponent(profile.id);
   link.textContent = profile.name;
+  recipient.append(link);
   const campus = document.createElement('p');
   campus.textContent = profile.campus;
   const topics = document.createElement('ul');
@@ -143,16 +155,43 @@ function renderProfile(profile) {
   topics.setAttribute('role', 'list');
   topics.setAttribute('aria-label', 'Temas en común');
   topics.append(...profile.shared.map(topicChip));
-  item.append(link, campus, topics);
+  item.append(recipient, campus, topics);
   return item;
+}
+
+function updateMatchEmail() {
+  const selected = [...matchResults.querySelectorAll('input:checked')];
+  const recipients = [...new Set(selected.map(checkbox => checkbox.value))];
+  matchEmail.hidden = !recipients.length;
+  if (!recipients.length) {
+    matchEmail.removeAttribute('href');
+    return;
+  }
+
+  const entry = opportunitiesById.get(opportunity.value);
+  const selectedTopics = new Set(selected.flatMap(checkbox => labels(checkbox.closest('li'), '.opportunity-topics li')));
+  const shared = entry.topics.filter(topic => selectedTopics.has(topic));
+  const subject = 'Claustro LEC · ' + entry.name;
+  const body = ['Hola,', '', 'Vi esta oportunidad en el portal del Claustro LEC.',
+    matchSource.href, '', 'Temas en común: ' + shared.join(', ') + '.',
+    '', '¿Les gustaría conversar sobre esta oportunidad?', '', 'Saludos,'].join('\r\n');
+  const addresses = recipients.map(email => encodeURIComponent(email).replace('%40', '@'));
+  matchEmail.href = 'mailto:' + addresses.join(',') + '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+  matchEmail.textContent = 'Redactar correo (' + recipients.length + ') ↗';
+}
+
+function selectAllRecipients(checked) {
+  for (const checkbox of matchResults.querySelectorAll('input[type="checkbox"]')) checkbox.checked = checked;
+  updateMatchEmail();
 }
 
 function clearMatches() {
   matchResults.replaceChildren();
   matchStatus.textContent = '';
   for (const chip of matchTopics.children) chip.classList.remove('is-shared');
-  matchEmail.hidden = true;
-  matchEmail.removeAttribute('href');
+  matchActions.hidden = true;
+  updateMatchEmail();
 }
 
 function showSelection() {
@@ -178,6 +217,9 @@ openMatch.addEventListener('click', () => dialog.showModal());
 document.querySelector('#opportunity-match-close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('close', () => openMatch.focus({ preventScroll: true }));
 opportunity.addEventListener('change', showSelection);
+matchResults.addEventListener('change', updateMatchEmail);
+document.querySelector('#opportunity-match-select-all').addEventListener('click', () => selectAllRecipients(true));
+document.querySelector('#opportunity-match-clear-all').addEventListener('click', () => selectAllRecipients(false));
 matchForm.addEventListener('submit', async event => {
   event.preventDefault();
   const entry = opportunitiesById.get(opportunity.value);
@@ -199,21 +241,8 @@ matchForm.addEventListener('submit', async event => {
 
     const shared = entry.topics.filter(topic => matches.some(profile => profile.shared.includes(topic)));
     for (const chip of matchTopics.children) chip.classList.toggle('is-shared', shared.includes(chip.textContent));
-    const recipients = [...new Set(matches.map(profile => profile.email).filter(Boolean))];
-    if (recipients.length) {
-      const subject = 'Claustro LEC · ' + entry.name;
-      const body = ['Hola,', '', 'Vi esta oportunidad en el portal del Claustro LEC.',
-        matchSource.href, '', 'Temas en común: ' + shared.join(', ') + '.',
-        '', '¿Les gustaría conversar sobre esta oportunidad?', '', 'Saludos,'].join('\r\n');
-      const cc = 'arturo.perez@tec.mx';
-      const addresses = recipients
-        .filter(email => email.toLowerCase() !== cc)
-        .map(email => encodeURIComponent(email).replace('%40', '@'));
-      matchEmail.href = 'mailto:' + addresses.join(',') + '?cc=' + encodeURIComponent(cc) +
-        '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      matchEmail.textContent = 'Redactar correo al grupo (' + recipients.length + ') ↗';
-      matchEmail.hidden = false;
-    }
+    matchActions.hidden = !matches.some(profile => profile.email);
+    updateMatchEmail();
   } catch {
     matchStatus.textContent = location.protocol === 'file:'
       ? 'Para cruzar los temas en local, abre el portal desde un servidor web.'
