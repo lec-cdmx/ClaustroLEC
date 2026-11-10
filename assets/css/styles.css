@@ -169,6 +169,9 @@ h1 {
   letter-spacing: -.032em;
 }
 
+.page-heading--single-line .page-intro { container-type: inline-size; }
+.page-heading--single-line h1 { font-size: min(6.25rem, 8.1cqi); white-space: nowrap; }
+
 .page-intro .eyebrow::before { display: inline-block; width: 1.65rem; height: 1px; margin-right: .65rem; background: currentColor; vertical-align: middle; content: ""; }
 .page-intro > p:last-child { max-width: 56ch; padding-left: .9rem; border-left: 1px solid #aab6d7; color: var(--muted); font-size: clamp(.95rem, 1.5vw, 1.12rem); }
 .chapter-mark {
