@@ -10,24 +10,6 @@
 .directory-update p { font-size: .9rem; }
 .directory-update a { color: var(--accent); font-weight: 700; }
 
-.forms-note {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: .85rem;
-  max-width: 64rem;
-  margin-bottom: 2rem;
-  padding: .9rem 1rem;
-  border: 1px solid #efc197;
-  border-left: 4px solid #d76a24;
-  border-radius: .45rem;
-  background: #fff4e8;
-  color: #653918;
-}
-
-.forms-note svg { margin-top: .2rem; color: #a64f1c; }
-.forms-note h2 { margin-bottom: .2rem; font-size: .94rem; color: #743710; }
-.forms-note p { font-size: .87rem; }
-
 .directory-filters {
   padding: clamp(1rem, 2.5vw, 1.5rem);
   border: 1px solid var(--rule);

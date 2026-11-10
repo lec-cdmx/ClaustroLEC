@@ -7,7 +7,8 @@
   <title>Recursos de capacitación | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=3">
-  <link rel="stylesheet" href="assets/css/capacitacion.css?v=3">
+  <link rel="stylesheet" href="assets/css/capacitacion.css?v=4">
+  <script src="assets/js/capacitacion.js?v=1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -53,148 +54,194 @@
       </div>
     </header>
 
-    <nav class="training-plans" aria-label="Planes de estudio de Economía">
-      <a class="training-button" href="LEC19%20-%20LICENCIATURA%20EN%20ECONOM%C3%8DA.pdf" target="_blank" rel="noopener noreferrer">Plan 2019 · PDF <span aria-hidden="true">↗</span></a>
-      <a class="training-button" href="LEC26%20-%20LICENCIATURA%20EN%20ECONOM%C3%8DA.pdf" target="_blank" rel="noopener noreferrer">Plan 2026 · PDF <span aria-hidden="true">↗</span></a>
-    </nav>
-
-    <div class="training-overview">
-      <div class="training-overview-copy">
-        <p class="eyebrow">Elige tu ruta</p>
-        <p>Selección del Claustro LEC a partir de los recursos del Centro de Desarrollo Docente e Innovación Educativa (CEDDIE). Algunos tableros, cursos y documentos enlazados requieren iniciar sesión con tu cuenta Tec.</p>
-      </div>
-      <a class="training-button" href="https://ceddie.tec.mx/es" target="_blank" rel="noopener noreferrer">Abrir sitio de CEDDIE <span aria-hidden="true">↗</span></a>
-    </div>
-
-    <aside class="training-note training-note--preliminary" aria-labelledby="training-preliminary-title">
-      <h2 id="training-preliminary-title">Rutas preliminares</h2>
-      <p>Estas rutas se prepararon mediante una búsqueda automatizada de recursos en el sitio de CEDDIE. Podríamos pedirle a CEDDIE que nos comparta una ruta de capacitación ajustada a las necesidades del claustro de Economía.</p>
-    </aside>
+    <header class="training-overview" id="rutas-capacitacion" tabindex="-1">
+      <h2>Elige tu ruta</h2>
+      <p>Abre una ruta para ver sus cursos y recursos en orden.</p>
+    </header>
 
     <nav class="training-routes" aria-label="Rutas de capacitación">
-      <a href="#nuevo-ingreso">
-        <span class="training-route-number" aria-hidden="true">01</span>
+      <a class="training-route" href="#nuevo-ingreso" aria-controls="nuevo-ingreso">
+        <span class="training-route-number" aria-hidden="true">01 <span class="training-route-toggle"></span></span>
         <span class="training-route-copy"><strong>Nuevo ingreso</strong><small>Prepara tus accesos y tu primera clase.</small></span>
-        <span class="training-route-arrow" aria-hidden="true">↓</span>
+        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
+          <path pathLength="1" d="M8 29 H48 L79 18 H111 L151 8"/>
+          <circle cx="8" cy="29" r="3"/><circle cx="79" cy="18" r="3"/><circle cx="151" cy="8" r="4"/>
+        </svg>
       </a>
-      <a href="#coordinar-uf">
-        <span class="training-route-number" aria-hidden="true">02</span>
-        <span class="training-route-copy"><strong>Coordino una UF</strong><small>Alinea la transferencia, Canvas y la evaluación.</small></span>
-        <span class="training-route-arrow" aria-hidden="true">↓</span>
+      <a class="training-route" href="#coordinar-uf" aria-controls="coordinar-uf">
+        <span class="training-route-number" aria-hidden="true">02 <span class="training-route-toggle"></span></span>
+        <span class="training-route-copy"><strong>Bloques y concentraciones</strong><small>Alinea al equipo, Canvas y la evaluación.</small></span>
+        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
+          <path pathLength="1" d="M8 27 H39 L64 10 H104 L124 21 H151"/>
+          <circle cx="8" cy="27" r="3"/><circle cx="64" cy="10" r="3"/><circle cx="151" cy="21" r="4"/>
+        </svg>
       </a>
-      <a href="#recursos-generales">
-        <span class="training-route-number" aria-hidden="true">03</span>
+      <a class="training-route" href="#recursos-generales" aria-controls="recursos-generales">
+        <span class="training-route-number" aria-hidden="true">03 <span class="training-route-toggle"></span></span>
         <span class="training-route-copy"><strong>Recursos generales</strong><small>Encuentra guías, formación y apoyo para el aula.</small></span>
-        <span class="training-route-arrow" aria-hidden="true">↓</span>
+        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
+          <path pathLength="1" d="M8 19 H40 L66 28 H94 L124 12 H151"/>
+          <circle cx="8" cy="19" r="3"/><circle cx="94" cy="28" r="3"/><circle cx="151" cy="12" r="4"/>
+        </svg>
+      </a>
+      <a class="training-route" href="#ia-docente" aria-controls="ia-docente">
+        <span class="training-route-number" aria-hidden="true">04 <span class="training-route-toggle"></span></span>
+        <span class="training-route-copy"><strong>IA en la docencia</strong><small>Diseña y evalúa actividades con IA.</small></span>
+        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
+          <path pathLength="1" d="M8 30 L47 13 L83 25 L119 9 H151"/>
+          <circle cx="8" cy="30" r="3"/><circle cx="83" cy="25" r="3"/><circle cx="151" cy="9" r="4"/>
+        </svg>
       </a>
     </nav>
 
-    <section class="training-section" id="nuevo-ingreso" aria-labelledby="nuevo-ingreso-title">
+    <section class="training-section" id="nuevo-ingreso" aria-labelledby="nuevo-ingreso-title" tabindex="-1">
       <header class="training-section-heading">
         <p class="eyebrow">Ruta 01</p>
         <h2 id="nuevo-ingreso-title">Docentes de nuevo ingreso</h2>
-        <p>Empieza por la bienvenida y confirma con CEDDIE qué cursos debes completar antes de impartir. Después revisa tus accesos y el acompañamiento disponible en tu campus.</p>
+        <p>Empieza por la bienvenida, confirma tu capacitación con CEDDIE y encuentra apoyo para preparar tu primera clase.</p>
+        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
       </header>
-      <ol class="training-resources">
+      <ol class="training-resources" role="list">
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">01</span>
-          <div>
-            <h3>Bienvenida y cursos de preparación</h3>
-            <p>La ruta de ingreso reúne la sesión de bienvenida, la preparación en Canvas, microenseñanza, el modelo educativo y evaluación de competencias. Incluye orientación para acceder a los cursos autogestionados.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/docentes-de-nuevo-ingreso" target="_blank" rel="noopener noreferrer">Ruta para docentes de nuevo ingreso <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/introduccion-al-modelo-educativo" target="_blank" rel="noopener noreferrer">Introducción al Modelo Educativo <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-nuevo-ingreso">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h3>Bienvenida y cursos de preparación</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>La ruta de ingreso reúne la sesión de bienvenida, la preparación en Canvas, microenseñanza, el modelo educativo y evaluación de competencias. Incluye orientación para acceder a los cursos autogestionados.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/docentes-de-nuevo-ingreso" target="_blank" rel="noopener noreferrer">Ruta para docentes de nuevo ingreso <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/introduccion-al-modelo-educativo" target="_blank" rel="noopener noreferrer">Introducción al Modelo Educativo <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">02</span>
-          <div>
-            <h3>Accesos y preparación para cátedra</h3>
-            <p>Consulta la lista de integración y las instrucciones de correo, Llave Digital y software institucional si tu nombramiento es de cátedra.</p>
-            <ul class="training-links">
-              <li><a href="https://profesorescatedra.tec.mx/es/mi-preparacion" target="_blank" rel="noopener noreferrer">Preparación para profesorado de cátedra <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://profesorescatedra.tec.mx/es/configura-correo-y-cuentas" target="_blank" rel="noopener noreferrer">Mi correo y accesos <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-nuevo-ingreso">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h3>Accesos y preparación para cátedra</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Consulta la lista de integración y las instrucciones de correo, Llave Digital y software institucional si tu nombramiento es de cátedra.</p>
+              <ul class="training-links">
+                <li><a href="https://profesorescatedra.tec.mx/es/mi-preparacion" target="_blank" rel="noopener noreferrer">Preparación para profesorado de cátedra <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://profesorescatedra.tec.mx/es/configura-correo-y-cuentas" target="_blank" rel="noopener noreferrer">Mi correo y accesos <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">03</span>
-          <div>
-            <h3>Inscripción y avance</h3>
-            <p>Consulta la oferta de desarrollo y revisa los cursos acreditados o pendientes en el tablero de Profesional. Si todavía no tienes correo Tec, CEDDIE indica cómo pedir ayuda para inscribirte.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/desarrollo-docente" target="_blank" rel="noopener noreferrer">Oferta y opciones de inscripción <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://lookerstudio.google.com/reporting/7e076899-47b3-452d-945c-0ad2b069a675" target="_blank" rel="noopener noreferrer">Mi estatus Profesional <span aria-hidden="true">↗</span></a> <span class="training-access">Cuenta Tec</span></li>
-            </ul>
-          </div>
+          <details name="pasos-nuevo-ingreso">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h3>Inscripción y avance</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Consulta la oferta de desarrollo y revisa los cursos acreditados o pendientes en el tablero de Profesional. Si todavía no tienes correo Tec, CEDDIE indica cómo pedir ayuda para inscribirte.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/desarrollo-docente" target="_blank" rel="noopener noreferrer">Oferta y opciones de inscripción <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://lookerstudio.google.com/reporting/7e076899-47b3-452d-945c-0ad2b069a675" target="_blank" rel="noopener noreferrer">Mi estatus Profesional <span aria-hidden="true">↗</span></a> <span class="training-access">Cuenta Tec</span></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">04</span>
-          <div>
-            <h3>Acompañamiento en tu primera impartición</h3>
-            <p>Conoce el programa de mentoría entre colegas, los pasos para participar y el directorio de líderes CEDDIE por campus.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/modelo-de-acompanamiento-docente" target="_blank" rel="noopener noreferrer">Programa y contactos por campus <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-nuevo-ingreso">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h3>Acompañamiento en tu primera impartición</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Conoce el programa de mentoría entre colegas, los pasos para participar y el directorio de líderes CEDDIE por campus.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/modelo-de-acompanamiento-docente" target="_blank" rel="noopener noreferrer">Programa y contactos por campus <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
       </ol>
     </section>
 
-    <section class="training-section" id="coordinar-uf" aria-labelledby="coordinar-uf-title">
+    <section class="training-section" id="coordinar-uf" aria-labelledby="coordinar-uf-title" tabindex="-1">
       <header class="training-section-heading">
         <p class="eyebrow">Ruta 02</p>
-        <h2 id="coordinar-uf-title">Coordinación de una UF</h2>
-        <p>Empieza por identificar el plan y localizar la UF por clave. Usa la transferencia para revisar el diseño y acordar con quienes imparten la UF cómo aplicarán la evaluación y documentarán ajustes.</p>
+        <h2 id="coordinar-uf-title">Coordinación de bloques y concentraciones</h2>
+        <p>Identifica las unidades de formación (UF) y su plan de estudios. Revisa el diseño y acuerda con el equipo cómo aplicarán la evaluación y documentarán los ajustes.</p>
+        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
       </header>
-      <ol class="training-resources">
+      <ol class="training-resources" role="list">
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">01</span>
-          <div>
-            <h3>Localiza la UF y su transferencia</h3>
-            <p>CEDDIE ofrece rutas separadas para los planes 2019 y 2026. Sus buscadores permiten localizar la UF por clave, nombre, programa, tipo o semestre.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/proceso-de-transferencia-de-unidades-de-formacion-ufs" target="_blank" rel="noopener noreferrer">Proceso de transferencia <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/planes-2019" target="_blank" rel="noopener noreferrer">Buscador y transferencia · Planes 2019 <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/planes-2026" target="_blank" rel="noopener noreferrer">Buscador y transferencia · Planes 2026 <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-coordinar-uf">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h3>Localiza la UF y su transferencia</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>CEDDIE ofrece rutas separadas para los planes 2019 y 2026. Sus buscadores permiten localizar la UF por clave, nombre, programa, tipo o semestre.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/proceso-de-transferencia-de-unidades-de-formacion-ufs" target="_blank" rel="noopener noreferrer">Proceso de transferencia <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/planes-2019" target="_blank" rel="noopener noreferrer">Buscador y transferencia · Planes 2019 <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/planes-2026" target="_blank" rel="noopener noreferrer">Buscador y transferencia · Planes 2026 <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">02</span>
-          <div>
-            <h3>Confirma cómo se evalúan las competencias</h3>
-            <p>Para Planes 2019, revisa si corresponde registrar grados de logro en Canvas. Para Planes 2026, identifica el propósito de la UF y los componentes de evaluación que le corresponden.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/evaluacion-de-competencias-en-el-modelo-tec21" target="_blank" rel="noopener noreferrer">Evaluación en el modelo Tec <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://tec.rs/PropositoUF" target="_blank" rel="noopener noreferrer">Consulta de propósito · Planes 2019 <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/competencias-en-UF-2026" target="_blank" rel="noopener noreferrer">Evaluación de competencias · Planes 2026 <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-coordinar-uf">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h3>Confirma cómo se evalúan las competencias</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Para Planes 2019, revisa si corresponde registrar grados de logro en Canvas. Para Planes 2026, identifica el propósito de la UF y los componentes de evaluación que le corresponden.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/evaluacion-de-competencias-en-el-modelo-tec21" target="_blank" rel="noopener noreferrer">Evaluación en el modelo Tec <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://tec.rs/PropositoUF" target="_blank" rel="noopener noreferrer">Consulta de propósito · Planes 2019 <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/competencias-en-UF-2026" target="_blank" rel="noopener noreferrer">Evaluación de competencias · Planes 2026 <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">03</span>
-          <div>
-            <h3>Configura Canvas y verifica el cierre</h3>
-            <p>La guía rápida reúne ayuda para el plan de evaluación, Canvas, grados de logro y configuraciones. La sección de Planes 2026 también enlaza al gestor de evaluación en Canvas.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/recursos-rapidos-para-la-gestion-de-tu-uf" target="_blank" rel="noopener noreferrer">Recursos rápidos para gestionar tu UF <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/planes-de-estudio-2026" target="_blank" rel="noopener noreferrer">Planes de estudio 2026 y gestor de Canvas <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-coordinar-uf">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h3>Configura Canvas y verifica el cierre</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>La guía rápida reúne ayuda para el plan de evaluación, Canvas, grados de logro y configuraciones. La sección de Planes 2026 también enlaza al gestor de evaluación en Canvas.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/recursos-rapidos-para-la-gestion-de-tu-uf" target="_blank" rel="noopener noreferrer">Recursos rápidos para gestionar tu UF <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/planes-de-estudio-2026" target="_blank" rel="noopener noreferrer">Planes de estudio 2026 y gestor de Canvas <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">04</span>
-          <div>
-            <h3>Acuerda criterios con el equipo docente</h3>
-            <p>Usa las guías de colaboración y retroalimentación para preparar acuerdos de impartición y revisar evidencias en conjunto. Para dudas de operación, consulta Conexión CEDDIE.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/c2-colaboracion-docente" target="_blank" rel="noopener noreferrer">Colaboración docente <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/c3-evaluacion-y-retroalimentacion-de-competencias" target="_blank" rel="noopener noreferrer">Evaluación y retroalimentación <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/soporte" target="_blank" rel="noopener noreferrer">Conexión CEDDIE <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-coordinar-uf">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h3>Acuerda criterios con el equipo docente</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Usa las guías de colaboración y retroalimentación para preparar acuerdos de impartición y revisar evidencias en conjunto. Para dudas de operación, consulta Conexión CEDDIE.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/c2-colaboracion-docente" target="_blank" rel="noopener noreferrer">Colaboración docente <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/c3-evaluacion-y-retroalimentacion-de-competencias" target="_blank" rel="noopener noreferrer">Evaluación y retroalimentación <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/soporte" target="_blank" rel="noopener noreferrer">Conexión CEDDIE <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
       </ol>
       <aside class="training-note">
@@ -203,73 +250,163 @@
       </aside>
     </section>
 
-    <section class="training-section" id="recursos-generales" aria-labelledby="recursos-generales-title">
+    <section class="training-section" id="recursos-generales" aria-labelledby="recursos-generales-title" tabindex="-1">
       <header class="training-section-heading">
         <p class="eyebrow">Ruta 03</p>
         <h2 id="recursos-generales-title">Recursos para cualquier docente</h2>
-        <p>Consulta estas colecciones según lo que quieras resolver, desde diseñar una actividad o integrar IA hasta encontrar formación y asesoría.</p>
+        <p>Explora los temas según lo que quieras resolver, desde diseñar una actividad hasta encontrar formación y asesoría.</p>
+        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
       </header>
-      <ol class="training-resources">
+      <ol class="training-resources" role="list">
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">01</span>
-          <div>
-            <h3>Diseño de clases y aprendizaje activo</h3>
-            <p>Explora estrategias como el método de casos, el debate y el aprendizaje basado en investigación. La guía de diseño también incluye recursos para revisar una experiencia de aprendizaje.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/recursos-de-apoyo-la-ensenanza" target="_blank" rel="noopener noreferrer">Recursos de apoyo a la enseñanza <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/c1-diseno-de-experiencias-de-ensenanza-aprendizaje" target="_blank" rel="noopener noreferrer">Diseño de experiencias de aprendizaje <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-recursos-generales">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h3>Diseño de clases y aprendizaje activo</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Explora estrategias como el método de casos, el debate y el aprendizaje basado en investigación. La guía de diseño también incluye recursos para revisar una experiencia de aprendizaje.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/recursos-de-apoyo-la-ensenanza" target="_blank" rel="noopener noreferrer">Recursos de apoyo a la enseñanza <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/c1-diseno-de-experiencias-de-ensenanza-aprendizaje" target="_blank" rel="noopener noreferrer">Diseño de experiencias de aprendizaje <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">02</span>
-          <div>
-            <h3>Inteligencia artificial e integridad académica</h3>
-            <p>Encuentra herramientas, ejemplos docentes y rutas de formación en IA. Consulta los lineamientos y la guía del Tec antes de definir el uso de IA en tus actividades.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/enriquece-tu-docencia-con-inteligencia-artificial" target="_blank" rel="noopener noreferrer">IA para la práctica docente <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/potencia-tu-ensenanza-con-recursos-de-ia" target="_blank" rel="noopener noreferrer">Catálogo de recursos y herramientas de IA <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://tec.mx/es/integridad-academica/inteligencia-artificial" target="_blank" rel="noopener noreferrer">Lineamientos y guías de IA del Tec <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-recursos-generales">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h3>Sostenibilidad y cambio climático</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Consulta materiales didácticos y grabaciones de los cursos sobre sostenibilidad de Ruta Azul y CEDDIE.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/desarrollo-sostenible" target="_blank" rel="noopener noreferrer">Sostenibilidad en la docencia <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/descubre-herramientas-didacticas" target="_blank" rel="noopener noreferrer">Herramientas didácticas de Ruta Azul <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">03</span>
-          <div>
-            <h3>Sostenibilidad y cambio climático</h3>
-            <p>Consulta materiales didácticos y grabaciones de los cursos sobre sostenibilidad de Ruta Azul y CEDDIE.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/desarrollo-sostenible" target="_blank" rel="noopener noreferrer">Sostenibilidad en la docencia <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/descubre-herramientas-didacticas" target="_blank" rel="noopener noreferrer">Herramientas didácticas de Ruta Azul <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-recursos-generales">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h3>Formación, bienestar y microcredenciales</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Consulta la oferta de desarrollo y los recursos de bienestar. Si quieres documentar evidencias de tu práctica, revisa las guías y ventanas de acreditación del MDBF.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/desarrollo-docente" target="_blank" rel="noopener noreferrer">Oferta de desarrollo docente <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/bienestar-docente" target="_blank" rel="noopener noreferrer">Bienestar Docente <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/documentacion-y-acreditacion-mdbf" target="_blank" rel="noopener noreferrer">Documentación y acreditación del MDBF <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
         <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">04</span>
-          <div>
-            <h3>Formación, bienestar y microcredenciales</h3>
-            <p>Consulta la oferta de desarrollo y los recursos de bienestar. Si quieres documentar evidencias de tu práctica, revisa las guías y ventanas de acreditación del MDBF.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/desarrollo-docente" target="_blank" rel="noopener noreferrer">Oferta de desarrollo docente <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/bienestar-docente" target="_blank" rel="noopener noreferrer">Bienestar Docente <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/documentacion-y-acreditacion-mdbf" target="_blank" rel="noopener noreferrer">Documentación y acreditación del MDBF <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="training-resource">
-          <span class="training-resource-number" aria-hidden="true">05</span>
-          <div>
-            <h3>Asesoría y novedades</h3>
-            <p>Conexión CEDDIE orienta sobre Canvas, evaluación, herramientas de IA y capacitación. El boletín y el podcast reúnen novedades y experiencias del profesorado.</p>
-            <ul class="training-links">
-              <li><a href="https://ceddie.tec.mx/es/soporte" target="_blank" rel="noopener noreferrer">Ventanilla Conexión CEDDIE <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/boletin-ceddie" target="_blank" rel="noopener noreferrer">Boletín #ProfesoresTec <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://ceddie.tec.mx/es/sintonia-ceddie" target="_blank" rel="noopener noreferrer">Podcast Sintonía CEDDIE <span aria-hidden="true">↗</span></a></li>
-            </ul>
-          </div>
+          <details name="pasos-recursos-generales">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h3>Asesoría y novedades</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Conexión CEDDIE orienta sobre Canvas, evaluación, herramientas de IA y capacitación. El boletín y el podcast reúnen novedades y experiencias del profesorado.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/soporte" target="_blank" rel="noopener noreferrer">Ventanilla Conexión CEDDIE <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/boletin-ceddie" target="_blank" rel="noopener noreferrer">Boletín #ProfesoresTec <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/sintonia-ceddie" target="_blank" rel="noopener noreferrer">Podcast Sintonía CEDDIE <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
         </li>
       </ol>
     </section>
+
+    <section class="training-section" id="ia-docente" aria-labelledby="ia-docente-title" tabindex="-1">
+      <header class="training-section-heading">
+        <p class="eyebrow">Ruta 04</p>
+        <h2 id="ia-docente-title">Inteligencia artificial en la docencia</h2>
+        <p>Parte de los lineamientos del Tec y lleva una actividad de Economía desde la idea hasta la evaluación.</p>
+        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
+      </header>
+      <ol class="training-resources" role="list">
+        <li class="training-resource">
+          <details name="pasos-ia-docente">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h3>Define las reglas de uso</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Revisa los lineamientos y la guía para docentes. Aclara en la consigna para qué se puede usar IA y cómo se debe declarar su uso.</p>
+              <ul class="training-links">
+                <li><a href="https://tec.mx/es/integridad-academica/inteligencia-artificial" target="_blank" rel="noopener noreferrer">Lineamientos y guías de IA del Tec <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="training-resource">
+          <details name="pasos-ia-docente">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h3>Explora herramientas y formación</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Consulta los recursos y la oferta de CEDDIE. Elige una herramienta según el objetivo de la actividad y pruébala con un ejemplo antes de llevarla al aula.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/enriquece-tu-docencia-con-inteligencia-artificial" target="_blank" rel="noopener noreferrer">IA para la práctica docente <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ceddie.tec.mx/es/potencia-tu-ensenanza-con-recursos-de-ia" target="_blank" rel="noopener noreferrer">Catálogo de recursos y herramientas de IA <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://tec.mx/es/ia/ensenanza-y-aprendizaje" target="_blank" rel="noopener noreferrer">Estrategia de IA educativa y TECgpt <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="training-resource">
+          <details name="pasos-ia-docente">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h3>Diseña una actividad de Economía</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Pide al grupo que contraste una explicación generada por IA sobre un indicador económico con los datos de la fuente original. Incluye en la consigna qué supuestos deben revisar y cómo justificarán sus correcciones.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/c1-diseno-de-experiencias-de-ensenanza-aprendizaje" target="_blank" rel="noopener noreferrer">Diseño de experiencias de aprendizaje <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="training-resource">
+          <details name="pasos-ia-docente">
+            <summary>
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h3>Evalúa el proceso y ajusta la actividad</h3>
+              <span class="training-step-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="training-step-content">
+              <p>Define criterios para valorar el razonamiento económico, la verificación de fuentes y la declaración del uso de IA. Revisa qué evidencias te permitieron observar el aprendizaje y ajusta la consigna.</p>
+              <ul class="training-links">
+                <li><a href="https://ceddie.tec.mx/es/c3-evaluacion-y-retroalimentacion-de-competencias" target="_blank" rel="noopener noreferrer">Evaluación y retroalimentación <span aria-hidden="true">↗</span></a></li>
+                <li><a href="https://tec.mx/es/integridad-academica/inteligencia-artificial" target="_blank" rel="noopener noreferrer">Guía de IA para docentes <span aria-hidden="true">↗</span></a></li>
+              </ul>
+            </div>
+          </details>
+        </li>
+      </ol>
+    </section>
+
+    <nav class="training-references" aria-label="Planes de estudio y recursos del Tec">
+      <a href="LEC19%20-%20LICENCIATURA%20EN%20ECONOM%C3%8DA.pdf" target="_blank" rel="noopener noreferrer">Plan de Estudios 2019 <span aria-hidden="true">↗</span></a>
+      <a href="LEC26%20-%20LICENCIATURA%20EN%20ECONOM%C3%8DA.pdf" target="_blank" rel="noopener noreferrer">Plan de Estudios 2026 <span aria-hidden="true">↗</span></a>
+      <a href="https://ceddie.tec.mx/es" target="_blank" rel="noopener noreferrer">Sitio de CEDDIE <span aria-hidden="true">↗</span></a>
+      <p>Algunos recursos requieren tu cuenta Tec.</p>
+    </nav>
   </main>
 
   <footer class="site-footer">

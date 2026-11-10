@@ -91,9 +91,6 @@
 .external-heading h2 { margin: .45rem 0; color: var(--navy); font-size: clamp(1.9rem, 4.5vw, 3.65rem); line-height: 1.08; letter-spacing: -.05em; }
 .external-heading > p:last-child { max-width: 72ch; color: var(--muted); }
 
-.radar-note { max-width: 64rem; margin-bottom: 1.25rem; padding: .8rem 1rem; border: 1px solid #efc197; border-left: 4px solid #d76a24; border-radius: .45rem; background: #fff4e8; color: #653918; }
-.radar-note h3 { margin: 0 0 .2rem; color: #743710; font-size: .94rem; }
-.radar-note p { font-size: .87rem; }
 
 .opportunity-controls { padding: 1rem; border: 1px solid var(--rule); border-top: 3px solid var(--accent); background: var(--paper); }
 .opportunity-fields { display: grid; grid-template-columns: minmax(0, 32rem) minmax(0, 15rem); gap: .65rem 1rem; }
