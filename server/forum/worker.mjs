@@ -1,9 +1,11 @@
 import { examples } from '../../assets/js/forum-examples.js';
+import { parseTags, tagError } from '../../assets/js/forum-tags.js';
 
 const roles = new Set(['Directivo', 'Profesor investigador', 'Profesor de tiempo completo', 'Profesor de cátedra']);
 const exampleIds = new Set(examples.map(post => post.id));
-const publicFields = 'id, parent_id, name, role, campus, title, body, created_at';
+const publicFields = 'id, parent_id, name, role, campus, title, body, created_at, tags';
 const encoder = new TextEncoder();
+const decodeTags = post => ({ ...post, tags: JSON.parse(post.tags) });
 
 class ForumError extends Error {
   constructor(status, message) {
@@ -56,6 +58,8 @@ async function submit(request, env) {
   const email = field(data, 'email', 254);
   const body = field(data, 'body', 2500, 5);
   const title = parent ? '' : field(data, 'title', 120, 4);
+  const tags = parent ? [] : parseTags(data.tags);
+  if (!tags) throw new ForumError(400, tagError);
   if (!roles.has(role) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new ForumError(400, 'Elige un puesto e ingresa un correo válido.');
   }
@@ -63,10 +67,10 @@ async function submit(request, env) {
   const id = crypto.randomUUID();
   const acceptedParent = parent === null || exampleIds.has(parent);
   const result = await env.DB.prepare(`
-    INSERT INTO posts (id, parent_id, name, role, campus, email, title, body, created_at)
-    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?
+    INSERT INTO posts (id, parent_id, name, role, campus, email, title, body, created_at, tags)
+    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
     WHERE ? OR EXISTS (SELECT 1 FROM posts WHERE id = ? AND status = 'approved')
-  `).bind(id, parent, name, role, campus, email, title, body, new Date().toISOString(), Number(acceptedParent), parent).run();
+  `).bind(id, parent, name, role, campus, email, title, body, new Date().toISOString(), JSON.stringify(tags), Number(acceptedParent), parent).run();
   if (result.meta.changes !== 1) throw new ForumError(409, 'La contribución a la que quieres responder no está publicada.');
   return { id, status: 'pending' };
 }
@@ -114,7 +118,7 @@ export default {
     try {
       if (path === '/api/posts' && request.method === 'GET') {
         const { results } = await env.DB.prepare(`SELECT ${publicFields} FROM posts WHERE status = 'approved' ORDER BY created_at, id`).all();
-        return json({ posts: results, submissionsOpen: ready });
+        return json({ posts: results.map(decodeTags), submissionsOpen: ready });
       }
       if (!ready) throw new ForumError(503, 'El foro aún no está recibiendo contribuciones.');
       if (path === '/api/posts' && request.method === 'POST') {
@@ -126,7 +130,7 @@ export default {
         const { results } = await env.DB.prepare(`
           SELECT ${publicFields}, email FROM posts WHERE status = 'pending' ORDER BY created_at, id LIMIT 100
         `).all();
-        return json({ posts: results });
+        return json({ posts: results.map(decodeTags) });
       }
       const id = path.match(/^\/api\/moderation\/([\da-f-]{36})$/i)?.[1];
       if (id && request.method === 'POST') {

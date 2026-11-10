@@ -1,4 +1,5 @@
 const nodes = document.querySelectorAll('.atlas-node');
+const plot = document.querySelector('.atlas-plot');
 const preview = document.querySelector('.atlas-preview');
 const previewNumber = document.querySelector('#atlas-preview-number');
 const previewTitle = document.querySelector('#atlas-preview-title');
@@ -16,7 +17,9 @@ function showPreview(node) {
   activeNode = node;
 
   const title = node.querySelector('.atlas-label').textContent;
-  previewNumber.textContent = node.querySelector('.atlas-pin').textContent;
+  const number = node.querySelector('.atlas-pin').textContent;
+  plot.dataset.active = number;
+  previewNumber.textContent = number;
   previewTitle.textContent = title;
   previewSummary.textContent = node.dataset.summary;
   openSection.setAttribute('href', node.getAttribute('href'));
@@ -25,8 +28,8 @@ function showPreview(node) {
   if (!reduceMotion.matches) {
     previewTransition?.cancel();
     previewTransition = previewTitle.parentElement.animate(
-      [{ opacity: 0.75, transform: 'translateY(4px)' }, { opacity: 1, transform: 'translateY(0)' }],
-      { duration: 190, easing: 'ease-out' }
+      [{ opacity: 0.35, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 260, easing: 'ease-out' }
     );
   }
 }

@@ -7,8 +7,8 @@
   <title>Buenas prácticas | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/foro.css">
-  <script type="module" src="assets/js/foro.js"></script>
+  <link rel="stylesheet" href="assets/css/foro.css?v=2">
+  <script type="module" src="assets/js/foro.js?v=2"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -55,6 +55,11 @@
       </div>
       <button class="forum-button forum-primary" id="forum-new" type="button" disabled>Compartir una práctica</button>
     </div>
+    <div class="forum-filter">
+      <label for="forum-tag-filter">Filtrar por etiqueta</label>
+      <select id="forum-tag-filter"><option value="">Todas las etiquetas</option></select>
+      <p id="forum-filter-count" role="status"></p>
+    </div>
     <p class="forum-status" id="forum-status" role="status"></p>
     <div id="forum-threads" class="forum-threads"></div>
     <noscript><p>Activa JavaScript para consultar los hilos y participar en el foro.</p></noscript>
@@ -93,6 +98,10 @@
           <label>Correo <input name="email" type="email" autocomplete="email" maxlength="254" required></label>
         </div>
         <label id="forum-title-field">Título <input name="title" minlength="4" maxlength="120" required></label>
+        <label id="forum-tags-field" for="forum-tags">Etiquetas
+          <input id="forum-tags" name="tags" maxlength="280" placeholder="IA, evaluación, proyectos" aria-describedby="forum-tags-help" required>
+          <small id="forum-tags-help">Escribe de 2 a 4 palabras distintas, separadas por comas. Cada palabra puede tener hasta 32 caracteres.</small>
+        </label>
         <label>Contribución <textarea name="body" rows="5" minlength="5" maxlength="2500" required></textarea></label>
         <p class="forum-privacy">Al aprobarse, se verán tu nombre, puesto, campus y contribución. El correo solo es visible para quienes moderan.</p>
         <p class="forum-status" id="forum-submit-status" role="status"></p>

@@ -1,10 +1,13 @@
-import { examples } from './forum-examples.js';
+import { examples } from './forum-examples.js?v=2';
+import { parseTags, tagError, tagKey } from './forum-tags.js';
 
 const forum = document.querySelector('[data-forum-api]');
 const local = ['localhost', '127.0.0.1'].includes(location.hostname);
 const api = local ? 'http://127.0.0.1:8787' : forum.dataset.forumApi;
 const threads = document.querySelector('#forum-threads');
 const forumStatus = document.querySelector('#forum-status');
+const tagFilter = document.querySelector('#forum-tag-filter');
+const filterCount = document.querySelector('#forum-filter-count');
 const newPost = document.querySelector('#forum-new');
 const dialog = document.querySelector('#forum-dialog');
 const form = document.querySelector('#forum-submit');
@@ -21,6 +24,7 @@ let publicPosts = [];
 let connected = false;
 let parentId = null;
 let moderatorPassword = '';
+const expandedThreads = new Set();
 
 function element(tag, text, className) {
   const node = document.createElement(tag);
@@ -62,6 +66,9 @@ function openContribution(parent) {
   context.textContent = parent ? 'En respuesta a ' + parent.name + (parent.title ? ' · ' + parent.title : '') : '';
   document.querySelector('#forum-title-field').hidden = Boolean(parent);
   form.elements.title.required = !parent;
+  document.querySelector('#forum-tags-field').hidden = Boolean(parent);
+  form.elements.tags.disabled = Boolean(parent);
+  form.elements.tags.removeAttribute('aria-invalid');
   dialog.showModal();
   form.elements.name.focus();
 }
@@ -78,6 +85,41 @@ function postDetails(post) {
   return byline;
 }
 
+function postTags(post) {
+  if (!post.tags?.length) return [];
+  const list = element('ul', '', 'forum-tags');
+  list.setAttribute('aria-label', 'Etiquetas');
+  list.append(...post.tags.map(tag => element('li', tag)));
+  return [list];
+}
+
+function collapseReplies(post, list, article) {
+  const extra = [...list.children].slice(1);
+  const firstBranch = list.firstElementChild.querySelector('.forum-replies');
+  if (firstBranch) extra.push(firstBranch);
+  if (!extra.length) return;
+
+  const count = list.querySelectorAll('.forum-reply').length - 1;
+  const label = count === 1 ? 'Mostrar 1 respuesta más' : `Mostrar ${count} respuestas más`;
+  const toggle = button('', () => {
+    if (expandedThreads.has(post.id)) expandedThreads.delete(post.id);
+    else expandedThreads.add(post.id);
+    update();
+  }, 'forum-button forum-more');
+  list.id = `${post.id}-respuestas`;
+  toggle.setAttribute('aria-controls', list.id);
+
+  function update() {
+    const expanded = expandedThreads.has(post.id);
+    for (const item of extra) item.hidden = !expanded;
+    toggle.textContent = expanded ? 'Mostrar menos' : label;
+    toggle.setAttribute('aria-expanded', String(expanded));
+  }
+
+  update();
+  article.append(toggle);
+}
+
 function renderThreads() {
   const children = new Map();
   for (const post of [...examples, ...publicPosts]) {
@@ -89,12 +131,14 @@ function renderThreads() {
   function render(post) {
     const article = element('article', '', post.parent_id ? 'forum-reply' : 'forum-thread');
     article.id = post.id;
-    if (post.title) article.append(element('h3', post.title));
-    article.append(postDetails(post), element('p', post.body, 'forum-text'));
+    const card = element('div', '', 'forum-post');
+    if (post.title) card.append(element('h3', post.title));
+    card.append(postDetails(post), element('p', post.body, 'forum-text'), ...postTags(post));
     const reply = button('Responder', () => openContribution(post), 'forum-button forum-reply-button');
     reply.setAttribute('aria-label', 'Responder a ' + post.name);
     reply.disabled = !connected;
-    article.append(reply);
+    card.append(reply);
+    article.append(card);
 
     const replies = children.get(post.id);
     if (replies?.length) {
@@ -106,12 +150,28 @@ function renderThreads() {
         list.append(item);
       }
       article.append(list);
+      if (!post.parent_id) collapseReplies(post, list, article);
     }
     return article;
   }
 
   const roots = [...publicPosts.filter(post => !post.parent_id).reverse(), ...examples.filter(post => !post.parent_id)];
-  threads.replaceChildren(...roots.map(render));
+  const selected = tagFilter.value;
+  const tags = new Map();
+  for (const post of roots) {
+    for (const tag of post.tags || []) {
+      const key = tagKey(tag);
+      if (!tags.has(key)) tags.set(key, tag);
+    }
+  }
+  const options = [...tags].sort((a, b) => a[1].localeCompare(b[1], 'es'));
+  tagFilter.replaceChildren(new Option('Todas las etiquetas', ''), ...options.map(([key, tag]) => new Option(tag, key)));
+  tagFilter.value = tags.has(selected) ? selected : '';
+  const visible = tagFilter.value
+    ? roots.filter(post => post.tags?.some(tag => tagKey(tag) === selected))
+    : roots;
+  filterCount.textContent = `${visible.length} ${visible.length === 1 ? 'hilo' : 'hilos'}`;
+  threads.replaceChildren(...visible.map(render));
 }
 
 async function loadPosts() {
@@ -180,17 +240,28 @@ async function loadQueue(password = moderatorPassword) {
       button('Aprobar', () => decide(post, 'approved'), 'forum-button forum-primary'),
       button('Rechazar', () => decide(post, 'rejected'), 'forum-button forum-reject'),
     );
-    card.append(element('h3', subject), postDetails(post), element('p', 'Correo · ' + post.email), element('p', post.body, 'forum-text'), actions);
+    card.append(element('h3', subject), postDetails(post), element('p', 'Correo · ' + post.email), element('p', post.body, 'forum-text'), ...postTags(post), actions);
     return card;
   }));
 }
 
 newPost.addEventListener('click', () => openContribution(null));
+tagFilter.addEventListener('change', renderThreads);
+form.elements.tags.addEventListener('input', () => {
+  form.elements.tags.removeAttribute('aria-invalid');
+  formStatus.textContent = '';
+});
 cancel.addEventListener('click', () => dialog.close());
 dialog.addEventListener('cancel', event => { if (send.disabled) event.preventDefault(); });
 form.addEventListener('submit', async event => {
   event.preventDefault();
   const body = { ...Object.fromEntries(new FormData(form)), parentId };
+  if (!parentId && !parseTags(body.tags)) {
+    formStatus.textContent = tagError;
+    form.elements.tags.setAttribute('aria-invalid', 'true');
+    form.elements.tags.focus();
+    return;
+  }
   send.disabled = cancel.disabled = true;
   formStatus.textContent = 'Enviando…';
   try {
