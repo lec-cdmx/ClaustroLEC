@@ -121,6 +121,7 @@
 .atlas-page .atlas-node:focus-visible { outline: 3px solid white; outline-offset: 4px; }
 
 .atlas-pin {
+  position: relative;
   display: grid;
   width: clamp(3.2rem, 5vw, 4.2rem);
   aspect-ratio: 1;
@@ -193,8 +194,32 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .atlas-trace { animation: draw-route 1200ms ease-out; }
-  .atlas-pin { transition: background-color 180ms, color 180ms, box-shadow 220ms; }
-  .atlas-label, .atlas-open { transition: background-color 180ms; }
+  .atlas-pin { transition: background-color 180ms, color 180ms, box-shadow 220ms, transform 220ms cubic-bezier(.2, .7, .3, 1); }
+  .atlas-label { transition: background-color 180ms, translate 220ms ease-out; }
+  .atlas-open { transition: background-color 180ms; }
+  .atlas-node:is(:hover, :focus-visible) .atlas-pin { transform: translateY(-3px) scale(1.07); }
+  .atlas-node:active .atlas-pin { transform: scale(.96); }
+  .atlas-node:is(:hover, :focus-visible) .atlas-label { translate: 0 .18rem; }
+  .atlas-node:nth-of-type(even):is(:hover, :focus-visible) .atlas-label { translate: 0 -.18rem; }
+  .atlas-node.is-active .atlas-pin::after {
+    position: absolute;
+    inset: 0;
+    border: 2px solid #edf4ff;
+    border-radius: 50%;
+    pointer-events: none;
+    content: "";
+    animation: pin-pulse 560ms ease-out forwards;
+  }
+
+  @media (max-width: 720px) {
+    .atlas-node:is(:hover, :focus-visible) .atlas-label { translate: .18rem 0; }
+    .atlas-node:nth-of-type(even):is(:hover, :focus-visible) .atlas-label { translate: -.18rem 0; }
+  }
+}
+
+@keyframes pin-pulse {
+  from { opacity: .9; transform: scale(.95); }
+  to { opacity: 0; transform: scale(1.52); }
 }
 
 @keyframes draw-route {

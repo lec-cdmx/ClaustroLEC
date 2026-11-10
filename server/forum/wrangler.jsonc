@@ -1,0 +1,19 @@
+{
+  "name": "claustrolec-foro",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-08-01",
+  "workers_dev": true,
+  "vars": { "FORUM_ORIGIN": "https://lec-cdmx.github.io" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "claustrolec-foro",
+      "database_id": "168a840c-a1cb-4c06-8b34-fc0881beff31",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "ratelimits": [
+    { "name": "SUBMISSION_LIMIT", "namespace_id": "21874001", "simple": { "limit": 8, "period": 60 } },
+    { "name": "MODERATION_LIMIT", "namespace_id": "21874002", "simple": { "limit": 30, "period": 60 } }
+  ]
+}

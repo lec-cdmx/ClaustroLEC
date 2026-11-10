@@ -90,7 +90,7 @@
 .seminar-english summary { padding: .75rem 1rem; cursor: pointer; }
 .seminar-english summary span { padding-left: .32rem; }
 .seminar-english summary:is(:hover, :focus-visible) { background: var(--tint); }
-.seminar-english summary:focus-visible, .opportunity-controls :is(input, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.seminar-english summary:focus-visible, .opportunity-controls :is(input, select, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .seminar-english > div { display: grid; gap: .65rem; max-width: 85ch; padding: .3rem 1rem 1.15rem; color: var(--muted); font-size: .92rem; }
 .seminar-english h3, .seminar-english h4 { margin: .35rem 0 0; color: var(--navy); }
 
@@ -99,9 +99,14 @@
 .external-heading h2 { margin: .45rem 0; color: var(--navy); font-size: clamp(1.9rem, 4.5vw, 3.65rem); line-height: 1.08; letter-spacing: -.05em; }
 .external-heading > p:last-child { max-width: 72ch; color: var(--muted); }
 
+.radar-note { max-width: 64rem; margin-bottom: 1.25rem; padding: .8rem 1rem; border: 1px solid #efc197; border-left: 4px solid #d76a24; border-radius: .45rem; background: #fff4e8; color: #653918; }
+.radar-note h3 { margin: 0 0 .2rem; color: #743710; font-size: .94rem; }
+.radar-note p { font-size: .87rem; }
+
 .opportunity-controls { padding: 1rem; border: 1px solid var(--rule); border-radius: .7rem; background: #f5f8ff; }
+.opportunity-fields { display: grid; grid-template-columns: minmax(0, 32rem) minmax(0, 15rem); gap: .65rem 1rem; }
 .opportunity-controls label { display: block; margin-bottom: .3rem; color: var(--navy); font-size: .84rem; font-weight: 690; }
-.opportunity-controls input { width: min(100%, 32rem); min-height: 2.7rem; padding: .52rem .7rem; border: 1px solid #a9bddb; border-radius: .42rem; background: white; color: var(--ink); font: inherit; font-size: .88rem; }
+.opportunity-controls :is(input, select) { width: 100%; min-height: 2.7rem; padding: .52rem .7rem; border: 1px solid #a9bddb; border-radius: .42rem; background: white; color: var(--ink); font: inherit; font-size: .88rem; }
 .opportunity-types { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .8rem; }
 .opportunity-types button { min-height: 2.5rem; padding: .32rem .65rem; border: 1px solid #adc0e2; border-radius: .42rem; background: white; color: var(--navy); cursor: pointer; font: inherit; font-size: .83rem; font-weight: 650; }
 .opportunity-types button:hover { background: #e7efff; }
@@ -138,6 +143,7 @@
 }
 
 @media (max-width: 500px) {
+  .opportunity-fields { grid-template-columns: 1fr; }
   .seminar-campus ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .external-entry { grid-template-columns: 1fr; }
   .external-action { display: flex; flex-wrap: wrap; align-items: center; gap: .15rem .6rem; }

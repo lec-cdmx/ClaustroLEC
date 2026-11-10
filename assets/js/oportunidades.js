@@ -1,6 +1,8 @@
 const controls = document.querySelector('#opportunity-controls');
 const search = document.querySelector('#opportunity-search');
+const sort = document.querySelector('#opportunity-sort');
 const types = document.querySelector('#opportunity-types');
+const list = document.querySelector('.external-list');
 const resultCount = document.querySelector('#opportunity-count');
 const empty = document.querySelector('#opportunity-empty');
 
@@ -11,6 +13,8 @@ function fold(text) {
 const entries = Array.from(document.querySelectorAll('.external-entry'), element => ({
   element,
   type: element.dataset.type,
+  name: element.querySelector('h3').textContent,
+  date: element.querySelector('time')?.dateTime || '',
   text: fold([element.dataset.type, element.dataset.keywords, element.textContent].join(' ')),
 }));
 
@@ -57,5 +61,18 @@ function updateResults() {
 }
 
 search.addEventListener('input', updateResults);
+const collator = new Intl.Collator('es', { sensitivity: 'base', numeric: true });
+const byName = (a, b) => collator.compare(a.name, b.name);
+const sorters = {
+  type: (a, b) => collator.compare(a.type, b.type) || byName(a, b),
+  name: byName,
+  date: (a, b) => b.date.localeCompare(a.date) || byName(a, b),
+};
+
+sort.addEventListener('change', () => {
+  const compare = sorters[sort.value];
+  const ordered = compare ? [...entries].sort(compare) : entries;
+  list.append(...ordered.map(entry => entry.element));
+});
 controls.hidden = false;
 updateResults();

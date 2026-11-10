@@ -1,1 +1,5 @@
 /fuentes-locales/
+/.wrangler/
+/server/forum/.dev.vars*
+/server/forum/.env*
+/server/forum/.wrangler/

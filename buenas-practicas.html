@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Actividades que puedes adaptar al nivel y a los objetivos de tu curso.">
+  <meta name="description" content="Foro del Claustro LEC para compartir y discutir buenas prácticas docentes.">
   <title>Buenas prácticas | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/foro.css">
+  <script type="module" src="assets/js/foro.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -40,30 +42,63 @@
     </nav>
   </div>
 
-  <main class="shell" id="contenido" tabindex="-1">
-    <div class="page-heading">
+  <main class="shell" id="contenido" tabindex="-1" data-forum-api="">
+    <div class="page-heading forum-heading">
       <p class="eyebrow">03 · Ideas para el aula</p>
       <h1>Buenas prácticas</h1>
-      <p>Actividades que puedes adaptar al nivel y a los objetivos de tu curso.</p>
+      <p>Comparte una práctica que hayas probado en clase o responde en un hilo para contar cómo la adaptarías.</p>
     </div>
-    <div class="grid grid-three">
-      <article class="card practice">
-        <span class="sample">Ejemplo</span>
-        <h2>Datos locales en clase</h2>
-        <p>Pide a cada equipo que compare dos indicadores de su municipio y explique qué puede concluir con los datos disponibles.</p>
-      </article>
-      <article class="card practice">
-        <span class="sample">Ejemplo</span>
-        <h2>Debate de política pública</h2>
-        <p>Asigna posturas distintas sobre una política y cierra con una reflexión individual basada en evidencia.</p>
-      </article>
-      <article class="card practice">
-        <span class="sample">Ejemplo</span>
-        <h2>Retroalimentación entre pares</h2>
-        <p>Usa una rúbrica breve para que los equipos revisen el planteamiento y la evidencia antes de entregar su análisis.</p>
-      </article>
+    <div class="forum-toolbar">
+      <div>
+        <h2>Conversaciones del claustro</h2>
+        <p>Los aportes y las respuestas se publican después de su aprobación. Los ejemplos iniciales son ficticios.</p>
+      </div>
+      <button class="forum-button forum-primary" id="forum-new" type="button" disabled>Compartir una práctica</button>
     </div>
-    <p class="sample-note"><strong>Nota de edición.</strong> Las actividades se presentan como ejemplos que puedes adaptar.</p>
+    <p class="forum-status" id="forum-status" role="status"></p>
+    <div id="forum-threads" class="forum-threads"></div>
+    <noscript><p>Activa JavaScript para consultar los hilos y participar en el foro.</p></noscript>
+
+    <details class="forum-moderation" id="forum-moderation">
+      <summary>Moderación</summary>
+      <div class="forum-moderation-content">
+        <form id="forum-login" hidden>
+          <label>Contraseña de moderación <input name="password" type="password" autocomplete="current-password" maxlength="256" required></label>
+          <button class="forum-button" type="submit">Ver envíos pendientes</button>
+        </form>
+        <div class="forum-session" id="forum-session" hidden>
+          <button class="forum-button" id="forum-refresh" type="button">Actualizar cola</button>
+          <button class="forum-button" id="forum-logout" type="button">Salir</button>
+        </div>
+        <p id="forum-moderation-status" role="status">La moderación se habilitará al conectar el servicio del foro.</p>
+        <div id="forum-queue"></div>
+      </div>
+    </details>
+
+    <dialog id="forum-dialog" class="forum-dialog" aria-labelledby="forum-dialog-title">
+      <form id="forum-submit">
+        <div class="forum-dialog-header">
+          <h2 id="forum-dialog-title">Compartir una práctica</h2>
+          <button class="forum-button" id="forum-cancel" type="button">Cancelar</button>
+        </div>
+        <p class="forum-context" id="forum-context" hidden></p>
+        <div class="forum-fields">
+          <label>Nombre <input name="name" autocomplete="name" minlength="2" maxlength="100" required></label>
+          <label>Puesto <select name="role" required>
+            <option value="">Selecciona un puesto</option>
+            <option>Directivo</option><option>Profesor investigador</option><option>Profesor de tiempo completo</option><option>Profesor de cátedra</option>
+          </select></label>
+          <label>Campus <input name="campus" list="forum-campuses" minlength="2" maxlength="90" required></label>
+          <datalist id="forum-campuses"><option value="Ciudad de México"><option value="Santa Fe"><option value="Estado de México"></datalist>
+          <label>Correo <input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+        </div>
+        <label id="forum-title-field">Título <input name="title" minlength="4" maxlength="120" required></label>
+        <label>Contribución <textarea name="body" rows="5" minlength="5" maxlength="2500" required></textarea></label>
+        <p class="forum-privacy">Al aprobarse, se verán tu nombre, puesto, campus y contribución. El correo solo es visible para quienes moderan.</p>
+        <p class="forum-status" id="forum-submit-status" role="status"></p>
+        <button class="forum-button forum-primary" type="submit">Enviar a moderación</button>
+      </form>
+    </dialog>
   </main>
 
   <footer class="site-footer">
