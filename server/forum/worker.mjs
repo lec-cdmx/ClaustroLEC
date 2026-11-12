@@ -104,9 +104,10 @@ async function moderate(request, env, id) {
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin');
+    const allowedOrigins = (env.FORUM_ORIGIN ?? '').split(',').map(value => value.trim());
     const headers = { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', Vary: 'Origin' };
     const json = (data, status = 200) => Response.json(data, { status, headers });
-    if (origin && origin !== env.FORUM_ORIGIN) return json({ error: 'Origen no autorizado.' }, 403);
+    if (origin && !allowedOrigins.includes(origin)) return json({ error: 'Origen no autorizado.' }, 403);
     if (origin) {
       headers['Access-Control-Allow-Origin'] = origin;
       headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';

@@ -3,7 +3,7 @@
   "main": "worker.mjs",
   "compatibility_date": "2026-08-01",
   "workers_dev": true,
-  "vars": { "FORUM_ORIGIN": "https://lec-cdmx.github.io" },
+  "vars": { "FORUM_ORIGIN": "https://lec-cdmx.github.io,https://claustrolec.pages.dev" },
   "d1_databases": [
     {
       "binding": "DB",

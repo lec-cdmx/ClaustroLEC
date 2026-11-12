@@ -10,6 +10,14 @@ Para revisar el portal con los filtros y el cruce de temas, ejecuta `python -m h
 
 El [portal](https://lec-cdmx.github.io/ClaustroLEC/) se publica desde la raíz (`/`) de la rama `main`. Los cambios enviados a `main` activan la actualización en GitHub Pages.
 
+## Publicación en Cloudflare Pages
+
+El [portal en Cloudflare Pages](https://claustrolec.pages.dev/) se actualiza con los cambios que llegan a `main` en `lec-cdmx/ClaustroLEC`. El proyecto `claustrolec` usa la raíz del repositorio, **None** como framework y `dist` como directorio de salida. El comando de compilación copia los archivos públicos del portal.
+
+```sh
+mkdir -p dist && cp -- *.html dist/ && cp -R -- assets dist/
+```
+
 ## Organización de archivos
 
 - **Raíz.** Portada y cuatro páginas del portal.
@@ -27,7 +35,7 @@ Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido valida
 
 ## Foro de Buenas prácticas
 
-La interfaz está en GitHub Pages y las contribuciones se guardan en Cloudflare D1 a través de un Worker. Los envíos y respuestas entran a la cola de **Moderación**. El correo sirve para que moderación contacte a la persona sobre su envío. La consulta pública solo devuelve contribuciones aprobadas y muestra el correo si la persona eligió compartirlo en ese envío. Los ejemplos ficticios están en `assets/js/forum-examples.js`.
+La interfaz está en Cloudflare Pages y GitHub Pages. Las contribuciones se guardan en Cloudflare D1 a través de un Worker. Los envíos y respuestas entran a la cola de **Moderación**. El correo sirve para que moderación contacte a la persona sobre su envío. La consulta pública solo devuelve contribuciones aprobadas y muestra el correo si la persona eligió compartirlo en ese envío. Los ejemplos ficticios están en `assets/js/forum-examples.js`.
 
 Para configurar el servicio, crea la base `claustrolec-foro`, indica su identificador en `server/forum/wrangler.jsonc` y ejecuta desde `server/forum` los siguientes comandos:
 
@@ -37,6 +45,6 @@ npx wrangler deploy
 npx wrangler secret put MODERATOR_PASSWORD
 ```
 
-Elige una contraseña de al menos 20 caracteres y guárdala como secreto. Escribe la URL HTTPS del Worker en `data-forum-api` de `buenas-practicas.html`. El origen permitido se configura en `FORUM_ORIGIN`.
+Elige una contraseña de al menos 20 caracteres y guárdala como secreto. Escribe la URL HTTPS del Worker en `data-forum-api` de `buenas-practicas.html`. Configura los orígenes permitidos en `FORUM_ORIGIN`, separados por comas.
 
 Para probar en local, agrega `MODERATOR_PASSWORD` en `server/forum/.dev.vars`, aplica la migración con `npx wrangler d1 migrations apply DB --local` y ejecuta `npx wrangler dev --var FORUM_ORIGIN:http://127.0.0.1:4173`. Desde la raíz, sirve el portal con `python -m http.server 4173 --bind 127.0.0.1` y abre `http://127.0.0.1:4173/buenas-practicas.html`.
