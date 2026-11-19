@@ -25,6 +25,7 @@ Actualizado: 19 de noviembre de 2026.
 ## Estado de la implementación
 
 - Portada y navegación adaptadas a seis secciones.
-- Organigrama con 28 contactos, tarjetas por función y enlaces de correo.
+- Organigrama con 30 contactos únicos (Arturo aparece en sus dos funciones), tarjetas por función y enlaces de correo. Se priorizan los contactos de Economía y las decanaturas y direcciones divisionales. Se incorporan las direcciones de departamento de Economía por campus y sus nodos de profesorado; Derecho y Relaciones Internacionales siguen visibles.
 - Programación importada y consulta por nómina implementada: 908 filas, 213 grupos y 136 docentes del periodo 202613 (corte de la fuente: 11 de noviembre de 2026).
 - Los cambios se preparan y revisan localmente; la publicación es un paso posterior.
+- Ajustes de presentación del 19 de noviembre: tarjetas compactas, «Periodos» sin Tec21, CRN en el cuadro de datos, encabezado «Equipo docente» y resumen de sesiones equivalentes con detalle original desplegable. La sección de campus se titula «División ECSG por campus» e incluye una guía breve de funciones con referencias institucionales.

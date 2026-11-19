@@ -8,13 +8,13 @@
 .section-title h2 { font: 750 clamp(1.5rem, 3vw, 2rem)/1.15 var(--display); letter-spacing: -.025em; }
 .section-title p { color: var(--muted); font-size: .83rem; }
 .org-top { display: grid; justify-items: center; padding: 1rem 0 2.5rem; }
-.person { --person-color: #725032; --person-bg: #fbf0dd; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) 1rem; gap: .8rem; align-items: start; width: 100%; padding: 1.1rem; border: 1px solid var(--rule); border-left: 4px solid var(--person-color); border-radius: .65rem; background: white; text-decoration: none; scroll-margin-top: 2rem; }
+.person { --person-color: #725032; --person-bg: #fbf0dd; display: grid; grid-template-columns: 2rem minmax(0, 1fr) 1rem; gap: .6rem; align-items: start; width: 100%; padding: .7rem .85rem; border: 1px solid var(--rule); border-left: 4px solid var(--person-color); border-radius: .55rem; background: white; text-decoration: none; scroll-margin-top: 2rem; }
 .person:hover { border-color: var(--person-color); background: var(--person-bg); }
 .person:target { outline: 3px solid var(--accent); outline-offset: 4px; }
-.person-avatar { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; color: var(--person-color); background: var(--person-bg); font: 750 .85rem var(--display); }
-.person-name { display: block; font: 750 1.06rem/1.25 var(--display); }
-.person-role { display: block; margin-top: .25rem; color: var(--muted); font-size: .79rem; line-height: 1.45; }
-.person-email { display: block; margin-top: .55rem; color: var(--person-color); font-size: .74rem; overflow-wrap: anywhere; }
+.person-avatar { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; color: var(--person-color); background: var(--person-bg); font: 750 .75rem var(--display); }
+.person-name { display: block; font: 700 .96rem/1.2 var(--display); }
+.person-role { display: block; margin-top: .17rem; color: var(--muted); font-size: .75rem; line-height: 1.35; }
+.person-email { display: block; margin-top: .25rem; color: var(--person-color); font-size: .72rem; overflow-wrap: anywhere; }
 .person-arrow { color: var(--person-color); }
 .person-status { display: inline-block; margin-top: .4rem; padding: .08rem .45rem; border: 1px solid #d1b3dd; border-radius: 1rem; color: #66387c; font-size: .68rem; }
 .org-national { max-width: 26rem; }
@@ -29,15 +29,35 @@
 .org-column > h3 small { display: block; color: var(--muted); font: 450 .8rem system-ui; margin-top: .25rem; }
 .org-department { --person-color: #a13d4b; --person-bg: #fbe9e8; }
 .org-division { --person-color: #a13d4b; --person-bg: #fbe9e8; }
-.org-children { position: relative; display: grid; gap: .7rem; margin: 1rem 0 0 1rem; padding: 0 0 0 1rem; border-left: 1px solid #bec6d4; list-style: none; }
+.org-children { position: relative; display: grid; gap: .5rem; margin: .7rem 0 0 .65rem; padding: 0 0 0 .75rem; border-left: 1px solid #bec6d4; list-style: none; }
 .org-children > li { position: relative; min-width: 0; }
-.org-children > li::before { content: ''; position: absolute; top: 1.5rem; left: -1rem; width: 1rem; height: 1px; background: #bec6d4; }
-.org-children .person { --person-color: #734397; --person-bg: #f3eafa; grid-template-columns: minmax(0, 1fr) 1rem; padding: .85rem; }
+.org-children > li::before { content: ''; position: absolute; top: 1.5rem; left: -.75rem; width: .75rem; height: 1px; background: #bec6d4; }
+.org-children .person { --person-color: #734397; --person-bg: #f3eafa; grid-template-columns: minmax(0, 1fr) 1rem; padding: .6rem .75rem; }
 .org-children .person-avatar { display: none; }
-.org-faculty { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
-.org-faculty span { border: 1px solid #d7c8e5; padding: .35rem .65rem; border-radius: .35rem; background: #f3eafa; color: #633a82; font-size: .75rem; }
-.org-coordination-label { color: var(--muted); font-size: .76rem; margin-top: 1.2rem; }
-.org-coordination .person { --person-color: #a14472; --person-bg: #fbeaf2; }
+.org-children .org-faculty-node { grid-template-columns: 1fr; background: #f8f4fb; }
+.org-faculty-node .person-name { font-size: .79rem; font-weight: 600; }
+.org-children .org-coordination { --person-color: #a14472; --person-bg: #fbeaf2; }
+.person.is-priority, .org-children .person.is-priority { border-color: var(--person-color); background: var(--person-bg); }
+.person.is-priority .person-name { font-size: 1.06rem; font-weight: 800; }
+.org-role-guide { margin-bottom: 2rem; padding: 1rem 1.2rem; border: 1px solid #c9d5e7; border-radius: .6rem; background: white; }
+.org-role-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem; }
+.org-role-comparison p { font-size: .8rem; color: var(--muted); }
+.org-role-comparison strong { display: block; margin-bottom: .25rem; font: 750 1rem var(--display); color: var(--accent); }
+.org-role-guide summary { margin-top: .8rem; font-size: .77rem; cursor: pointer; color: var(--accent); }
+.org-role-definitions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem 1.2rem; font-size: .77rem; }
+.org-role-definitions dt { font-weight: 700; }
+.org-role-definitions dd { margin: .2rem 0 0; color: var(--muted); }
+.org-role-sources { font-size: .7rem; color: var(--muted); }
+.org-economics { padding: 1.2rem; border: 1px solid #b8c9ed; border-radius: .75rem; background: #edf2ff66; }
+.org-economics > h3 { margin: 0 0 1rem; font: 750 1.3rem var(--display); color: var(--accent); }
+.org-economics-head { width: min(100%, 30rem); margin: 0 auto 1.5rem; }
+.org-economics-grid { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding-top: 1rem; }
+.org-economics-grid::before { position: absolute; content: ''; inset: 0 16.66% auto; height: .75rem; border: 1px solid #99acd3; border-bottom: 0; }
+.org-economics-grid::after { position: absolute; content: ''; top: -1.5rem; left: 50%; height: 2.25rem; border-left: 1px solid #99acd3; }
+.org-column > h4 { margin: 0 0 .5rem; font: 700 .9rem var(--display); }
+.org-other-title { margin: 1.5rem 0 .8rem; color: var(--muted); font: 650 1rem var(--display); }
+.org-other-departments { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.org-other-faculty { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .org-lec { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 2rem; align-items: center; padding: 1.5rem; border: 1px solid #9ec7bf; border-radius: .8rem; background: #e8f3f0; }
 .org-lec .person { --person-color: #226657; --person-bg: #e8f3f0; }
 .org-lec p { font-size: .86rem; color: #30574f; }
@@ -66,25 +86,27 @@
 .schedule-summary p { color: var(--muted); font-size: .84rem; }
 .schedule-count { padding: .4rem .8rem; background: #e8f3f0; color: #226657; border-radius: 2rem; font-size: .82rem; }
 .schedule-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
-.schedule-card { min-width: 0; padding: clamp(1rem, 3vw, 1.8rem); border: 1px solid var(--rule); border-top: 4px solid var(--accent); border-radius: .6rem; background: white; }
-.schedule-card-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem 1.5rem; margin-bottom: 1.2rem; }
-.schedule-card h3 { margin: .5rem 0 0; font: 750 clamp(1.3rem, 3vw, 1.75rem)/1.15 var(--display); }
+.schedule-card { min-width: 0; padding: clamp(.85rem, 2vw, 1.2rem); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: .6rem; background: white; }
+.schedule-card-header { margin-bottom: .8rem; }
+.schedule-card h3 { margin: .35rem 0 0; font: 750 clamp(1.2rem, 2.5vw, 1.5rem)/1.15 var(--display); }
 .schedule-badges { display: flex; flex-wrap: wrap; gap: .4rem; }
 .schedule-badge { padding: .17rem .55rem; border-radius: .3rem; background: #edf2ff; color: #284a9e; font-size: .73rem; }
 .schedule-badge.kind-block { background: #f3eafa; color: #734397; }
-.schedule-crn { font: 650 .85rem var(--mono); color: var(--muted); }
-.schedule-details { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .9rem 1.3rem; margin: 0 0 1.2rem; }
+.schedule-details { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem 1rem; margin: 0 0 .8rem; }
 .schedule-details dt { font-size: .71rem; color: var(--muted); }
-.schedule-details dd { margin: .18rem 0 0; font-size: .9rem; font-weight: 600; }
+.schedule-details dd { margin: .12rem 0 0; font-size: .85rem; font-weight: 600; }
 .schedule-table-wrap { overflow-x: auto; }
 .schedule-table { width: 100%; border-collapse: collapse; font-size: .8rem; text-align: left; }
 .schedule-table caption { text-align: left; font-weight: 700; margin-bottom: .5rem; }
 .schedule-table th { color: var(--muted); font-size: .72rem; font-weight: 600; }
-.schedule-table :is(th, td) { padding: .55rem .6rem; border-bottom: 1px solid #e3e7ef; vertical-align: top; }
+.schedule-table :is(th, td) { padding: .4rem .5rem; border-bottom: 1px solid #e3e7ef; vertical-align: top; }
 .schedule-table tbody tr:nth-child(odd) { background: #f8f9fc; }
-.schedule-team { margin-top: 1.1rem; padding: 1rem; border-radius: .4rem; background: #f5f5f0; }
-.schedule-team h4 { margin: 0 0 .6rem; font-size: .83rem; }
-.schedule-team ul { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+.schedule-original { margin-top: .5rem; }
+.schedule-original summary { color: var(--accent); font-size: .75rem; cursor: pointer; }
+.schedule-original[open] summary { margin-bottom: .6rem; }
+.schedule-team { margin-top: .7rem; padding: .65rem .8rem; border-radius: .4rem; background: #f5f5f0; }
+.schedule-team h4 { margin: 0 0 .4rem; font-size: .8rem; }
+.schedule-team ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .3rem 1.8rem; margin: 0; padding: 0; list-style: none; }
 .schedule-team li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .81rem; }
 .schedule-team .is-current { font-weight: 700; color: var(--accent); }
 .schedule-team small { display: block; color: var(--muted); font-weight: 400; }
@@ -96,7 +118,11 @@
   .person-avatar { display: none; }
 }
 @media (max-width: 700px) {
-  .org-columns, .org-projects, .org-lec, .lookup-panel { grid-template-columns: 1fr; }
+  .org-columns, .org-projects, .org-lec, .lookup-panel, .org-economics-grid, .org-other-departments, .org-role-comparison { grid-template-columns: 1fr; }
+  .org-economics-grid::before, .org-economics-grid::after { display: none; }
+  .org-economics-head { margin-bottom: .5rem; }
+  .org-role-definitions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .schedule-team ul { grid-template-columns: 1fr; }
   .org-projects::before { display: none; }
   .org-projects { border-left: 1px solid #94a1b2; padding-left: 1rem; }
   .org-column { margin-bottom: 1rem; }

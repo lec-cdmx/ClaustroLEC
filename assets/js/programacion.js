@@ -1,3 +1,5 @@
+import { summarizeSessions } from './sesiones.mjs?v=1';
+
 const form = document.querySelector('#schedule-search');
 const input = document.querySelector('#payroll');
 const submit = form.querySelector('button');
@@ -35,28 +37,31 @@ function courseCard(group, payroll) {
   const ends = teacher.sessions.map(s => s.end).filter(Boolean).sort();
   const details = [
     ['Clave de UF', group.key], ['Grupo', group.group],
-    ['Periodos Tec21', group.periods || 'No indicados'], ['Créditos de la UF', number(group.credits)],
-    ['Idioma', group.language], ['Tu participación', participation(teacher)],
+    ['Periodos', group.periods || 'No indicados'], ['Créditos de la UF', number(group.credits)],
+    ['CRN', group.crn], ['Tu participación', participation(teacher)],
     ['Fecha de inicio', date(starts[0])], ['Fecha final', date(ends.at(-1))],
   ];
-  const sessions = teacher.sessions.map(s => `<tr>
+  const sessionRows = rows => rows.map(s => `<tr>
     <td>${escapeHTML(days(s.days))}</td>
     <td>${escapeHTML(s.startTime || s.endTime ? `${s.startTime || '—'}–${s.endTime || '—'}` : 'Sin horario asignado')}</td>
     <td>${escapeHTML(s.room || 'No indicado')}</td>
     <td>${escapeHTML(dateRange(s))}</td><td>${escapeHTML(percentage(s.participation))}</td>
   </tr>`).join('');
+  const compact = summarizeSessions(teacher.sessions);
+  const reduced = compact.length < teacher.sessions.length;
+  const table = (rows, caption) => `<div class="schedule-table-wrap"><table class="schedule-table"><caption>${caption}</caption>
+    <thead><tr><th scope="col">Días</th><th scope="col">Horario</th><th scope="col">Salón</th><th scope="col">Fechas</th><th scope="col">Participación</th></tr></thead>
+    <tbody>${sessionRows(rows)}</tbody></table></div>`;
   const team = [...group.assignments].sort((a, b) => (b.payroll === payroll) - (a.payroll === payroll));
   return `<article class="schedule-card" aria-labelledby="course-${escapeHTML(group.crn)}">
     <div class="schedule-card-header"><div><div class="schedule-badges">
       <span class="schedule-badge ${group.type === 'Bloque' ? 'kind-block' : ''}">${escapeHTML(group.type)}</span>
       <span class="schedule-badge">${escapeHTML(group.language)}</span></div>
-      <h3 id="course-${escapeHTML(group.crn)}">${escapeHTML(group.name)}</h3></div>
-      <span class="schedule-crn">CRN ${escapeHTML(group.crn)}</span></div>
+      <h3 id="course-${escapeHTML(group.crn)}">${escapeHTML(group.name)}</h3></div></div>
     <dl class="schedule-details">${details.map(([label, value]) => `<div><dt>${label}</dt><dd>${escapeHTML(value)}</dd></div>`).join('')}</dl>
-    <div class="schedule-table-wrap"><table class="schedule-table"><caption>Tus sesiones en este grupo</caption>
-      <thead><tr><th scope="col">Días</th><th scope="col">Horario</th><th scope="col">Salón</th><th scope="col">Fechas</th><th scope="col">Participación</th></tr></thead>
-      <tbody>${sessions}</tbody></table></div>
-    <div class="schedule-team"><h4>Equipo docente del CRN ${escapeHTML(group.crn)}</h4>
+    ${table(compact, 'Tus sesiones en este grupo')}
+    ${reduced ? `<details class="schedule-original"><summary>Ver detalle original (${teacher.sessions.length} filas)</summary>${table(teacher.sessions, 'Sesiones registradas en la programación')}</details>` : ''}
+    <div class="schedule-team"><h4>Equipo docente</h4>
       <ul>${team.map(p => `<li${p.payroll === payroll ? ' class="is-current"' : ''}><span>${escapeHTML(p.name)}${p.payroll === payroll ? ' (tú)' : ''}</span><span>${escapeHTML(participation(p))}${unique(p.sessions.map(s => s.participation)).length > 1 ? '<small>Según sesión</small>' : ''}</span></li>`).join('')}</ul></div>
   </article>`;
 }

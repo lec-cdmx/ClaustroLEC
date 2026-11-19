@@ -1,5 +1,5 @@
 {
-  "source": "Organigrama.pdf y Organigrama.png, proporcionados por la coordinación",
+  "source": "Organigrama.pdf y Organigrama.png, con precisiones de la coordinación del 19 de noviembre de 2026",
   "national": {"name":"Edna Jaime Treviño","role":"Decana Nacional de la ECSG","email":"edna.jaime@tec.mx"},
   "regional": {"name":"Josefina Cortés Campos","role":"Decana Regional de la ECSG","email":"cortescampos.j@tec.mx"},
   "projects": [
@@ -7,7 +7,11 @@
     {"name":"Merari del Rocío Santos Aguilar","role":"Coordinadora Académica de Proyectos de la ECSG, Región CDMX","email":"mer.santos.a@tec.mx"}
   ],
   "departments": [
-    {"area":"Economía","head":{"name":"Arturo Pérez Mendoza","role":"Director Regional del Departamento de Economía","email":"arturo.perez@tec.mx"},"coordinators":[
+    {"area":"Economía","head":{"name":"Arturo Pérez Mendoza","role":"Director Regional del Departamento de Economía","email":"arturo.perez@tec.mx"},"campusHeads":[
+      {"campus":"CCM","name":"Arturo Pérez Mendoza","role":"Director del Departamento de Economía, CCM","email":"arturo.perez@tec.mx","status":"También director regional"},
+      {"campus":"CSF","name":"David Lamb de Valdés","role":"Director del Departamento de Economía, CSF","email":"david.lamb@tec.mx"},
+      {"campus":"CEM","name":"Ángel Olvera Lozano","role":"Director del Departamento de Economía, CEM","email":"angel.olvera@tec.mx"}
+    ],"coordinators":[
       {"name":"Elvira Gómez Campuzano","role":"Coordinadora Académica de Departamento, CCM","email":"elvira.gomez@tec.mx"},
       {"name":"Karla Izquierdo Herrera","role":"Coordinadora Académica de Departamento, CSF","email":"karla.izquierdo@tec.mx"},
       {"name":"Itzel Velázquez Soto","role":"Coordinadora Académica de Departamento, CEM","email":"itzel.jessamyn@tec.mx"}
