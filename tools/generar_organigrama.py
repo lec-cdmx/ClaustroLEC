@@ -27,13 +27,13 @@ def render(org):
 <header class="page-heading management-heading"><div class="page-intro"><p class="eyebrow">02 · Escuela de Ciencias Sociales y Gobierno</p><h1>Nuestra Escuela</h1><p>Conoce la estructura de la ECSG en la Región CDMX. Destacamos los contactos de referencia para el profesorado de Economía.</p></div><div class="chapter-mark" aria-hidden="true">02</div></header>
 <nav class="section-links" aria-label="Ir a una parte del organigrama"><a href="#decanatura">Decanaturas y proyectos</a><a href="#departamentos">Departamentos</a><a href="#campus">División ECSG por campus</a><a href="#direccion-lec">Dirección Nacional de LEC</a></nav>
 <aside class="org-role-guide" aria-label="Guía de funciones">
-<div class="org-role-comparison"><p><strong>Dirección de departamento</strong>Acompaña al profesorado de tiempo completo y cátedra en su desarrollo docente, capacitación e investigación. Coordina la asignación de profesores a las UF y da seguimiento a las necesidades académicas del departamento.</p><p><strong>Dirección de programa</strong>Acompaña al alumnado en su trayectoria dentro de la carrera y da seguimiento a su avance académico. Orienta la elección de UF, concentraciones e intercambios durante las etapas de enfoque y especialización.</p></div>
+<div class="org-role-comparison"><p><strong>Dirección de departamento</strong>Acompaña al profesorado de tiempo completo y cátedra en su desarrollo docente, capacitación e investigación. Coordina la asignación de profesores a las UF y da seguimiento a las necesidades académicas del departamento.</p><p><strong>Dirección de programa</strong>Acompaña al alumnado después de los primeros dos o tres semestres de la carrera y da seguimiento a su avance académico. Orienta la elección de UF, concentraciones e intercambios.</p></div>
 <details><summary>Qué hace cada puesto</summary><dl class="org-role-definitions">
 <div><dt>Decanaturas</dt><dd>Lideran la Escuela en su ámbito nacional o regional.</dd></div>
 <div><dt>Dirección divisional</dt><dd>Coordina la Escuela en su campus.</dd></div>
 <div><dt>Proyectos académicos</dt><dd>Articulan las iniciativas académicas de la región.</dd></div>
 <div><dt>Coordinación académica</dt><dd>Apoya la operación académica del departamento.</dd></div>
-<div><dt>Dirección de entrada</dt><dd>Guía al alumnado durante la etapa de exploración.</dd></div>
+<div><dt>Dirección de entrada</dt><dd>Guía al alumnado durante los primeros dos o tres semestres.</dd></div>
 <div><dt>Dirección Nacional de LEC</dt><dd>Articula el programa de Economía a nivel nacional.</dd></div>
 </dl>'''
     body += '</details></aside>'
@@ -76,7 +76,7 @@ def main():
     text, count = re.subn(r'<main\b.*?</main>', lambda _: render(org), text, count=1, flags=re.S)
     if count != 1:
         raise ValueError('No se encontró el contenedor principal del organigrama')
-    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=4', text)
+    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=5', text)
     path.write_text(text, encoding='utf-8')
     print('Organigrama actualizado desde el archivo de datos.')
 

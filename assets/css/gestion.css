@@ -33,7 +33,7 @@
 .org-children > li::before { content: ''; position: absolute; top: 1.5rem; left: -.75rem; width: .75rem; height: 1px; background: #bec6d4; }
 .org-children .person { --person-color: #734397; --person-bg: #f3eafa; grid-template-columns: minmax(0, 1fr) 1rem; padding: .6rem .75rem; }
 .org-children .person-avatar { display: none; }
-.org-children .org-faculty-node { grid-template-columns: 1fr; background: #f8f4fb; }
+.org-children .org-faculty-node { grid-template-columns: 1fr; background: white; border-color: var(--rule); border-left-color: #a4adb6; }
 .org-faculty-node .person-name { font-size: .79rem; font-weight: 600; }
 .org-children .org-coordination { --person-color: #4b6285; --person-bg: #edf1f8; }
 .person.is-priority, .org-children .person.is-priority { border-color: var(--person-color); background: var(--person-bg); }

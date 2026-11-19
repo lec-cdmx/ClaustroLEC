@@ -8,7 +8,7 @@
   ],
   "departments": [
     {"area":"Economía","head":{"name":"Arturo Pérez Mendoza","role":"Director Regional del Departamento de Economía","email":"arturo.perez@tec.mx"},"campusHeads":[
-      {"campus":"CCM","name":"Arturo Pérez Mendoza","role":"Director del Departamento de Economía, CCM","email":"arturo.perez@tec.mx","status":"También director regional"},
+      {"campus":"CCM","name":"Arturo Pérez Mendoza","role":"Director del Departamento de Economía, CCM","email":"arturo.perez@tec.mx","status":"También Director Regional"},
       {"campus":"CSF","name":"David Lamb de Valdés","role":"Director del Departamento de Economía, CSF","email":"david.lamb@tec.mx"},
       {"campus":"CEM","name":"Ángel Olvera Lozano","role":"Director del Departamento de Economía, CEM","email":"angel.olvera@tec.mx"}
     ],"coordinators":[
