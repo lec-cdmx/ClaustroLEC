@@ -5,8 +5,6 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-DEPARTMENT_SOURCE = 'https://jobs.tec.mx/tecnologico-de-monterrey/job/Tlalpan-Direcci%C3%B3n-de-Departamento-Regional-de-Mecatr%C3%B3nica/1441385600/'
-PROGRAM_SOURCE = 'https://conecta.tec.mx/es/noticias/nacional/educacion/supiste-asi-cambio-el-modelo-de-acompanamiento-para-estudiantes-tec'
 
 
 def person(p, kind='', priority=False):
@@ -29,7 +27,7 @@ def render(org):
 <header class="page-heading management-heading"><div class="page-intro"><p class="eyebrow">02 · Escuela de Ciencias Sociales y Gobierno</p><h1>Nuestra Escuela</h1><p>Conoce la estructura de la ECSG en la Región CDMX. Destacamos los contactos de referencia para el profesorado de Economía.</p></div><div class="chapter-mark" aria-hidden="true">02</div></header>
 <nav class="section-links" aria-label="Ir a una parte del organigrama"><a href="#decanatura">Decanaturas y proyectos</a><a href="#departamentos">Departamentos</a><a href="#campus">División ECSG por campus</a><a href="#direccion-lec">Dirección Nacional de LEC</a></nav>
 <aside class="org-role-guide" aria-label="Guía de funciones">
-<div class="org-role-comparison"><p><strong>Dirección de departamento</strong>Atiende al profesorado: desarrollo docente y asignación académica.</p><p><strong>Dirección de programa</strong>Orienta al alumnado: trayectoria, UF y especialización.</p></div>
+<div class="org-role-comparison"><p><strong>Dirección de departamento</strong>Acompaña al profesorado de tiempo completo y cátedra en su desarrollo docente, capacitación e investigación. Coordina la asignación de profesores a las UF y da seguimiento a las necesidades académicas del departamento.</p><p><strong>Dirección de programa</strong>Acompaña al alumnado en su trayectoria dentro de la carrera y da seguimiento a su avance académico. Orienta la elección de UF, concentraciones e intercambios durante las etapas de enfoque y especialización.</p></div>
 <details><summary>Qué hace cada puesto</summary><dl class="org-role-definitions">
 <div><dt>Decanaturas</dt><dd>Lideran la Escuela en su ámbito nacional o regional.</dd></div>
 <div><dt>Dirección divisional</dt><dd>Coordina la Escuela en su campus.</dd></div>
@@ -38,10 +36,10 @@ def render(org):
 <div><dt>Dirección de entrada</dt><dd>Guía al alumnado durante la etapa de exploración.</dd></div>
 <div><dt>Dirección Nacional de LEC</dt><dd>Articula el programa de Economía a nivel nacional.</dd></div>
 </dl>'''
-    body += f'<p class="org-role-sources">Guía orientativa. Referencias del Tec: <a href="{DEPARTMENT_SOURCE}" target="_blank" rel="noopener">funciones de departamento</a> y <a href="{PROGRAM_SOURCE}" target="_blank" rel="noopener">acompañamiento de entrada y programa</a>.</p></details></aside>'
+    body += '</details></aside>'
     body += '<section id="decanatura" aria-labelledby="decanatura-title"><div class="section-title"><h2 id="decanatura-title">Decanaturas y proyectos académicos</h2></div><div class="org-top">'
-    body += person(org['national'], 'org-national', True) + '<div class="org-connector" aria-hidden="true"></div>'
-    body += person(org['regional'], 'org-regional', True) + '<div class="org-connector" aria-hidden="true"></div><div class="org-projects">'
+    body += person(org['national'], 'org-national') + '<div class="org-connector" aria-hidden="true"></div>'
+    body += person(org['regional'], 'org-regional') + '<div class="org-connector" aria-hidden="true"></div><div class="org-projects">'
     body += ''.join(person(p) for p in org['projects']) + '</div></div></section>'
     economy = next(d for d in org['departments'] if d['area'] == 'Economía')
     body += '<section id="departamentos" aria-labelledby="departamentos-title"><div class="section-title"><h2 id="departamentos-title">Departamentos regionales</h2><p>Dependientes de la Decanatura Regional</p></div>'
@@ -78,7 +76,7 @@ def main():
     text, count = re.subn(r'<main\b.*?</main>', lambda _: render(org), text, count=1, flags=re.S)
     if count != 1:
         raise ValueError('No se encontró el contenedor principal del organigrama')
-    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=3', text)
+    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=4', text)
     path.write_text(text, encoding='utf-8')
     print('Organigrama actualizado desde el archivo de datos.')
 
