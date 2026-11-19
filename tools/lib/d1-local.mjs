@@ -10,7 +10,7 @@ export function localDatabase(path = ':memory:') {
     prepare(sql) {
       const statement = sqlite.prepare(sql);
       const query = args => ({
-        bind: (...values) => query(values),
+        bind: (...values) => query(values.map(value => value instanceof ArrayBuffer ? new Uint8Array(value) : value)),
         async all() { return { results: statement.all(...args).map(row => ({ ...row })) }; },
         async first() { const row = statement.get(...args); return row ? { ...row } : null; },
         async run() { return { meta: { changes: Number(statement.run(...args).changes) } }; },

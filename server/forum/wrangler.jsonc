@@ -3,7 +3,15 @@
   "main": "worker.mjs",
   "compatibility_date": "2026-08-01",
   "workers_dev": true,
-  "vars": { "FORUM_ORIGIN": "https://lec-cdmx.github.io,https://claustrolec.pages.dev" },
+  "vars": {
+    "FORUM_ORIGIN": "https://lec-cdmx.github.io,https://claustrolec.pages.dev",
+    "MAIL_PROVIDER": "microsoft",
+    "MAIL_ENABLED": "false",
+    "EMAIL_FROM": "marco.mendez@tec.mx",
+    "PUBLIC_PORTAL_URL": "https://claustrolec.pages.dev",
+    "PUBLIC_API_URL": "https://claustrolec-foro.marco-mendez.workers.dev"
+  },
+  "triggers": { "crons": ["*/5 * * * *"] },
   "d1_databases": [
     {
       "binding": "DB",
@@ -15,6 +23,7 @@
   "ratelimits": [
     { "name": "SUBMISSION_LIMIT", "namespace_id": "21874001", "simple": { "limit": 8, "period": 60 } },
     { "name": "DEPARTMENT_LIMIT", "namespace_id": "21874002", "simple": { "limit": 30, "period": 60 } },
-    { "name": "REACTION_LIMIT", "namespace_id": "21874003", "simple": { "limit": 60, "period": 60 } }
+    { "name": "REACTION_LIMIT", "namespace_id": "21874003", "simple": { "limit": 60, "period": 60 } },
+    { "name": "NOTIFICATION_LIMIT", "namespace_id": "21874004", "simple": { "limit": 5, "period": 60 } }
   ]
 }

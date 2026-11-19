@@ -7,8 +7,8 @@
   <title>Comunidad | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=5">
-  <link rel="stylesheet" href="assets/css/foro.css?v=6">
-  <script type="module" src="assets/js/foro.js?v=8"></script>
+  <link rel="stylesheet" href="assets/css/foro.css?v=7">
+  <script type="module" src="assets/js/foro.js?v=9"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -69,6 +69,7 @@
       <p id="forum-filter-count" role="status"></p>
     </div>
     <p class="forum-status" id="forum-status" role="status"></p>
+    <p class="forum-privacy" id="forum-email-status">Los avisos por correo todavía no están activos.</p>
     <p id="feed-preview-note" class="feed-preview-note" hidden>Vista previa local con publicaciones ficticias. Las participaciones de esta vista se guardan únicamente en este equipo.</p>
     <div class="feed-layout">
       <div>
@@ -139,9 +140,26 @@
           <small id="forum-tags-help">Escribe de 2 a 4 palabras distintas, separadas por comas. Cada palabra puede tener hasta 32 caracteres.</small>
         </label>
         <label>Contribución <textarea name="body" rows="5" minlength="5" maxlength="2500" required></textarea></label>
+        <div id="forum-images-field">
+          <label for="forum-images">Adjuntar imágenes <input id="forum-images" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="forum-images-help"></label>
+          <p class="forum-privacy" id="forum-images-help">Hasta tres imágenes JPG, PNG o WebP de hasta 8 MB cada una. Se ajustan automáticamente antes de publicarse.</p>
+          <p class="forum-status" id="forum-images-status" role="status"></p>
+          <div id="forum-image-previews" class="attachment-previews"></div>
+        </div>
+        <label class="forum-email-choice"><input name="notifyReplies" type="checkbox" disabled><span>Recibir avisos de nuevas respuestas por correo</span></label>
+        <p class="forum-privacy" id="forum-notify-help">Los avisos por correo todavía no están activos.</p>
         <p class="forum-privacy" id="forum-privacy">Al publicar, tu nombre, puesto, campus y contribución serán visibles de inmediato. Tu correo queda privado y solo se muestra si marcas la casilla.</p>
         <p class="forum-status" id="forum-submit-status" role="status"></p>
         <button class="forum-button forum-primary" type="submit">Publicar</button>
+      </form>
+    </dialog>
+    <dialog id="subscription-dialog" class="forum-dialog" aria-labelledby="subscription-title">
+      <form id="subscription-form">
+        <div class="forum-dialog-header"><h2 id="subscription-title">Recibir respuestas por correo</h2><button type="button" class="forum-button" id="subscription-cancel">Cancelar</button></div>
+        <p class="forum-privacy">Te enviaremos un enlace para confirmar tu correo. Después recibirás avisos de nuevas respuestas en esta conversación. Podrás cancelarlos desde cualquier aviso.</p>
+        <label>Correo para avisos <input name="email" type="email" maxlength="254" autocomplete="email" required></label>
+        <p id="subscription-status" class="forum-status" role="status"></p>
+        <button type="submit" class="forum-button forum-primary">Solicitar avisos</button>
       </form>
     </dialog>
   </main>

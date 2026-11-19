@@ -28,15 +28,19 @@ if (demo && DB.sqlite.prepare('SELECT COUNT(*) AS count FROM posts').get().count
 const env = {
   DB, DEPARTMENT_PASSWORD: departmentPassword,
   FORUM_ORIGIN: 'http://127.0.0.1:4173,http://localhost:4173',
-  SUBMISSION_LIMIT: rateLimit(8), DEPARTMENT_LIMIT: rateLimit(30), REACTION_LIMIT: rateLimit(60), LOCAL_PREVIEW: true,
+  SUBMISSION_LIMIT: rateLimit(8), DEPARTMENT_LIMIT: rateLimit(30), REACTION_LIMIT: rateLimit(60), NOTIFICATION_LIMIT: rateLimit(5), LOCAL_PREVIEW: true,
+  PUBLIC_API_URL:'http://127.0.0.1:8787', PUBLIC_PORTAL_URL:'http://127.0.0.1:4173',
 };
+if (process.argv.includes('--email-preview')) {
+  env.DEV_MAIL = {async send() { /* Preview messages are retained only in the local outbox. */ }};
+}
 createServer(async (incoming, outgoing) => {
   try {
     const chunks = [];
     let bytes = 0;
     for await (const chunk of incoming) {
       bytes += chunk.length;
-      if (bytes > 20000) { outgoing.writeHead(413); outgoing.end(); return; }
+      if (bytes > 2500000) { outgoing.writeHead(413); outgoing.end(); return; }
       chunks.push(chunk);
     }
     const headers = new Headers();
@@ -44,7 +48,7 @@ createServer(async (incoming, outgoing) => {
     headers.set('CF-Connecting-IP', incoming.socket.remoteAddress);
     const response = await worker.fetch(new Request('http://127.0.0.1:8787' + incoming.url, {
       method: incoming.method, headers, body: chunks.length ? Buffer.concat(chunks) : undefined,
-    }), env);
+    }), env, {waitUntil(promise) { promise.catch(() => {}); }});
     outgoing.writeHead(response.status, Object.fromEntries(response.headers));
     outgoing.end(Buffer.from(await response.arrayBuffer()));
   } catch { outgoing.writeHead(500); outgoing.end('No fue posible atender la solicitud local.'); }

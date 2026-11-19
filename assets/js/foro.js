@@ -2,6 +2,7 @@ import { examples } from './forum-examples.js?v=3';
 import { categoryLabel } from './feed-categories.js';
 import { parseTags, tagError, tagKey } from './forum-tags.js';
 import { searchableFilter } from './searchable-filter.js';
+import { attachmentEditor } from './adjuntos.js';
 
 const forum = document.querySelector('[data-forum-api]');
 const local = ['localhost', '127.0.0.1'].includes(location.hostname);
@@ -24,6 +25,10 @@ const categoryButtons = document.querySelectorAll('.feed-categories button');
 const sort = document.querySelector('#forum-sort');
 const demoThreads = document.querySelector('#forum-example-threads');
 const featuredManagement = document.querySelector('#forum-featured-management');
+const subscriptionDialog = document.querySelector('#subscription-dialog');
+const subscriptionForm = document.querySelector('#subscription-form');
+const subscriptionStatus = document.querySelector('#subscription-status');
+let subscriptionPost = null;
 const dateFormat = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium', timeZone: 'America/Mexico_City' });
 let publicPosts = [];
 let connected = false;
@@ -36,11 +41,18 @@ let reactionsOpen = false;
 let loading = true;
 let loadFailed = false;
 let visitor = '';
+let submitting = false;
+let imagesOpen = false;
+let notificationsOpen = false;
 try {
   visitor = localStorage.getItem('lec-feed-visitor') || crypto.randomUUID();
   localStorage.setItem('lec-feed-visitor', visitor);
 } catch { visitor = ''; /* Reading and posting remain available without browser storage. */ }
 const expandedThreads = new Set();
+const attachments = attachmentEditor(document.querySelector('#forum-images'), document.querySelector('#forum-image-previews'), document.querySelector('#forum-images-status'), ({ count, busy }) => {
+  form.elements.body.required = count === 0;
+  send.disabled = submitting || busy;
+});
 
 function element(tag, text, className) {
   const node = document.createElement(tag);
@@ -56,13 +68,18 @@ function button(text, onClick, className = 'forum-button') {
   return node;
 }
 
-async function request(path, { body, password } = {}) {
+async function request(path, { body, password, images = [] } = {}) {
   const headers = {};
   if (visitor) headers['X-Visitor-Id'] = visitor;
-  if (body) headers['Content-Type'] = 'application/json';
+  let payload;
+  if (images.length) {
+    payload = new FormData();
+    payload.set('data', JSON.stringify({ ...body, imageDescriptions: images.map(image => image.description) }));
+    for (const image of images) payload.append('images', image.blob, image.blob.type === 'image/webp' ? 'imagen.webp' : 'imagen.png');
+  } else if (body) { headers['Content-Type'] = 'application/json'; payload = JSON.stringify(body); }
   if (password) headers.Authorization = 'Bearer ' + encodeURIComponent(password);
   const response = await fetch(api + '/api/' + path, {
-    method: body ? 'POST' : 'GET', headers, body: body ? JSON.stringify(body) : undefined, credentials: 'omit',
+    method: body ? 'POST' : 'GET', headers, body: payload, credentials: 'omit',
   });
   const data = await response.json();
   if (!response.ok) {
@@ -81,6 +98,12 @@ function updatePinChoice() {
 
 function openContribution(parent, official = false) {
   form.reset();
+  attachments.reset();
+  document.querySelector('#forum-images-field').hidden = !imagesOpen;
+  form.elements.notifyReplies.disabled = !notificationsOpen;
+  document.querySelector('#forum-notify-help').textContent = notificationsOpen
+    ? 'Para activar los avisos, confirma tu dirección desde el enlace que recibirás por correo.'
+    : 'Los avisos por correo todavía no están activos.';
   formStatus.textContent = '';
   parentId = parent?.id || null;
   publishingOfficial = official && Boolean(departmentPassword);
@@ -224,6 +247,19 @@ function renderThreads() {
       byline.append(' · ', contact);
     }
     card.append(byline, postBody(post.body), ...postTags(post));
+    if (post.images?.length) {
+      const gallery = element('div', '', 'post-images');
+      for (const image of post.images) {
+        const link = element('a');
+        link.href = api + '/api/images/' + encodeURIComponent(image.id);
+        link.target = '_blank'; link.rel = 'noopener';
+        const picture = document.createElement('img');
+        picture.src = link.href; picture.alt = image.description || 'Imagen adjunta por ' + post.name;
+        picture.loading = 'lazy'; picture.decoding = 'async';
+        link.append(picture); gallery.append(link);
+      }
+      card.append(gallery);
+    }
     const actions = element('div', '', 'feed-actions');
     const like = button('', async () => {
       like.disabled = true;
@@ -247,6 +283,13 @@ function renderThreads() {
     const permalink = element('a', 'Enlace', 'feed-permalink');
     permalink.href = '#' + post.id;
     actions.append(like, reply, permalink);
+    if (!post.parent_id && !post.example && notificationsOpen) {
+      actions.append(button('Recibir avisos', () => {
+        subscriptionPost = post.id;
+        subscriptionForm.reset(); subscriptionStatus.textContent = '';
+        subscriptionDialog.showModal(); subscriptionForm.elements.email.focus();
+      }, 'forum-button feed-notify'));
+    }
     card.append(actions);
     article.append(card);
 
@@ -309,6 +352,10 @@ async function loadPosts() {
     connected = result.submissionsOpen && result.publicationMode === 'direct';
     departmentAvailable = result.departmentOpen;
     reactionsOpen = result.reactionsOpen;
+    imagesOpen = result.imagesOpen;
+    notificationsOpen = result.notificationsOpen;
+    document.querySelector('#forum-email-status').textContent = !notificationsOpen ? 'Los avisos por correo todavía no están activos.'
+      : result.preview ? 'Vista previa: los avisos de correo se simulan y no se envían a buzones reales.' : '';
     forumStatus.textContent = connected ? '' : 'Puedes consultar las publicaciones. La participación se habilitará pronto.';
   } catch {
     connected = false;
@@ -350,12 +397,15 @@ function closeDepartment() {
 }
 
 async function loadDepartment(password = departmentPassword) {
-  const { featured } = await request('department', { password });
+  const { featured, notifications } = await request('department', { password });
   if (password !== departmentPassword) return;
   login.hidden = true;
   login.reset();
   session.hidden = false;
   departmentStatus.textContent = 'Acceso del departamento habilitado.';
+  if (notifications) departmentStatus.textContent += notifications.configured
+    ? ` Avisos de correo: ${notifications.pending} en espera y ${notifications.failed} con envío fallido.`
+    : ' Los avisos por correo aún no están configurados.';
   featuredManagement.replaceChildren();
   if (featured) {
     const remove = button('Retirar destacada', async () => {
@@ -391,18 +441,23 @@ cancel.addEventListener('click', () => dialog.close());
 dialog.addEventListener('cancel', event => { if (send.disabled) event.preventDefault(); });
 form.addEventListener('submit', async event => {
   event.preventDefault();
+  if (attachments.busy || submitting) return;
   const body = { ...Object.fromEntries(new FormData(form)), parentId, publishEmail: form.elements.publishEmail.checked, pinned: publishingOfficial && form.elements.pinned.checked };
+  body.notifyReplies = notificationsOpen && form.elements.notifyReplies.checked;
   if (!parentId && !parseTags(body.tags)) {
     formStatus.textContent = tagError;
     form.elements.tags.setAttribute('aria-invalid', 'true');
     form.elements.tags.focus();
     return;
   }
+  submitting = true;
+  attachments.lock(true);
   send.disabled = cancel.disabled = true;
   formStatus.textContent = 'Enviando…';
   try {
-    const published = await request(publishingOfficial ? 'department/posts' : 'posts', { body, password: publishingOfficial ? departmentPassword : undefined });
+    const published = await request(publishingOfficial ? 'department/posts' : 'posts', { body, password: publishingOfficial ? departmentPassword : undefined, images: attachments.items });
     dialog.close();
+    attachments.reset();
     selectedCategory = '';
     for (const category of categoryButtons) category.setAttribute('aria-pressed', String(category.dataset.category === ''));
     tagFilter.reset();
@@ -410,9 +465,13 @@ form.addEventListener('submit', async event => {
     if (publishingOfficial) await loadDepartment();
     location.hash = published.id;
     forumStatus.textContent = parentId ? 'Tu respuesta ya está publicada.' : 'Tu publicación ya está visible en el feed.';
+    if (published.notificationStatus === 'requested') forumStatus.textContent += ' Revisa tu correo para confirmar los avisos.';
+    if (['failed','unavailable'].includes(published.notificationStatus)) forumStatus.textContent += ' Los avisos por correo no pudieron activarse.';
   } catch (error) {
     formStatus.textContent = error.message;
   } finally {
+    submitting = false;
+    attachments.lock(false);
     send.disabled = cancel.disabled = false;
   }
 });
@@ -441,6 +500,17 @@ refresh.addEventListener('click', async () => {
   }
 });
 document.querySelector('#forum-logout').addEventListener('click', closeDepartment);
+document.querySelector('#subscription-cancel').addEventListener('click', () => subscriptionDialog.close());
+subscriptionForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const submit = subscriptionForm.querySelector('[type="submit"]');
+  submit.disabled = true; subscriptionStatus.textContent = 'Solicitando avisos…';
+  try {
+    await request('posts/'+subscriptionPost+'/subscribe',{body:{email:subscriptionForm.elements.email.value}});
+    subscriptionStatus.textContent = 'Revisa tu correo para confirmar los avisos. Si ya los confirmaste, no necesitas hacerlo de nuevo.';
+  } catch (error) { subscriptionStatus.textContent = error.message; }
+  finally { submit.disabled = false; }
+});
 
 renderThreads();
 loadPosts();

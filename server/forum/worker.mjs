@@ -1,3 +1,7 @@
+import { ForumError, readJson, field } from './http.mjs';
+import { readSubmission, imageInsert } from './images.mjs';
+import { mailReady } from './mail.mjs';
+import { subscribe, queueReplies, flushOutbox, emailAction, emailError } from './notifications.mjs';
 import { examples } from '../../assets/js/forum-examples.js';
 import { parseTags, tagError } from '../../assets/js/forum-tags.js';
 import { categories } from '../../assets/js/feed-categories.js';
@@ -13,48 +17,6 @@ const visibleCTE = `WITH RECURSIVE visible(id) AS (
 const encoder = new TextEncoder();
 const decodeTags = post => ({ ...post, tags: JSON.parse(post.tags) });
 
-class ForumError extends Error {
-  constructor(status, message) {
-    super(message);
-    this.status = status;
-  }
-}
-
-async function readJson(request) {
-  if (!/^application\/json(?:;|$)/i.test(request.headers.get('Content-Type') || '') || !request.body) {
-    throw new ForumError(400, 'La solicitud debe incluir los datos en JSON.');
-  }
-
-  const reader = request.body.getReader();
-  const decoder = new TextDecoder();
-  let bytes = 0;
-  let text = '';
-  for (;;) {
-    const { value, done } = await reader.read();
-    if (done) break;
-    bytes += value.byteLength;
-    if (bytes > 18_000) {
-      await reader.cancel();
-      throw new ForumError(413, 'El envío supera el tamaño permitido.');
-    }
-    text += decoder.decode(value, { stream: true });
-  }
-
-  try {
-    const data = JSON.parse(text + decoder.decode());
-    if (data && typeof data === 'object' && !Array.isArray(data)) return data;
-  } catch {
-    // Malformed submissions get the same response as other invalid JSON inputs.
-  }
-  throw new ForumError(400, 'El envío no tiene un formato válido.');
-}
-
-function field(data, key, max, min = 1) {
-  const value = typeof data[key] === 'string' ? data[key].trim() : '';
-  if (value.length < min || value.length > max) throw new ForumError(400, 'Revisa los campos y los límites de caracteres.');
-  return value;
-}
-
 async function isVisible(env, id) {
   return Boolean(await env.DB.prepare(`${visibleCTE} SELECT id FROM visible WHERE id = ?`).bind(...exampleIds, id).first());
 }
@@ -66,15 +28,15 @@ function visitorId(request, required = false) {
   return '';
 }
 
-async function submit(request, env, official = false) {
-  const data = await readJson(request);
+async function submit(request, env, official = false, context) {
+  const { data, images } = await readSubmission(request);
   const parent = official || data.parentId == null ? null : field(data, 'parentId', 72);
   const name = official ? 'Departamento de Economía' : field(data, 'name', 100, 2);
   const campus = official ? 'Región CDMX' : field(data, 'campus', 90, 2);
   const role = official ? 'Directivo' : field(data, 'role', 40);
   const email = field(data, 'email', 254);
   const emailPublic = data.publishEmail === true ? 1 : 0;
-  const body = field(data, 'body', 2500, 5);
+  const body = field(data, 'body', 2500, images.length ? 0 : 5);
   const title = parent ? '' : field(data, 'title', 120, 4);
   const tags = parent ? [] : parseTags(data.tags);
   if (!tags) throw new ForumError(400, tagError);
@@ -100,9 +62,21 @@ async function submit(request, env, official = false) {
     INSERT INTO posts (id, parent_id, name, role, campus, email, title, body, created_at, tags, email_public, category, official, pinned, status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).bind(id, parent, name, role, campus, email, title, body, new Date().toISOString(), JSON.stringify(tags), emailPublic, category, Number(official), Number(pinned), status);
-  if (pinned) await env.DB.batch([env.DB.prepare('UPDATE posts SET pinned = 0 WHERE pinned = 1'), insert]);
-  else await insert.run();
-  return { id, status: 'published' };
+  const statements = [insert, ...images.map(image => imageInsert(env.DB, id, image))];
+  if (pinned) statements.unshift(env.DB.prepare('UPDATE posts SET pinned = 0 WHERE pinned = 1'));
+  await env.DB.batch(statements);
+  let notificationStatus = 'off';
+  try {
+    if (data.notifyReplies === true) {
+      if (mailReady(env)) { await subscribe(env,id,email); notificationStatus = 'requested'; }
+      else notificationStatus = 'unavailable';
+    }
+    if (parent) await queueReplies(env,id);
+  } catch { notificationStatus = 'failed'; }
+  const delivery = flushOutbox(env).catch(() => {});
+  if (context?.waitUntil) context.waitUntil(delivery);
+  else await delivery;
+  return { id, status: 'published', notificationStatus };
 }
 
 async function react(request, env, id) {
@@ -137,12 +111,15 @@ async function authorize(request, env) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, context) {
+    const url = new URL(request.url);
+    const path = url.pathname;
+    const emailRoute = path.match(/^\/api\/email\/(confirm|unsubscribe)$/)?.[1];
     const origin = request.headers.get('Origin');
     const allowedOrigins = (env.FORUM_ORIGIN ?? '').split(',').map(value => value.trim());
     const headers = { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', Vary: 'Origin' };
     const json = (data, status = 200) => Response.json(data, { status, headers });
-    if (origin && !allowedOrigins.includes(origin)) return json({ error: 'Origen no autorizado.' }, 403);
+    if (origin && !allowedOrigins.includes(origin) && !(emailRoute && origin === url.origin)) return json({ error: 'Origen no autorizado.' }, 403);
     if (origin) {
       headers['Access-Control-Allow-Origin'] = origin;
       headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';
@@ -150,10 +127,13 @@ export default {
     }
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers });
 
-    const path = new URL(request.url).pathname;
     const departmentPassword = env.DEPARTMENT_PASSWORD ?? env.MODERATOR_PASSWORD;
     const departmentOpen = typeof departmentPassword === 'string' && departmentPassword.length >= 20;
     try {
+      if (emailRoute && ['GET','POST'].includes(request.method)) {
+        if (request.method==='POST') await limit(env.NOTIFICATION_LIMIT ?? env.SUBMISSION_LIMIT,request);
+        return await emailAction(request,env,emailRoute);
+      }
       if (path === '/api/posts' && request.method === 'GET') {
         const { results } = await env.DB.prepare(`${visibleCTE}
           SELECT ${publicFields.split(', ').map(field => 'p.' + field).join(', ')},
@@ -162,16 +142,38 @@ export default {
             EXISTS(SELECT 1 FROM post_likes l WHERE l.post_id = p.id AND l.visitor_id = ?) AS liked
           FROM posts p WHERE p.id IN (SELECT id FROM visible) ORDER BY p.created_at, p.id
         `).bind(...exampleIds, visitorId(request)).all();
-        return json({ posts: results.map(decodeTags), submissionsOpen: Boolean(env.SUBMISSION_LIMIT), feedVersion: 3, publicationMode: 'direct', departmentOpen, reactionsOpen: Boolean(env.REACTION_LIMIT), preview: env.LOCAL_PREVIEW === true });
+        const { results: images } = await env.DB.prepare(`${visibleCTE} SELECT id, post_id, description FROM post_images WHERE post_id IN (SELECT id FROM visible) ORDER BY post_id, position`).bind(...exampleIds).all();
+        const byPost = new Map();
+        for (const image of images) {
+          if (!byPost.has(image.post_id)) byPost.set(image.post_id, []);
+          byPost.get(image.post_id).push({ id: image.id, description: image.description });
+        }
+        return json({ posts: results.map(post => ({ ...decodeTags(post), images: byPost.get(post.id) || [] })), submissionsOpen: Boolean(env.SUBMISSION_LIMIT), feedVersion: 4, publicationMode: 'direct', departmentOpen, imagesOpen: true, notificationsOpen: mailReady(env), reactionsOpen: Boolean(env.REACTION_LIMIT), preview: env.LOCAL_PREVIEW === true });
+      }
+      const imageId = path.match(/^\/api\/images\/([\da-f-]{36})$/i)?.[1];
+      if (imageId && request.method === 'GET') {
+        const image = await env.DB.prepare('SELECT post_id, mime, data FROM post_images WHERE id = ?').bind(imageId).first();
+        if (!image || !await isVisible(env, image.post_id)) throw new ForumError(404, 'Imagen no disponible.');
+        return new Response(new Uint8Array(image.data), { headers: { ...headers, 'Content-Type': image.mime, 'Content-Disposition': 'inline', 'Cache-Control': 'public, max-age=3600' } });
       }
       if (path === '/api/posts' && request.method === 'POST') {
         if (!env.SUBMISSION_LIMIT) throw new ForumError(503, 'El servicio de publicaciones aún no está disponible.');
         await limit(env.SUBMISSION_LIMIT, request);
-        return json(await submit(request, env), 201);
+        return json(await submit(request, env, false, context), 201);
       }
       if (path === '/api/department/posts' && request.method === 'POST') {
         await authorize(request, env);
-        return json(await submit(request, env, true), 201);
+        return json(await submit(request, env, true, context), 201);
+      }
+      const subscribeId = path.match(/^\/api\/posts\/([\da-f-]{36})\/subscribe$/i)?.[1];
+      if (subscribeId && request.method === 'POST') {
+        await limit(env.NOTIFICATION_LIMIT ?? env.SUBMISSION_LIMIT,request);
+        if (!await isVisible(env,subscribeId)) throw new ForumError(404,'No encontramos esta conversación.');
+        const {email} = await readJson(request);
+        const result = await subscribe(env,subscribeId,email);
+        const delivery = flushOutbox(env).catch(() => {});
+        if (context?.waitUntil) context.waitUntil(delivery); else await delivery;
+        return json(result,202);
       }
       const reactionId = path.match(/^\/api\/likes\/([\da-f-]{36})$/i)?.[1];
       if (reactionId && request.method === 'POST') {
@@ -182,7 +184,8 @@ export default {
       if (path === '/api/department' && request.method === 'GET') {
         await authorize(request, env);
         const featured = await env.DB.prepare(`SELECT ${publicFields} FROM posts WHERE pinned = 1 AND status = 'approved'`).first();
-        return json({ featured: featured ? decodeTags(featured) : null });
+        const mail = await env.DB.prepare("SELECT SUM(state='queued' OR state='sending') AS pending,SUM(state='failed') AS failed FROM email_outbox").first();
+        return json({ featured: featured ? decodeTags(featured) : null, notifications: {configured:mailReady(env),pending:mail.pending||0,failed:mail.failed||0} });
       }
       const featuredId = path.match(/^\/api\/featured\/([\da-f-]{36})$/i)?.[1];
       if (featuredId && request.method === 'POST') {
@@ -194,8 +197,9 @@ export default {
       }
       return json({ error: 'Ruta no encontrada.' }, 404);
     } catch (error) {
-      if (error instanceof ForumError) return json({ error: error.message }, error.status);
+      if (error instanceof ForumError) return emailRoute ? emailError(error.message,error.status) : json({ error: error.message }, error.status);
       return json({ error: 'El foro no está disponible en este momento.' }, 503);
     }
   },
+  async scheduled(_event,env,context) { context.waitUntil(flushOutbox(env)); },
 };
