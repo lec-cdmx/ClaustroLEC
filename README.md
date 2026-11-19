@@ -43,18 +43,31 @@ Ejecuta `python -m unittest discover -s tests -v`. Las pruebas verifican agrupac
 
 Ejecuta `node --test tests/sesiones.test.mjs` para comprobar el resumen de horarios. El control recorre todos los grupos y docentes del JSON y compara por fecha la cobertura exacta de horas, salón y porcentaje antes y después de resumir.
 
-## Foro de Buenas prácticas
+## Comunidad y Buenas prácticas
 
-La interfaz está en Cloudflare Pages y GitHub Pages. Las contribuciones se guardan en Cloudflare D1 a través de un Worker. Los envíos y respuestas entran a la cola de **Moderación**. El correo sirve para que moderación contacte a la persona sobre su envío. La consulta pública solo devuelve contribuciones aprobadas y muestra el correo si la persona eligió compartirlo en ese envío. Los ejemplos ficticios están en `assets/js/forum-examples.js`.
+El feed se abre desde **Comunidad** y conserva la dirección `buenas-practicas.html` para mantener los enlaces anteriores. Integra Comunidad, Agenda, Discusión y Buenas prácticas, con filtros de categoría y etiqueta, orden por fecha o número de comentarios y respuestas anidadas. La portada muestra hasta tres publicaciones recientes, dando prioridad a la discusión destacada. Los ejemplos estáticos están separados en una sección desplegable y no se pueden comentar ni reaccionar; los hilos antiguos vinculados a ejemplos conservan sus respuestas.
 
-Para configurar el servicio, crea la base `claustrolec-foro`, indica su identificador en `server/forum/wrangler.jsonc` y ejecuta desde `server/forum` los siguientes comandos:
+Las contribuciones se guardan en Cloudflare D1 a través del Worker existente. Las participaciones del profesorado y sus respuestas siguen entrando a moderación. En **Gestión del departamento**, la contraseña de moderación permite aprobar o rechazar participaciones y publicar con la identidad oficial «Departamento de Economía · Región CDMX». Esta identidad se asigna en el servidor, no desde los datos enviados por el visitante. Se puede destacar una discusión a la vez y retirarla; la renovación semanal es una decisión editorial manual.
+
+Los Me gusta se guardan por publicación y navegador, con un identificador aleatorio en almacenamiento local. Repetir la misma acción no incrementa el contador y se puede retirar el Me gusta. Esto no identifica ni cuenta personas únicas; borrar el almacenamiento o usar otro navegador crea otra identidad. Si el navegador bloquea ese almacenamiento, la lectura y las contribuciones siguen funcionando y los Me gusta se deshabilitan.
+
+La consulta pública solo devuelve publicaciones aprobadas con su cadena de respuestas aprobada. El correo es privado salvo consentimiento explícito en cada contribución. No hay cuentas de profesores ni verificación de su identidad; se mantiene el modelo de participación moderada del foro. **Esta etapa no envía notificaciones por correo.** La siguiente requiere conectar un proveedor de envío, confirmar los correos de los participantes, añadir suscripciones voluntarias y permitir cancelar los avisos.
+
+### Activar en el servicio publicado
+
+Antes de publicar la nueva interfaz, aplica la migración `0004_community_feed.sql` y despliega el Worker actualizado. La migración conserva las publicaciones anteriores y las clasifica como Buenas prácticas. El nuevo `REACTION_LIMIT` de `wrangler.jsonc` se incluye en el despliegue. No vuelvas a crear la base ni cambies su identificador si ya existe.
+
+Para la configuración inicial, crea la base `claustrolec-foro` e indica su identificador en `server/forum/wrangler.jsonc`. Para actualizar un servicio existente, conserva ese identificador. Ejecuta desde `server/forum`:
 
 ```sh
 npx wrangler d1 migrations apply DB --remote
 npx wrangler deploy
-npx wrangler secret put MODERATOR_PASSWORD
 ```
 
-Elige una contraseña de al menos 20 caracteres y guárdala como secreto. Escribe la URL HTTPS del Worker en `data-forum-api` de `buenas-practicas.html`. Configura los orígenes permitidos en `FORUM_ORIGIN`, separados por comas.
+Solo en la configuración inicial, guarda una contraseña de al menos 20 caracteres con `npx wrangler secret put MODERATOR_PASSWORD`. Conserva el secreto existente al actualizar. La URL HTTPS del Worker se indica en `data-forum-api` de `buenas-practicas.html` y en `data-community-api` de `index.html`. Configura los orígenes permitidos en `FORUM_ORIGIN`, separados por comas. Una interfaz nueva conectada a la API antigua muestra las publicaciones en modo de consulta hasta que se actualiza el servicio.
 
 Para probar en local, agrega `MODERATOR_PASSWORD` en `server/forum/.dev.vars`, aplica la migración con `npx wrangler d1 migrations apply DB --local` y ejecuta `npx wrangler dev --var FORUM_ORIGIN:http://127.0.0.1:4173`. Desde la raíz, sirve el portal con `python -m http.server 4173 --bind 127.0.0.1` y abre `http://127.0.0.1:4173/buenas-practicas.html`.
+
+Como alternativa sin dependencias de Wrangler, con Node 24 o posterior define una contraseña local en la variable de entorno `MODERATOR_PASSWORD` y ejecuta `node tools/forum-local.mjs --demo`. Usa el mismo Worker con un adaptador de SQLite y límites locales; la base de demostración está en `fuentes-locales/comunidad-preview.sqlite`, excluida de Git. Los datos ficticios se agregan solo si esa base está vacía. El servicio escucha únicamente en `127.0.0.1:8787`, no conecta a D1 remoto ni envía correos. La validación definitiva del entorno Cloudflare debe hacerse con Wrangler antes del despliegue.
+
+Ejecuta `node --test tests/forum.test.mjs` para verificar migraciones, conservación de publicaciones anteriores, permisos de publicación oficial, discusión destacada, moderación, respuestas anidadas, privacidad de correo y persistencia e idempotencia de Me gusta con SQL real en SQLite.

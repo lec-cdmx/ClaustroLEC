@@ -14,8 +14,8 @@ Actualizado: 19 de noviembre de 2026.
 1. Ampliar documentación de Tec21 e inteligencia artificial.
 2. Curar la oferta de capacitación en coordinación con CEDDIE.
 3. Incorporar las buenas prácticas del departamento ya aprobadas y difundidas.
-4. Crear un feed inicial con discusión semanal, likes, comentarios y respuestas; evaluar integrar el foro de buenas prácticas existente.
-5. Incorporar numeralia útil: estudiantes por campus, líneas disciplinares, egresados y proporción de profesores de tiempo completo y cátedra.
+4. Incorporar numeralia útil: estudiantes por campus, líneas disciplinares, egresados y proporción de profesores de tiempo completo y cátedra.
+5. Notificaciones voluntarias por correo para respuestas en Comunidad: confirmar identidad de correo, conectar servicio de envío y habilitar suscripción/cancelación de avisos.
 
 ## Decisiones confirmadas
 
@@ -31,3 +31,5 @@ Actualizado: 19 de noviembre de 2026.
 - Programación importada y consulta por nómina implementada: 908 filas, 213 grupos y 136 docentes del periodo 202613 (corte de la fuente: 11 de noviembre de 2026).
 - Los cambios se preparan y revisan localmente; la publicación es un paso posterior.
 - Ajustes de presentación del 19 de noviembre: tarjetas compactas, «Periodos» sin Tec21, CRN en el cuadro de datos, encabezado «Equipo docente» y resumen de sesiones equivalentes con detalle original desplegable. La sección de campus se titula «División ECSG por campus» e incluye descripciones breves de funciones sin enlaces de referencia visibles.
+- Comunidad integra el foro existente: categorías Comunidad, Agenda, Discusión y Buenas prácticas; comentarios, respuestas anidadas, Me gusta por navegador y una discusión destacada elegida por el departamento. Publicaciones oficiales protegidas con la sesión de moderación; participaciones docentes sujetas a aprobación. Adelanto del feed en portada.
+- La migración 0004 conserva las contribuciones anteriores. La revisión local usa datos ficticios en SQLite; para activar en producción faltan aplicar la migración remota y desplegar el Worker y la interfaz. Los avisos por correo quedan para la siguiente etapa.

@@ -26,12 +26,27 @@
 .home-resource h2 span { color: var(--accent); font-size: .9em; }
 .home-resource p { color: var(--muted); font-size: .79rem; }
 .home-resource .eyebrow { font-size: .65rem; }
+.home-community { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.community-preview-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.community-preview-heading h2 { font: 750 clamp(1.5rem, 3vw, 2rem) var(--display); letter-spacing: -.025em; }
+.community-preview-heading > a { font-size: .8rem; color: var(--accent); }
+#community-preview-status { color: var(--muted); font-size: .8rem; margin-bottom: .7rem; }
+#community-preview-status:empty { display: none; }
+.community-preview-posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.community-preview-card { display: flex; flex-direction: column; padding: 1.2rem; border: 1px solid var(--rule); border-radius: .6rem; background: white; text-decoration: none; }
+.community-preview-card.is-featured { border-color: #9dbdad; background: #f3f8f4; }
+.community-preview-card:hover { border-color: var(--accent); }
+.community-preview-category { color: #226657; font: 650 .66rem var(--mono); text-transform: uppercase; }
+.community-preview-card h3 { margin: .6rem 0; font: 750 1.12rem/1.2 var(--display); }
+.community-preview-card > p { color: var(--muted); font-size: .8rem; }
+.community-preview-card > small { margin-top: auto; padding-top: 1rem; color: var(--muted); font-size: .69rem; }
 @media (max-width: 900px) {
   .home-intro { grid-template-columns: 1fr 17rem; }
   .home-feature { grid-template-columns: minmax(0, 1fr) 25%; padding: 1rem 1.4rem; }
   .home-resources { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
+  .community-preview-posts { grid-template-columns: 1fr; }
   .home-intro, .home-featured { grid-template-columns: 1fr; }
   .home-intro { gap: 1.2rem; padding-top: 2rem; }
   .home-intro h1 { font-size: clamp(3.4rem, 14vw, 5rem); }

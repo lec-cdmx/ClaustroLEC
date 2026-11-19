@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Foro del Claustro LEC para compartir y discutir buenas prácticas docentes.">
-  <title>Buenas prácticas | Claustro LEC</title>
+  <meta name="description" content="Noticias, reconocimientos, agenda, discusiones económicas y buenas prácticas del claustro de Economía.">
+  <title>Comunidad | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=5">
-  <link rel="stylesheet" href="assets/css/foro.css?v=4">
-  <script type="module" src="assets/js/foro.js?v=4"></script>
+  <link rel="stylesheet" href="assets/css/foro.css?v=5">
+  <script type="module" src="assets/js/foro.js?v=7"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -27,7 +27,7 @@
       <a href="organigrama.html"><span class="index-number" aria-hidden="true">02</span><span>Organigrama</span></a>
       <a href="directorio.html"><span class="index-number" aria-hidden="true">03</span><span>Directorio</span></a>
       <a href="oportunidades.html"><span class="index-number" aria-hidden="true">04</span><span>Oportunidades</span></a>
-      <a href="buenas-practicas.html" aria-current="page"><span class="index-number" aria-hidden="true">05</span><span>Buenas prácticas</span></a>
+      <a href="buenas-practicas.html" aria-current="page"><span class="index-number" aria-hidden="true">05</span><span>Comunidad</span></a>
       <a href="capacitacion.html"><span class="index-number" aria-hidden="true">06</span><span>Capacitación</span></a>
     </nav>
   </div>
@@ -35,9 +35,9 @@
   <main class="shell" id="contenido" tabindex="-1" data-forum-api="https://claustrolec-foro.marco-mendez.workers.dev">
     <header class="page-heading">
       <div class="page-intro">
-        <p class="eyebrow">05 · Ideas para el aula</p>
-        <h1>Buenas prácticas</h1>
-        <p>Comparte una práctica que hayas probado en clase o responde en un hilo para contar cómo la adaptarías.</p>
+        <p class="eyebrow">05 · Comunidad académica</p>
+        <h1>Vida del claustro</h1>
+        <p>Celebramos los logros, compartimos lo que pasa en el aula y abrimos conversaciones sobre economía.</p>
       </div>
       <div class="chapter-mark" aria-hidden="true">
         <span>05</span>
@@ -45,35 +45,66 @@
     </header>
     <div class="forum-toolbar">
       <div>
-        <h2>Conversaciones del claustro</h2>
-        <p>Los aportes y las respuestas se publican después de su aprobación. Los ejemplos iniciales son ficticios.</p>
+        <h2>¿Qué compartimos hoy?</h2>
+        <p>Publica una experiencia, una noticia o una pregunta. Las participaciones del claustro pasan por moderación.</p>
       </div>
-      <button class="forum-button forum-primary" id="forum-new" type="button" disabled>Compartir una práctica</button>
+      <button class="forum-button forum-primary" id="forum-new" type="button" disabled>Compartir con el claustro</button>
     </div>
+    <nav class="feed-categories" aria-label="Filtrar publicaciones por categoría">
+      <button type="button" data-category="" aria-pressed="true">Todo</button>
+      <button type="button" data-category="community" aria-pressed="false">Comunidad</button>
+      <button type="button" data-category="agenda" aria-pressed="false">Agenda</button>
+      <button type="button" data-category="discussion" aria-pressed="false">Discusión</button>
+      <button type="button" data-category="practice" aria-pressed="false">Buenas prácticas</button>
+    </nav>
     <div class="forum-filter">
       <div class="search-picker">
         <label for="forum-tag-filter">Filtrar por etiqueta</label>
         <input id="forum-tag-filter" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="forum-tag-options" autocomplete="off" placeholder="Escribe para buscar una etiqueta">
         <ul id="forum-tag-options" class="search-options" role="listbox" aria-label="Opciones de etiquetas" hidden></ul>
       </div>
+      <label class="feed-sort">Ordenar por
+        <select id="forum-sort"><option value="recent">Más recientes</option><option value="conversation">Más comentadas</option></select>
+      </label>
       <p id="forum-filter-count" role="status"></p>
     </div>
     <p class="forum-status" id="forum-status" role="status"></p>
-    <div id="forum-threads" class="forum-threads"></div>
+    <p id="feed-preview-note" class="feed-preview-note" hidden>Vista previa local con publicaciones ficticias. Las participaciones de esta vista se guardan únicamente en este equipo.</p>
+    <div class="feed-layout">
+      <div>
+        <div id="forum-threads" class="forum-threads" aria-label="Publicaciones del claustro" aria-busy="true"></div>
+        <details class="feed-examples" id="feed-examples">
+          <summary>Ver ejemplos de publicaciones (datos ficticios)</summary>
+          <p>Estas publicaciones ilustran el espacio. No representan anuncios ni personas reales.</p>
+          <div id="forum-example-threads" class="forum-threads"></div>
+        </details>
+      </div>
+      <aside class="feed-guide" aria-labelledby="feed-guide-title">
+        <p class="eyebrow">Un espacio compartido</p>
+        <h2 id="feed-guide-title">La conversación la hacemos todos</h2>
+        <dl><div><dt>Comunidad</dt><dd>Reconocimientos y logros de profesores y estudiantes.</dd></div>
+          <div><dt>Agenda</dt><dd>Eventos, seminarios e invitaciones.</dd></div>
+          <div><dt>Discusión</dt><dd>Preguntas e ideas para conversar sobre economía.</dd></div>
+          <div><dt>Buenas prácticas</dt><dd>Experiencias y recursos que funcionan en el aula.</dd></div></dl>
+        <p>Al participar, comparte tus argumentos y responde con respeto a las ideas de tus colegas.</p>
+      </aside>
+    </div>
     <noscript><p>Activa JavaScript para consultar los hilos y participar en el foro.</p></noscript>
 
     <details class="forum-moderation" id="forum-moderation">
-      <summary>Moderación</summary>
+      <summary>Gestión del departamento</summary>
       <div class="forum-moderation-content">
         <form id="forum-login" hidden>
           <label>Contraseña de moderación <input name="password" type="password" autocomplete="current-password" maxlength="256" required></label>
           <button class="forum-button" type="submit">Ver envíos pendientes</button>
         </form>
         <div class="forum-session" id="forum-session" hidden>
+          <button class="forum-button forum-primary" id="forum-official" type="button">Publicar desde el departamento</button>
           <button class="forum-button" id="forum-refresh" type="button">Actualizar cola</button>
           <button class="forum-button" id="forum-logout" type="button">Salir</button>
         </div>
         <p id="forum-moderation-status" role="status">La moderación se habilitará al conectar el servicio del foro.</p>
+        <div id="forum-featured-management"></div>
         <div id="forum-queue"></div>
       </div>
     </details>
@@ -81,17 +112,17 @@
     <dialog id="forum-dialog" class="forum-dialog" aria-labelledby="forum-dialog-title">
       <form id="forum-submit">
         <div class="forum-dialog-header">
-          <h2 id="forum-dialog-title">Compartir una práctica</h2>
+          <h2 id="forum-dialog-title">Compartir con el claustro</h2>
           <button class="forum-button" id="forum-cancel" type="button">Cancelar</button>
         </div>
         <p class="forum-context" id="forum-context" hidden></p>
         <div class="forum-fields">
-          <label>Nombre <input name="name" autocomplete="name" minlength="2" maxlength="100" required></label>
-          <label>Puesto <select name="role" required>
+          <label data-person-field>Nombre <input name="name" autocomplete="name" minlength="2" maxlength="100" required></label>
+          <label data-person-field>Puesto <select name="role" required>
             <option value="">Selecciona un puesto</option>
             <option>Directivo</option><option>Profesor investigador</option><option>Profesor de tiempo completo</option><option>Profesor de cátedra</option>
           </select></label>
-          <label>Campus <input name="campus" list="forum-campuses" minlength="2" maxlength="90" required></label>
+          <label data-person-field>Campus <input name="campus" list="forum-campuses" minlength="2" maxlength="90" required></label>
           <datalist id="forum-campuses"><option value="Ciudad de México"><option value="Santa Fe"><option value="Estado de México"></datalist>
           <label>Correo <input name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="forum-privacy" required></label>
         </div>
@@ -99,6 +130,10 @@
           <input name="publishEmail" type="checkbox">
           <span>Mostrar mi correo públicamente si se aprueba mi contribución</span>
         </label>
+        <label id="forum-category-field">Tipo de publicación
+          <select name="category"><option value="practice">Buenas prácticas</option><option value="community">Comunidad</option><option value="agenda">Agenda</option><option value="discussion">Discusión</option></select>
+        </label>
+        <label class="forum-email-choice" id="forum-pinned-field" hidden><input name="pinned" type="checkbox"><span>Destacar como discusión de la semana. Sustituye la discusión destacada anterior.</span></label>
         <label id="forum-title-field">Título <input name="title" minlength="4" maxlength="120" required></label>
         <label id="forum-tags-field" for="forum-tags">Etiquetas
           <input id="forum-tags" name="tags" maxlength="280" placeholder="IA, evaluación, proyectos" aria-describedby="forum-tags-help" required>

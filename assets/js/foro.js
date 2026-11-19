@@ -1,4 +1,5 @@
-import { examples } from './forum-examples.js?v=2';
+import { examples } from './forum-examples.js?v=3';
+import { categoryLabel } from './feed-categories.js';
 import { parseTags, tagError, tagKey } from './forum-tags.js';
 import { searchableFilter } from './searchable-filter.js';
 
@@ -20,11 +21,25 @@ const session = document.querySelector('#forum-session');
 const refresh = document.querySelector('#forum-refresh');
 const moderationStatus = document.querySelector('#forum-moderation-status');
 const queue = document.querySelector('#forum-queue');
+const categoryButtons = document.querySelectorAll('.feed-categories button');
+const sort = document.querySelector('#forum-sort');
+const demoThreads = document.querySelector('#forum-example-threads');
+const featuredManagement = document.querySelector('#forum-featured-management');
 const dateFormat = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium', timeZone: 'America/Mexico_City' });
 let publicPosts = [];
 let connected = false;
 let parentId = null;
 let moderatorPassword = '';
+let selectedCategory = '';
+let publishingOfficial = false;
+let reactionsOpen = false;
+let loading = true;
+let loadFailed = false;
+let visitor = '';
+try {
+  visitor = localStorage.getItem('lec-feed-visitor') || crypto.randomUUID();
+  localStorage.setItem('lec-feed-visitor', visitor);
+} catch { visitor = ''; /* Reading and posting remain available without browser storage. */ }
 const expandedThreads = new Set();
 
 function element(tag, text, className) {
@@ -43,6 +58,7 @@ function button(text, onClick, className = 'forum-button') {
 
 async function request(path, { body, password } = {}) {
   const headers = {};
+  if (visitor) headers['X-Visitor-Id'] = visitor;
   if (body) headers['Content-Type'] = 'application/json';
   if (password) headers.Authorization = 'Bearer ' + encodeURIComponent(password);
   const response = await fetch(api + '/api/' + path, {
@@ -57,11 +73,18 @@ async function request(path, { body, password } = {}) {
   return data;
 }
 
-function openContribution(parent) {
+function updatePinChoice() {
+  const visible = publishingOfficial && form.elements.category.value === 'discussion';
+  document.querySelector('#forum-pinned-field').hidden = !visible;
+  if (!visible) form.elements.pinned.checked = false;
+}
+
+function openContribution(parent, official = false) {
   form.reset();
   formStatus.textContent = '';
   parentId = parent?.id || null;
-  document.querySelector('#forum-dialog-title').textContent = parent ? 'Responder en el hilo' : 'Compartir una práctica';
+  publishingOfficial = official && Boolean(moderatorPassword);
+  document.querySelector('#forum-dialog-title').textContent = parent ? 'Responder en la conversación' : publishingOfficial ? 'Publicar desde el departamento' : 'Compartir con el claustro';
   const context = document.querySelector('#forum-context');
   context.hidden = !parent;
   context.textContent = parent ? 'En respuesta a ' + parent.name + (parent.title ? ' · ' + parent.title : '') : '';
@@ -70,8 +93,20 @@ function openContribution(parent) {
   document.querySelector('#forum-tags-field').hidden = Boolean(parent);
   form.elements.tags.disabled = Boolean(parent);
   form.elements.tags.removeAttribute('aria-invalid');
+  document.querySelector('#forum-category-field').hidden = Boolean(parent);
+  form.elements.category.disabled = Boolean(parent);
+  for (const label of document.querySelectorAll('[data-person-field]')) {
+    label.hidden = publishingOfficial;
+    label.querySelector('input, select').disabled = publishingOfficial;
+  }
+  if (!parent && selectedCategory) form.elements.category.value = selectedCategory;
+  updatePinChoice();
+  send.textContent = publishingOfficial ? 'Publicar' : 'Enviar a moderación';
+  document.querySelector('#forum-privacy').textContent = publishingOfficial
+    ? 'Se publica a nombre del Departamento de Economía, Región CDMX. El correo queda para gestión interna y solo se muestra si marcas la casilla.'
+    : 'Moderación puede usar tu correo para contactarte sobre tu envío. Al aprobarse, se publican tu nombre, puesto, campus y contribución. Tu correo también se muestra si marcas la casilla.';
   dialog.showModal();
-  form.elements.name.focus();
+  (publishingOfficial ? form.elements.email : form.elements.name).focus();
 }
 
 function postDetails(post) {
@@ -122,7 +157,7 @@ function collapseReplies(post, list, article) {
 }
 
 function rootPosts() {
-  return [...publicPosts.filter(post => !post.parent_id).reverse(), ...examples.filter(post => !post.parent_id)];
+  return publicPosts.filter(post => !post.parent_id);
 }
 
 function tagOptions() {
@@ -142,6 +177,21 @@ const tagFilter = searchableFilter(tagInput, tagOptions, {
   onChange: renderThreads,
 });
 
+function postBody(text) {
+  const body = element('p', '', 'forum-text');
+  const pieces = String(text).split(/(https?:\/\/[^\s<>]+)/g);
+  for (const piece of pieces) {
+    if (/^https?:\/\//.test(piece)) {
+      const link = element('a', piece);
+      link.href = piece;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      body.append(link);
+    } else body.append(piece);
+  }
+  return body;
+}
+
 function renderThreads() {
   const children = new Map();
   for (const post of [...examples, ...publicPosts]) {
@@ -154,18 +204,50 @@ function renderThreads() {
     const article = element('article', '', post.parent_id ? 'forum-reply' : 'forum-thread');
     article.id = post.id;
     const card = element('div', '', 'forum-post');
-    if (post.title) card.append(element('h3', post.title));
+    if (!post.parent_id) {
+      const badges = element('div', '', 'feed-badges');
+      const category = element('span', categoryLabel(post.category), 'feed-category');
+      category.dataset.category = post.category || 'practice';
+      badges.append(category);
+      if (post.official) badges.append(element('span', 'Desde el departamento', 'feed-official'));
+      if (post.pinned) {
+        badges.append(element('span', 'Discusión de la semana', 'feed-pinned'));
+        article.classList.add('is-featured');
+      }
+      card.append(badges);
+    }
+    if (post.title && !post.parent_id) card.append(element('h3', post.title));
     const byline = postDetails(post);
     if (post.contact_email) {
       const contact = element('a', post.contact_email);
       contact.href = 'mailto:' + encodeURIComponent(post.contact_email).replace('%40', '@');
       byline.append(' · ', contact);
     }
-    card.append(byline, element('p', post.body, 'forum-text'), ...postTags(post));
-    const reply = button('Responder', () => openContribution(post), 'forum-button forum-reply-button');
+    card.append(byline, postBody(post.body), ...postTags(post));
+    const actions = element('div', '', 'feed-actions');
+    const like = button('', async () => {
+      like.disabled = true;
+      try {
+        const stats = await request('likes/' + post.id, { body: { liked: !Boolean(post.liked) } });
+        Object.assign(post, stats);
+        updateLike();
+      } catch (error) { forumStatus.textContent = error.message; }
+      finally { like.disabled = false; }
+    }, 'forum-button feed-like');
+    function updateLike() {
+      like.textContent = `Me gusta · ${post.likes || 0}`;
+      like.setAttribute('aria-pressed', String(Boolean(post.liked)));
+      like.setAttribute('aria-label', `${post.liked ? 'Quitar Me gusta' : 'Me gusta'}: ${post.parent_id ? 'respuesta de ' + post.name : post.title}`);
+    }
+    updateLike();
+    like.disabled = !connected || !reactionsOpen || !visitor || post.example;
+    const reply = button(post.parent_id ? 'Responder' : 'Comentar', () => openContribution(post), 'forum-button forum-reply-button');
     reply.setAttribute('aria-label', 'Responder a ' + post.name);
-    reply.disabled = !connected;
-    card.append(reply);
+    reply.disabled = !connected || post.example;
+    const permalink = element('a', 'Enlace', 'feed-permalink');
+    permalink.href = '#' + post.id;
+    actions.append(like, reply, permalink);
+    card.append(actions);
     article.append(card);
 
     const replies = children.get(post.id);
@@ -185,30 +267,75 @@ function renderThreads() {
 
   const roots = rootPosts();
   const selected = tagFilter.value;
-  const visible = selected ? roots.filter(post => post.tags?.some(tag => tagKey(tag) === selected)) : roots;
-  filterCount.textContent = `${visible.length} ${visible.length === 1 ? 'hilo' : 'hilos'}`;
-  threads.replaceChildren(...visible.map(render));
+  const replyCount = id => (children.get(id) || []).reduce((count, post) => count + 1 + replyCount(post.id), 0);
+  const visible = roots.filter(post => (!selectedCategory || (post.category || 'practice') === selectedCategory)
+    && (!selected || post.tags?.some(tag => tagKey(tag) === selected)));
+  visible.sort((a, b) => Number(b.pinned || 0) - Number(a.pinned || 0)
+    || (sort.value === 'conversation' ? replyCount(b.id) - replyCount(a.id) : 0)
+    || (b.created_at || '').localeCompare(a.created_at || '') || b.id.localeCompare(a.id));
+  filterCount.textContent = `${visible.length} ${visible.length === 1 ? 'publicación' : 'publicaciones'}`;
+  threads.replaceChildren(...visible.map(post => {
+    const article = render(post);
+    const count = replyCount(post.id);
+    article.querySelector('.feed-actions').append(element('span', `${count} ${count === 1 ? 'comentario' : 'comentarios'}`, 'feed-reply-count'));
+    return article;
+  }));
+  if (!visible.length) {
+    const message = loading ? 'Cargando publicaciones…'
+      : loadFailed ? 'No pudimos recuperar las publicaciones. Recarga la página para intentar de nuevo; también puedes consultar los ejemplos.'
+      : roots.length ? 'No hay publicaciones con estos filtros. Prueba otra categoría o etiqueta.'
+      : 'Aún no hay publicaciones. Este será el espacio para las novedades y conversaciones del claustro.';
+    threads.append(element('p', message, 'feed-empty'));
+  }
+  // Keep legacy discussions attached to their original example thread.
+  demoThreads.replaceChildren(...examples.filter(post => !post.parent_id).map(render));
+  threads.setAttribute('aria-busy', String(loading));
 }
 
 async function loadPosts() {
+  loading = true;
   if (!api) {
+    loading = false;
+    loadFailed = true;
     forumStatus.textContent = 'Vista previa. Los envíos se habilitarán cuando el servicio de moderación esté conectado.';
     renderThreads();
     return;
   }
   try {
     const result = await request('posts');
+    document.querySelector('#feed-preview-note').hidden = !result.preview;
     publicPosts = result.posts;
-    connected = result.submissionsOpen;
-    forumStatus.textContent = connected ? '' : 'Los envíos se habilitarán al configurar la contraseña de moderación.';
+    loadFailed = false;
+    connected = result.submissionsOpen && result.feedVersion >= 2;
+    reactionsOpen = result.reactionsOpen;
+    forumStatus.textContent = connected ? '' : 'Puedes consultar las publicaciones. La participación se habilitará pronto.';
   } catch {
     connected = false;
-    forumStatus.textContent = 'El foro no está disponible en este momento. Puedes leer los ejemplos e intentar más tarde.';
+    loadFailed = true;
+    forumStatus.textContent = 'No pudimos cargar las publicaciones. Intenta de nuevo en unos momentos.';
   }
+  loading = false;
   newPost.disabled = !connected;
   login.hidden = !connected || Boolean(moderatorPassword);
   if (!moderatorPassword) moderationStatus.textContent = connected ? '' : forumStatus.textContent;
   renderThreads();
+  revealLinkedPost();
+}
+
+function revealLinkedPost() {
+  const id = location.hash.slice(1);
+  if (!id) return;
+  const all = [...examples, ...publicPosts];
+  let post = all.find(post => post.id === id);
+  if (!post) return;
+  while (post.parent_id) {
+    post = all.find(parent => parent.id === post.parent_id);
+    if (!post) return;
+    expandedThreads.add(post.id);
+  }
+  if (post.example) document.querySelector('#feed-examples').open = true;
+  renderThreads();
+  document.getElementById(id)?.scrollIntoView({ block: 'center' });
 }
 
 function closeModeration() {
@@ -217,6 +344,8 @@ function closeModeration() {
   login.hidden = !connected;
   session.hidden = true;
   queue.replaceChildren();
+  featuredManagement.replaceChildren();
+  if (publishingOfficial && dialog.open) dialog.close();
   moderationStatus.textContent = '';
 }
 
@@ -241,12 +370,24 @@ async function decide(post, decision) {
 }
 
 async function loadQueue(password = moderatorPassword) {
-  const { posts } = await request('moderation', { password });
+  const { posts, featured } = await request('moderation', { password });
   if (password !== moderatorPassword) return;
   login.hidden = true;
   login.reset();
   session.hidden = false;
   moderationStatus.textContent = posts.length ? 'Pendientes en esta vista · ' + posts.length : 'No hay contribuciones pendientes.';
+  featuredManagement.replaceChildren();
+  if (featured) {
+    const remove = button('Retirar destacada', async () => {
+      remove.disabled = true;
+      try {
+        await request('featured/' + featured.id, { body: { pinned: false }, password });
+        if (password === moderatorPassword) { await loadQueue(); await loadPosts(); }
+      } catch (error) { moderationStatus.textContent = error.message; }
+      finally { remove.disabled = false; }
+    });
+    featuredManagement.append(element('p', 'Discusión destacada: ' + featured.title), remove);
+  }
   queue.replaceChildren(...posts.map(post => {
     const card = element('article', '', 'forum-review');
     const parent = [...examples, ...publicPosts].find(item => item.id === post.parent_id);
@@ -257,12 +398,23 @@ async function loadQueue(password = moderatorPassword) {
       button('Rechazar', () => decide(post, 'rejected'), 'forum-button forum-reject'),
     );
     const emailLabel = post.email_public === 1 ? 'Correo visible al aprobar' : 'Correo para moderación';
-    card.append(element('h3', subject), postDetails(post), element('p', emailLabel + ' · ' + post.email), element('p', post.body, 'forum-text'), ...postTags(post), actions);
+    card.append(element('span', categoryLabel(post.category), 'feed-category'), element('h3', subject), postDetails(post), element('p', emailLabel + ' · ' + post.email), element('p', post.body, 'forum-text'), ...postTags(post), actions);
     return card;
   }));
 }
 
 newPost.addEventListener('click', () => openContribution(null));
+document.querySelector('#forum-official').addEventListener('click', () => openContribution(null, true));
+form.elements.category.addEventListener('change', updatePinChoice);
+sort.addEventListener('change', renderThreads);
+window.addEventListener('hashchange', revealLinkedPost);
+for (const category of categoryButtons) {
+  category.addEventListener('click', () => {
+    selectedCategory = category.dataset.category;
+    for (const other of categoryButtons) other.setAttribute('aria-pressed', String(other === category));
+    renderThreads();
+  });
+}
 tagInput.addEventListener('input', renderThreads);
 form.elements.tags.addEventListener('input', () => {
   form.elements.tags.removeAttribute('aria-invalid');
@@ -272,7 +424,7 @@ cancel.addEventListener('click', () => dialog.close());
 dialog.addEventListener('cancel', event => { if (send.disabled) event.preventDefault(); });
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  const body = { ...Object.fromEntries(new FormData(form)), parentId, publishEmail: form.elements.publishEmail.checked };
+  const body = { ...Object.fromEntries(new FormData(form)), parentId, publishEmail: form.elements.publishEmail.checked, pinned: publishingOfficial && form.elements.pinned.checked };
   if (!parentId && !parseTags(body.tags)) {
     formStatus.textContent = tagError;
     form.elements.tags.setAttribute('aria-invalid', 'true');
@@ -282,9 +434,10 @@ form.addEventListener('submit', async event => {
   send.disabled = cancel.disabled = true;
   formStatus.textContent = 'Enviando…';
   try {
-    await request('posts', { body });
+    await request(publishingOfficial ? 'department/posts' : 'posts', { body, password: publishingOfficial ? moderatorPassword : undefined });
     dialog.close();
-    forumStatus.textContent = 'Tu contribución quedó pendiente de moderación.';
+    if (publishingOfficial) { await loadPosts(); await loadQueue(); }
+    forumStatus.textContent = publishingOfficial ? 'Publicación del departamento lista.' : 'Tu contribución quedó pendiente de moderación.';
   } catch (error) {
     formStatus.textContent = error.message;
   } finally {

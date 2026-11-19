@@ -1,4 +1,7 @@
 export const examples = [
+  { id: 'ejemplo-discusion', parent_id: null, category: 'discussion', official: 1, pinned: 1, title: '¿Qué dato te haría cambiar de opinión?', name: 'Departamento de Economía', role: 'Directivo', campus: 'Región CDMX', body: 'Ejemplo de discusión semanal: elige una afirmación económica que uses en clase. ¿Qué evidencia te llevaría a revisarla? Comparte el indicador, su fuente y una limitación de su interpretación.', tags: ['economía', 'datos'] },
+  { id: 'ejemplo-comunidad', parent_id: null, category: 'community', official: 1, title: 'Un espacio para reconocer a nuestra comunidad', name: 'Departamento de Economía', role: 'Directivo', campus: 'Región CDMX', body: 'Ejemplo de publicación: aquí se pueden compartir reconocimientos docentes y logros de estudiantes. Antes de publicar un caso real, se incorporan el nombre, el logro y la información validada por el departamento.', tags: ['comunidad', 'docencia'] },
+  { id: 'ejemplo-agenda', parent_id: null, category: 'agenda', official: 1, title: 'Invitación a un seminario del departamento', name: 'Departamento de Economía', role: 'Directivo', campus: 'Región CDMX', body: 'Ejemplo de invitación: título del seminario, persona invitada, fecha, horario, sede y enlace de registro. Esta publicación ilustra el formato y no anuncia un evento real.', tags: ['seminario', 'economía'] },
   { id: 'ejemplo-ia', parent_id: null, title: 'IA con bitácora de decisiones', name: 'Ana Ríos', role: 'Profesora de tiempo completo', campus: 'Santa Fe', body: 'En el proyecto final permito usar IA para comparar enfoques. Cada equipo anexa una bitácora breve con lo que le pidió, lo que verificó y lo que decidió descartar. En clase defiende una decisión con sus propios datos.' },
   { id: 'ejemplo-ia-respuesta', parent_id: 'ejemplo-ia', title: '', name: 'Mateo Vidal', role: 'Profesor investigador', campus: 'Ciudad de México', body: 'En econometría les pido que adjunten el código con el que replicaron un resultado. Así podemos discutir la verificación, incluso cuando la respuesta que dio la IA suena convincente.' },
   { id: 'ejemplo-ia-respuesta-2', parent_id: 'ejemplo-ia', title: '', name: 'Inés Mora', role: 'Profesora de cátedra', campus: 'Estado de México', body: 'Antes de entregar la bitácora, cada equipo intercambia una sugerencia de la IA con otro equipo. El otro equipo intenta refutarla con los datos del proyecto y señala qué habría que verificar.' },
@@ -7,10 +10,10 @@ export const examples = [
   { id: 'ejemplo-examen-respuesta', parent_id: 'ejemplo-examen', title: '', name: 'Laura Ibarra', role: 'Profesora de cátedra', campus: 'Santa Fe', body: 'Me funcionó incluir una gráfica ya impresa y pedir que la interpreten. Les queda más tiempo para argumentar y puedo evaluar si identifican la relación correcta.' },
   { id: 'ejemplo-celulares', parent_id: null, title: 'Celulares guardados durante la discusión', name: 'Rafael Núñez', role: 'Directivo', campus: 'Santa Fe', body: 'Al inicio del semestre acordamos guardar los celulares durante los debates. Los sacamos cuando la actividad requiere consultar datos o votar. Dejo previstas excepciones por accesibilidad o situaciones urgentes.' },
   { id: 'ejemplo-datos', parent_id: null, title: 'Abrir la clase con datos del entorno', name: 'Lucía Vega', role: 'Profesora de tiempo completo', campus: 'Estado de México', body: 'Inicio la unidad con dos gráficas de municipios cercanos. Cada equipo propone una explicación para la diferencia y menciona un dato que necesitaría para comprobarla.' },
-].map(post => ({ ...post, example: true, tags: {
+].map(post => ({ ...post, category: post.category || 'practice', example: true, tags: {
   'ejemplo-ia': ['IA', 'evaluación', 'proyectos'],
   'ejemplo-asistencia': ['asistencia', 'participación', 'retroalimentación'],
   'ejemplo-examen': ['evaluación', 'exámenes', 'papel'],
   'ejemplo-celulares': ['celulares', 'debate', 'accesibilidad'],
   'ejemplo-datos': ['datos', 'debate', 'economía'],
-}[post.id] || [] }));
+}[post.id] || post.tags || [] }));

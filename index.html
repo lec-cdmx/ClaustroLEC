@@ -7,7 +7,8 @@
 <title>Portal del Claustro LEC | Claustro LEC</title>
 <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
 <link rel="stylesheet" href="assets/css/styles.css?v=5">
-<link rel="stylesheet" href="assets/css/portada.css?v=3">
+<link rel="stylesheet" href="assets/css/portada.css?v=4">
+<script type="module" src="assets/js/feed-preview.js?v=1"></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -93,9 +94,9 @@
 <img src="assets/img/portada/buenas-practicas.webp" alt="" loading="lazy">
 <div class="home-resource-copy">
 <span class="eyebrow">05 / Comunidad</span>
-<h2>Buenas prácticas<span aria-hidden="true">↗</span>
+<h2>Comunidad<span aria-hidden="true">↗</span>
 </h2>
-<p>Comparte experiencias del aula y conversa con la comunidad.</p>
+<p>Reconocimientos, agenda, discusiones y buenas prácticas del claustro.</p>
 </div>
 </a>
 <a class="home-resource" href="capacitacion.html">
@@ -108,6 +109,11 @@
 </div>
 </a>
 </nav>
+<section class="home-community" data-community-api="https://claustrolec-foro.marco-mendez.workers.dev" aria-labelledby="community-preview-title">
+<div class="community-preview-heading"><h2 id="community-preview-title">En la comunidad</h2><a href="buenas-practicas.html">Ver todas las publicaciones <span aria-hidden="true">↗</span></a></div>
+<p id="community-preview-status" role="status">Cargando publicaciones…</p>
+<div id="community-preview-posts" class="community-preview-posts"></div>
+</section>
 </main>
 <footer class="site-footer">
 <div class="shell footer-inner">
