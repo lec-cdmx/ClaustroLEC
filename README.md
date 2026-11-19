@@ -37,6 +37,8 @@ mkdir -p dist && cp -- *.html dist/ && cp -R -- assets dist/
 
 Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido validado. Cuando reemplaces todos los datos ficticios de una sección, actualiza también su nota de edición.
 
+En Oportunidades, elimina del HTML las convocatorias cuyo plazo de postulación haya cerrado y las fichas de ediciones pasadas. No las conserves como referencias ni solo las ocultes con filtros. Distingue el cierre de postulaciones de la fecha del evento.
+
 ## Verificar la importación
 
 Ejecuta `python -m unittest discover -s tests -v`. Las pruebas verifican agrupación por periodo y CRN, sesiones con porcentajes repetidos, ceros, datos faltantes y rechazo de inconsistencias. Si el Excel fuente está disponible, también comparan todos sus registros con el JSON generado.
@@ -54,6 +56,8 @@ Los Me gusta se guardan por publicación y navegador, con un identificador aleat
 La consulta pública solo devuelve publicaciones aprobadas con su cadena de respuestas aprobada. El correo es privado salvo consentimiento explícito en cada contribución. No hay cuentas de profesores ni verificación de su identidad; se mantiene el modelo de participación moderada del foro. **Esta etapa no envía notificaciones por correo.** La siguiente requiere conectar un proveedor de envío, confirmar los correos de los participantes, añadir suscripciones voluntarias y permitir cancelar los avisos.
 
 ### Activar en el servicio publicado
+
+Actualización realizada el 19 de noviembre de 2026: migraciones remotas 0003 y 0004 aplicadas y Worker desplegado en la versión `8315ed41-f8b7-424b-8ac6-f10e4030b152`. Se verificaron la API versión 2, publicaciones y reacciones habilitadas, y apertura del formulario en el portal público. Respaldo previo guardado en `fuentes-locales/respaldos/claustrolec-2026-11-19-antes-del-feed.sql`, excluido de Git. No se copiaron datos ficticios a producción.
 
 Antes de publicar la nueva interfaz, aplica la migración `0004_community_feed.sql` y despliega el Worker actualizado. La migración conserva las publicaciones anteriores y las clasifica como Buenas prácticas. El nuevo `REACTION_LIMIT` de `wrangler.jsonc` se incluye en el despliegue. No vuelvas a crear la base ni cambies su identificador si ya existe.
 

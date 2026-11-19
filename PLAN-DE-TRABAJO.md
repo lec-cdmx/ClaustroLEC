@@ -20,6 +20,7 @@ Actualizado: 19 de noviembre de 2026.
 ## Decisiones confirmadas
 
 - Por ahora basta conocer la nómina para consultar su programación; no se implementará autenticación.
+- Oportunidades: retirar por completo las convocatorias cerradas y las fichas de ediciones pasadas; no conservarlas como archivo de referencia. Usar la fecha de cierre de postulaciones, aunque el evento todavía sea futuro.
 - Los correos del organigrama se toman de los archivos proporcionados.
 - Usar referencias claras a semestres en lugar de nombres de etapas: exploración corresponde a los primeros dos o tres semestres; enfoque y especialización, a los semestres posteriores. En el portal se describen las funciones con esas referencias temporales.
 - Decanaturas y nodos de profesorado en blanco con detalles neutros. Mantener el énfasis en los contactos de Economía y direcciones divisionales, sin tonos rojos. La etiqueta de Arturo en CCM debe decir «También Director Regional».
@@ -29,7 +30,8 @@ Actualizado: 19 de noviembre de 2026.
 - Portada y navegación adaptadas a seis secciones.
 - Organigrama con 30 contactos únicos (Arturo aparece en sus dos funciones), tarjetas por función y enlaces de correo. Se priorizan los contactos de Economía y las direcciones divisionales. Se incorporan las direcciones de departamento de Economía por campus y sus nodos de profesorado; Derecho y Relaciones Internacionales siguen visibles.
 - Programación importada y consulta por nómina implementada: 908 filas, 213 grupos y 136 docentes del periodo 202613 (corte de la fuente: 11 de noviembre de 2026).
-- Los cambios se preparan y revisan localmente; la publicación es un paso posterior.
+- Los cambios se preparan y revisan localmente antes de publicarse. El servicio de Comunidad se activó en Cloudflare el 19 de noviembre de 2026.
 - Ajustes de presentación del 19 de noviembre: tarjetas compactas, «Periodos» sin Tec21, CRN en el cuadro de datos, encabezado «Equipo docente» y resumen de sesiones equivalentes con detalle original desplegable. La sección de campus se titula «División ECSG por campus» e incluye descripciones breves de funciones sin enlaces de referencia visibles.
 - Comunidad integra el foro existente: categorías Comunidad, Agenda, Discusión y Buenas prácticas; comentarios, respuestas anidadas, Me gusta por navegador y una discusión destacada elegida por el departamento. Publicaciones oficiales protegidas con la sesión de moderación; participaciones docentes sujetas a aprobación. Adelanto del feed en portada.
-- La migración 0004 conserva las contribuciones anteriores. La revisión local usa datos ficticios en SQLite; para activar en producción faltan aplicar la migración remota y desplegar el Worker y la interfaz. Los avisos por correo quedan para la siguiente etapa.
+- Migraciones remotas 0003 y 0004 aplicadas el 19 de noviembre de 2026, con respaldo local previo en `fuentes-locales/respaldos/`. Worker actualizado; API pública versión 2 con publicaciones y reacciones habilitadas. Verificado en el portal público que «Compartir con el claustro» abre el formulario. Los datos de demostración permanecen locales. Los avisos por correo quedan para la siguiente etapa.
+- Oportunidades: retiradas del HTML ocho fichas cerradas o de ediciones anteriores; quedan doce entradas con plazos vigentes o recepción continua al 19 de noviembre de 2026.
