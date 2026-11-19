@@ -1,0 +1,41 @@
+{
+  "source": "Organigrama.pdf y Organigrama.png, proporcionados por la coordinación",
+  "national": {"name":"Edna Jaime Treviño","role":"Decana Nacional de la ECSG","email":"edna.jaime@tec.mx"},
+  "regional": {"name":"Josefina Cortés Campos","role":"Decana Regional de la ECSG","email":"cortescampos.j@tec.mx"},
+  "projects": [
+    {"name":"Verónica Aldana Acosta","role":"Directora de Proyectos Académicos de la ECSG, Región CDMX","email":"vero.aldana@tec.mx"},
+    {"name":"Merari del Rocío Santos Aguilar","role":"Coordinadora Académica de Proyectos de la ECSG, Región CDMX","email":"mer.santos.a@tec.mx"}
+  ],
+  "departments": [
+    {"area":"Economía","head":{"name":"Arturo Pérez Mendoza","role":"Director Regional del Departamento de Economía","email":"arturo.perez@tec.mx"},"coordinators":[
+      {"name":"Elvira Gómez Campuzano","role":"Coordinadora Académica de Departamento, CCM","email":"elvira.gomez@tec.mx"},
+      {"name":"Karla Izquierdo Herrera","role":"Coordinadora Académica de Departamento, CSF","email":"karla.izquierdo@tec.mx"},
+      {"name":"Itzel Velázquez Soto","role":"Coordinadora Académica de Departamento, CEM","email":"itzel.jessamyn@tec.mx"}
+    ]},
+    {"area":"Derecho","head":{"name":"Fabiola Martínez Ramírez","role":"Directora Regional del Departamento de Derecho","email":"fabiola.martinez.ramirez@tec.mx"}},
+    {"area":"Relaciones Internacionales","head":{"name":"Rodrigo Peña González","role":"Director Regional del Departamento de Relaciones Internacionales","email":"r.pena@tec.mx"}}
+  ],
+  "campuses": [
+    {"code":"CCM","name":"Ciudad de México","head":{"name":"Carlos Báez Silva","role":"Director Divisional de la ECSG, CCM","email":"carlos.baezs@tec.mx"},"team":[
+      {"name":"Diorella Islas Limiñana","role":"Directora de Entrada","status":"En licencia","email":"diorella.islas@tec.mx"},
+      {"name":"Alexandra Salazar Parraguez","role":"Directora de Entrada","status":"Interina","email":"alexandra.salazar@tec.mx"},
+      {"name":"Mariana Echániz Arciga","role":"Directora de Programa de LRI","email":"mariana.echaniz@tec.mx"},
+      {"name":"Marco Méndez Atienza","role":"Director de Programa de LEC","email":"marco.mendez@tec.mx","id":"lec-ccm"},
+      {"name":"Eliseo Ocampo Jaramillo","role":"Director de Programa de LED","email":"eliseoocampoj@tec.mx"},
+      {"name":"Alejandro Feged Rivadeneira","role":"Director de Programa de LTP","email":"alejandrofeged@tec.mx"}
+    ]},
+    {"code":"CSF","name":"Santa Fe","head":{"name":"Jared Hernández Méndez","role":"Directora Divisional de la ECSG, CSF","email":"jared.hernandez@tec.mx"},"team":[
+      {"name":"Jorge Aguilera Suárez","role":"Director de Entrada","email":"jorge.aguilera@tec.mx"},
+      {"name":"Carolina Chávez Fregoso","role":"Directora de Programa de LRI","email":"carolina.chavez@tec.mx"},
+      {"name":"Josselyn Barranco Santamaría","role":"Directora de Programa de LEC","email":"cjbarranco@tec.mx","id":"lec-csf"},
+      {"name":"Carlos De la Rosa Xochitiotzi","role":"Director de Programa de LED","email":"cdelarosa@tec.mx"}
+    ]},
+    {"code":"CEM","name":"Estado de México","head":{"name":"Liliana Charles Cruz","role":"Directora Divisional de la ECSG, CEM","email":"lcharles@tec.mx"},"team":[
+      {"name":"Michelle Nájar Castilla","role":"Directora de Entrada","email":"mnajar@tec.mx"},
+      {"name":"Diana Correa Corrales","role":"Directora de Programa de LRI","email":"diana.correa@tec.mx"},
+      {"name":"Diana Hernández González","role":"Directora de Programa de LEC","email":"dhernandez@tec.mx","id":"lec-cem"},
+      {"name":"Ericka Jiménez Betancourt","role":"Directora de Programa de LED","email":"epjimenez@tec.mx"}
+    ]}
+  ],
+  "lec": {"name":"Hugo Fuentes Castro","role":"Director Nacional de LEC","email":"hfuentes@tec.mx"}
+}

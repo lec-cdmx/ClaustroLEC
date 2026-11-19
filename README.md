@@ -1,6 +1,6 @@
 # Portal Digital Claustro LEC
 
-Portal de la Licenciatura en Economía del Tecnológico de Monterrey. Reúne el directorio del claustro, oportunidades académicas, buenas prácticas y recursos de capacitación.
+Portal de la Licenciatura en Economía del Tecnológico de Monterrey. Reúne programación docente, organigrama de la ECSG, directorio del claustro, oportunidades académicas, buenas prácticas y recursos de capacitación. El plan de evolución está en [PLAN-DE-TRABAJO.md](PLAN-DE-TRABAJO.md).
 
 ## Revisión local
 
@@ -20,18 +20,25 @@ mkdir -p dist && cp -- *.html dist/ && cp -R -- assets dist/
 
 ## Organización de archivos
 
-- **Raíz.** Portada y cuatro páginas del portal.
+- **Raíz.** Portada y seis páginas del portal.
 - **`assets/`.** Estilos en `css/`, scripts en `js/`, iconos en `icons/`, imágenes publicadas en `img/` y planes de estudio en PDF en `docs/`.
 - **`fuentes-locales/`.** Archivos de trabajo del directorio e imágenes originales, excluidos de Git.
 
 ## Actualizar el contenido
 
+- **Programación.** La consulta en `programacion.html` requiere una nómina exacta `LXXXXXXXX` y no presenta un listado inicial. Se acepta `l` minúscula y se eliminan espacios al inicio y al final. Los datos están en `assets/data/programacion.json`; se cargan al enviar una consulta válida. Esta versión es estática y no tiene autenticación: los datos del JSON son accesibles para quien conozca su URL. La búsqueda por nómina es una forma de consulta, no un control de acceso.
+- **Actualizar programación.** Instala `openpyxl` (`python -m pip install openpyxl`) y ejecuta `python tools/importar_programacion.py "Programación 202613 - 2026_11_11 ECSG.xlsx" --fecha-corte 2026-11-11`. Para una fuente posterior, cambia el nombre y la fecha. El importador lee la hoja `Sesiones y Porcentajes`, valida columnas, nóminas y consistencia por periodo + CRN; conserva sesiones y porcentajes por docente sin sumarlos. No modifica el Excel. Si hay errores, no reemplaza los datos anteriores. Después actualiza el periodo y corte visibles en `programacion.html` y la versión de la URL del JSON en `assets/js/programacion.js`. La fuente actual contiene 908 filas, 213 CRN y 136 nóminas del periodo 202613; los créditos y porcentajes en cero se conservan. Los archivos originales quedan locales y no se incluyen en Git ni en el paquete público de Cloudflare.
+- **Organigrama.** Los contactos y agrupaciones están registrados en `assets/data/organigrama.json`; la página estática `organigrama.html` conserva la misma estructura para que pueda consultarse sin JavaScript. Al cambiar un cargo, contacto o relación, actualiza ambos archivos. Las divisiones dependen de la Decanatura Regional, las coordinaciones académicas mostradas corresponden a Economía y la Dirección Nacional de LEC está vinculada con las direcciones de LEC de los tres campus. Se conservan las notas de licencia e interinato de la fuente.
 - **Directorio.** Edita o duplica un perfil en `directorio.html`. Actualiza la semblanza y los temas académicos en `faculty-keywords`. Agrupa las UF por plan y por tipo, registra sus claves verificadas y actualiza el conteo de cada plan. Las claves con sufijo B corresponden a bloques, las que terminan en C a concentraciones y las que terminan en número a materias. Guarda los retratos en `assets/img/directorio/`.
 - **Perfiles extendidos.** Registra los trabajos en `assets/data/publicaciones.json` bajo el mismo identificador del encabezado del docente. Conserva el título original y redacta el resumen en el idioma de la fuente. Usa el año de la publicación o del manuscrito y deja `year` en `null` si la fuente omite la fecha. Si existe una versión de trabajo anterior, agrega su enlace en `workingPaper` dentro de la ficha de la publicación. Usa `fullText` para el acceso público al documento.
 - **Oportunidades.** Actualiza el seminario regional en la sección de iniciativas internas. Para el radar externo, edita o duplica una ficha en `oportunidades.html`. Usa `data-type` para clasificarla y registra la modalidad según la fuente oficial. Agrega hasta tres temas en `opportunity-topics`, con los mismos nombres del directorio cuando haya afinidad. Si hay fecha, actualiza el texto visible y `datetime` en formato `AAAA-MM-DD`. Distingue la fecha límite de postulación de las fechas del encuentro.
 - **Capacitación.** Edita o duplica una ficha en `capacitacion.html` y agrega un enlace al material cuando esté disponible.
 
 Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido validado. Cuando reemplaces todos los datos ficticios de una sección, actualiza también su nota de edición.
+
+## Verificar la importación
+
+Ejecuta `python -m unittest discover -s tests -v`. Las pruebas verifican agrupación por periodo y CRN, sesiones con porcentajes repetidos, ceros, datos faltantes y rechazo de inconsistencias. Si el Excel fuente está disponible, también comparan todos sus registros con el JSON generado.
 
 ## Foro de Buenas prácticas
 

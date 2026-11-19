@@ -101,7 +101,7 @@ h1 {
 
 .section-index {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   border-bottom: 1px solid var(--rule);
 }
 
@@ -114,7 +114,7 @@ h1 {
   border-bottom: 3px solid transparent;
   color: var(--navy);
   font-family: var(--display);
-  font-size: clamp(.86rem, 1.6vw, 1.05rem);
+  font-size: clamp(.78rem, 1.15vw, .98rem);
   font-weight: 650;
   text-decoration: none;
 }
@@ -239,11 +239,17 @@ h1 {
   .shell { width: calc(100% - 2.5rem); }
   .header-inner, .footer-inner { width: 92%; }
   .section-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .section-index a:nth-child(3) { border-inline-start: 0; }
-  .section-index a:nth-child(-n + 2) { box-shadow: 0 1px var(--rule); }
+  .section-index a:nth-child(odd) { border-inline-start: 0; }
+  .section-index a:nth-child(-n + 4) { box-shadow: 0 1px var(--rule); }
   .page-heading { grid-template-columns: minmax(0, 1fr); }
   .chapter-mark { display: none; }
   .grid-three { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 761px) and (max-width: 1000px) {
+  .section-index { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .section-index a:nth-child(4) { border-inline-start: 0; }
+  .section-index a:nth-child(-n + 3) { box-shadow: 0 1px var(--rule); }
 }
 
 @media (max-width: 460px) {

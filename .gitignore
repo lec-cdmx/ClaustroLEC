@@ -3,3 +3,7 @@
 /server/forum/.dev.vars*
 /server/forum/.env*
 /server/forum/.wrangler/
+/Organigrama.pdf
+/Organigrama.png
+/Programación 202613 - 2026_11_11 ECSG.xlsx
+__pycache__/
