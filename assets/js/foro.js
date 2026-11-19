@@ -19,8 +19,7 @@ const cancel = document.querySelector('#forum-cancel');
 const login = document.querySelector('#forum-login');
 const session = document.querySelector('#forum-session');
 const refresh = document.querySelector('#forum-refresh');
-const moderationStatus = document.querySelector('#forum-moderation-status');
-const queue = document.querySelector('#forum-queue');
+const departmentStatus = document.querySelector('#department-status');
 const categoryButtons = document.querySelectorAll('.feed-categories button');
 const sort = document.querySelector('#forum-sort');
 const demoThreads = document.querySelector('#forum-example-threads');
@@ -28,8 +27,9 @@ const featuredManagement = document.querySelector('#forum-featured-management');
 const dateFormat = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium', timeZone: 'America/Mexico_City' });
 let publicPosts = [];
 let connected = false;
+let departmentAvailable = false;
 let parentId = null;
-let moderatorPassword = '';
+let departmentPassword = '';
 let selectedCategory = '';
 let publishingOfficial = false;
 let reactionsOpen = false;
@@ -83,7 +83,7 @@ function openContribution(parent, official = false) {
   form.reset();
   formStatus.textContent = '';
   parentId = parent?.id || null;
-  publishingOfficial = official && Boolean(moderatorPassword);
+  publishingOfficial = official && Boolean(departmentPassword);
   document.querySelector('#forum-dialog-title').textContent = parent ? 'Responder en la conversación' : publishingOfficial ? 'Publicar desde el departamento' : 'Compartir con el claustro';
   const context = document.querySelector('#forum-context');
   context.hidden = !parent;
@@ -101,10 +101,10 @@ function openContribution(parent, official = false) {
   }
   if (!parent && selectedCategory) form.elements.category.value = selectedCategory;
   updatePinChoice();
-  send.textContent = publishingOfficial ? 'Publicar' : 'Enviar a moderación';
+  send.textContent = parent ? 'Publicar respuesta' : 'Publicar';
   document.querySelector('#forum-privacy').textContent = publishingOfficial
     ? 'Se publica a nombre del Departamento de Economía, Región CDMX. El correo queda para gestión interna y solo se muestra si marcas la casilla.'
-    : 'Moderación puede usar tu correo para contactarte sobre tu envío. Al aprobarse, se publican tu nombre, puesto, campus y contribución. Tu correo también se muestra si marcas la casilla.';
+    : 'Al publicar, tu nombre, puesto, campus y contribución serán visibles de inmediato. Tu correo queda privado y solo se muestra si marcas la casilla.';
   dialog.showModal();
   (publishingOfficial ? form.elements.email : form.elements.name).focus();
 }
@@ -297,7 +297,7 @@ async function loadPosts() {
   if (!api) {
     loading = false;
     loadFailed = true;
-    forumStatus.textContent = 'Vista previa. Los envíos se habilitarán cuando el servicio de moderación esté conectado.';
+    forumStatus.textContent = 'Vista previa. El servicio de publicaciones aún no está conectado.';
     renderThreads();
     return;
   }
@@ -306,7 +306,8 @@ async function loadPosts() {
     document.querySelector('#feed-preview-note').hidden = !result.preview;
     publicPosts = result.posts;
     loadFailed = false;
-    connected = result.submissionsOpen && result.feedVersion >= 2;
+    connected = result.submissionsOpen && result.publicationMode === 'direct';
+    departmentAvailable = result.departmentOpen;
     reactionsOpen = result.reactionsOpen;
     forumStatus.textContent = connected ? '' : 'Puedes consultar las publicaciones. La participación se habilitará pronto.';
   } catch {
@@ -316,8 +317,8 @@ async function loadPosts() {
   }
   loading = false;
   newPost.disabled = !connected;
-  login.hidden = !connected || Boolean(moderatorPassword);
-  if (!moderatorPassword) moderationStatus.textContent = connected ? '' : forumStatus.textContent;
+  login.hidden = !departmentAvailable || Boolean(departmentPassword);
+  if (!departmentPassword) departmentStatus.textContent = connected ? '' : forumStatus.textContent;
   renderThreads();
   revealLinkedPost();
 }
@@ -338,69 +339,35 @@ function revealLinkedPost() {
   document.getElementById(id)?.scrollIntoView({ block: 'center' });
 }
 
-function closeModeration() {
-  moderatorPassword = '';
+function closeDepartment() {
+  departmentPassword = '';
   login.reset();
-  login.hidden = !connected;
+  login.hidden = !departmentAvailable;
   session.hidden = true;
-  queue.replaceChildren();
   featuredManagement.replaceChildren();
   if (publishingOfficial && dialog.open) dialog.close();
-  moderationStatus.textContent = '';
+  departmentStatus.textContent = '';
 }
 
-async function decide(post, decision) {
-  const password = moderatorPassword;
-  refresh.disabled = true;
-  for (const action of queue.querySelectorAll('button')) action.disabled = true;
-  try {
-    await request('moderation/' + post.id, { body: { decision }, password });
-    if (password !== moderatorPassword) return;
-    await loadQueue();
-    if (decision === 'approved') await loadPosts();
-    if (password === moderatorPassword) moderationStatus.textContent = decision === 'approved' ? 'Contribución aprobada.' : 'Contribución rechazada.';
-  } catch (error) {
-    if (password !== moderatorPassword) return;
-    if (error.status === 401) closeModeration();
-    moderationStatus.textContent = error.message;
-  } finally {
-    refresh.disabled = false;
-    for (const action of queue.querySelectorAll('button')) action.disabled = false;
-  }
-}
-
-async function loadQueue(password = moderatorPassword) {
-  const { posts, featured } = await request('moderation', { password });
-  if (password !== moderatorPassword) return;
+async function loadDepartment(password = departmentPassword) {
+  const { featured } = await request('department', { password });
+  if (password !== departmentPassword) return;
   login.hidden = true;
   login.reset();
   session.hidden = false;
-  moderationStatus.textContent = posts.length ? 'Pendientes en esta vista · ' + posts.length : 'No hay contribuciones pendientes.';
+  departmentStatus.textContent = 'Acceso del departamento habilitado.';
   featuredManagement.replaceChildren();
   if (featured) {
     const remove = button('Retirar destacada', async () => {
       remove.disabled = true;
       try {
         await request('featured/' + featured.id, { body: { pinned: false }, password });
-        if (password === moderatorPassword) { await loadQueue(); await loadPosts(); }
-      } catch (error) { moderationStatus.textContent = error.message; }
+        if (password === departmentPassword) { await loadDepartment(); await loadPosts(); }
+      } catch (error) { departmentStatus.textContent = error.message; }
       finally { remove.disabled = false; }
     });
     featuredManagement.append(element('p', 'Discusión destacada: ' + featured.title), remove);
   }
-  queue.replaceChildren(...posts.map(post => {
-    const card = element('article', '', 'forum-review');
-    const parent = [...examples, ...publicPosts].find(item => item.id === post.parent_id);
-    const subject = post.title || (parent ? 'Respuesta a ' + (parent.title || parent.name) : 'Respuesta en un hilo');
-    const actions = element('div', '', 'forum-session');
-    actions.append(
-      button('Aprobar', () => decide(post, 'approved'), 'forum-button forum-primary'),
-      button('Rechazar', () => decide(post, 'rejected'), 'forum-button forum-reject'),
-    );
-    const emailLabel = post.email_public === 1 ? 'Correo visible al aprobar' : 'Correo para moderación';
-    card.append(element('span', categoryLabel(post.category), 'feed-category'), element('h3', subject), postDetails(post), element('p', emailLabel + ' · ' + post.email), element('p', post.body, 'forum-text'), ...postTags(post), actions);
-    return card;
-  }));
 }
 
 newPost.addEventListener('click', () => openContribution(null));
@@ -434,10 +401,15 @@ form.addEventListener('submit', async event => {
   send.disabled = cancel.disabled = true;
   formStatus.textContent = 'Enviando…';
   try {
-    await request(publishingOfficial ? 'department/posts' : 'posts', { body, password: publishingOfficial ? moderatorPassword : undefined });
+    const published = await request(publishingOfficial ? 'department/posts' : 'posts', { body, password: publishingOfficial ? departmentPassword : undefined });
     dialog.close();
-    if (publishingOfficial) { await loadPosts(); await loadQueue(); }
-    forumStatus.textContent = publishingOfficial ? 'Publicación del departamento lista.' : 'Tu contribución quedó pendiente de moderación.';
+    selectedCategory = '';
+    for (const category of categoryButtons) category.setAttribute('aria-pressed', String(category.dataset.category === ''));
+    tagFilter.reset();
+    await loadPosts();
+    if (publishingOfficial) await loadDepartment();
+    location.hash = published.id;
+    forumStatus.textContent = parentId ? 'Tu respuesta ya está publicada.' : 'Tu publicación ya está visible en el feed.';
   } catch (error) {
     formStatus.textContent = error.message;
   } finally {
@@ -449,26 +421,26 @@ login.addEventListener('submit', async event => {
   event.preventDefault();
   const submit = login.querySelector('button');
   submit.disabled = true;
-  moderatorPassword = login.elements.password.value;
-  moderationStatus.textContent = 'Consultando la cola…';
+  departmentPassword = login.elements.password.value;
+  departmentStatus.textContent = 'Ingresando…';
   try {
-    await loadQueue();
+    await loadDepartment();
   } catch (error) {
-    closeModeration();
-    moderationStatus.textContent = error.message;
+    closeDepartment();
+    departmentStatus.textContent = error.message;
   } finally {
     submit.disabled = false;
   }
 });
 
 refresh.addEventListener('click', async () => {
-  try { await loadQueue(); }
+  try { await loadDepartment(); }
   catch (error) {
-    if (error.status === 401) closeModeration();
-    moderationStatus.textContent = error.message;
+    if (error.status === 401) closeDepartment();
+    departmentStatus.textContent = error.message;
   }
 });
-document.querySelector('#forum-logout').addEventListener('click', closeModeration);
+document.querySelector('#forum-logout').addEventListener('click', closeDepartment);
 
 renderThreads();
 loadPosts();

@@ -6,8 +6,9 @@ import worker from '../server/forum/worker.mjs';
 import { examples } from '../assets/js/forum-examples.js';
 import { localDatabase, migrate, rateLimit } from './lib/d1-local.mjs';
 
-if (!process.env.MODERATOR_PASSWORD || process.env.MODERATOR_PASSWORD.length < 20) {
-  throw new Error('Configura MODERATOR_PASSWORD con una contraseña local de al menos 20 caracteres.');
+const departmentPassword = process.env.DEPARTMENT_PASSWORD ?? process.env.MODERATOR_PASSWORD;
+if (departmentPassword && departmentPassword.length < 20) {
+  throw new Error('La contraseña del departamento debe tener al menos 20 caracteres.');
 }
 mkdirSync(new URL('../fuentes-locales/', import.meta.url), { recursive: true });
 const DB = localDatabase(fileURLToPath(new URL('../fuentes-locales/comunidad-preview.sqlite', import.meta.url)));
@@ -25,9 +26,9 @@ if (demo && DB.sqlite.prepare('SELECT COUNT(*) AS count FROM posts').get().count
   }
 }
 const env = {
-  DB, MODERATOR_PASSWORD: process.env.MODERATOR_PASSWORD,
+  DB, DEPARTMENT_PASSWORD: departmentPassword,
   FORUM_ORIGIN: 'http://127.0.0.1:4173,http://localhost:4173',
-  SUBMISSION_LIMIT: rateLimit(8), MODERATION_LIMIT: rateLimit(30), REACTION_LIMIT: rateLimit(60), LOCAL_PREVIEW: true,
+  SUBMISSION_LIMIT: rateLimit(8), DEPARTMENT_LIMIT: rateLimit(30), REACTION_LIMIT: rateLimit(60), LOCAL_PREVIEW: true,
 };
 createServer(async (incoming, outgoing) => {
   try {

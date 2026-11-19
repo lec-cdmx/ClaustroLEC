@@ -7,8 +7,8 @@
   <title>Comunidad | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=5">
-  <link rel="stylesheet" href="assets/css/foro.css?v=5">
-  <script type="module" src="assets/js/foro.js?v=7"></script>
+  <link rel="stylesheet" href="assets/css/foro.css?v=6">
+  <script type="module" src="assets/js/foro.js?v=8"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -46,7 +46,7 @@
     <div class="forum-toolbar">
       <div>
         <h2>¿Qué compartimos hoy?</h2>
-        <p>Publica una experiencia, una noticia o una pregunta. Las participaciones del claustro pasan por moderación.</p>
+        <p>Publica una experiencia, una noticia o una pregunta. Tus publicaciones y respuestas aparecen directamente.</p>
       </div>
       <button class="forum-button forum-primary" id="forum-new" type="button" disabled>Compartir con el claustro</button>
     </div>
@@ -91,21 +91,20 @@
     </div>
     <noscript><p>Activa JavaScript para consultar los hilos y participar en el foro.</p></noscript>
 
-    <details class="forum-moderation" id="forum-moderation">
+    <details class="department-management" id="department-management">
       <summary>Gestión del departamento</summary>
-      <div class="forum-moderation-content">
+      <div class="department-management-content">
         <form id="forum-login" hidden>
-          <label>Contraseña de moderación <input name="password" type="password" autocomplete="current-password" maxlength="256" required></label>
-          <button class="forum-button" type="submit">Ver envíos pendientes</button>
+          <label>Contraseña del departamento <input name="password" type="password" autocomplete="current-password" maxlength="256" required></label>
+          <button class="forum-button" type="submit">Entrar</button>
         </form>
         <div class="forum-session" id="forum-session" hidden>
           <button class="forum-button forum-primary" id="forum-official" type="button">Publicar desde el departamento</button>
-          <button class="forum-button" id="forum-refresh" type="button">Actualizar cola</button>
+          <button class="forum-button" id="forum-refresh" type="button">Actualizar</button>
           <button class="forum-button" id="forum-logout" type="button">Salir</button>
         </div>
-        <p id="forum-moderation-status" role="status">La moderación se habilitará al conectar el servicio del foro.</p>
+        <p id="department-status" role="status"></p>
         <div id="forum-featured-management"></div>
-        <div id="forum-queue"></div>
       </div>
     </details>
 
@@ -128,7 +127,7 @@
         </div>
         <label class="forum-email-choice">
           <input name="publishEmail" type="checkbox">
-          <span>Mostrar mi correo públicamente si se aprueba mi contribución</span>
+          <span>Mostrar mi correo públicamente junto a mi publicación</span>
         </label>
         <label id="forum-category-field">Tipo de publicación
           <select name="category"><option value="practice">Buenas prácticas</option><option value="community">Comunidad</option><option value="agenda">Agenda</option><option value="discussion">Discusión</option></select>
@@ -140,9 +139,9 @@
           <small id="forum-tags-help">Escribe de 2 a 4 palabras distintas, separadas por comas. Cada palabra puede tener hasta 32 caracteres.</small>
         </label>
         <label>Contribución <textarea name="body" rows="5" minlength="5" maxlength="2500" required></textarea></label>
-        <p class="forum-privacy" id="forum-privacy">Moderación puede usar tu correo para contactarte sobre tu envío. Al aprobarse, se publican tu nombre, puesto, campus y contribución. Tu correo también se muestra si marcas la casilla.</p>
+        <p class="forum-privacy" id="forum-privacy">Al publicar, tu nombre, puesto, campus y contribución serán visibles de inmediato. Tu correo queda privado y solo se muestra si marcas la casilla.</p>
         <p class="forum-status" id="forum-submit-status" role="status"></p>
-        <button class="forum-button forum-primary" type="submit">Enviar a moderación</button>
+        <button class="forum-button forum-primary" type="submit">Publicar</button>
       </form>
     </dialog>
   </main>

@@ -94,14 +94,15 @@ async function submit(request, env, official = false) {
   }
 
   const id = crypto.randomUUID();
-  const status = official ? 'approved' : 'pending';
+  // 'approved' is the legacy database value for a visible publication.
+  const status = 'approved';
   const insert = env.DB.prepare(`
     INSERT INTO posts (id, parent_id, name, role, campus, email, title, body, created_at, tags, email_public, category, official, pinned, status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).bind(id, parent, name, role, campus, email, title, body, new Date().toISOString(), JSON.stringify(tags), emailPublic, category, Number(official), Number(pinned), status);
   if (pinned) await env.DB.batch([env.DB.prepare('UPDATE posts SET pinned = 0 WHERE pinned = 1'), insert]);
   else await insert.run();
-  return { id, status };
+  return { id, status: 'published' };
 }
 
 async function react(request, env, id) {
@@ -123,23 +124,16 @@ async function limit(binding, request) {
 }
 
 async function authorize(request, env) {
-  await limit(env.MODERATION_LIMIT, request);
+  const password = env.DEPARTMENT_PASSWORD ?? env.MODERATOR_PASSWORD;
+  if (typeof password !== 'string' || password.length < 20) throw new ForumError(503, 'El acceso del departamento aún no está configurado.');
+  await limit(env.DEPARTMENT_LIMIT ?? env.MODERATION_LIMIT, request);
   const supplied = request.headers.get('Authorization') || '';
-  const expected = 'Bearer ' + encodeURIComponent(env.MODERATOR_PASSWORD);
+  const expected = 'Bearer ' + encodeURIComponent(password);
   const digest = async text => new Uint8Array(await crypto.subtle.digest('SHA-256', encoder.encode(text)));
   const [a, b] = await Promise.all([digest(supplied), digest(expected)]);
   let difference = 0;
   for (let i = 0; i < a.length; i++) difference |= a[i] ^ b[i];
-  if (difference !== 0) throw new ForumError(401, 'La contraseña de moderación no es válida.');
-}
-
-async function moderate(request, env, id) {
-  const { decision } = await readJson(request);
-  if (!['approved', 'rejected'].includes(decision)) throw new ForumError(400, 'Elige aprobar o rechazar.');
-  const result = await env.DB.prepare("UPDATE posts SET status = ?, reviewed_at = ? WHERE id = ? AND status = 'pending'")
-    .bind(decision, new Date().toISOString(), id).run();
-  if (result.meta.changes !== 1) throw new ForumError(409, 'Este envío ya no está pendiente.');
-  return { id, status: decision };
+  if (difference !== 0) throw new ForumError(401, 'La contraseña del departamento no es válida.');
 }
 
 export default {
@@ -157,7 +151,8 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers });
 
     const path = new URL(request.url).pathname;
-    const ready = typeof env.MODERATOR_PASSWORD === 'string' && env.MODERATOR_PASSWORD.length >= 20;
+    const departmentPassword = env.DEPARTMENT_PASSWORD ?? env.MODERATOR_PASSWORD;
+    const departmentOpen = typeof departmentPassword === 'string' && departmentPassword.length >= 20;
     try {
       if (path === '/api/posts' && request.method === 'GET') {
         const { results } = await env.DB.prepare(`${visibleCTE}
@@ -167,10 +162,10 @@ export default {
             EXISTS(SELECT 1 FROM post_likes l WHERE l.post_id = p.id AND l.visitor_id = ?) AS liked
           FROM posts p WHERE p.id IN (SELECT id FROM visible) ORDER BY p.created_at, p.id
         `).bind(...exampleIds, visitorId(request)).all();
-        return json({ posts: results.map(decodeTags), submissionsOpen: ready, feedVersion: 2, reactionsOpen: Boolean(env.REACTION_LIMIT), preview: env.LOCAL_PREVIEW === true });
+        return json({ posts: results.map(decodeTags), submissionsOpen: Boolean(env.SUBMISSION_LIMIT), feedVersion: 3, publicationMode: 'direct', departmentOpen, reactionsOpen: Boolean(env.REACTION_LIMIT), preview: env.LOCAL_PREVIEW === true });
       }
-      if (!ready) throw new ForumError(503, 'El foro aún no está recibiendo contribuciones.');
       if (path === '/api/posts' && request.method === 'POST') {
+        if (!env.SUBMISSION_LIMIT) throw new ForumError(503, 'El servicio de publicaciones aún no está disponible.');
         await limit(env.SUBMISSION_LIMIT, request);
         return json(await submit(request, env), 201);
       }
@@ -184,13 +179,10 @@ export default {
         await limit(env.REACTION_LIMIT, request);
         return json(await react(request, env, reactionId));
       }
-      if (path === '/api/moderation' && request.method === 'GET') {
+      if (path === '/api/department' && request.method === 'GET') {
         await authorize(request, env);
-        const { results } = await env.DB.prepare(`
-          SELECT ${publicFields}, email, email_public FROM posts WHERE status = 'pending' ORDER BY created_at, id LIMIT 100
-        `).all();
         const featured = await env.DB.prepare(`SELECT ${publicFields} FROM posts WHERE pinned = 1 AND status = 'approved'`).first();
-        return json({ posts: results.map(decodeTags), featured: featured ? decodeTags(featured) : null });
+        return json({ featured: featured ? decodeTags(featured) : null });
       }
       const featuredId = path.match(/^\/api\/featured\/([\da-f-]{36})$/i)?.[1];
       if (featuredId && request.method === 'POST') {
@@ -199,11 +191,6 @@ export default {
         if (pinned !== false) throw new ForumError(400, 'Indica que deseas retirar la discusión destacada.');
         await env.DB.prepare('UPDATE posts SET pinned = 0 WHERE id = ?').bind(featuredId).run();
         return json({ id: featuredId, pinned: false });
-      }
-      const id = path.match(/^\/api\/moderation\/([\da-f-]{36})$/i)?.[1];
-      if (id && request.method === 'POST') {
-        await authorize(request, env);
-        return json(await moderate(request, env, id));
       }
       return json({ error: 'Ruta no encontrada.' }, 404);
     } catch (error) {

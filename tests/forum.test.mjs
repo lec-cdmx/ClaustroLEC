@@ -12,7 +12,7 @@ function setup(t) {
   migrate(DB);
   t.after(() => DB.sqlite.close());
   const permit = {async limit() {return {success:true};}};
-  const env = { DB, MODERATOR_PASSWORD:password, FORUM_ORIGIN:origin, SUBMISSION_LIMIT:permit, MODERATION_LIMIT:permit, REACTION_LIMIT:permit };
+  const env = { DB, DEPARTMENT_PASSWORD:password, FORUM_ORIGIN:origin, SUBMISSION_LIMIT:permit, DEPARTMENT_LIMIT:permit, REACTION_LIMIT:permit };
   async function call(path, {body, admin=false, visitor, requestOrigin=origin, raw}={}) {
     const headers = {'Origin':requestOrigin};
     if (body || raw) headers['Content-Type']='application/json';
@@ -22,8 +22,7 @@ function setup(t) {
     return {status:response.status,data:await response.json()};
   }
   const publish = async (overrides={}) => call('department/posts',{admin:true,body:{...person,...overrides}});
-  const approve = async id => call('moderation/'+id,{admin:true,body:{decision:'approved'}});
-  return {env,DB,call,publish,approve};
+  return {env,DB,call,publish};
 }
 
 test('legacy posts survive migration in Buenas prácticas', () => {
@@ -36,13 +35,12 @@ test('legacy posts survive migration in Buenas prácticas', () => {
   } finally { db.sqlite.close(); }
 });
 
-test('public submissions cannot impersonate the department, bypass moderation or expose email', async t => {
-  const {call,approve}=setup(t);
+test('public submissions appear immediately without impersonating the department or exposing email', async t => {
+  const {call}=setup(t);
   const created=await call('posts',{body:{...person,official:1,pinned:true,status:'approved'}});
   assert.equal(created.status,201);
-  assert.equal(created.data.status,'pending');
-  assert.equal((await call('posts')).data.posts.length,0);
-  await approve(created.data.id);
+  assert.equal(created.data.status,'published');
+  assert.equal((await call('posts')).data.posts.length,1);
   const [post]=(await call('posts')).data.posts;
   assert.equal(post.category,'discussion');
   assert.equal(post.official,0); assert.equal(post.pinned,0);
@@ -64,15 +62,15 @@ test('department publishing requires auth and replaces the single featured discu
   assert.equal(DB.sqlite.prepare('SELECT COUNT(*) AS n FROM posts WHERE pinned=1').get().n,0);
 });
 
-test('nested replies inherit category, stay private until approved and require visible ancestors', async t => {
-  const {call,publish,approve,DB}=setup(t);
+test('nested replies appear immediately, inherit category and require visible ancestors', async t => {
+  const {call,publish,DB}=setup(t);
   const root=await publish({category:'community'});
   const reply=await call('posts',{body:{...person,parentId:root.data.id,category:'agenda'}});
-  const forbidden=await call('posts',{body:{...person,parentId:reply.data.id}});
+  const forbidden=await call('posts',{body:{...person,parentId:crypto.randomUUID()}});
   assert.equal(forbidden.status,409);
-  await approve(reply.data.id);
+  assert.equal(reply.data.status,'published');
   const nested=await call('posts',{body:{...person,parentId:reply.data.id}});
-  await approve(nested.data.id);
+  assert.equal(nested.data.status,'published');
   const posts=(await call('posts')).data.posts;
   assert.equal(posts.length,3); assert.ok(posts.every(post=>post.category==='community'));
   DB.sqlite.prepare("UPDATE posts SET status='rejected' WHERE id=?").run(reply.data.id);
@@ -95,11 +93,12 @@ test('likes persist, are idempotent per browser and can be removed without revea
   assert.equal((await call('likes/'+crypto.randomUUID(),{visitor:a,body:{liked:true}})).status,404);
 });
 
-test('validation, origin checks, rate limits and unpublished-target protections apply', async t => {
-  const {call,env}=setup(t);
+test('validation, origin checks, rate limits and hidden-target protections apply', async t => {
+  const {call,env,DB}=setup(t);
   assert.equal((await call('posts',{body:{...person,category:'inventada'}})).status,400);
   assert.equal((await call('posts',{body:person,requestOrigin:'https://other.example'})).status,403);
   const pending=(await call('posts',{body:person})).data.id;
+  DB.sqlite.prepare("UPDATE posts SET status='rejected' WHERE id=?").run(pending);
   assert.equal((await call('likes/'+pending,{visitor:crypto.randomUUID(),body:{liked:true}})).status,404);
   assert.equal((await call('posts',{raw:'{"invalid":'})).status,400);
   assert.equal((await call('posts',{raw:JSON.stringify({body:'x'.repeat(20000)})})).status,413);
@@ -107,12 +106,25 @@ test('validation, origin checks, rate limits and unpublished-target protections 
   assert.equal((await call('likes/'+pending,{visitor:crypto.randomUUID(),body:{liked:true}})).status,429);
 });
 
-test('public email appears only with consent and moderation queue is protected', async t => {
-  const {call,approve}=setup(t);
+test('public email appears only with consent; approval endpoints no longer exist', async t => {
+  const {call}=setup(t);
   const created=await call('posts',{body:{...person,publishEmail:true}});
-  assert.equal((await call('moderation')).status,401);
-  const queue=await call('moderation',{admin:true});
-  assert.equal(queue.data.posts[0].email,person.email);
-  await approve(created.data.id);
+  assert.equal((await call('moderation',{admin:true})).status,404);
+  assert.equal((await call('moderation/'+created.data.id,{admin:true,body:{decision:'approved'}})).status,404);
+  assert.equal((await call('department')).status,401);
   assert.equal((await call('posts')).data.posts[0].contact_email,person.email);
+});
+
+test('public participation does not depend on the department password', async t => {
+  const {call,env}=setup(t);
+  delete env.DEPARTMENT_PASSWORD;
+  const availability=(await call('posts')).data;
+  assert.equal(availability.submissionsOpen,true);
+  assert.equal(availability.publicationMode,'direct');
+  assert.equal(availability.departmentOpen,false);
+  assert.equal((await call('posts',{body:person})).data.status,'published');
+  assert.equal((await call('department',{admin:true})).status,503);
+  // Existing deployments can keep their department credential under its old name.
+  env.MODERATOR_PASSWORD=password;
+  assert.equal((await call('department',{admin:true})).status,200);
 });
