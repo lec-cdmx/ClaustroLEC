@@ -1,6 +1,6 @@
 # Portal Digital Claustro LEC
 
-Portal de la Licenciatura en Economía del Tecnológico de Monterrey. La navegación reúne Inicio, Mi semestre, Nuestra Escuela, Docencia, Comunidad, Investigación y LEC en cifras. El plan de evolución está en [PLAN-DE-TRABAJO.md](PLAN-DE-TRABAJO.md).
+Portal de la Licenciatura en Economía del Tecnológico de Monterrey. La navegación reúne Inicio, Mi semestre, Nuestra Escuela, Comunidad, Investigación y LEC en cifras. Mi semestre da acceso a Programación, Docencia y la guía del semestre. El plan de evolución está en [PLAN-DE-TRABAJO.md](PLAN-DE-TRABAJO.md).
 
 ## Revisión local
 
@@ -20,7 +20,7 @@ mkdir -p dist && cp -- *.html dist/ && cp -R -- assets dist/
 
 ## Organización de archivos
 
-- **Raíz.** Páginas principales del portal, guía de inicio de semestre y directorio. Los enlaces anteriores de oportunidades van a Investigación.
+- **Raíz.** Páginas principales, subpáginas de Mi semestre y organigrama de la ECSG. Los enlaces anteriores de oportunidades van a Investigación.
 - **`assets/`.** Estilos en `css/`, scripts en `js/`, iconos en `icons/`, imágenes publicadas en `img/` y planes de estudio en PDF en `docs/`.
 - **`fuentes-locales/`.** Archivos de trabajo del directorio e imágenes originales, excluidos de Git.
 
@@ -32,7 +32,7 @@ mkdir -p dist && cp -- *.html dist/ && cp -R -- assets dist/
 - **Resumen de sesiones.** `assets/js/sesiones.mjs` une días con las mismas fechas, horarios, salón y participación, después une horas contiguas y rangos de fechas contiguos con el mismo patrón. No une brechas ni diferencias de salón o porcentaje. Los registros originales permanecen intactos y pueden abrirse desde «Ver detalle original» en cada ficha resumida.
 - **Directorio.** Edita o duplica un perfil en `directorio.html`. Actualiza la semblanza y los temas académicos en `faculty-keywords`. Agrupa las UF por plan y por tipo, registra sus claves verificadas y actualiza el conteo de cada plan. Las claves con sufijo B corresponden a bloques, las que terminan en C a concentraciones y las que terminan en número a materias. Guarda los retratos en `assets/img/directorio/`.
 - **Perfiles extendidos.** Registra los trabajos en `assets/data/publicaciones.json` bajo el mismo identificador del encabezado del docente. Conserva el título original y redacta el resumen en el idioma de la fuente. Usa el año de la publicación o del manuscrito y deja `year` en `null` si la fuente omite la fecha. Si existe una versión de trabajo anterior, agrega su enlace en `workingPaper` dentro de la ficha de la publicación. Usa `fullText` para el acceso público al documento.
-- **Investigación.** Actualiza el seminario regional, el radar de oportunidades y el catálogo de publicaciones en `investigacion.html`. En el radar, usa `data-type` para clasificar cada ficha y registra la modalidad según la fuente oficial. Agrega hasta tres temas en `opportunity-topics`, con los mismos nombres del directorio cuando haya afinidad. Si hay fecha, actualiza el texto visible y `datetime` en formato `AAAA-MM-DD`. Distingue la fecha límite de postulación de las fechas del encuentro.
+- **Investigación.** Actualiza el seminario regional y el radar en `investigacion.html`. El buscador de publicaciones combina los perfiles de `directorio.html` con `assets/data/publicaciones.json` por identificador del docente. Cuando dos perfiles comparten un trabajo con el mismo título y enlace, el catálogo muestra una sola ficha que enlaza ambos perfiles. En el radar, usa `data-type` para clasificar cada ficha y registra la modalidad según la fuente oficial. Agrega hasta tres temas en `opportunity-topics`, con los mismos nombres del directorio cuando haya afinidad. Si hay fecha, actualiza el texto visible y `datetime` en formato `AAAA-MM-DD`. Distingue la fecha límite de postulación de las fechas del encuentro.
 - **Capacitación.** Edita o duplica una ficha en `capacitacion.html` y agrega un enlace al material cuando esté disponible.
 - **Guía de inicio de semestre.** Actualiza las recomendaciones y el calendario en `inicio-semestre.html`. Revisa también el periodo mostrado en Inicio y Docencia al reemplazar la guía. El Word original se conserva como fuente local.
 

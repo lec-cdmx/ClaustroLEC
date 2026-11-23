@@ -1,3 +1,5 @@
+import { loadCatalog } from './datos-investigacion.js';
+
 const dialog = document.querySelector('#research-profile');
 const name = dialog.querySelector('#research-name');
 const years = dialog.querySelector('.research-years');
@@ -5,21 +7,7 @@ const content = dialog.querySelector('.research-content');
 const status = dialog.querySelector('.research-status');
 const works = dialog.querySelector('.research-works');
 const sources = dialog.querySelector('.research-sources');
-let catalogRequest;
 let currentRequest;
-
-function loadCatalog() {
-  catalogRequest ??= fetch(new URL('../data/publicaciones.json', import.meta.url), { cache: 'no-cache' })
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return response.json();
-    })
-    .catch(error => {
-      catalogRequest = undefined;
-      throw error;
-    });
-  return catalogRequest;
-}
 
 function element(tag, className, text) {
   const node = document.createElement(tag);

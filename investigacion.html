@@ -6,10 +6,12 @@
   <meta name="description" content="Seminarios, oportunidades y publicaciones de investigación del claustro de Economía.">
   <title>Investigación | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
-  <link rel="stylesheet" href="assets/css/styles.css?v=8">
+  <link rel="stylesheet" href="assets/css/styles.css?v=9">
   <link rel="stylesheet" href="assets/css/secciones.css?v=3">
-  <link rel="stylesheet" href="assets/css/oportunidades.css?v=8">
-  <script src="assets/js/oportunidades.js?v=5" defer></script>
+  <link rel="stylesheet" href="assets/css/oportunidades.css?v=9">
+  <link rel="stylesheet" href="assets/css/publicaciones.css?v=1">
+  <script type="module" src="assets/js/investigacion.js?v=1"></script>
+  <script type="module" src="assets/js/oportunidades.js?v=6"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -25,13 +27,17 @@
   <nav class="shell section-index" aria-label="Secciones del portal">
     <a href="index.html">Inicio</a>
     <a href="programacion.html">Mi semestre</a>
-    <a href="organigrama.html">Nuestra Escuela</a>
-    <a href="capacitacion.html">Docencia</a>
+    <a href="directorio.html">Nuestra Escuela</a>
     <a href="buenas-practicas.html">Comunidad</a>
     <a href="investigacion.html" aria-current="page">Investigación</a>
     <a href="lec-en-cifras.html">LEC en cifras</a>
   </nav>
   <main class="shell" id="contenido" tabindex="-1">
+    <nav class="section-tabs section-tabs--three" id="research-tabs" aria-label="Investigación">
+      <a href="#internas">Seminario regional</a>
+      <a href="#externas">Convocatorias</a>
+      <a href="#publicaciones">Publicaciones</a>
+    </nav>
     <header class="section-hero">
       <img class="section-hero-image" src="assets/img/portada/oportunidades.webp"
         width="1000" height="563" alt="" fetchpriority="high">
@@ -41,12 +47,6 @@
         <p>Conoce el trabajo académico del claustro, presenta tu investigación y encuentra oportunidades para colaborar.</p>
       </div>
     </header>
-
-    <nav class="page-navigation" aria-label="Contenido de Investigación">
-      <a href="#internas">Seminario regional</a>
-      <a href="#externas">Convocatorias</a>
-      <a href="#publicaciones">Publicaciones</a>
-    </nav>
 
     <section class="opportunity-section" id="internas" aria-labelledby="seminar-title">
       <div class="seminar-board">
@@ -490,11 +490,30 @@
       </div>
     </section>
 
-    <section class="portal-callout opportunity-section" id="publicaciones" aria-labelledby="catalog-title">
-      <div>
+    <section class="opportunity-section publication-catalog" id="publicaciones" aria-labelledby="catalog-title">
+      <header class="publication-header">
         <h2 id="catalog-title">Publicaciones del claustro</h2>
-        <p>Catálogo en preparación. Consulta los trabajos disponibles en los <a class="context-link" href="directorio.html">perfiles del directorio</a>.</p>
+        <p>Explora los trabajos registrados en los perfiles del Directorio Claustro LEC.</p>
+      </header>
+      <form class="publication-filters" id="publication-filters" role="search" aria-label="Buscar publicaciones" hidden>
+        <label for="publication-search">Buscar publicaciones
+          <input id="publication-search" type="search" placeholder="Título, tema o nombre" autocomplete="off">
+        </label>
+        <label for="publication-profile">Perfil del claustro
+          <select id="publication-profile"><option value="">Todos los perfiles</option></select>
+        </label>
+        <label for="publication-year">Año
+          <select id="publication-year"><option value="">Todos los años</option></select>
+        </label>
+        <button type="button" class="publication-button" id="publication-clear">Limpiar</button>
+      </form>
+      <noscript><p>Consulta los trabajos desde el <a href="directorio.html">Directorio Claustro LEC</a>.</p></noscript>
+      <div class="publication-list-status">
+        <p id="publication-status" role="status"></p>
+        <button type="button" class="publication-button" id="publication-retry" hidden>Reintentar</button>
       </div>
+      <ul class="publication-list" id="publication-list" role="list" aria-label="Trabajos del claustro"></ul>
+      <button type="button" class="publication-button" id="publication-more" hidden>Mostrar más trabajos</button>
     </section>
 
     <dialog id="opportunity-match" class="opportunity-match" aria-labelledby="opportunity-match-title">

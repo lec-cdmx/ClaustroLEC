@@ -1,3 +1,5 @@
+import { fold, readDirectory } from './datos-investigacion.js';
+
 const controls = document.querySelector('#opportunity-controls');
 const search = document.querySelector('#opportunity-search');
 const sort = document.querySelector('#opportunity-sort');
@@ -5,10 +7,6 @@ const types = document.querySelector('#opportunity-types');
 const list = document.querySelector('.external-list');
 const resultCount = document.querySelector('#opportunity-count');
 const empty = document.querySelector('#opportunity-empty');
-
-function fold(text) {
-  return text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLocaleLowerCase('es');
-}
 
 function labels(container, selector) {
   return [...container.querySelectorAll(selector)].map(node => node.textContent.trim());
@@ -97,35 +95,6 @@ const matchResults = document.querySelector('#opportunity-match-results');
 const matchActions = document.querySelector('#opportunity-match-actions');
 const matchEmail = document.querySelector('#opportunity-match-email');
 const opportunitiesById = new Map(entries.map(entry => [entry.id, entry]));
-let directoryRequest;
-
-function readDirectory() {
-  directoryRequest ??= fetch('directorio.html')
-    .then(response => {
-      if (!response.ok) throw new Error('Directorio no disponible');
-      return response.text();
-    })
-    .then(html => {
-      const directory = new DOMParser().parseFromString(html, 'text/html');
-      return [...directory.querySelectorAll('.faculty-profile')].map(profile => {
-        const heading = profile.querySelector('h2');
-        const emailLink = profile.querySelector('.faculty-contact a[href^="mailto:"]');
-        return {
-          id: heading.id,
-          name: heading.textContent.trim(),
-          campus: profile.querySelector('.faculty-campus').textContent.trim(),
-          email: emailLink?.getAttribute('href').slice(7).split('?')[0] || '',
-          topics: new Set(labels(profile, '.faculty-keywords li').map(fold)),
-        };
-      });
-    })
-    .catch(error => {
-      directoryRequest = undefined;
-      throw error;
-    });
-  return directoryRequest;
-}
-
 function topicChip(topic) {
   const item = document.createElement('li');
   item.textContent = topic;

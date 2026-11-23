@@ -24,7 +24,7 @@ def faculty():
 
 def render(org):
     body = '''<main class="shell" id="contenido" tabindex="-1">
-<nav class="section-tabs" aria-label="Nuestra Escuela"><a href="organigrama.html" aria-current="page">Organigrama</a><a href="directorio.html" id="school-directory-title">Directorio</a></nav>
+<nav class="section-tabs" aria-label="Nuestra Escuela"><a href="directorio.html" id="school-directory-title">Directorio Claustro LEC</a><a href="organigrama.html" aria-current="page">Organigrama ECSG</a></nav>
 <header class="section-hero section-hero--panorama"><img class="section-hero-image" src="assets/img/portada/nuestra-escuela.webp" width="1600" height="683" alt="" fetchpriority="high"><div class="section-hero-copy"><p class="eyebrow">Escuela de Ciencias Sociales y Gobierno</p><h1>Nuestra Escuela</h1><p>Consulta el organigrama y encuentra los contactos de la ECSG en la Región CDMX.</p></div></header>
 <nav class="page-navigation" aria-label="Contenido del organigrama"><a href="#decanatura">Decanaturas</a><a href="#departamentos">Departamentos</a><a href="#campus">Campus</a><a href="#direccion-lec">Dirección Nacional de LEC</a></nav>
 <aside class="org-role-guide" aria-label="Guía de funciones">

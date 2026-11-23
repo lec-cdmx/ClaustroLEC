@@ -101,7 +101,7 @@ h1 {
 
 .section-index {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   border-bottom: 1px solid var(--rule);
 }
 
@@ -131,6 +131,11 @@ h1 {
   gap: .55rem;
   max-width: 29rem;
   margin-top: .85rem;
+}
+
+.section-tabs--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 43.5rem;
 }
 
 .section-tabs a {
@@ -351,9 +356,17 @@ h1 {
 }
 
 @media (max-width: 620px) {
-  .section-index { width: 92%; grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .section-index a { grid-column: span 3; min-height: 2.65rem; padding-inline: .1rem; }
-  .section-index a:nth-child(-n + 3) { grid-column: span 4; box-shadow: 0 1px var(--rule); }
+  .section-index { width: 92%; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .section-index a { min-height: 2.65rem; padding-inline: .1rem; }
+  .section-index a:nth-child(-n + 3) { box-shadow: 0 1px var(--rule); }
+  .section-tabs--three { gap: .45rem; }
+  .section-tabs--three a { justify-content: center; padding-inline: .3rem; font-size: .8rem; text-align: center; }
+  .section-tabs--three a::after { display: none; }
+}
+
+@media (max-width: 375px) {
+  .section-tabs--three { grid-template-columns: 1fr; }
+  .section-tabs--three a { justify-content: flex-start; padding-inline: .75rem; font-size: .9rem; text-align: left; }
 }
 
 @media (max-width: 460px) {
