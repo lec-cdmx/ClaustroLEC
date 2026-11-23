@@ -1,4 +1,4 @@
-import { loadPublications } from './publicaciones.js';
+import { loadPublications } from './publicaciones.js?v=2';
 
 const navigation = document.querySelector('#research-tabs');
 const tabs = [...navigation.querySelectorAll('a')].map(link => ({

@@ -13,7 +13,8 @@ export function searchableFilter(input, getOptions, { allLabel, queryWords, onCh
 
   function show() {
     const words = selectedValue ? [] : queryWords(input.value);
-    visibleOptions = [['', allLabel], ...getOptions()].filter(([value]) => words.every(word => value.includes(word)));
+    visibleOptions = [['', allLabel], ...getOptions()]
+      .filter(([value, , searchText = value]) => words.every(word => searchText.includes(word)));
     const items = visibleOptions.map(([, label], index) => {
       const item = document.createElement('li');
       item.id = list.id + '-' + index;

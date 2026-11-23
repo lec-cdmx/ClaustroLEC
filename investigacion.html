@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="assets/css/styles.css?v=9">
   <link rel="stylesheet" href="assets/css/secciones.css?v=3">
   <link rel="stylesheet" href="assets/css/oportunidades.css?v=9">
-  <link rel="stylesheet" href="assets/css/publicaciones.css?v=1">
-  <script type="module" src="assets/js/investigacion.js?v=1"></script>
+  <link rel="stylesheet" href="assets/css/publicaciones.css?v=2">
+  <script type="module" src="assets/js/investigacion.js?v=2"></script>
   <script type="module" src="assets/js/oportunidades.js?v=6"></script>
 </head>
 <body>
@@ -499,9 +499,12 @@
         <label for="publication-search">Buscar publicaciones
           <input id="publication-search" type="search" placeholder="Título, tema o nombre" autocomplete="off">
         </label>
-        <label for="publication-profile">Perfil del claustro
-          <select id="publication-profile"><option value="">Todos los perfiles</option></select>
-        </label>
+        <div class="search-picker">
+          <label for="publication-profile">Perfil del claustro</label>
+          <input id="publication-profile" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false"
+            aria-controls="publication-profile-options" placeholder="Escribe un nombre" autocomplete="off">
+          <ul id="publication-profile-options" class="search-options" role="listbox" aria-label="Perfiles del claustro" hidden></ul>
+        </div>
         <label for="publication-year">Año
           <select id="publication-year"><option value="">Todos los años</option></select>
         </label>

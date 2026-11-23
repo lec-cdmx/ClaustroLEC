@@ -1,8 +1,9 @@
 import { fold, loadCatalog, readDirectory } from './datos-investigacion.js';
+import { searchableFilter } from './searchable-filter.js?v=2';
 
 const form = document.querySelector('#publication-filters');
 const search = document.querySelector('#publication-search');
-const profileFilter = document.querySelector('#publication-profile');
+const profileInput = document.querySelector('#publication-profile');
 const yearFilter = document.querySelector('#publication-year');
 const clear = document.querySelector('#publication-clear');
 const status = document.querySelector('#publication-status');
@@ -12,10 +13,21 @@ const retry = document.querySelector('#publication-retry');
 const collator = new Intl.Collator('es', { sensitivity: 'base' });
 const pageSize = 12;
 let entries = [];
+let profileOptions = [];
 let matches = [];
 let shown = 0;
 let loaded = false;
 let loading = false;
+
+function queryWords(value) {
+  return fold(value).trim().split(/\s+/u).filter(Boolean);
+}
+
+const profileFilter = searchableFilter(profileInput, () => profileOptions, {
+  allLabel: 'Todos los perfiles',
+  queryWords,
+  onChange: applyFilters,
+});
 
 function indexCatalog(catalog, profiles) {
   const records = new Map();
@@ -103,7 +115,7 @@ function appendPage(focusNewResults = false) {
 }
 
 function applyFilters() {
-  const words = fold(search.value).trim().split(/\s+/u).filter(Boolean);
+  const words = queryWords(search.value);
   const profile = profileFilter.value;
   const year = yearFilter.value;
   matches = entries.filter(work =>
@@ -127,7 +139,7 @@ export async function loadPublications() {
     entries = indexCatalog(catalog, profiles);
     const authors = [...new Set(entries.flatMap(work => work.profiles))].sort((a, b) => collator.compare(a.name, b.name));
     const years = [...new Set(entries.map(work => work.year))];
-    for (const profile of authors) profileFilter.add(new Option(profile.name, profile.id));
+    profileOptions = authors.map(({ id, name }) => [id, name, fold(name)]);
     for (const year of years) yearFilter.add(new Option(year ?? 'Sin fecha', year ?? 'sin-fecha'));
     form.hidden = false;
     applyFilters();
@@ -144,6 +156,7 @@ form.addEventListener('submit', event => event.preventDefault());
 form.addEventListener('input', applyFilters);
 clear.addEventListener('click', () => {
   form.reset();
+  profileFilter.reset();
   applyFilters();
   search.focus();
 });
