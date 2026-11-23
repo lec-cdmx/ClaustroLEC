@@ -1,6 +1,6 @@
 # Portal Digital Claustro LEC
 
-Portal de la Licenciatura en Economía del Tecnológico de Monterrey. Reúne programación docente, organigrama de la ECSG, directorio del claustro, oportunidades académicas, buenas prácticas y recursos de capacitación. El plan de evolución está en [PLAN-DE-TRABAJO.md](PLAN-DE-TRABAJO.md).
+Portal de la Licenciatura en Economía del Tecnológico de Monterrey. La navegación reúne Inicio, Mi semestre, Nuestra Escuela, Docencia, Comunidad, Investigación y LEC en cifras. El plan de evolución está en [PLAN-DE-TRABAJO.md](PLAN-DE-TRABAJO.md).
 
 ## Revisión local
 
@@ -20,7 +20,7 @@ mkdir -p dist && cp -- *.html dist/ && cp -R -- assets dist/
 
 ## Organización de archivos
 
-- **Raíz.** Portada y seis páginas del portal.
+- **Raíz.** Páginas principales del portal y páginas de la guía de inicio de semestre, el directorio y las oportunidades.
 - **`assets/`.** Estilos en `css/`, scripts en `js/`, iconos en `icons/`, imágenes publicadas en `img/` y planes de estudio en PDF en `docs/`.
 - **`fuentes-locales/`.** Archivos de trabajo del directorio e imágenes originales, excluidos de Git.
 
@@ -34,6 +34,7 @@ mkdir -p dist && cp -- *.html dist/ && cp -R -- assets dist/
 - **Perfiles extendidos.** Registra los trabajos en `assets/data/publicaciones.json` bajo el mismo identificador del encabezado del docente. Conserva el título original y redacta el resumen en el idioma de la fuente. Usa el año de la publicación o del manuscrito y deja `year` en `null` si la fuente omite la fecha. Si existe una versión de trabajo anterior, agrega su enlace en `workingPaper` dentro de la ficha de la publicación. Usa `fullText` para el acceso público al documento.
 - **Oportunidades.** Actualiza el seminario regional en la sección de iniciativas internas. Para el radar externo, edita o duplica una ficha en `oportunidades.html`. Usa `data-type` para clasificarla y registra la modalidad según la fuente oficial. Agrega hasta tres temas en `opportunity-topics`, con los mismos nombres del directorio cuando haya afinidad. Si hay fecha, actualiza el texto visible y `datetime` en formato `AAAA-MM-DD`. Distingue la fecha límite de postulación de las fechas del encuentro.
 - **Capacitación.** Edita o duplica una ficha en `capacitacion.html` y agrega un enlace al material cuando esté disponible.
+- **Guía de inicio de semestre.** Actualiza las recomendaciones y el calendario en `inicio-semestre.html`. Revisa también el periodo mostrado en Inicio y Docencia al reemplazar la guía. El Word original se conserva como fuente local.
 
 Retira la etiqueta «Ejemplo» de cada ficha al sustituirla por contenido validado. Cuando reemplaces todos los datos ficticios de una sección, actualiza también su nota de edición.
 
@@ -47,7 +48,7 @@ Ejecuta `node --test tests/sesiones.test.mjs` para comprobar el resumen de horar
 
 ## Comunidad y Buenas prácticas
 
-El feed se abre desde **Comunidad** y conserva la dirección `buenas-practicas.html` para mantener los enlaces anteriores. Integra Comunidad, Agenda, Discusión y Buenas prácticas, con filtros de categoría y etiqueta, orden por fecha o número de comentarios y respuestas anidadas. La portada muestra hasta tres publicaciones recientes, dando prioridad a la discusión destacada. Los ejemplos estáticos están separados en una sección desplegable y no se pueden comentar ni reaccionar; los hilos antiguos vinculados a ejemplos conservan sus respuestas.
+El feed se abre desde **Comunidad** y conserva la dirección `buenas-practicas.html` para mantener los enlaces anteriores. Integra Comunidad, Agenda, Discusión y Buenas prácticas, con filtros de categoría y etiqueta, orden por fecha o número de comentarios y respuestas anidadas. La portada muestra la discusión destacada y hasta tres publicaciones recientes. Los ejemplos estáticos están separados en una sección desplegable y no se pueden comentar ni reaccionar; los hilos antiguos vinculados a ejemplos conservan sus respuestas.
 
 Las contribuciones se guardan en Cloudflare D1 a través del Worker existente. Las publicaciones del profesorado y sus respuestas aparecen de inmediato al enviarse. No hay cola ni acciones de aprobación o rechazo. En **Gestión del departamento**, una contraseña permite publicar con la identidad oficial «Departamento de Economía · Región CDMX» y gestionar la discusión destacada. Esta identidad se asigna en el servidor, no desde los datos enviados por el visitante. Se puede destacar una discusión a la vez y retirarla; la renovación semanal es una decisión editorial manual.
 

@@ -1,6 +1,5 @@
 .management-heading { padding-bottom: 2rem; }
 .management-heading h1 { font-size: clamp(2.8rem, 6.5vw, 5.5rem); }
-.management-heading .chapter-mark { border-color: #226657; background-color: #e7f1e9; color: #226657; }
 .section-links { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2rem; }
 .section-links a { padding: .55rem 1rem; border: 1px solid var(--rule); border-radius: 2rem; font-size: .83rem; text-decoration: none; background: white; }
 .section-links a:hover { background: var(--tint); border-color: var(--accent); }
