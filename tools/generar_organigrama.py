@@ -24,8 +24,8 @@ def faculty():
 
 def render(org):
     body = '''<main class="shell" id="contenido" tabindex="-1">
-<nav class="page-navigation" aria-label="Nuestra Escuela"><a href="organigrama.html" aria-current="page">Organigrama</a><a href="directorio.html" id="school-directory-title">Directorio</a></nav>
-<header class="page-heading management-heading"><div class="page-intro"><p class="eyebrow">Escuela de Ciencias Sociales y Gobierno</p><h1>Organigrama</h1><p>Consulta la estructura y los contactos de la ECSG en la Región CDMX.</p></div></header>
+<nav class="section-tabs" aria-label="Nuestra Escuela"><a href="organigrama.html" aria-current="page">Organigrama</a><a href="directorio.html" id="school-directory-title">Directorio</a></nav>
+<header class="section-hero section-hero--panorama"><img class="section-hero-image" src="assets/img/portada/nuestra-escuela.webp" width="1600" height="683" alt="" fetchpriority="high"><div class="section-hero-copy"><p class="eyebrow">Escuela de Ciencias Sociales y Gobierno</p><h1>Nuestra Escuela</h1><p>Consulta el organigrama y encuentra los contactos de la ECSG en la Región CDMX.</p></div></header>
 <nav class="page-navigation" aria-label="Contenido del organigrama"><a href="#decanatura">Decanaturas</a><a href="#departamentos">Departamentos</a><a href="#campus">Campus</a><a href="#direccion-lec">Dirección Nacional de LEC</a></nav>
 <aside class="org-role-guide" aria-label="Guía de funciones">
 <div class="org-role-comparison"><p><strong>Dirección de departamento</strong>Acompaña al profesorado de tiempo completo y cátedra en su desarrollo docente, capacitación e investigación. Coordina la asignación de profesores a las UF y da seguimiento a las necesidades académicas del departamento.</p><p><strong>Dirección de programa</strong>Acompaña al alumnado después de los primeros dos o tres semestres de la carrera y da seguimiento a su avance académico. Orienta la elección de UF, concentraciones e intercambios.</p></div>
@@ -77,7 +77,7 @@ def main():
     text, count = re.subn(r'<main\b.*?</main>', lambda _: render(org), text, count=1, flags=re.S)
     if count != 1:
         raise ValueError('No se encontró el contenedor principal del organigrama')
-    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=7', text)
+    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=8', text)
     path.write_text(text, encoding='utf-8')
     print('Organigrama actualizado desde el archivo de datos.')
 
