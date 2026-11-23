@@ -115,7 +115,7 @@ test('public email appears only with consent; approval endpoints no longer exist
   assert.equal((await call('posts')).data.posts[0].contact_email,person.email);
 });
 
-test('public participation does not depend on the department password', async t => {
+test('public participation remains available without department access configured', async t => {
   const {call,env}=setup(t);
   delete env.DEPARTMENT_PASSWORD;
   const availability=(await call('posts')).data;

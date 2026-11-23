@@ -17,6 +17,8 @@ const form = document.querySelector('#forum-submit');
 const formStatus = document.querySelector('#forum-submit-status');
 const send = form.querySelector('[type="submit"]');
 const cancel = document.querySelector('#forum-cancel');
+const management = document.querySelector('#department-management');
+const managementRequested = new URLSearchParams(location.search).get('gestion') === '1';
 const login = document.querySelector('#forum-login');
 const session = document.querySelector('#forum-session');
 const refresh = document.querySelector('#forum-refresh');
@@ -83,7 +85,10 @@ async function request(path, { body, password, images = [] } = {}) {
   });
   const data = await response.json();
   if (!response.ok) {
-    const error = new Error(data.error || 'No se pudo completar la solicitud.');
+    const message = password && response.status === 401
+      ? 'No se pudo validar el acceso de gestión.'
+      : data.error || 'No se pudo completar la solicitud.';
+    const error = new Error(message);
     error.status = response.status;
     throw error;
   }
@@ -350,7 +355,8 @@ async function loadPosts() {
     publicPosts = result.posts;
     loadFailed = false;
     connected = result.submissionsOpen && result.publicationMode === 'direct';
-    departmentAvailable = result.departmentOpen;
+    departmentAvailable = managementRequested && result.departmentOpen;
+    management.hidden = !departmentAvailable;
     reactionsOpen = result.reactionsOpen;
     imagesOpen = result.imagesOpen;
     notificationsOpen = result.notificationsOpen;

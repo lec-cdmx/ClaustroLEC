@@ -19,10 +19,7 @@ function previewCard(post, featured = false) {
   if (featured) {
     const author = document.createElement('small');
     author.textContent = post.official ? 'Desde el departamento' : post.name;
-    const action = document.createElement('span');
-    action.className = 'home-text-link';
-    action.textContent = 'Abrir discusión';
-    link.append(title, excerpt, author, action);
+    link.append(title, excerpt, author);
   } else {
     const category = document.createElement('span');
     category.textContent = post.category === 'community' ? 'Novedades y reconocimientos' : categoryLabel(post.category);

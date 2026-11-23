@@ -6,7 +6,7 @@
   <meta name="description" content="Encuentra perfiles, trayectorias, UF impartidas y contactos del claustro de Economía del Tec de Monterrey.">
   <title>Directorio | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
   <link rel="stylesheet" href="assets/css/directorio.css?v=10">
   <script type="module" src="assets/js/directorio.js?v=4"></script>
   <script type="module" src="assets/js/perfiles-extendidos.js"></script>
@@ -33,18 +33,17 @@
   </nav>
 
   <main class="shell" id="contenido" tabindex="-1">
+    <nav class="page-navigation" aria-label="Nuestra Escuela">
+      <a href="organigrama.html">Organigrama</a>
+      <a href="directorio.html" aria-current="page">Directorio</a>
+    </nav>
     <header class="page-heading">
       <div class="page-intro">
-        <p class="eyebrow">Nuestra Escuela</p>
+        <p class="eyebrow">Escuela de Ciencias Sociales y Gobierno</p>
         <h1>Directorio del claustro</h1>
         <p>Conoce la trayectoria del profesorado de Economía y encuentra a tus colegas por campus, UF impartida o tema de interés.</p>
       </div>
     </header>
-
-    <section class="directory-update" aria-labelledby="directory-update-title">
-      <h2 id="directory-update-title">Actualiza tus datos en el directorio</h2>
-      <p>El directorio está en expansión. Para incorporar, corregir o actualizar tu perfil, <a href="mailto:arturo.perez@tec.mx?subject=Actualizaci%C3%B3n%20de%20datos%20del%20Directorio%20LEC">escríbele a Arturo Pérez Mendoza</a>.</p>
-    </section>
 
     <form class="directory-filters" id="directory-filters" role="search" aria-label="Buscar docentes" hidden>
       <label for="directory-search">Buscar en el directorio</label>
@@ -478,6 +477,11 @@
       </article>
     </div>
 
+    <section class="directory-update" aria-labelledby="directory-update-title">
+      <h2 id="directory-update-title">Actualiza tus datos en el directorio</h2>
+      <p>El directorio está en expansión. Para incorporar, corregir o actualizar tu perfil, <a href="mailto:arturo.perez@tec.mx?subject=Actualizaci%C3%B3n%20de%20datos%20del%20Directorio%20LEC">escríbele a Arturo Pérez Mendoza</a>.</p>
+    </section>
+
     <dialog class="research-dialog" id="research-profile" aria-labelledby="research-name">
       <div class="research-panel">
         <header class="research-header">
@@ -504,7 +508,7 @@
   <footer class="site-footer">
     <div class="shell footer-inner">
       <div><strong>Claustro LEC</strong><p>Licenciatura en Economía · Tecnológico de Monterrey</p></div>
-      <a href="index.html"><span aria-hidden="true">←</span> Portada</a>
+      <a href="#inicio">Volver arriba <span aria-hidden="true">↑</span></a>
     </div>
   </footer>
 </body>

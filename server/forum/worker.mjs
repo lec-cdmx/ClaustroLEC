@@ -107,7 +107,7 @@ async function authorize(request, env) {
   const [a, b] = await Promise.all([digest(supplied), digest(expected)]);
   let difference = 0;
   for (let i = 0; i < a.length; i++) difference |= a[i] ^ b[i];
-  if (difference !== 0) throw new ForumError(401, 'La contraseña del departamento no es válida.');
+  if (difference !== 0) throw new ForumError(401, 'No se pudo validar el acceso de gestión.');
 }
 
 export default {

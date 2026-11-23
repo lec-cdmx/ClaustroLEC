@@ -6,9 +6,9 @@
   <meta name="description" content="Rutas del Claustro LEC para empezar a dar clase, coordinar una UF, fortalecer tu práctica, preparar tu clasificación docente y publicar investigación.">
   <title>Docencia | Claustro LEC</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/claustro.svg">
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
-  <link rel="stylesheet" href="assets/css/capacitacion.css?v=5">
-  <script src="assets/js/capacitacion.js?v=1" defer></script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <link rel="stylesheet" href="assets/css/capacitacion.css?v=6">
+  <script src="assets/js/capacitacion.js?v=2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -25,13 +25,17 @@
     <a href="index.html">Inicio</a>
     <a href="programacion.html">Mi semestre</a>
     <a href="organigrama.html">Nuestra Escuela</a>
-    <a href="capacitacion.html" aria-current="page">Docencia</a>
+    <a href="capacitacion.html" aria-current="location">Docencia</a>
     <a href="buenas-practicas.html">Comunidad</a>
     <a href="investigacion.html">Investigación</a>
     <a href="lec-en-cifras.html">LEC en cifras</a>
   </nav>
 
   <main class="shell" id="contenido" tabindex="-1">
+    <nav class="page-navigation" aria-label="Docencia">
+      <a href="capacitacion.html" aria-current="page">Capacitación</a>
+      <a href="inicio-semestre.html" id="semester-guide-title">Guía del semestre</a>
+    </nav>
     <header class="page-heading">
       <div class="page-intro">
         <h1>Docencia</h1>
@@ -39,155 +43,71 @@
       </div>
     </header>
 
-    <section class="portal-callout" aria-labelledby="semester-guide-title">
-      <div>
-        <p class="eyebrow">Periodo 202613</p>
-        <h2 id="semester-guide-title">Guía de inicio de semestre</h2>
-        <p>Calendario académico y orientaciones sobre evaluación, Canvas, integridad académica y coordinación de bloques.</p>
-      </div>
-      <a class="portal-button" href="inicio-semestre.html">Leer la guía <span aria-hidden="true">↗</span></a>
-    </section>
-
-    <header class="training-overview" id="rutas-capacitacion" tabindex="-1">
-      <h2>Elige tu ruta</h2>
-      <p>Abre una ruta para ver sus cursos y recursos en orden.</p>
+    <header class="training-overview" id="rutas-capacitacion">
+      <h2>Rutas de capacitación</h2>
     </header>
 
-    <nav class="training-routes" aria-label="Rutas de capacitación">
-      <a class="training-route" href="#nuevo-ingreso" aria-controls="nuevo-ingreso">
-        <span class="training-route-number" aria-hidden="true">01 <span class="training-route-toggle"></span></span>
-        <span class="training-route-copy"><strong>Nuevo ingreso</strong><small>Prepara tus accesos y tu primera clase.</small></span>
-        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
-          <path pathLength="1" d="M8 29 H48 L79 18 H111 L151 8"/>
-          <circle cx="8" cy="29" r="3"/><circle cx="79" cy="18" r="3"/><circle cx="151" cy="8" r="4"/>
-        </svg>
-      </a>
-      <a class="training-route" href="#coordinar-uf" aria-controls="coordinar-uf">
-        <span class="training-route-number" aria-hidden="true">02 <span class="training-route-toggle"></span></span>
-        <span class="training-route-copy"><strong>Bloques y concentraciones</strong><small>Alinea al equipo, Canvas y la evaluación.</small></span>
-        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
-          <path pathLength="1" d="M8 27 H39 L64 10 H104 L124 21 H151"/>
-          <circle cx="8" cy="27" r="3"/><circle cx="64" cy="10" r="3"/><circle cx="151" cy="21" r="4"/>
-        </svg>
-      </a>
-      <a class="training-route" href="#recursos-generales" aria-controls="recursos-generales">
-        <span class="training-route-number" aria-hidden="true">03 <span class="training-route-toggle"></span></span>
-        <span class="training-route-copy"><strong>Recursos generales</strong><small>Encuentra guías, formación y apoyo para el aula.</small></span>
-        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
-          <path pathLength="1" d="M8 19 H40 L66 28 H94 L124 12 H151"/>
-          <circle cx="8" cy="19" r="3"/><circle cx="94" cy="28" r="3"/><circle cx="151" cy="12" r="4"/>
-        </svg>
-      </a>
-      <a class="training-route" href="#ia-docente" aria-controls="ia-docente">
-        <span class="training-route-number" aria-hidden="true">04 <span class="training-route-toggle"></span></span>
-        <span class="training-route-copy"><strong>IA en la docencia</strong><small>Diseña y evalúa actividades con IA.</small></span>
-        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
-          <path pathLength="1" d="M8 30 L47 13 L83 25 L119 9 H151"/>
-          <circle cx="8" cy="30" r="3"/><circle cx="83" cy="25" r="3"/><circle cx="151" cy="9" r="4"/>
-        </svg>
-      </a>
-      <a class="training-route" href="#clasificacion-publicaciones" aria-controls="clasificacion-publicaciones">
-        <span class="training-route-number" aria-hidden="true">05 <span class="training-route-toggle"></span></span>
-        <span class="training-route-copy"><strong>Clasificación y publicaciones</strong><small>Prepara tus evidencias y verifica tu afiliación.</small></span>
-        <svg class="training-route-map" viewBox="0 0 160 38" aria-hidden="true" focusable="false">
-          <path pathLength="1" d="M8 30 H38 L62 21 H93 L118 11 H151"/>
-          <circle cx="8" cy="30" r="3"/><circle cx="62" cy="21" r="3"/><circle cx="151" cy="11" r="4"/>
-        </svg>
-      </a>
-    </nav>
-
-    <p class="sample-note">Las rutas específicas para profesorado de cátedra y de tiempo completo están en preparación. Puedes consultar la ruta de <a href="#recursos-generales">recursos generales</a>.</p>
-
-    <section class="training-section" id="nuevo-ingreso" aria-labelledby="nuevo-ingreso-title" tabindex="-1">
-      <header class="training-section-heading">
-        <p class="eyebrow">Ruta 01</p>
-        <h2 id="nuevo-ingreso-title">Docentes de nuevo ingreso</h2>
+    <details class="training-section" id="nuevo-ingreso" name="training-routes">
+      <summary><h3 id="nuevo-ingreso-title">Docentes de nuevo ingreso</h3></summary>
+      <div class="training-section-body">
         <p>Empieza por la bienvenida, confirma tu capacitación con CEDDIE y encuentra apoyo para preparar tu primera clase.</p>
-        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
-      </header>
-      <ol class="training-resources" role="list">
-        <li class="training-resource">
-          <details name="pasos-nuevo-ingreso">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">01</span>
-              <h3>Bienvenida y cursos de preparación</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+        <ol class="training-resources" role="list">
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h4>Bienvenida y cursos de preparación</h4>
               <p>La ruta de ingreso reúne la sesión de bienvenida, la preparación en Canvas, microenseñanza, el modelo educativo y evaluación de competencias. Incluye orientación para acceder a los cursos autogestionados.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/docentes-de-nuevo-ingreso" target="_blank" rel="noopener noreferrer">Ruta para docentes de nuevo ingreso <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://ceddie.tec.mx/es/introduccion-al-modelo-educativo" target="_blank" rel="noopener noreferrer">Introducción al Modelo Educativo <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-nuevo-ingreso">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">02</span>
-              <h3>Accesos y preparación para cátedra</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h4>Accesos y preparación para cátedra</h4>
               <p>Consulta la lista de integración y las instrucciones de correo, Llave Digital y software institucional si tu nombramiento es de cátedra.</p>
               <ul class="training-links">
                 <li><a href="https://profesorescatedra.tec.mx/es/mi-preparacion" target="_blank" rel="noopener noreferrer">Preparación para profesorado de cátedra <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://profesorescatedra.tec.mx/es/configura-correo-y-cuentas" target="_blank" rel="noopener noreferrer">Mi correo y accesos <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-nuevo-ingreso">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">03</span>
-              <h3>Inscripción y avance</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h4>Inscripción y avance</h4>
               <p>Consulta la oferta de desarrollo y revisa los cursos acreditados o pendientes en el tablero de Profesional. Si todavía no tienes correo Tec, CEDDIE indica cómo pedir ayuda para inscribirte.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/desarrollo-docente" target="_blank" rel="noopener noreferrer">Oferta y opciones de inscripción <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://lookerstudio.google.com/reporting/7e076899-47b3-452d-945c-0ad2b069a675" target="_blank" rel="noopener noreferrer">Mi estatus Profesional <span aria-hidden="true">↗</span></a> <span class="training-access">Cuenta Tec</span></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-nuevo-ingreso">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">04</span>
-              <h3>Acompañamiento en tu primera impartición</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h4>Acompañamiento en tu primera impartición</h4>
               <p>Conoce el programa de mentoría entre colegas, los pasos para participar y el directorio de líderes CEDDIE por campus.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/modelo-de-acompanamiento-docente" target="_blank" rel="noopener noreferrer">Programa y contactos por campus <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-      </ol>
-    </section>
+          </li>
+        </ol>
+      </div>
+    </details>
 
-    <section class="training-section" id="coordinar-uf" aria-labelledby="coordinar-uf-title" tabindex="-1">
-      <header class="training-section-heading">
-        <p class="eyebrow">Ruta 02</p>
-        <h2 id="coordinar-uf-title">Coordinación de bloques y concentraciones</h2>
+    <details class="training-section" id="coordinar-uf" name="training-routes">
+      <summary><h3 id="coordinar-uf-title">Coordinación de bloques y concentraciones</h3></summary>
+      <div class="training-section-body">
         <p>Identifica las unidades de formación (UF) y su plan de estudios. Revisa el diseño y acuerda con el equipo cómo aplicarán la evaluación y documentarán los ajustes.</p>
-        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
-      </header>
-      <ol class="training-resources" role="list">
-        <li class="training-resource">
-          <details name="pasos-coordinar-uf">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">01</span>
-              <h3>Localiza la UF y su transferencia</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+        <ol class="training-resources" role="list">
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h4>Localiza la UF y su transferencia</h4>
               <p>CEDDIE ofrece rutas separadas para los planes 2019 y 2026. Sus buscadores permiten localizar la UF por clave, nombre, programa, tipo o semestre.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/proceso-de-transferencia-de-unidades-de-formacion-ufs" target="_blank" rel="noopener noreferrer">Proceso de transferencia <span aria-hidden="true">↗</span></a></li>
@@ -195,16 +115,11 @@
                 <li><a href="https://ceddie.tec.mx/es/planes-2026" target="_blank" rel="noopener noreferrer">Buscador y transferencia · Planes 2026 <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-coordinar-uf">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">02</span>
-              <h3>Confirma cómo se evalúan las competencias</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h4>Confirma cómo se evalúan las competencias</h4>
               <p>Para Planes 2019, revisa si corresponde registrar grados de logro en Canvas. Para Planes 2026, identifica el propósito de la UF y los componentes de evaluación que le corresponden.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/evaluacion-de-competencias-en-el-modelo-tec21" target="_blank" rel="noopener noreferrer">Evaluación en el modelo Tec <span aria-hidden="true">↗</span></a></li>
@@ -212,32 +127,22 @@
                 <li><a href="https://ceddie.tec.mx/es/competencias-en-UF-2026" target="_blank" rel="noopener noreferrer">Evaluación de competencias · Planes 2026 <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-coordinar-uf">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">03</span>
-              <h3>Configura Canvas y verifica el cierre</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h4>Configura Canvas y verifica el cierre</h4>
               <p>La guía rápida reúne ayuda para el plan de evaluación, Canvas, grados de logro y configuraciones. La sección de Planes 2026 también enlaza al gestor de evaluación en Canvas.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/recursos-rapidos-para-la-gestion-de-tu-uf" target="_blank" rel="noopener noreferrer">Recursos rápidos para gestionar tu UF <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://ceddie.tec.mx/es/planes-de-estudio-2026" target="_blank" rel="noopener noreferrer">Planes de estudio 2026 y gestor de Canvas <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-coordinar-uf">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">04</span>
-              <h3>Acuerda criterios con el equipo docente</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h4>Acuerda criterios con el equipo docente</h4>
               <p>Usa las guías de colaboración y retroalimentación para preparar acuerdos de impartición y revisar evidencias en conjunto. Para dudas de operación, consulta Conexión CEDDIE.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/c2-colaboracion-docente" target="_blank" rel="noopener noreferrer">Colaboración docente <span aria-hidden="true">↗</span></a></li>
@@ -245,63 +150,46 @@
                 <li><a href="https://ceddie.tec.mx/es/soporte" target="_blank" rel="noopener noreferrer">Conexión CEDDIE <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-      </ol>
-      <aside class="training-note">
-        <h3>Acuerdos para la coordinación LEC</h3>
-        <p>Como punto de partida para el claustro, conviene dejar por escrito qué evidencias y rúbricas serán comunes entre grupos, quién verificará la configuración en Canvas y cuándo se reunirán para revisar ajustes.</p>
-      </aside>
-    </section>
+          </li>
+        </ol>
+        <aside class="training-note">
+          <h3>Acuerdos para la coordinación LEC</h3>
+          <p>Como punto de partida para el claustro, conviene dejar por escrito qué evidencias y rúbricas serán comunes entre grupos, quién verificará la configuración en Canvas y cuándo se reunirán para revisar ajustes.</p>
+        </aside>
+      </div>
+    </details>
 
-    <section class="training-section" id="recursos-generales" aria-labelledby="recursos-generales-title" tabindex="-1">
-      <header class="training-section-heading">
-        <p class="eyebrow">Ruta 03</p>
-        <h2 id="recursos-generales-title">Recursos para cualquier docente</h2>
+    <details class="training-section" id="recursos-generales" name="training-routes">
+      <summary><h3 id="recursos-generales-title">Recursos para cualquier docente</h3></summary>
+      <div class="training-section-body">
         <p>Explora los temas según lo que quieras resolver, desde diseñar una actividad hasta encontrar formación y asesoría.</p>
-        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
-      </header>
-      <ol class="training-resources" role="list">
-        <li class="training-resource">
-          <details name="pasos-recursos-generales">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">01</span>
-              <h3>Diseño de clases y aprendizaje activo</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+        <ol class="training-resources" role="list">
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h4>Diseño de clases y aprendizaje activo</h4>
               <p>Explora estrategias como el método de casos, el debate y el aprendizaje basado en investigación. La guía de diseño también incluye recursos para revisar una experiencia de aprendizaje.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/recursos-de-apoyo-la-ensenanza" target="_blank" rel="noopener noreferrer">Recursos de apoyo a la enseñanza <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://ceddie.tec.mx/es/c1-diseno-de-experiencias-de-ensenanza-aprendizaje" target="_blank" rel="noopener noreferrer">Diseño de experiencias de aprendizaje <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-recursos-generales">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">02</span>
-              <h3>Sostenibilidad y cambio climático</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h4>Sostenibilidad y cambio climático</h4>
               <p>Consulta materiales didácticos y grabaciones de los cursos sobre sostenibilidad de Ruta Azul y CEDDIE.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/desarrollo-sostenible" target="_blank" rel="noopener noreferrer">Sostenibilidad en la docencia <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://ceddie.tec.mx/es/descubre-herramientas-didacticas" target="_blank" rel="noopener noreferrer">Herramientas didácticas de Ruta Azul <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-recursos-generales">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">03</span>
-              <h3>Formación, bienestar y microcredenciales</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h4>Formación, bienestar y microcredenciales</h4>
               <p>Consulta la oferta de desarrollo y los recursos de bienestar. Si quieres documentar evidencias de tu práctica, revisa las guías y ventanas de acreditación del MDBF.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/desarrollo-docente" target="_blank" rel="noopener noreferrer">Oferta de desarrollo docente <span aria-hidden="true">↗</span></a></li>
@@ -309,16 +197,11 @@
                 <li><a href="https://ceddie.tec.mx/es/documentacion-y-acreditacion-mdbf" target="_blank" rel="noopener noreferrer">Documentación y acreditación del MDBF <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-recursos-generales">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">04</span>
-              <h3>Asesoría y novedades</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h4>Asesoría y novedades</h4>
               <p>Conexión CEDDIE orienta sobre Canvas, evaluación, herramientas de IA y capacitación. El boletín y el podcast reúnen novedades y experiencias del profesorado.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/soporte" target="_blank" rel="noopener noreferrer">Ventanilla Conexión CEDDIE <span aria-hidden="true">↗</span></a></li>
@@ -326,42 +209,30 @@
                 <li><a href="https://ceddie.tec.mx/es/sintonia-ceddie" target="_blank" rel="noopener noreferrer">Podcast Sintonía CEDDIE <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-      </ol>
-    </section>
+          </li>
+        </ol>
+      </div>
+    </details>
 
-    <section class="training-section" id="ia-docente" aria-labelledby="ia-docente-title" tabindex="-1">
-      <header class="training-section-heading">
-        <p class="eyebrow">Ruta 04</p>
-        <h2 id="ia-docente-title">Inteligencia artificial en la docencia</h2>
+    <details class="training-section" id="ia-docente" name="training-routes">
+      <summary><h3 id="ia-docente-title">Inteligencia artificial en la docencia</h3></summary>
+      <div class="training-section-body">
         <p>Parte de los lineamientos del Tec y lleva una actividad de Economía desde la idea hasta la evaluación.</p>
-        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
-      </header>
-      <ol class="training-resources" role="list">
-        <li class="training-resource">
-          <details name="pasos-ia-docente">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">01</span>
-              <h3>Define las reglas de uso</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+        <ol class="training-resources" role="list">
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h4>Define las reglas de uso</h4>
               <p>Revisa los lineamientos y la guía para docentes. Aclara en la consigna para qué se puede usar IA y cómo se debe declarar su uso.</p>
               <ul class="training-links">
                 <li><a href="https://tec.mx/es/integridad-academica/inteligencia-artificial" target="_blank" rel="noopener noreferrer">Lineamientos y guías de IA del Tec <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-ia-docente">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">02</span>
-              <h3>Explora herramientas y formación</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h4>Explora herramientas y formación</h4>
               <p>Consulta los recursos y la oferta de CEDDIE. Elige una herramienta según el objetivo de la actividad y pruébala con un ejemplo antes de llevarla al aula.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/enriquece-tu-docencia-con-inteligencia-artificial" target="_blank" rel="noopener noreferrer">IA para la práctica docente <span aria-hidden="true">↗</span></a></li>
@@ -369,106 +240,74 @@
                 <li><a href="https://tec.mx/es/ia/ensenanza-y-aprendizaje" target="_blank" rel="noopener noreferrer">Estrategia de IA educativa y TECgpt <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-ia-docente">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">03</span>
-              <h3>Diseña una actividad de Economía</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h4>Diseña una actividad de Economía</h4>
               <p>Pide al grupo que contraste una explicación generada por IA sobre un indicador económico con los datos de la fuente original. Incluye en la consigna qué supuestos deben revisar y cómo justificarán sus correcciones.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/c1-diseno-de-experiencias-de-ensenanza-aprendizaje" target="_blank" rel="noopener noreferrer">Diseño de experiencias de aprendizaje <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-ia-docente">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">04</span>
-              <h3>Evalúa el proceso y ajusta la actividad</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h4>Evalúa el proceso y ajusta la actividad</h4>
               <p>Define criterios para valorar el razonamiento económico, la verificación de fuentes y la declaración del uso de IA. Revisa qué evidencias te permitieron observar el aprendizaje y ajusta la consigna.</p>
               <ul class="training-links">
                 <li><a href="https://ceddie.tec.mx/es/c3-evaluacion-y-retroalimentacion-de-competencias" target="_blank" rel="noopener noreferrer">Evaluación y retroalimentación <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://tec.mx/es/integridad-academica/inteligencia-artificial" target="_blank" rel="noopener noreferrer">Guía de IA para docentes <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-      </ol>
-    </section>
+          </li>
+        </ol>
+      </div>
+    </details>
 
-    <section class="training-section" id="clasificacion-publicaciones" aria-labelledby="clasificacion-publicaciones-title" tabindex="-1">
-      <header class="training-section-heading">
-        <p class="eyebrow">Ruta 05</p>
-        <h2 id="clasificacion-publicaciones-title">Clasificación docente y publicaciones</h2>
+    <details class="training-section" id="clasificacion-publicaciones" name="training-routes">
+      <summary><h3 id="clasificacion-publicaciones-title">Clasificación docente y publicaciones</h3></summary>
+      <div class="training-section-body">
         <p>Prepara tus evidencias de carrera docente y revisa qué necesita un artículo para publicarse con la afiliación correcta.</p>
-        <a class="training-return" href="#rutas-capacitacion">Cerrar ruta <span aria-hidden="true">↑</span></a>
-      </header>
-      <ol class="training-resources" role="list">
-        <li class="training-resource">
-          <details name="pasos-clasificacion-publicaciones">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">01</span>
-              <h3>Ubica tu categoría y revisa los criterios</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+        <ol class="training-resources" role="list">
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">01</span>
+              <h4>Ubica tu categoría y revisa los criterios</h4>
               <p>En Mi Clasificación, identifica la categoría a la que quieres postularte. Revisa los requisitos, el periodo que se evalúa y las fechas del proceso antes de preparar el expediente.</p>
               <ul class="training-links">
                 <li><a href="https://miclasificacion.tec.mx/es" target="_blank" rel="noopener noreferrer">Mi Clasificación Docente <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://miclasificacion.tec.mx/sites/g/files/vgjovo1946/files/reglamento_clasificacion_profesores_profesional_posgrado_esp%2025.pdf" target="_blank" rel="noopener noreferrer">Reglamento de clasificación · PDF <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-clasificacion-publicaciones">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">02</span>
-              <h3>Organiza tu expediente de evidencias</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">02</span>
+              <h4>Organiza tu expediente de evidencias</h4>
               <p>Relaciona cada criterio con la evidencia que lo respalda. Comprueba que corresponda al periodo evaluado y pide la revisión de tu expediente según las indicaciones de tu facultad.</p>
               <ul class="training-links">
                 <li><a href="https://miclasificacion.tec.mx/sites/g/files/vgjovo1946/files/repositorio/NV_Profesor_Gu%C3%ADa%20para%20Carga%20de%20Evidencia%20y%20Solicitud%20de%20Retroalimentaci%C3%B3n%20V5.pdf" target="_blank" rel="noopener noreferrer">Guía para cargar evidencia y pedir retroalimentación · PDF <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://miclasificacion.tec.mx/sites/g/files/vgjovo1946/files/repositorio/FAQ-Clasificacion-Sep.pdf" target="_blank" rel="noopener noreferrer">Preguntas frecuentes sobre evidencias · PDF <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-clasificacion-publicaciones">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">03</span>
-              <h3>Prepara el manuscrito y elige una revista</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">03</span>
+              <h4>Prepara el manuscrito y elige una revista</h4>
               <p>Revisa el alcance y las instrucciones de la revista, su indexación y las opciones de acceso abierto. Acuerda la autoría y documenta las contribuciones, el financiamiento y las aprobaciones éticas cuando correspondan.</p>
               <ul class="training-links">
                 <li><a href="https://tec.mx/sites/default/files/repositorio/integridad-academica/lineamiento-operativo-para-publicaciones-cientificas.pdf" target="_blank" rel="noopener noreferrer">Lineamiento operativo para publicaciones académicas · PDF <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://biblioteca.tec.mx/c.php?g=1093092&amp;p=7972054" target="_blank" rel="noopener noreferrer">Recursos de Biblioteca Tec para publicar <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-clasificacion-publicaciones">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">04</span>
-              <h3>Verifica tu afiliación institucional y ORCID</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">04</span>
+              <h4>Verifica tu afiliación institucional y ORCID</h4>
               <p>Si publicas con afiliación al Tec, escribe <strong>Tecnologico de Monterrey</strong> en el campo de institución del manuscrito y del sistema editorial, tal como indica el lineamiento. Confirma con Operaciones de Investigación cómo registrar tu unidad y cómo proceder si tienes doble afiliación. Revisa también que tu nombre y ORCID coincidan con los datos del envío.</p>
               <ul class="training-links">
                 <li><a href="https://operacionesdeinvestigacion.tec.mx/es" target="_blank" rel="noopener noreferrer">Operaciones de Investigación <span aria-hidden="true">↗</span></a></li>
@@ -476,39 +315,39 @@
                 <li><a href="https://tec.mx/sites/default/files/repositorio/integridad-academica/lineamiento-operativo-para-publicaciones-cientificas.pdf#page=11" target="_blank" rel="noopener noreferrer">Afiliación institucional · Sección 5.1 <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-        <li class="training-resource">
-          <details name="pasos-clasificacion-publicaciones">
-            <summary>
-              <span class="training-resource-number" aria-hidden="true">05</span>
-              <h3>Registra la publicación y guarda la evidencia</h3>
-              <span class="training-step-toggle" aria-hidden="true"></span>
-            </summary>
+          </li>
+          <li class="training-resource">
             <div class="training-step-content">
+              <span class="training-resource-number" aria-hidden="true">05</span>
+              <h4>Registra la publicación y guarda la evidencia</h4>
               <p>Revisa la afiliación en las pruebas editoriales. Cuando el artículo se publique, guarda la referencia, el DOI o el enlace editorial y la versión que puedas compartir. Actualiza tu ORCID y consulta el Repositorio Institucional del Tec para conocer las opciones de depósito.</p>
               <ul class="training-links">
                 <li><a href="https://biblioteca.tec.mx/repositorio" target="_blank" rel="noopener noreferrer">Repositorio Institucional del Tec <span aria-hidden="true">↗</span></a></li>
                 <li><a href="https://biblioteca.tec.mx/c.php?g=1093092&amp;p=7972054" target="_blank" rel="noopener noreferrer">Acceso abierto e identificadores de autor <span aria-hidden="true">↗</span></a></li>
               </ul>
             </div>
-          </details>
-        </li>
-      </ol>
-    </section>
+          </li>
+        </ol>
+      </div>
+    </details>
 
-    <nav class="training-references" aria-label="Planes de estudio y recursos del Tec">
-      <a href="assets/docs/plan-estudios-lec-2019.pdf" target="_blank" rel="noopener noreferrer">Plan de Estudios 2019 <span aria-hidden="true">↗</span></a>
-      <a href="assets/docs/plan-estudios-lec-2026.pdf" target="_blank" rel="noopener noreferrer">Plan de Estudios 2026 <span aria-hidden="true">↗</span></a>
-      <a href="https://ceddie.tec.mx/es" target="_blank" rel="noopener noreferrer">Sitio de CEDDIE <span aria-hidden="true">↗</span></a>
-      <p>Algunos recursos requieren tu cuenta Tec.</p>
-    </nav>
+    <p class="sample-note">Las rutas específicas para profesorado de cátedra y de tiempo completo están en preparación.</p>
+
+    <section class="training-reference-section" aria-labelledby="training-references-title">
+      <h2 id="training-references-title">Planes de estudio y recursos del Tec</h2>
+      <ul class="training-references">
+        <li><a href="assets/docs/plan-estudios-lec-2019.pdf" target="_blank" rel="noopener noreferrer">Plan de Estudios 2019 <span aria-hidden="true">↗</span></a></li>
+        <li><a href="assets/docs/plan-estudios-lec-2026.pdf" target="_blank" rel="noopener noreferrer">Plan de Estudios 2026 <span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://ceddie.tec.mx/es" target="_blank" rel="noopener noreferrer">Sitio de CEDDIE <span aria-hidden="true">↗</span></a></li>
+      </ul>
+      <p class="sample-note">Algunos recursos requieren tu cuenta Tec.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="shell footer-inner">
       <div><strong>Claustro LEC</strong><p>Licenciatura en Economía · Tecnológico de Monterrey</p></div>
-      <a href="index.html"><span aria-hidden="true">←</span> Portada</a>
+      <a href="#inicio">Volver arriba <span aria-hidden="true">↑</span></a>
     </div>
   </footer>
 </body>

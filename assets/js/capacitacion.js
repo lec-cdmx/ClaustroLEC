@@ -1,22 +1,11 @@
 (() => {
-  const links = document.querySelectorAll(".training-route");
-
-  function updateExpandedState() {
-    for (const link of links) {
-      link.setAttribute("aria-expanded", String(link.hash === location.hash));
-    }
+  function openLinkedRoute() {
+    const route = document.getElementById(location.hash.slice(1));
+    if (!route?.matches('details.training-section')) return;
+    route.open = true;
+    route.scrollIntoView();
   }
 
-  for (const link of links) {
-    link.addEventListener("click", event => {
-      if (event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-      if (link.hash !== location.hash) return;
-
-      event.preventDefault();
-      location.hash = "rutas-capacitacion";
-    });
-  }
-
-  window.addEventListener("hashchange", updateExpandedState);
-  updateExpandedState();
+  window.addEventListener('hashchange', openLinkedRoute);
+  openLinkedRoute();
 })();

@@ -125,25 +125,31 @@ h1 {
 .section-index a:focus-visible { outline-offset: -4px; }
 .section-index a[aria-current] { border-bottom-color: var(--accent); background: var(--paper); color: var(--accent); }
 
-.portal-button {
-  display: inline-flex;
-  width: fit-content;
+.page-navigation {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: .65rem;
-  min-height: 2.75rem;
-  padding: .55rem .9rem;
-  border: 1px solid var(--accent);
-  border-radius: .45rem;
-  background: var(--accent);
-  color: white;
-  font-size: .86rem;
-  font-weight: 700;
+  column-gap: 1.25rem;
+  margin-block: 0 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: .88rem;
+  font-weight: 670;
+}
+
+.page-navigation a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  color: var(--accent);
+}
+
+.page-navigation a[aria-current] {
+  color: var(--navy);
   text-decoration: none;
 }
 
-.portal-button:hover { background: #102f95; }
-.portal-button span { font-size: 1rem; }
+.page-navigation:has([aria-current]) { margin-bottom: 0; }
+.context-link { color: var(--accent); font-weight: 650; }
 
 .portal-callout {
   display: flex;

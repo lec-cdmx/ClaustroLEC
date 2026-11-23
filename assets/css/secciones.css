@@ -14,22 +14,6 @@
 }
 
 .portal-hero > p:not(.eyebrow), .portal-hero-copy > p { max-width: 54ch; color: var(--muted); font-size: clamp(.95rem, 1.6vw, 1.12rem); }
-.portal-jumps { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.15rem; }
-.portal-jumps a {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .45rem .7rem;
-  border: 1px solid #b8c8ef;
-  border-radius: .35rem;
-  background: var(--paper);
-  color: var(--accent);
-  font-size: .79rem;
-  font-weight: 650;
-  text-decoration: none;
-}
-
-.portal-jumps a:hover { border-color: var(--accent); text-decoration: underline; }
 
 .guide-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(1rem, 4vw, 3.5rem); }
 .guide-calendar, .guide-stage { scroll-margin-top: 1rem; }
@@ -55,7 +39,6 @@
 .calendar-dates strong { font-size: .92rem; }
 .calendar-dates span, .guide-calendar > p:not(.eyebrow) { color: #385950; font-size: .83rem; }
 .calendar-dates small { color: #7b3644; font-size: .76rem; font-weight: 650; }
-.guide-calendar .portal-button { margin-top: .9rem; }
 
 .guide-recommendations { display: grid; align-content: start; gap: 1.3rem; }
 .guide-stage {
@@ -90,7 +73,7 @@
 .portal-hero--research h1 { margin-top: 0; color: #fff; text-wrap: wrap; }
 .portal-hero--research .portal-hero-copy > p { max-width: 42ch; color: #e5edfe; }
 
-.research-links, .figures-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .portal-card {
   display: block;
   padding: clamp(1.1rem, 2.9vw, 1.75rem);
@@ -100,12 +83,8 @@
   text-decoration: none;
 }
 
-.portal-card h2 { display: flex; justify-content: space-between; gap: .5rem; font: 770 clamp(1.25rem, 2.5vw, 1.75rem)/1.12 var(--display); }
-.portal-card h2 span { color: var(--accent); }
 .portal-card h3 { margin: 0; font: 750 1.18rem/1.15 var(--display); }
 .portal-card p, .figures-heading p { margin-top: .5rem; color: var(--muted); font-size: .88rem; }
-a.portal-card:hover { border-color: var(--accent); }
-a.portal-card:hover h2 { color: var(--accent); }
 
 .portal-hero--figures {
   border-color: #b7cfc2;
@@ -117,7 +96,7 @@ a.portal-card:hover h2 { color: var(--accent); }
 .figures-grid .portal-card { border-left: 3px solid #276457; }
 
 @media (max-width: 740px) {
-  .guide-layout, .research-links, .figures-grid { grid-template-columns: minmax(0, 1fr); }
+  .guide-layout, .figures-grid { grid-template-columns: minmax(0, 1fr); }
   .portal-hero--research img { width: 100%; }
   .portal-hero--research::before { background: linear-gradient(90deg, #142944f7, #142944c5 60%, #1429447a); }
 }

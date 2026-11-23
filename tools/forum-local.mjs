@@ -8,7 +8,7 @@ import { localDatabase, migrate, rateLimit } from './lib/d1-local.mjs';
 
 const departmentPassword = process.env.DEPARTMENT_PASSWORD ?? process.env.MODERATOR_PASSWORD;
 if (departmentPassword && departmentPassword.length < 20) {
-  throw new Error('La contraseña del departamento debe tener al menos 20 caracteres.');
+  throw new Error('La credencial de gestión debe tener al menos 20 caracteres.');
 }
 mkdirSync(new URL('../fuentes-locales/', import.meta.url), { recursive: true });
 const DB = localDatabase(fileURLToPath(new URL('../fuentes-locales/comunidad-preview.sqlite', import.meta.url)));

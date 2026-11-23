@@ -24,10 +24,9 @@ def faculty():
 
 def render(org):
     body = '''<main class="shell" id="contenido" tabindex="-1">
-<header class="page-heading management-heading"><div class="page-intro"><p class="eyebrow">Escuela de Ciencias Sociales y Gobierno</p><h1>Nuestra Escuela</h1><p>Conoce la estructura de la ECSG en la Región CDMX y encuentra a tus colegas de Economía.</p></div></header>
-<section class="portal-callout" aria-labelledby="school-directory-title"><div><h2 id="school-directory-title">Directorio del claustro</h2><p>Busca perfiles por campus, UF impartida, especialidad o tema de investigación.</p></div><a class="portal-button" href="directorio.html">Explorar directorio <span aria-hidden="true">↗</span></a></section>
-<div class="section-title"><h2>Organigrama de la ECSG</h2></div>
-<nav class="section-links" aria-label="Ir a una parte del organigrama"><a href="#decanatura">Decanaturas y proyectos</a><a href="#departamentos">Departamentos</a><a href="#campus">División ECSG por campus</a><a href="#direccion-lec">Dirección Nacional de LEC</a></nav>
+<nav class="page-navigation" aria-label="Nuestra Escuela"><a href="organigrama.html" aria-current="page">Organigrama</a><a href="directorio.html" id="school-directory-title">Directorio</a></nav>
+<header class="page-heading management-heading"><div class="page-intro"><p class="eyebrow">Escuela de Ciencias Sociales y Gobierno</p><h1>Organigrama</h1><p>Consulta la estructura y los contactos de la ECSG en la Región CDMX.</p></div></header>
+<nav class="page-navigation" aria-label="Contenido del organigrama"><a href="#decanatura">Decanaturas</a><a href="#departamentos">Departamentos</a><a href="#campus">Campus</a><a href="#direccion-lec">Dirección Nacional de LEC</a></nav>
 <aside class="org-role-guide" aria-label="Guía de funciones">
 <div class="org-role-comparison"><p><strong>Dirección de departamento</strong>Acompaña al profesorado de tiempo completo y cátedra en su desarrollo docente, capacitación e investigación. Coordina la asignación de profesores a las UF y da seguimiento a las necesidades académicas del departamento.</p><p><strong>Dirección de programa</strong>Acompaña al alumnado después de los primeros dos o tres semestres de la carrera y da seguimiento a su avance académico. Orienta la elección de UF, concentraciones e intercambios.</p></div>
 <details><summary>Qué hace cada puesto</summary><dl class="org-role-definitions">
@@ -78,7 +77,7 @@ def main():
     text, count = re.subn(r'<main\b.*?</main>', lambda _: render(org), text, count=1, flags=re.S)
     if count != 1:
         raise ValueError('No se encontró el contenedor principal del organigrama')
-    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=6', text)
+    text = re.sub(r'assets/css/gestion.css\?v=\d+', 'assets/css/gestion.css?v=7', text)
     path.write_text(text, encoding='utf-8')
     print('Organigrama actualizado desde el archivo de datos.')
 
